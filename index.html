@@ -54,7 +54,7 @@
       <section class="hero">
         <h2>三來源整合結論</h2>
         <p>本頁整合 Reddit、TechPowerUp Forum、Tom's Hardware Forum 對 MSI GPU Safeguard / GPU Safeguard+ 的討論。只採用已在三份來源報告中讀到的貼文、留言或報告摘錄。</p>
-        <p class="note">已與前一份整合報告比對：gpu_safeguard_cross_forum_integrated_2026-07-01.html；新增連結標示 New!，本次 New! 數量：<b>4</b>。</p>
+        <p class="note">已與前一份整合報告比對：gpu_safeguard_cross_forum_integrated_2026-07-01.html；新增連結標示 New!，本次 New! 數量：<b>11</b>。</p>
       </section>
 
       <section>
@@ -64,7 +64,7 @@
       <article class="source-card">
         <h3>Reddit</h3>
         <p>Reddit GPU 電源保護產品洞察驗證版</p>
-        <p><b>來源報告時間：</b>2026-07-08 10:42:52</p>
+        <p><b>來源報告時間：</b>2026-07-08 10:59:01</p>
         <p class="path">C:\Users\W11\Documents\Codex\2026-06-30\tom-s-hardware-forum-wireview-gpu\outputs\reddit_gpu_power_protection_verified_2026-07-08.html</p>
       </article>
     
@@ -133,7 +133,7 @@
       <div class="embedded-head">
         <h2>Reddit 原報告</h2>
         <p>Reddit GPU 電源保護產品洞察驗證版</p>
-        <p><b>來源報告時間：</b>2026-07-08 10:42:52</p>
+        <p><b>來源報告時間：</b>2026-07-08 10:59:01</p>
         <p class="path">C:\Users\W11\Documents\Codex\2026-06-30\tom-s-hardware-forum-wireview-gpu\outputs\reddit_gpu_power_protection_verified_2026-07-08.html</p>
       </div>
       <div class="embedded-report">
@@ -274,13 +274,27 @@
         <li>修正：Titanload 的優缺點要寫成「高承載線材賣點」對上「第三方線材/接點系統/品牌信任疑慮」，不是泛稱可靠或不可靠。</li>
         <li>2026-06-30 二次修正：GPU Safeguard 第一個證據連結已由不夠精準的 MSI 主機板 megathread 改為 GPU Safeguard+ 專帖，並補上 New PSU release question 與 Ai1600 TS review discussion。</li>
         <li>2026-06-30 資料量修正：已改用低頻 old.reddit HTML 讀取現有證據連結，成功讀取 27/27 個頁面，其中 24 個頁面解析到留言；解析結果保存於 work/reddit_old_page_evidence_2026-06-30.json。</li>
+        <li>2026-07-08 補查修正：原 7/8 Reddit refresh 只沿用前次驗證資料，未搜尋新 Reddit；本版已補入 2026-07-01 之後實際讀到的 7 筆新增討論。</li>
         <li>2026-07-01 heartbeat refresh：本次 Reddit JSON 仍不使用；沿用前次已驗證 old.reddit 證據頁與來源讀取驗證資料，未做 aggressive retry。來源基準檔：reddit_gpu_power_protection_verified_2026-06-30.html。</li>
       </ul>
     </section>
 
 
 
-    <section>
+        <section>
+      <h2>2026-07-08 Reddit 新增討論補查</h2>
+      <p class="note">補查時間：2026-07-08 10:52-10:59（Asia/Taipei）。方法：先用搜尋找 2026-07-01 之後指定關鍵字，再以低頻 old.reddit HTML 讀取候選貼文；未使用 Reddit JSON，未遇到 403/429/CAPTCHA。以下只列實際讀到本文或留言的新增討論，並依發文日期排序。</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th style="width:13%">關鍵字</th><th style="width:8%">發文日期</th><th style="width:10%">forum 名稱</th><th style="width:9%">Tag</th><th style="width:22%">文章 Title</th><th style="width:8%">連結</th><th style="width:30%">本文/留言摘要</th></tr></thead>
+          <tbody>
+            <tr><td>ROG Equalizer / WireView / pin monitoring <span class="new-badge" style="display:inline-block;margin-left:4px;padding:1px 6px;border-radius:999px;background:#dc2626;color:#fff;font-size:12px;font-weight:700;">New!</span></td><td>2026-07-01</td><td>r/ASUSROG</td><td>PC Build</td><td>I’ve seen reports of the ASUS ROG Equalizer cable burning. Should I cancel my order?</td><td><a href="https://www.reddit.com/r/ASUSROG/comments/1uktwty/ive_seen_reports_of_the_asus_rog_equalizer_cable/">Reddit</a> <span class="new-badge">New!</span></td><td>本文表示已訂購 ASUS ROG Equalizer 12V-2x6 cable，但看到 burning/overheating 報告後詢問是否取消。留言建議改買 WireView Pro II 或有 pin monitoring 的 PSU；也有人提到 Corsair Thermal Protect cable、ROG Equalizer 不是萬靈丹，以及需區分圖片真偽與測試證據。</td></tr><tr><td>WireView Pro II / 12V-2x6 / pin monitoring <span class="new-badge" style="display:inline-block;margin-left:4px;padding:1px 6px;border-radius:999px;background:#dc2626;color:#fff;font-size:12px;font-weight:700;">New!</span></td><td>2026-07-02</td><td>r/pcmasterrace</td><td>Question</td><td>Is it werid that I can afford an rtx 5090 but I&#x27;m not buying it purely out of fear that it will burn?</td><td><a href="https://www.reddit.com/r/pcmasterrace/comments/1ulyjce/is_it_werid_that_i_can_afford_an_rtx_5090_but_im/">Reddit</a> <span class="new-badge">New!</span></td><td>本文因 12VHPWR/12V-2x6 燒毀焦慮而猶豫是否購買 RTX 5090。留言中有人建議若只擔心線材可搭配 WireView Pro II，理由是可看見 600W 負載下的狀態、具自動關機與 2 年保固；也有人認為應改用無該接頭的 GPU，或至少使用 pin measurement/alert。</td></tr><tr><td>Ampinel / ROG Equalizer / GPU Safeguard+ <span class="new-badge" style="display:inline-block;margin-left:4px;padding:1px 6px;border-radius:999px;background:#dc2626;color:#fff;font-size:12px;font-weight:700;">New!</span></td><td>2026-07-04</td><td>r/overclocking</td><td>Looking for Guide</td><td>Questions About 12V-2x6 Connector Wear and Cable Selection</td><td><a href="https://www.reddit.com/r/overclocking/comments/1umu2yx/questions_about_12v2x6_connector_wear_and_cable/">Reddit</a> <span class="new-badge">New!</span></td><td>本文詢問 ASUS ROG Astral 5090 多次插拔、Ampinel、ROG Equalizer 與線材選擇。留言指出不要過度重複插拔；有人認為 Ampinel 能做 load balance 但無法修復鬆動/高電阻接點，也有人建議 MSI ai1600TS 可用 Afterburner 設 per-pin amp/current difference 門檻並觸發降載或關機。</td></tr><tr><td>WireView / Ampinel / ThermalProtect / MSI PSU <span class="new-badge" style="display:inline-block;margin-left:4px;padding:1px 6px;border-radius:999px;background:#dc2626;color:#fff;font-size:12px;font-weight:700;">New!</span></td><td>2026-07-04</td><td>r/pcmasterrace</td><td>Hardware</td><td>It really can happen to you too!</td><td><a href="https://www.reddit.com/r/pcmasterrace/comments/1unjyw4/it_really_can_happen_to_you_too/">Reddit</a> <span class="new-badge">New!</span></td><td>本文描述 Gigabyte OC 4090 電源接頭燒毀。留言把解法指向 WireView 或 Ampinel；另有人說已購買 MSI power supply，使用 per-pin current detection、over-current alerting、automatic shutdown，並加上 Corsair ThermalProtect cable 當作額外保護層。</td></tr><tr><td>WireView Pro II / ThermalProtect / GPU Safeguard+ / OptiGuard / Ampinel / ROG Equalizer <span class="new-badge" style="display:inline-block;margin-left:4px;padding:1px 6px;border-radius:999px;background:#dc2626;color:#fff;font-size:12px;font-weight:700;">New!</span></td><td>2026-07-05</td><td>r/nvidia</td><td>Build/Photos</td><td>Installed Wire View pro II and Corsair thermal protect cable on my RTX 5090, no more melting anxiety</td><td><a href="https://www.reddit.com/r/nvidia/comments/1uoepk0/installed_wire_view_pro_ii_and_corsair_thermal/">Reddit</a> <span class="new-badge">New!</span></td><td>貼文展示 RTX 5090 上安裝 WireView Pro II 與 Corsair ThermalProtect cable。留言爭論 ThermalProtect 在 WireView 介入後是否仍能正確工作；有人嫌 WireView 價格高，偏好內建安全功能的 PSU；也有人稱 MSI Safeguard+ 可在約 3 秒內透過 Afterburner 設定觸發降載，並提到 Seasonic OptiGuard 可能有 GPU connector side temperature、seating 與 dynamic power adjusting。</td></tr><tr><td>GPU Safeguard+ / MSI Ai1600TS / Ai1300TS <span class="new-badge" style="display:inline-block;margin-left:4px;padding:1px 6px;border-radius:999px;background:#dc2626;color:#fff;font-size:12px;font-weight:700;">New!</span></td><td>2026-07-07</td><td>r/MSI_Gaming</td><td>Discussion</td><td>MSI PSU safeguard+ custom amp limits guide</td><td><a href="https://www.reddit.com/r/MSI_Gaming/comments/1upfvw4/msi_psu_safeguard_custom_amp_limits_guide/">Reddit</a> <span class="new-badge">New!</span></td><td>本文是 Ai1600TS 與 Ai1300TS 的 Safeguard+ amp limit 設定提示，列出 currentmax 是單 pin 最大電流、currentdif 是 pin 間允許差異；讀取時未見留言，因此只能確認使用者需要明確的門檻欄位說明。</td></tr><tr><td>WireView Pro II / ThermalProtect <span class="new-badge" style="display:inline-block;margin-left:4px;padding:1px 6px;border-radius:999px;background:#dc2626;color:#fff;font-size:12px;font-weight:700;">New!</span></td><td>2026-07-07</td><td>r/pcmasterrace</td><td>Build/Battlestation</td><td>Installed Wire View pro II and Corsair thermal protect cable on my RTX 5090, no more melting anxiety</td><td><a href="https://www.reddit.com/r/pcmasterrace/comments/1uq18rm/installed_wire_view_pro_ii_and_corsair_thermal/">Reddit</a> <span class="new-badge">New!</span></td><td>同題內容在 r/pcmasterrace 另有新貼文。可讀留言較少，但有使用者表示因 5090 滿載而難以放心開機，另有留言說即使裝了保護仍可能熔毀，原作者回應機率已大幅降低。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+<section>
       <h2>來源讀取驗證</h2>
       <p class="note">為修正 Reddit JSON 403 造成的資料量問題，已改用低頻 old.reddit HTML 讀取既有證據連結；27/27 頁讀取成功，24/27 頁解析到留言。以下欄位標示實際讀到的貼文/留言狀態。</p>
       <div class="table-wrap">
