@@ -1,542 +1,614 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>12V-2x6 / 12VHPWR 線材保護產品論壇聲量報告（2026-07-08）</title>
-<style>
-:root{
-  --bg:#f5f6f8; --card:#ffffff; --ink:#1c2330; --muted:#68758a; --line:#e3e7ee;
-  --accent:#2563eb; --accent-soft:#e8f0fe; --pos:#0f766e; --neg:#b91c1c; --warn:#b45309;
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:"Segoe UI","Microsoft JhengHei",system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.55}
-.wrap{max-width:1840px;margin:0 auto;padding:18px 24px 60px}
-header{display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-bottom:6px}
-h1{font-size:21px;margin:0}
-.meta{color:var(--muted);font-size:12.5px}
-.tabs{display:flex;gap:8px;margin:14px 0}
-.tab{padding:7px 18px;border-radius:999px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:14px;font-weight:600;color:var(--muted)}
-.tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
-.page{display:none}
-.page.active{display:block}
-.note{background:#fffbe8;border:1px solid #f1e3a6;border-radius:8px;padding:10px 14px;margin:10px 0 18px;font-size:12.5px;color:#5b4a12}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
-.card h3{margin:0 0 4px;font-size:15.5px}
-.card .sub{color:var(--muted);font-size:12px;margin-bottom:8px}
-.card h4{margin:10px 0 4px;font-size:12.5px;letter-spacing:.4px}
-.card ul{margin:2px 0 6px;padding-left:18px}
-.card li{margin:2px 0}
-.pos h4,.h-pos{color:var(--pos)} .neg h4,.h-neg{color:var(--neg)} .imp h4{color:var(--warn)}
-details.insight{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 16px;margin:10px 0}
-details.insight summary{font-weight:700;font-size:15px;cursor:pointer}
-details.insight ul{margin:8px 0 4px;padding-left:20px}
-section h2{font-size:17px;margin:26px 0 10px;border-left:4px solid var(--accent);padding-left:10px}
-.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 12px}
-.chip{padding:4px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:12.5px;user-select:none}
-.chip.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:600}
-.filters input[type=search]{padding:6px 12px;border:1px solid var(--line);border-radius:8px;min-width:240px;font-size:13px}
-.count{color:var(--muted);font-size:12.5px;margin-left:auto}
-table{border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;width:auto}
-.tblbox{overflow-x:auto;border-radius:10px}
-th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-th{background:#eef1f6;font-size:12.5px;white-space:nowrap;cursor:pointer;position:sticky;top:0}
-td.dt{white-space:nowrap;font-variant-numeric:tabular-nums}
-td.kw,td.fm,td.tg{white-space:nowrap}
-td.ti{max-width:340px;font-weight:600}
-td.sm{max-width:640px;color:#333}
-tr:hover td{background:#f7f9fc}
-a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
-.badge{display:inline-block;padding:1px 8px;border-radius:999px;font-size:11.5px;border:1px solid var(--line);background:#f1f4f9}
-.b-reddit{background:#fdeeee;border-color:#f3c9c9;color:#a33}
-.b-tpu{background:#e9f3ff;border-color:#bfd9f7;color:#1d5da8}
-.b-thw{background:#eefaf0;border-color:#c5e8cd;color:#20773a}
-.approx{color:var(--muted);font-size:11px}
-.newbadge{display:inline-block;padding:0 7px;border-radius:999px;font-size:11px;font-weight:700;background:#ffe9e0;color:#c2410c;border:1px solid #f5b89a;vertical-align:1px}
-.kwblock{margin:0 0 26px;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
-.kwhead{display:flex;align-items:baseline;gap:12px;padding:10px 16px;border-left:6px solid var(--kc,#2563eb);background:linear-gradient(90deg,var(--kbg,#e8f0fe),#fff 70%)}
-.kwhead h3{margin:0;font-size:16px;color:var(--kc,#2563eb)}
-.kwhead .kcnt{color:var(--muted);font-size:12.5px}
-.kwblock table{border:none;border-radius:0;width:100%}
-.kwblock .tblbox{border-radius:0}
-footer{margin-top:34px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);padding-top:12px}
-.statbar{display:flex;flex-wrap:wrap;gap:12px;margin:6px 0 4px}
-.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 18px;min-width:130px}
-.stat b{font-size:20px;display:block}
-.stat span{color:var(--muted);font-size:12px}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GPU Safeguard 跨論壇整合報告 - 2026-07-15</title>
+  <style>
+    :root {
+      --bg:#f5f7fa; --panel:#fff; --text:#17202a; --muted:#5f6c7b; --line:#d7dee8; --head:#eef3f8; --accent:#0f766e; --tab:#e7edf3;
+    }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:"Segoe UI","Noto Sans TC",Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.55; }
+    header, main { max-width:1440px; margin:0 auto; }
+    header { padding:24px 24px 12px; }
+    main { padding:18px 24px 28px; }
+    h1 { margin:0 0 8px; font-size:28px; letter-spacing:0; }
+    h2 { margin:22px 0 12px; font-size:20px; letter-spacing:0; }
+    h3 { margin:14px 0 8px; font-size:16px; letter-spacing:0; }
+    .meta,.path,.note { color:var(--muted); font-size:13px; }
+    .tabs { position:sticky; top:0; z-index:10; max-width:1440px; margin:0 auto; padding:0 24px; display:flex; gap:6px; background:var(--bg); border-bottom:1px solid var(--line); }
+    .tab-button { border:1px solid var(--line); border-bottom:none; background:var(--tab); color:var(--text); padding:10px 14px; border-radius:8px 8px 0 0; cursor:pointer; font-size:14px; }
+    .tab-button.active { background:var(--panel); color:var(--accent); font-weight:700; }
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; }
+    section { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:18px; margin-bottom:16px; }
+    .hero { border-left:4px solid var(--accent); }
+    .source-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; }
+    .source-card { border:1px solid var(--line); background:#fbfcfe; border-radius:8px; padding:12px; }
+    table { width:100%; border-collapse:collapse; table-layout:fixed; font-size:13px; }
+    th,td { border:1px solid var(--line); padding:8px; vertical-align:top; word-break:break-word; }
+    th { background:var(--head); text-align:left; }
+    ol,ul { margin:8px 0 0 22px; padding:0; }
+    li { margin:6px 0; }
+    a { color:#075985; }
+    .new-badge { display:inline-block; margin-left:4px; padding:1px 6px; border-radius:999px; background:#dc2626; color:#fff; font-size:12px; font-weight:700; }
+    .embedded-head { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:14px 16px; margin-bottom:12px; }
+    .embedded-report { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px; overflow:auto; }
+    .embedded-report header,.embedded-report main { max-width:none; padding:0; }
+    .embedded-report section { margin:12px 0; }
+    @media (max-width:760px) { .tabs { overflow-x:auto; padding-top:6px; } .tab-button { white-space:nowrap; } table { font-size:12px; } }
+  </style>
 </head>
 <body>
-<div class="wrap">
-<header>
-  <h1>12V-2x6 / 12VHPWR 線材保護產品 — 論壇討論洞察報告</h1>
-  <span class="meta">產生時間：<b>2026-07-09 10:11</b>（v4）｜資料擷取：2026-07-09｜來源：Reddit（old.reddit 搜尋）、TechPowerUp Forums（站內搜尋）、Tom's Hardware Forums（站內搜尋）</span>
-  <span class="meta">版本歷程：v1 2026-07-08 11:00 初版 → v2 2026-07-08 14:55 明細改依關鍵字分區＋新增版本比對機制 → v3 2026-07-09 09:54 新增關鍵字「TempGuard」（ASRock），新增 12 筆明細 → v4 2026-07-09 10:11 針對「不含品牌名的討論」補搜（型號／零件描述詞），新增 5 筆明細＋1 筆既有明細補標關鍵字，皆標示 <span class="newbadge">New!</span></span>
-</header>
-<div class="statbar">
-  <div class="stat"><b id="stTotal">—</b><span>明細筆數</span></div>
-  <div class="stat"><b id="stReddit">—</b><span>Reddit</span></div>
-  <div class="stat"><b id="stTpu">—</b><span>TechPowerUp</span></div>
-  <div class="stat"><b id="stThw">—</b><span>Tom's Hardware</span></div>
-</div>
-<div class="tabs">
-  <div class="tab active" data-page="pgInsight">洞察報告</div>
-  <div class="tab" data-page="pgDetail">搜尋結果明細</div>
-</div>
+  <header>
+    <h1>GPU Safeguard 跨論壇整合報告</h1>
+    <div class="meta">產出日期：2026-07-15｜分頁順序：整合總覽、Reddit、TechPowerUp、Tom's Hardware。</div>
+  </header>
+  <nav class="tabs" role="tablist">
+    <button id="tab-btn-0" class="tab-button active" role="tab" aria-controls="tab-0" aria-selected="true" onclick="showTab(0)">整合總覽</button><button id="tab-btn-1" class="tab-button " role="tab" aria-controls="tab-1" aria-selected="false" onclick="showTab(1)">Reddit</button><button id="tab-btn-2" class="tab-button " role="tab" aria-controls="tab-2" aria-selected="false" onclick="showTab(2)">TechPowerUp</button><button id="tab-btn-3" class="tab-button " role="tab" aria-controls="tab-3" aria-selected="false" onclick="showTab(3)">Tom&#x27;s Hardware</button>
+  </nav>
+  <main>
+    
+    <section id="tab-0" class="tab-panel active" role="tabpanel" aria-labelledby="tab-btn-0">
+      <section class="hero">
+        <h2>三來源整合結論</h2>
+        <p>本頁整合 Reddit、TechPowerUp Forum、Tom's Hardware Forum 對 MSI GPU Safeguard / GPU Safeguard+ 的討論。只採用已在三份來源報告中讀到的貼文、留言或報告摘錄。</p>
+        <p class="note">已與前一份整合報告比對：gpu_safeguard_cross_forum_integrated_2026-07-08.html；新增連結標示 New!，本次 New! 數量：<b>5</b>。</p>
+      </section>
 
-<div id="pgInsight" class="page active">
-<div class="note">
-<b>方法與限制</b>：摘要僅根據實際讀到的搜尋結果頁、貼文與留言撰寫，不做臆測。Reddit 貼文日期由「x 天前／x 月前」換算，逾一週者為約略值（標「約」）。
-搜尋關鍵字：WireView、GPU Safeguard、GPU Shield、OptiGuard、Ampinel、ROG Equalizer、Titanload、T-Guard、ThermalProtect、<span class="newbadge">New!</span> TempGuard（ASRock，v3 新增）。
-過程備註：Reddit 對搜尋引擎與一般程式抓取均封鎖（403），改經您已登入的 Chrome 以 old.reddit.com 搜尋；TechPowerUp 論壇搜尋使用您瀏覽器中已登入的帳號（mojolou），v3 搜尋時曾觸發一次機器人驗證頁（Anubis），等待數秒後自動通過，非封鎖；Tom's Hardware 論壇搜尋無需登入（TempGuard 查無結果）。全程僅低頻率讀取頁面，無自動化高頻請求，未觸發任何封鎖。
-無關同名產品（OptiGuard 殺蟲劑／電梯零件、T-Guard 其他用途、散熱護罩類 gpu shield）已排除。
-</div>
+      <section>
+        <h2>來源報告</h2>
+        <div class="source-grid">
+          
+      <article class="source-card">
+        <h3>Reddit</h3>
+        <p>Reddit GPU 電源保護產品洞察驗證版</p>
+        <p><b>來源報告時間：</b>2026-07-15 10:43:40</p>
+        <p class="path">C:\Users\W11\Documents\Codex\2026-06-30\tom-s-hardware-forum-wireview-gpu\outputs\reddit_gpu_power_protection_verified_2026-07-15.html</p>
+      </article>
+    
+          
+      <article class="source-card">
+        <h3>TechPowerUp</h3>
+        <p>TechPowerUp Forum 產品洞察來源驗證</p>
+        <p><b>來源報告時間：</b>2026-07-08 11:20:40</p>
+        <p class="path">C:\Users\W11\Documents\Codex\2026-06-30\wireview-gpu-safeguard-gpu-shield-optiguard\outputs\techpowerup_forum_product_insights_verified_2026-07-08.html</p>
+      </article>
+    
+          
+      <article class="source-card">
+        <h3>Tom&#x27;s Hardware</h3>
+        <p>Tom&#x27;s Hardware Forum GPU Safeguard 洞察報告</p>
+        <p><b>來源報告時間：</b>2026-07-08 11:20:40</p>
+        <p class="path">C:\Users\W11\Documents\Codex\2026-06-30\new-chat\outputs\tomshardware_gpu_safeguard_insights_2026-07-08.html</p>
+      </article>
+    
+        </div>
+      </section>
 
-<section><h2>一、產品地圖（誰在做什麼）</h2>
-<div class="tblbox"><table>
-<thead><tr><th>產品</th><th>廠商</th><th>類型</th><th>機制</th><th>供貨狀態（論壇回報）</th></tr></thead>
-<tbody>
-<tr><td>WireView Pro II</td><td>Thermal Grizzly</td><td>inline 監控裝置</td><td>per-pin 電流/電壓/溫度、警報、記錄、經主機板 power header 自動關機</td><td>現貨較穩；Wired 版與 Noctua 版 2026 Q3 陸續推出</td></tr>
-<tr><td>AMPINEL</td><td>Aqua Computer</td><td>inline 主動平衡器</td><td>唯一主動 per-pin 負載平衡（>7.5A 介入轉移）＋監控＋緊急關機，$79-95</td><td>嚴重缺貨：三個月延期後開賣，仍常 backorder 90 天</td></tr>
-<tr><td>ROG Equalizer</td><td>ASUS</td><td>強化線材</td><td>busbar 均流＋4-spring 鍍金端子、短時 17A/線、IVS 感測（Thor III/Strix Platinum 專用腳位）</td><td>缺貨頻繁；初期不單售；舊 PSU 用戶 5 折升級方案（至 2026-11-28）</td></tr>
-<tr><td>ThermalProtect</td><td>Corsair</td><td>安全線材</td><td>線內 65°C thermistor 斷 sense pin → GPU 黑屏斷電，$25 隨插即用</td><td>現貨；PSU 端 2x8pin 版本據稱將推出</td></tr>
-<tr><td>GPU Safeguard / Safeguard+</td><td>MSI</td><td>智慧 PSU（MAG PLS／MPG Ai TS）</td><td>PSU 內建 per-pin 監控、警示音、黑屏／降功率 75%／關機；MSI Center 與 Afterburner 整合</td><td>2026-04 起上市（Ai1300TS/Ai1600TS 等）</td></tr>
-<tr><td>GPU Shield</td><td>Cooler Master</td><td>智慧 PSU＋獨立 adapter</td><td>電流異常偵測即時斷電、LED 插入狀態指示（紅/綠）</td><td>PSU 版（MWE Gold V4）6/5 上市；獨立 adapter 遲未鋪貨</td></tr>
-<tr><td>OptiGuard</td><td>Seasonic</td><td>智慧 PSU 技術</td><td>GPU rail 微秒級保護＋藍牙 Dashboard 監控</td><td>消費版跳票：只給 PRIME Enterprise；PRIME TX Noctua 版 ETA 2027 Q2</td></tr>
-<tr><td>TITANLOAD / EX</td><td>Segotep</td><td>強化線材</td><td>12A／14A 強化 pin、宣稱峰值溫度降最多 72%（5090 約 -16°C）</td><td>中國區限定，海外需代購</td></tr>
-<tr><td>T-Guard</td><td>Gigabyte</td><td>智慧 PSU（GAMING 系列）</td><td>主動熱監控（宣傳「Hardware Guardian」）</td><td>已上市（1000GM PG5 等）；討論聲量極低</td></tr>
-<tr><td>TempGuard <span class="newbadge">New!</span></td><td>ASRock</td><td>智慧 PSU＋專屬感測線材</td><td>12V-2x6 線材 GPU 端內建 NTC 熱敏二極體，經 2 根可拆卸感測腳位回報 PSU，過溫觸發 OTP 斷電</td><td>2025-08 前身（L 型線材＋NTC）先上市；2026-05 Computex 正式冠上「TempGuard」品牌名；適用 Taichi／Phantom Gaming／Steel Legend Platinum 系列</td></tr>
-</table></div>
-</section>
+            <section>
+        <h2>2026-07-15 最新討論對整合洞察的影響</h2>
+        <table>
+          <thead><tr><th>來源</th><th>最新討論訊號</th><th>整合洞察更新</th><th>改進需求</th></tr></thead>
+          <tbody>
+            <tr><td>Reddit</td><td>ASRock TempGuard 失效討論把焦點推向「單純溫度感測不足」。</td><td>GPU Safeguard / GPU Shield / ThermalProtect 需要清楚說明感測位置、觸發速度、保護動作與失效邊界。</td><td>公開 thermistor 位置、per-pin current 門檻、溫度門檻、觸發後降載/關機流程與事件 log。</td></tr>
+            <tr><td>Reddit</td><td>MSI Safeguard+ 被反覆描述為可限制每 pin 9.0A、pin imbalance 1A，並用 Afterburner profile 降載。</td><td>使用者偏好可調門檻與自動降載，不一定只想要硬關機。</td><td>提供官方 UI、建議門檻、預設 profile、降載策略、誤判處理與可匯出記錄。</td></tr>
+            <tr><td>Reddit</td><td>WireView Pro II / Ampinel 仍是替代保護層；ROG Equalizer 被質疑可能無助於 current imbalance。</td><td>保護產品需要被拆成監控、平衡、降載、斷電四種不同功能來比較。</td><td>用實測資料說明各產品能處理哪些故障模式：未插緊、高接觸電阻、pin imbalance、溫升、反覆插拔磨耗。</td></tr>
+            <tr><td>TechPowerUp</td><td>2026-07-15 搜尋被 Anubis bot check 擋住，未能取得新的 verified insight report。</td><td>本次 TechPowerUp 分頁使用 2026-07-08 最新可用 verified report；不推測被擋住頁面內容。</td><td>下次若仍被擋，需保留 blocked report 並使用既有 verified report，避免 aggressive retry。</td></tr>
+            <tr><td>Tom's Hardware</td><td>目前最新可用來源仍是 2026-07-08 verified insights。</td><td>本次整合沿用 7/8 Tom's Hardware 洞察；未加入未讀到的新內容。</td><td>下次排程仍需優先使用當日或最新 Tom's Hardware verified report。</td></tr>
+          </tbody>
+        </table>
+      </section>
 
-<section><h2>二、各產品優缺點（依論壇實際發言整理）</h2>
+<section>
+        <h2>跨來源共識</h2>
+        <table>
+          <thead><tr><th>主題</th><th>三來源共同訊號</th><th>產品/設計意義</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>保護功能有需求</td>
+              <td>Reddit 討論提到蜂鳴、異常電流/突波與 shutdown；TechPowerUp 報告整理到 per-pin current、蜂鳴器與軟體彈窗；Tom's Hardware 報告整理到 power surge/current fluctuation/current imbalance 偵測與降低 power limit。</td>
+              <td>GPU Safeguard 的核心價值應定位為可觀測、可警示、可介入的保護層，而不是單純 PSU 規格賣點。</td>
+            </tr>
+            <tr>
+              <td>仍被視為 workaround</td>
+              <td>Reddit 與 Tom's Hardware 都出現這是在補 12VHPWR/12V-2x6 設計問題的情緒；TechPowerUp 的討論也把焦點放在 12V-2x6 異常偵測與保護。</td>
+              <td>行銷不能只說能保護，還要說明它是降低風險的監控/保護方案，不能替代良好接頭、線材與安裝。</td>
+            </tr>
+            <tr>
+              <td>軟體與啟用條件不清</td>
+              <td>TechPowerUp 有留言直接問是否需 MSI 軟體或 Afterburner 啟用；Reddit 有 PSU.cfg / Afterburner amp limit 討論，且留言提醒 firmware/software controlled 差異；Tom's Hardware 也整理到彈窗、錯誤碼、聲音警報與降功率。</td>
+              <td>必須公開無軟體時是否仍保護、韌體預設門檻、Afterburner/MSI Center 角色、事件記錄與使用者可調範圍。</td>
+            </tr>
+            <tr>
+              <td>保固與責任仍是缺口</td>
+              <td>Tom's Hardware 整理到使用者質疑：若 PSU 已警告 5090 供電異常，GPU 廠是否承認並維修。Reddit 也反映高價 GPU 使用者的焦慮與支援資訊需求。</td>
+              <td>需要把保護事件與 RMA 流程連起來，例如匯出 log、故障碼定義、MSI GPU/PSU 交叉保固說明。</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>改進需求優先級</h2>
+        <ol>
+          <li><b>公開保護邏輯：</b>每 pin 電流門檻、電流不平衡門檻、突波判定、溫度/接觸異常是否納入、警報到關機的時間。</li>
+          <li><b>明確軟體/韌體分工：</b>無 Afterburner/MSI Center 時是否仍保護，哪些門檻是 MCU firmware 控制，哪些可由使用者調整。</li>
+          <li><b>事件紀錄與 RMA：</b>提供可匯出的事件 log、錯誤碼表、警告截圖/紀錄是否能作為保固判定材料。</li>
+          <li><b>偵測位置改進：</b>論壇偏好更接近 GPU/負載端的偵測，而不是只在 PSU 端看線路狀態。</li>
+          <li><b>根本接頭方案：</b>持續改善 12V-2x6 機構安全餘裕，或提供多 8-pin/EPS 等使用者認為更可靠的替代供電路徑。</li>
+        </ol>
+      </section>
+    </section>
+
+    
+    <section id="tab-1" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-1">
+      <div class="embedded-head">
+        <h2>Reddit 原報告</h2>
+        <p>Reddit GPU 電源保護產品洞察驗證版</p>
+        <p><b>來源報告時間：</b>2026-07-15 10:43:40</p>
+        <p class="path">C:\Users\W11\Documents\Codex\2026-06-30\tom-s-hardware-forum-wireview-gpu\outputs\reddit_gpu_power_protection_verified_2026-07-15.html</p>
+      </div>
+      <div class="embedded-report">
+        
+  <header>
+    <h1>Reddit GPU 電源保護產品洞察驗證版</h1>
+    <div class="meta">產出日期：2026-07-15｜目的：只用 Reddit 貼文或留言驗證 WireView, GPU Safeguard, GPU Shield, OptiGuard, Ampinel, ROG Equalizer, Titanload, T-Guard, ThermalProtect 的優缺點與改進需求。</div>
+    <div class="notice">驗證規則：只保留能對回 Reddit 搜尋結果、貼文本文或留言片段的洞察。直接讀 Reddit JSON 曾回 403 Blocked，因此沒有增加直接 Reddit 請求；來源以可讀 Reddit 頁面/搜尋片段為準。資料不足處不補推。</div>
+  </header>
+  <main>
+    <section>
+      <h2>已驗證洞察</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>1. 使用者把這類產品視為補救 12VHPWR / 12V-2x6 風險</h3>
+          <ul>
+            <li>Reddit 討論明確把 WireView Pro II、GPU Shield、GPU Safeguard+、Ampinel 等列為因 12VHPWR 設計問題衍生的新產品類別。</li>
+            <li>這代表市場需求不是單純「買新線材」，而是降低高階 GPU 熔毀焦慮與使用風險。</li>
+            <li>證據：r/pcmasterrace「NVIDIA has effectively created an entirely new business segment」。</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>2. 最受重視的功能是監控、告警、可調門檻與自動保護</h3>
+          <ul>
+            <li>WireView Pro II 討論中，使用者關注 current imbalance warning、pin 電流是否正常，以及門檻能否調整。</li>
+            <li>MSI GPU Safeguard+ 討論中，使用者詢問 PSU 端 current monitoring and protection，另有 Afterburner 可調 amp limit 的討論。</li>
+            <li>改進需求：提供官方 UI、門檻建議、異常判讀與自動降載/關機說明。</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>3. 相容性與安裝條件是主要阻力</h3>
+          <ul>
+            <li>WireView Pro II 有 current imbalance、clearance、extension、紅燈/無訊號、不同 5090 型號等問題。</li>
+            <li>Ampinel 討論提到 GPU 接頭位置奇怪，可能需要短延長線才裝得下。</li>
+            <li>改進需求：提供 GPU/PSU/機殼/線材相容表與安裝 troubleshooting。</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>4. 可買性與上市時程反覆被追問</h3>
+          <ul>
+            <li>GPU Shield、OptiGuard、MSI GPU Safeguard PSU、ThermalProtect 都有使用者追問產品頁、release date 或 ETA。</li>
+            <li>資料不足或上市資訊不清會讓使用者轉向替代方案，例如一般 ATX 3.1 PSU + WireView Pro II。</li>
+            <li>改進需求：公開型號、上市區域、時間表、價格與支援 PSU 列表。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>產品優缺點與改進需求</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:10%">產品/關鍵字</th>
+              <th style="width:24%">已驗證優點</th>
+              <th style="width:27%">已驗證缺點/疑慮</th>
+              <th style="width:25%">改進需求</th>
+              <th style="width:14%">Reddit 證據</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>WireView</td>
+              <td>能揭露 pin 電流/不平衡問題；被使用者用來觀察 12VHPWR/12V-2x6 接觸狀態；有人把它視為等 OptiGuard 前的暫時方案。</td>
+              <td>有 imbalance warning、clearance、extension、紅燈/無訊號、不同 5090/4090 安裝相容問題；警示本身也需要解釋，否則使用者不知道是否危險。</td>
+              <td>需要門檻可調、官方判讀指南、機殼/GPU clearance 表、延長線支援規則、異常處理流程。</td>
+              <td><a href="https://www.reddit.com/r/ThermalGrizzly/comments/1q0n3he/wireview_pro_ii_keeps_throwing_an_imbalance/">imbalance warning</a><br><a href="https://www.reddit.com/r/ThermalGrizzly/comments/1qlnurz/summary_of_pin_2_and_pin_6_current_imbalance/">Pin 2/6 imbalance</a><br><a href="https://www.reddit.com/r/pcmasterrace/comments/1q1fng4/12vhpwr_best_demonstration_of_the_faults_with/">WireView 顯示接觸變化</a></td>
+            </tr>
+            <tr>
+              <td>GPU Safeguard</td>
+              <td>Reddit GPU Safeguard+ 專帖把 MSI 新 PSU 定位成 GPU 保護方案；Afterburner amp limit 討論顯示軟體可調整是賣點；MSI PSU 評測討論提到仍需 beta Afterburner/PSU.dll 才能用 Safeguard+ 軟體整合。</td>
+              <td>使用者追問 release date；也有人認為真正的 safeguard 應該是更可靠的連接器，不只是 PSU 端補救。</td>
+              <td>需要明確上市時程、支援型號、低瓦數版本、Afterburner 正式 UI、門檻設定建議與保護動作說明。</td>
+              <td><a href="https://www.reddit.com/r/MSI_Gaming/comments/1q54sc7/introducing_gpu_safeguard_advanced_gpu_protection/">GPU Safeguard+ 專帖</a><br><a href="https://www.reddit.com/r/MSI_Gaming/comments/1s9is3p/new_psus/">New PSU release question</a><br><a href="https://www.reddit.com/r/pcmasterrace/comments/1u4c5i6/psa_you_can_tune_msi_gpu_safeguard_amp_limits/">amp limits</a><br><a href="https://www.reddit.com/r/MSI_Gaming/comments/1u3njt8/review_msi_mpg_ai1600_ts_pcie5_psu_review/">Ai1600 TS review discussion</a></td>
+            </tr>
+            <tr>
+              <td>GPU Shield</td>
+              <td>使用者提到看過 Cooler Master GPU Shield，表示市場上有人期待一個針對 12VHPWR 安全的實體保護方案。</td>
+              <td>可讀 Reddit 內容顯示找不到產品頁；使用者擔心高階 GPU 或家中起火，代表信任缺口很大。</td>
+              <td>需要公開產品頁、適用 GPU/FE/PSU 範圍、是否真的可買、實測保護機制。</td>
+              <td><a href="https://www.reddit.com/r/gpu/comments/1qbdeit/options_for_12vhpwr_safety/">Options for 12VHPWR safety</a><br><a href="https://www.reddit.com/r/pcmasterrace/comments/1qd2ljm/nvidia_has_effectively_created_an_entirely_new/">產品類別討論</a></td>
+            </tr>
+            <tr>
+              <td>OptiGuard</td>
+              <td>使用者把 Seasonic OptiGuard 視為保護 5090 的理由，有人建議等待 Prime OptiGuard line。</td>
+              <td>上市時程不清，Reddit 討論反覆提到 Q1、June、Computex 2026、OptiGuard 2.0 等資訊不確定。</td>
+              <td>需要 release date、價格、支援型號、OptiGuard 1.0/2.0 差異與實測。</td>
+              <td><a href="https://www.reddit.com/r/Seasonic/comments/1qn6bln/which_seasonic_31_to_get/">Which Seasonic 3.1</a><br><a href="https://www.reddit.com/r/Seasonic/comments/1tvi1o4/computex_2026/">Computex 2026 OptiGuard</a><br><a href="https://www.reddit.com/r/pcmasterrace/comments/1q3fjo6/seasonic_psus_with_optiguard/">OptiGuard release date</a></td>
+            </tr>
+            <tr>
+              <td>Ampinel</td>
+              <td>Reddit 轉述 Ampinel 是針對 RTX 4000/5000 的 12V-2x6 power supply balancer；使用者因 5090 connector 焦慮表示想等 Ampinel 保護。</td>
+              <td>安裝相容性是疑慮，例如 GPU 接頭位置不佳可能需短延長線；另有發文把 Ampinel 視為補救而非根因解決。</td>
+              <td>需要更多安裝範例、相容 GPU 清單、延長線風險說明、故障責任與保固條款。</td>
+              <td><a href="https://www.reddit.com/r/overclocking/comments/1r0f73x/aqua_computer_ampinel_device_protecting_12v2x6/">Ampinel launches</a><br><a href="https://www.reddit.com/r/overclocking/comments/1oitkvk/scared_to_push_my_5090_due_to_the_12v2x6_connector/">5090 connector fear</a><br><a href="https://www.reddit.com/r/overclocking/comments/1nwtfc8/aqua_computer_presents_ampinel_monitoring_and/">monitoring and balancing</a></td>
+            </tr>
+            <tr>
+              <td>ROG Equalizer</td>
+              <td>Reddit 討論確認 ASUS ROG Equalizer 被定位成更安全的 12V-2x6 GPU cable；價格與 ASUS 生態整合是可見資訊。</td>
+              <td>多個 Reddit 討論集中在是否真的能解決 12VHPWR/12V-2x6、pin imbalance、溫度降低是否等於安全等爭議。</td>
+              <td>需要公開測試條件、pin current/temperature 數據、何種故障模式可保護、是否只是降低溫度而非解決接觸問題。</td>
+              <td><a href="https://www.reddit.com/r/hardware/comments/1u43a3u/asus_rog_equalizer_50_gpu_cable_designed_to/">$50 GPU cable</a><br><a href="https://www.reddit.com/r/hardware/comments/1t2swx8/why_the_asus_equalizer_is_actually_good_and/">current imbalance debate</a><br><a href="https://www.reddit.com/r/hardware/comments/1t2gup4/new_findings_the_asus_equalizer_doesnt_make_sense/">doesn't make sense</a></td>
+            </tr>
+            <tr>
+              <td>Titanload</td>
+              <td>Reddit 討論提到 Segotep TITANLOAD EX 以高功率測試、較重 duty pins / cable 作為賣點；有人認為線材本身可能 OK。</td>
+              <td>使用者質疑第三方線材能否接現有 PSU；也有人指出最弱環節是 contact system，不只是線材粗細；Segotep PSU 品牌信任也被質疑。</td>
+              <td>需要 PSU 相容與保固說明、接點系統改善證據、不是只靠線材承載能力的主張、獨立測試。</td>
+              <td><a href="https://www.reddit.com/r/PcBuild/comments/1png5xb/what_do_you_think_about_the_segotep_titanload_ex/">third-party cable concern</a><br><a href="https://www.reddit.com/r/ASUSROG/comments/1pkjwyu/12v2x6_power_cable_running_at_1000w_and_12a/">weakest link comment</a><br><a href="https://www.reddit.com/r/overclocking/comments/1pk0jq5/segotep_titanload_ex_16pin_gpu_cable_tested_up_to/">brand trust concern</a></td>
+            </tr>
+            <tr>
+              <td>T-Guard</td>
+              <td>Reddit 可讀內容確認 Gigabyte T-Guard 被新聞轉貼為保護 12V-2x6 GPU/PSU 的方案；有人稱保護系統列表容易看懂。</td>
+              <td>可讀 Reddit 討論很少，多數貼文沒有留言或只有新聞轉貼，因此無法驗證實際使用優缺點。</td>
+              <td>需要使用者實測、保護機制拆解、與 WireView/GPU Safeguard/OptiGuard 等方案的直接比較。</td>
+              <td><a href="https://www.reddit.com/r/jisakupc/comments/1snzo7j/gigabyte_%E3%82%82_12v2x6_gpu_%E3%81%AE%E7%82%8E%E4%B8%8A%E3%81%8B%E3%82%89_tguard_%E3%81%A7%E5%AE%88%E3%82%8A%E3%81%9F%E3%81%84/">T-Guard Reddit post</a><br><a href="https://www.reddit.com/r/Amd_Intel_Nvidia/comments/1sn83yv/gigabytes_new_gaming_psus_secure_toptier_gpus/">T-Guard news post</a><br><a href="https://www.reddit.com/r/PCMRFR/comments/1uf1ocl/test_gigabyte_gaming_1000gm_pg5_une_alimentation/">no comments yet</a></td>
+            </tr>
+            <tr>
+              <td>ThermalProtect</td>
+              <td>Reddit/Corsair 貼文說明 ThermalProtect 是針對 12V-2x6 cable 的 OTP，目的是避免 cable 過熱造成 GPU 損害；另有留言說 Corsair 線材品質通常不差。</td>
+              <td>留言顯示使用者仍擔心 release / ETA，且會比較新舊線材與 PSU/GPU 更新後的實際必要性；測試討論也顯示保護承諾需要被驗證。</td>
+              <td>需要清楚相容列表、Type 4/Type 5 支援、ETA、OTP 觸發條件、測試數據與「線材保護」和「GPU 溫度」差異說明。</td>
+              <td><a href="https://www.reddit.com/r/Corsair/comments/1t19mcd/introducing_corsair_thermalprotect_12v2x6_cable/">Introducing ThermalProtect</a><br><a href="https://www.reddit.com/r/Corsair/comments/1sy1ojm/corsair_launches_thermalprotect_pcie_51_600w/">launch discussion</a><br><a href="https://www.reddit.com/r/Corsair/comments/1t0mhut/any_plans_for_thermal_protect_cable_for_type_4/">ETA / compatibility</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>驗證修正</h2>
+      <ul>
+        <li>保留：12VHPWR/12V-2x6 根因焦慮、監控/告警需求、相容性、上市時程不明，這些都有 Reddit 貼文或留言支撐。</li>
+        <li>修正：T-Guard 不能寫成已有明確使用者優缺點，因為可讀 Reddit 討論主要是新聞轉貼且留言不足。</li>
+        <li>修正：ROG Equalizer 不能只寫成「優點是 ASUS 生態與外觀」，更可靠的 Reddit 證據是價格/上架資訊與是否有效的技術爭議。</li>
+        <li>修正：ThermalProtect 不能把 GPU 核心溫度下降當作已驗證優點；Reddit 可驗證的是 cable OTP 保護敘述、相容與 ETA 疑問。</li>
+        <li>修正：Titanload 的優缺點要寫成「高承載線材賣點」對上「第三方線材/接點系統/品牌信任疑慮」，不是泛稱可靠或不可靠。</li>
+        <li>2026-06-30 二次修正：GPU Safeguard 第一個證據連結已由不夠精準的 MSI 主機板 megathread 改為 GPU Safeguard+ 專帖，並補上 New PSU release question 與 Ai1600 TS review discussion。</li>
+        <li>2026-06-30 資料量修正：已改用低頻 old.reddit HTML 讀取現有證據連結，成功讀取 27/27 個頁面，其中 24 個頁面解析到留言；解析結果保存於 work/reddit_old_page_evidence_2026-06-30.json。</li>
+        <li>2026-07-08 補查修正：原 7/8 Reddit refresh 只沿用前次驗證資料，未搜尋新 Reddit；本版已補入 2026-07-01 之後實際讀到的 7 筆新增討論。</li>
+        <li>2026-07-01 heartbeat refresh：本次 Reddit JSON 仍不使用；沿用前次已驗證 old.reddit 證據頁與來源讀取驗證資料，未做 aggressive retry。來源基準檔：reddit_gpu_power_protection_verified_2026-06-30.html。</li>
+      </ul>
+    </section>
+
+
+
+                    <section>
+      <h2>2026-07-15 最新討論更新洞察</h2>
+      <div class="grid">
+        <div class="card"><h3>1. 單純溫度保護被質疑不足</h3><ul><li>r/pcmasterrace 與 r/ASRock 的 ASRock TempGuard 失效討論中，留言指出只靠溫度感測可能太慢或感測位置不對；有人認為 thermistor 放在錯邊會在接頭損傷後才反應。</li><li>洞察更新：保護方案需要同時說清楚「溫度偵測位置」、「pin 電流監控」、「觸發速度」與「保護動作」，不能只說有感測器。</li></ul></div>
+        <div class="card"><h3>2. MSI Safeguard+ 的可調門檻仍是主要正面訊號</h3><ul><li>多則留言提到 MSI Safeguard+ 可限制每 pin 9.0A、pin imbalance 1A，並在約 3 秒內透過 Afterburner 載入降載 profile，使 per-pin 電流降到約 4-6A。</li><li>洞察更新：使用者重視的是「可設定門檻 + 自動降載」，而不是只觸發關機。這也強化了官方 UI、建議值、事件 log 的需求。</li></ul></div>
+        <div class="card"><h3>3. WireView Pro II 與 Ampinel 仍被視為降低風險的替代層</h3><ul><li>「Avoid 12vhpwr melting?」討論中，留言建議 WireView Pro II 或 Ampinel；WireView 被描述為監控裝置，可接 motherboard reset header 並在 unsafe current levels 時關機；Ampinel 則被描述為可嘗試平衡 6 個 12V pins 的電流。</li><li>洞察更新：市場仍需要清楚區分「監控」、「平衡」、「降載」、「斷電」四種保護邏輯。</li></ul></div>
+        <div class="card"><h3>4. ROG Equalizer 與 adapter 類方案信任度仍不穩</h3><ul><li>新討論中有人直接說 Equalizer 不會幫忙，甚至可能讓 connector current imbalance 更糟；另有留言建議避免第三方 cable/adapter，改用 MSI Safeguard+ PSU 或 active pin monitoring。</li><li>洞察更新：adapter/線材類產品需要公開故障模式測試，尤其是是否處理高接觸電阻、未插緊、pin current imbalance 與溫升。</li></ul></div>
+        <div class="card"><h3>5. 12VHPWR / 12V-2x6 相容資訊仍需要更清楚</h3><ul><li>r/Corsair 新討論中，使用者詢問 RM850x Shift 12V-2x6 to 2x PCIe cable 是否能用於 RX 9070 XT；AutoModerator 提供 12VHPWR/12V-2x6、H+/H++ 與 cable/connector 差異說明。</li><li>洞察更新：相容性與標示仍會造成購買焦慮；廠商需要用表格清楚列出 PSU、GPU、cable、adapter 的可用組合。</li></ul></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>2026-07-15 Reddit 新增討論補查</h2>
+      <p class="note">補查時間：2026-07-15 10:40-10:42（Asia/Taipei）。方法：搜尋 2026-07-08 之後指定關鍵字，再以低頻 old.reddit HTML 讀取候選貼文；未使用 Reddit JSON，未遇到 403/429/CAPTCHA。以下只列實際讀到本文或留言的新增討論，並依發文日期排序。</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th style="width:13%">關鍵字</th><th style="width:8%">發文日期</th><th style="width:10%">forum 名稱</th><th style="width:9%">Tag</th><th style="width:22%">文章 Title</th><th style="width:8%">連結</th><th style="width:30%">本文/留言摘要</th></tr></thead>
+          <tbody>
+            <tr><td>GPU Safeguard+ / WireView Pro II / PinProtect+ / ThermalProtect <span class="new-badge" style="display:inline-block;margin-left:4px;padding:1px 6px;border-radius:999px;background:#dc2626;color:#fff;font-size:12px;font-weight:700;">New!</span></td><td>2026-07-10</td><td>r/pcmasterrace</td><td>Discussion</td><td>It's just comical at this point.</td><td><a href="https://www.reddit.com/r/pcmasterrace/comments/1uszwr7/its_just_comical_at_this_point/">Reddit</a> <span class="new-badge">New!</span></td><td>本文連到 ASRock TempGuard failed 報導。留言提到 MSI Safeguard+ PSU、Corsair Thermal Protect cable、WireView Pro 2、Corsair PinProtect+ 等方案；也有留言主張 active pin monitoring 與 automatic shutdown，並批評 connector 本身仍是根因問題。</td></tr>
+            <tr><td>WireView Pro II / Ampinel / ROG Equalizer / MSI Safeguard+ <span class="new-badge" style="display:inline-block;margin-left:4px;padding:1px 6px;border-radius:999px;background:#dc2626;color:#fff;font-size:12px;font-weight:700;">New!</span></td><td>2026-07-10</td><td>r/pcmasterrace</td><td>Discussion</td><td>Avoid 12vhpwr melting?</td><td><a href="https://www.reddit.com/r/pcmasterrace/comments/1ust8i0/avoid_12vhpwr_melting/">Reddit</a> <span class="new-badge">New!</span></td><td>本文詢問 5090 使用者如何降低 12VHPWR 熔毀風險。留言建議 WireView Pro II 或 Ampinel；WireView 被描述為監控與 unsafe current shutdown 裝置，Ampinel 被描述為可嘗試平衡 6 個 12V pins，但也被視為補丁。另有留言認為 ROG Equalizer 可能無助，甚至讓 current imbalance 更糟。</td></tr>
+            <tr><td>ASRock TempGuard / MSI Safeguard+ / per-pin current <span class="new-badge" style="display:inline-block;margin-left:4px;padding:1px 6px;border-radius:999px;background:#dc2626;color:#fff;font-size:12px;font-weight:700;">New!</span></td><td>2026-07-11</td><td>r/ASRock</td><td>Discussion</td><td>ASRock TempGuard failed to shut down system after RTX 5090 power connector melted</td><td><a href="https://www.reddit.com/r/ASRock/comments/1utcp5x/asrock_tempguard_failed_to_shut_down_system_after/">Reddit</a> <span class="new-badge">New!</span></td><td>留言指出 thermistor 可能放在 connector 錯邊，導致接頭損傷後才關機；有人建議 Corsair ThermalProtect cable，也有人建議直接使用 MSI Safeguard+ 並限制 amps。討論中出現 ThermalProtect 與 per-pin OCP 是否必要的爭論。</td></tr>
+            <tr><td>ASRock TempGuard / MSI Safeguard+ / Afterburner profile <span class="new-badge" style="display:inline-block;margin-left:4px;padding:1px 6px;border-radius:999px;background:#dc2626;color:#fff;font-size:12px;font-weight:700;">New!</span></td><td>2026-07-11</td><td>r/pcmasterrace</td><td>Discussion</td><td>ASRock TempGuard failed to shut down system after RTX 5090 power connector melted</td><td><a href="https://www.reddit.com/r/pcmasterrace/comments/1utff9u/asrock_tempguard_failed_to_shut_down_system_after/">Reddit</a> <span class="new-badge">New!</span></td><td>留言表示只靠 temp sensor 不夠，稱 MSI Safeguard+ 可限制每 pin 9.0A、pin imbalance 1A，並在約 3 秒內觸發 Afterburner custom profile，將 amp draw 從 9.0A+ 降到約 4-6A per-pin。</td></tr>
+            <tr><td>12V-2x6 / ThermalProtect / Corsair cable compatibility <span class="new-badge" style="display:inline-block;margin-left:4px;padding:1px 6px;border-radius:999px;background:#dc2626;color:#fff;font-size:12px;font-weight:700;">New!</span></td><td>2026-07-12</td><td>r/Corsair</td><td>Answered</td><td>RM850x Shift (2025) 12V-2x6 to 2x PCIe cable</td><td><a href="https://www.reddit.com/r/Corsair/comments/1uu16nn/rm850x_shift_2025_12v2x6_to_2x_pcie_cable/">Reddit</a> <span class="new-badge">New!</span></td><td>本文詢問 RM850x Shift 2025 隨附 12V-2x6 to 2x 8-pin PCIe cable 是否能用於 RX 9070 XT。AutoModerator 摘要說明 12VHPWR/12V-2x6 cable 與 connector、H+/H++ 標示，以及 50 series GPU 與 Corsair native connector 的相容資訊。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+<section>
+      <h2>2026-07-08 最新討論更新洞察</h2>
+      <div class="grid">
+        <div class="card"><h3>1. 使用者開始把「可設定門檻」當成 GPU Safeguard+ 的核心價值</h3><ul><li>r/MSI_Gaming 新貼文直接整理 Ai1600TS / Ai1300TS 的 currentmax 與 currentdif 欄位，代表使用者需要知道單 pin 最大電流與 pin 間差異門檻如何設定。</li><li>r/nvidia 與 r/overclocking 留言也提到用 Afterburner 在數秒內觸發降載或關機，而不是只等待蜂鳴或被動警告。</li><li>改進需求：MSI 應提供官方預設值、建議範圍、事件記錄，以及「降載 / 關機 / 警告」三種行為的清楚說明。</li></ul></div>
+        <div class="card"><h3>2. WireView Pro II 被視為有效監控層，但價格、供貨與疊用邏輯仍有疑慮</h3><ul><li>新討論中使用者把 WireView Pro II 用在 RTX 5090 上降低熔毀焦慮，也有人說它能在高負載下觀察狀態並支援自動關機。</li><li>同時有留言認為 WireView 價格偏高，或寧可買內建保護的 PSU；也有人爭論 Corsair ThermalProtect 與 WireView 疊用時，溫度偵測位置與保護機制是否仍有效。</li><li>改進需求：需要官方圖解說明 WireView、ThermalProtect、PSU pin monitoring 疊用時各自監控的位置與失效邊界。</li></ul></div>
+        <div class="card"><h3>3. Ampinel / ROG Equalizer 的討論焦點轉向「是否真的解決接點問題」</h3><ul><li>r/overclocking 留言認為 Ampinel 可做 load balance，但也指出若接點鬆動或高接觸電阻，平衡電流不等於修復實體接觸問題。</li><li>ROG Equalizer 新貼文中，使用者因看到 burning / overheating 報告而考慮取消訂單；留言建議改選 WireView Pro II 或有 pin monitoring 的 PSU。</li><li>改進需求：這類產品需要用實測資料說明能處理哪些故障模式，尤其是 pin imbalance、接點未插緊、高接觸電阻與溫度上升是否各自可被偵測或保護。</li></ul></div>
+        <div class="card"><h3>4. 新討論強化了「保護產品是補救層，不是根因修復」的共識</h3><ul><li>r/pcmasterrace 新貼文描述 4090 接頭燒毀後，留言把 WireView、Ampinel、MSI PSU、ThermalProtect 視為降低風險的方法。</li><li>但多則留言仍把 12VHPWR / 12V-2x6 視為高容忍度不足的接頭問題，甚至有人因此避免購買 RTX 5090。</li><li>改進需求：產品訊息要避免承諾「完全解決熔毀」，應清楚定位成風險監控、告警與介入保護，並提供 RMA / log 匯出 / 故障判讀流程。</li></ul></div>
+      </div>
+    </section>
+
+<section>
+      <h2>2026-07-08 Reddit 新增討論補查</h2>
+      <p class="note">補查時間：2026-07-08 10:52-10:59（Asia/Taipei）。方法：先用搜尋找 2026-07-01 之後指定關鍵字，再以低頻 old.reddit HTML 讀取候選貼文；未使用 Reddit JSON，未遇到 403/429/CAPTCHA。以下只列實際讀到本文或留言的新增討論，並依發文日期排序。</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th style="width:13%">關鍵字</th><th style="width:8%">發文日期</th><th style="width:10%">forum 名稱</th><th style="width:9%">Tag</th><th style="width:22%">文章 Title</th><th style="width:8%">連結</th><th style="width:30%">本文/留言摘要</th></tr></thead>
+          <tbody>
+            <tr><td>ROG Equalizer / WireView / pin monitoring </td><td>2026-07-01</td><td>r/ASUSROG</td><td>PC Build</td><td>I’ve seen reports of the ASUS ROG Equalizer cable burning. Should I cancel my order?</td><td><a href="https://www.reddit.com/r/ASUSROG/comments/1uktwty/ive_seen_reports_of_the_asus_rog_equalizer_cable/">Reddit</a></td><td>本文表示已訂購 ASUS ROG Equalizer 12V-2x6 cable，但看到 burning/overheating 報告後詢問是否取消。留言建議改買 WireView Pro II 或有 pin monitoring 的 PSU；也有人提到 Corsair Thermal Protect cable、ROG Equalizer 不是萬靈丹，以及需區分圖片真偽與測試證據。</td></tr><tr><td>WireView Pro II / 12V-2x6 / pin monitoring </td><td>2026-07-02</td><td>r/pcmasterrace</td><td>Question</td><td>Is it werid that I can afford an rtx 5090 but I&#x27;m not buying it purely out of fear that it will burn?</td><td><a href="https://www.reddit.com/r/pcmasterrace/comments/1ulyjce/is_it_werid_that_i_can_afford_an_rtx_5090_but_im/">Reddit</a></td><td>本文因 12VHPWR/12V-2x6 燒毀焦慮而猶豫是否購買 RTX 5090。留言中有人建議若只擔心線材可搭配 WireView Pro II，理由是可看見 600W 負載下的狀態、具自動關機與 2 年保固；也有人認為應改用無該接頭的 GPU，或至少使用 pin measurement/alert。</td></tr><tr><td>Ampinel / ROG Equalizer / GPU Safeguard+ </td><td>2026-07-04</td><td>r/overclocking</td><td>Looking for Guide</td><td>Questions About 12V-2x6 Connector Wear and Cable Selection</td><td><a href="https://www.reddit.com/r/overclocking/comments/1umu2yx/questions_about_12v2x6_connector_wear_and_cable/">Reddit</a></td><td>本文詢問 ASUS ROG Astral 5090 多次插拔、Ampinel、ROG Equalizer 與線材選擇。留言指出不要過度重複插拔；有人認為 Ampinel 能做 load balance 但無法修復鬆動/高電阻接點，也有人建議 MSI ai1600TS 可用 Afterburner 設 per-pin amp/current difference 門檻並觸發降載或關機。</td></tr><tr><td>WireView / Ampinel / ThermalProtect / MSI PSU </td><td>2026-07-04</td><td>r/pcmasterrace</td><td>Hardware</td><td>It really can happen to you too!</td><td><a href="https://www.reddit.com/r/pcmasterrace/comments/1unjyw4/it_really_can_happen_to_you_too/">Reddit</a></td><td>本文描述 Gigabyte OC 4090 電源接頭燒毀。留言把解法指向 WireView 或 Ampinel；另有人說已購買 MSI power supply，使用 per-pin current detection、over-current alerting、automatic shutdown，並加上 Corsair ThermalProtect cable 當作額外保護層。</td></tr><tr><td>WireView Pro II / ThermalProtect / GPU Safeguard+ / OptiGuard / Ampinel / ROG Equalizer </td><td>2026-07-05</td><td>r/nvidia</td><td>Build/Photos</td><td>Installed Wire View pro II and Corsair thermal protect cable on my RTX 5090, no more melting anxiety</td><td><a href="https://www.reddit.com/r/nvidia/comments/1uoepk0/installed_wire_view_pro_ii_and_corsair_thermal/">Reddit</a></td><td>貼文展示 RTX 5090 上安裝 WireView Pro II 與 Corsair ThermalProtect cable。留言爭論 ThermalProtect 在 WireView 介入後是否仍能正確工作；有人嫌 WireView 價格高，偏好內建安全功能的 PSU；也有人稱 MSI Safeguard+ 可在約 3 秒內透過 Afterburner 設定觸發降載，並提到 Seasonic OptiGuard 可能有 GPU connector side temperature、seating 與 dynamic power adjusting。</td></tr><tr><td>GPU Safeguard+ / MSI Ai1600TS / Ai1300TS </td><td>2026-07-07</td><td>r/MSI_Gaming</td><td>Discussion</td><td>MSI PSU safeguard+ custom amp limits guide</td><td><a href="https://www.reddit.com/r/MSI_Gaming/comments/1upfvw4/msi_psu_safeguard_custom_amp_limits_guide/">Reddit</a></td><td>本文是 Ai1600TS 與 Ai1300TS 的 Safeguard+ amp limit 設定提示，列出 currentmax 是單 pin 最大電流、currentdif 是 pin 間允許差異；讀取時未見留言，因此只能確認使用者需要明確的門檻欄位說明。</td></tr><tr><td>WireView Pro II / ThermalProtect </td><td>2026-07-07</td><td>r/pcmasterrace</td><td>Build/Battlestation</td><td>Installed Wire View pro II and Corsair thermal protect cable on my RTX 5090, no more melting anxiety</td><td><a href="https://www.reddit.com/r/pcmasterrace/comments/1uq18rm/installed_wire_view_pro_ii_and_corsair_thermal/">Reddit</a></td><td>同題內容在 r/pcmasterrace 另有新貼文。可讀留言較少，但有使用者表示因 5090 滿載而難以放心開機，另有留言說即使裝了保護仍可能熔毀，原作者回應機率已大幅降低。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+<section>
+      <h2>來源讀取驗證</h2>
+      <p class="note">為修正 Reddit JSON 403 造成的資料量問題，已改用低頻 old.reddit HTML 讀取既有證據連結；27/27 頁讀取成功，24/27 頁解析到留言。以下欄位標示實際讀到的貼文/留言狀態。</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th style="width:12%">證據標籤</th><th style="width:8%">日期</th><th style="width:24%">Reddit 標題</th><th style="width:8%">本文</th><th style="width:8%">留言</th><th style="width:28%">可讀內容摘要片段</th><th style="width:12%">連結</th></tr></thead>
+          <tbody>
+            <tr><td>imbalance warning</td><td>2025-12-31</td><td>WireView Pro II keeps throwing an imbalance warning even though current is within spec</td><td>有</td><td>5 則</td><td>You actually have an imbalance there that is not normal even though the individual pins are within the 9.5A spec. We implemented the current</td><td><a href="https://www.reddit.com/r/ThermalGrizzly/comments/1q0n3he/wireview_pro_ii_keeps_throwing_an_imbalance/">Reddit</a></td></tr><tr><td>Pin 2/6 imbalance</td><td>2026-01-24</td><td>Summary of Pin 2 and Pin 6 current imbalance</td><td>有</td><td>5 則</td><td>&lt;image&gt; This is what I&#x27;ve been seeing if I run furmark. 2nd pin is consistently the lowest reading on 5090 msi gaming trio.</td><td><a href="https://www.reddit.com/r/ThermalGrizzly/comments/1qlnurz/summary_of_pin_2_and_pin_6_current_imbalance/">Reddit</a></td></tr><tr><td>WireView 顯示接觸變化</td><td>2026-01-01</td><td>12VHPWR Best demonstration of the faults with this connector. Thanks to der8auer in his video on his WireView Pro II for this specific part (9m:50s into video) How to make sure yours is safe(er)</td><td>有</td><td>3 則</td><td>Big shout to Der8auer and his wireview pro II, a dope piece of kit for those wanting to push max power and more through a 5090 with this cab</td><td><a href="https://www.reddit.com/r/pcmasterrace/comments/1q1fng4/12vhpwr_best_demonstration_of_the_faults_with/">Reddit</a></td></tr><tr><td>GPU Safeguard+ 專帖</td><td>2026-01-06</td><td>Introducing GPU Safeguard+: Advanced GPU Protection on MSI Next-Gen Power Supplies</td><td>有</td><td>2 則</td><td>TL:dr It starts beeping when it detects too much current on a single pin or unusual power spikes, and shuts down after a while if you ignore</td><td><a href="https://www.reddit.com/r/MSI_Gaming/comments/1q54sc7/introducing_gpu_safeguard_advanced_gpu_protection/">Reddit</a></td></tr><tr><td>New PSU release question</td><td>2026-04-01</td><td>New PSU’s</td><td>有</td><td>1 則</td><td>I would also love to really know! I was able to get a lightning z card and wanted to pair it up with the 1600TS</td><td><a href="https://www.reddit.com/r/MSI_Gaming/comments/1s9is3p/new_psus/">Reddit</a></td></tr><tr><td>amp limits</td><td>2026-06-13</td><td>PSA - You can tune MSI GPU Safeguard+ amp limits through Afterburner (PSU.cfg)</td><td>有</td><td>4 則</td><td>Try to read release notes before editing something blindly. By default PSU’s MCU firmware is controlling the limits, so your changes do noth</td><td><a href="https://www.reddit.com/r/pcmasterrace/comments/1u4c5i6/psa_you_can_tune_msi_gpu_safeguard_amp_limits/">Reddit</a></td></tr><tr><td>Ai1600 TS review discussion</td><td>2026-06-12</td><td>Review: MSI MPG Ai1600 TS PCIE5 PSU Review</td><td>無/空白</td><td>3 則</td><td>I may be the very first consumer in France to have received it. &lt;image&gt;</td><td><a href="https://www.reddit.com/r/MSI_Gaming/comments/1u3njt8/review_msi_mpg_ai1600_ts_pcie5_psu_review/">Reddit</a></td></tr><tr><td>Options for 12VHPWR safety</td><td>2026-01-13</td><td>Options for 12VHPWR safety</td><td>有</td><td>5 則</td><td>My house burned down in 2001. Second worst experience of my life.</td><td><a href="https://www.reddit.com/r/gpu/comments/1qbdeit/options_for_12vhpwr_safety/">Reddit</a></td></tr><tr><td>產品類別討論</td><td>2026-01-14</td><td>NVIDIA has effectively created an entirely new business segment as a result of the flawed 12VHPWR design</td><td>有</td><td>5 則</td><td>CPU contact frames are a thing because Intel dropped the ball, it&#x27;s hardly surprising that someone made a solution Nvidia&#x27;s design failure.</td><td><a href="https://www.reddit.com/r/pcmasterrace/comments/1qd2ljm/nvidia_has_effectively_created_an_entirely_new/">Reddit</a></td></tr><tr><td>Which Seasonic 3.1</td><td>2026-01-26</td><td>Which seasonic 3.1 to get?</td><td>有</td><td>3 則</td><td>Wait for the Prime optiguard line to come out so you can protect your 5090. Should be this quarter sometime.</td><td><a href="https://www.reddit.com/r/Seasonic/comments/1qn6bln/which_seasonic_31_to_get/">Reddit</a></td></tr><tr><td>Computex 2026 OptiGuard</td><td>2026-06-03</td><td>Computex 2026</td><td>有</td><td>4 則</td><td>Do you know when the prime TX 1600 enterprise non noctua edition will be released?</td><td><a href="https://www.reddit.com/r/Seasonic/comments/1tvi1o4/computex_2026/">Reddit</a></td></tr><tr><td>OptiGuard release date</td><td>2026-01-04</td><td>Seasonic PSUs with Optiguard</td><td>有</td><td>5 則</td><td>Looks like 1Q for gen 1 which appears to be an alarm and a hard power off. gen 2 seems to have an os alert approach</td><td><a href="https://www.reddit.com/r/pcmasterrace/comments/1q3fjo6/seasonic_psus_with_optiguard/">Reddit</a></td></tr><tr><td>Ampinel launches</td><td>2026-02-09</td><td>Aqua Computer Ampinel device protecting 12V-2x6 GPUs launches at €100</td><td>無/空白</td><td>5 則</td><td>Very cool. I have an Aqua Computer Octo, Farbwerk 360, their Hubby7 internal USB hub, and a whole slew of splitters for my watercooling loop</td><td><a href="https://www.reddit.com/r/overclocking/comments/1r0f73x/aqua_computer_ampinel_device_protecting_12v2x6/">Reddit</a></td></tr><tr><td>5090 connector fear</td><td>2025-10-29</td><td>Scared to push my 5090 due to the 12V-2x6 connector.</td><td>有</td><td>5 則</td><td>shunt moded user be like:</td><td><a href="https://www.reddit.com/r/overclocking/comments/1oitkvk/scared_to_push_my_5090_due_to_the_12v2x6_connector/">Reddit</a></td></tr><tr><td>monitoring and balancing</td><td>2025-10-03</td><td>Aqua Computer presents AMPINEL, monitoring and power balancing device for 12V-2×6 connectors</td><td>無/空白</td><td>0 則</td><td></td><td><a href="https://www.reddit.com/r/overclocking/comments/1nwtfc8/aqua_computer_presents_ampinel_monitoring_and/">Reddit</a></td></tr><tr><td>$50 GPU cable</td><td>2026-06-12</td><td>ASUS ROG Equalizer $50 GPU cable designed to prevent burned connectors has reportedly burned</td><td>無/空白</td><td>5 則</td><td>When do we just admit this cable/connector is just not cutting it with a 12V platform?</td><td><a href="https://www.reddit.com/r/hardware/comments/1u43a3u/asus_rog_equalizer_50_gpu_cable_designed_to/">Reddit</a></td></tr><tr><td>current imbalance debate</td><td>2026-05-03</td><td>Why the ASUS Equalizer is actually good and current imbalance is not what really matters</td><td>有</td><td>5 則</td><td>It&#x27;s a very interesting theory. I want to make clear that when the uneven current theory is not proven to be (the only) cause of melting con</td><td><a href="https://www.reddit.com/r/hardware/comments/1t2swx8/why_the_asus_equalizer_is_actually_good_and/">Reddit</a></td></tr><tr><td>doesn&#x27;t make sense</td><td>2026-05-03</td><td>New Findings: The ASUS Equalizer Doesn’t Make Sense [der8auer]</td><td>無/空白</td><td>5 則</td><td>I truly appreciate all the infos that Der8auer is sharing with us, but man this is getting out of hand with all these duct tape\band-aid sol</td><td><a href="https://www.reddit.com/r/hardware/comments/1t2gup4/new_findings_the_asus_equalizer_doesnt_make_sense/">Reddit</a></td></tr><tr><td>third-party cable concern</td><td>2025-12-15</td><td>What do you think about the Segotep TITANLOAD EX 16-pin GPU cable ?</td><td>有</td><td>1 則</td><td>Remember to check our discord where you can get faster responses! https://discord.gg/6dR6XU6 If you are trying to find a price for your comp</td><td><a href="https://www.reddit.com/r/PcBuild/comments/1png5xb/what_do_you_think_about_the_segotep_titanload_ex/">Reddit</a></td></tr><tr><td>weakest link comment</td><td>2025-12-12</td><td>12V-2x6 power cable running at 1000W and 12A</td><td>有</td><td>1 則</td><td>Any cable is only as good as its weakest link, which in this case is the contact system, not just the cable construction. Plenty of quality </td><td><a href="https://www.reddit.com/r/ASUSROG/comments/1pkjwyu/12v2x6_power_cable_running_at_1000w_and_12a/">Reddit</a></td></tr><tr><td>brand trust concern</td><td>2025-12-11</td><td>Segotep TITANLOAD EX 16-pin GPU cable tested up to 1080W is launching soon</td><td>無/空白</td><td>1 則</td><td>This is exciting but segotep isn’t really known as a reliable PSU brand</td><td><a href="https://www.reddit.com/r/overclocking/comments/1pk0jq5/segotep_titanload_ex_16pin_gpu_cable_tested_up_to/">Reddit</a></td></tr><tr><td>T-Guard Reddit post</td><td>2026-04-17</td><td>GIGABYTE も 12V-2x6 GPU の炎上から T-Guard で守りたい - VideoCardz.com</td><td>有</td><td>0 則</td><td>保護システムの一覧が見やすいです。</td><td><a href="https://www.reddit.com/r/jisakupc/comments/1snzo7j/gigabyte_%E3%82%82_12v2x6_gpu_%E3%81%AE%E7%82%8E%E4%B8%8A%E3%81%8B%E3%82%89_tguard_%E3%81%A7%E5%AE%88%E3%82%8A%E3%81%9F%E3%81%84/">Reddit</a></td></tr><tr><td>T-Guard news post</td><td>2026-04-16</td><td>Gigabyte&#x27;s New Gaming PSUs Secure Top-Tier GPUs with Exclusive T-Guard</td><td>無/空白</td><td>1 則</td><td>I will never trust Gigabyte after this PSU fiasco and their gaslighting aftermath.</td><td><a href="https://www.reddit.com/r/Amd_Intel_Nvidia/comments/1sn83yv/gigabytes_new_gaming_psus_secure_toptier_gpus/">Reddit</a></td></tr><tr><td>no comments yet</td><td>2026-06-25</td><td>Test GIGABYTE GAMING 1000GM PG5 : une alimentation 1000 W ATX 3.1 avec connecteur 12V-2x6 natif et T-Guard</td><td>無/空白</td><td>0 則</td><td></td><td><a href="https://www.reddit.com/r/PCMRFR/comments/1uf1ocl/test_gigabyte_gaming_1000gm_pg5_une_alimentation/">Reddit</a></td></tr><tr><td>Introducing ThermalProtect</td><td>2026-05-01</td><td>Introducing: CORSAIR ThermalProtect 12V-2x6 Cable</td><td>有</td><td>5 則</td><td>There going to be a 90 degree bent cable like this in the future? Surprised it wasn’t like this from the get go.</td><td><a href="https://www.reddit.com/r/Corsair/comments/1t19mcd/introducing_corsair_thermalprotect_12v2x6_cable/">Reddit</a></td></tr><tr><td>launch discussion</td><td>2026-04-28</td><td>Corsair Launches ThermalProtect PCIe 5.1 600W 12V-2x6 Cable to Protect GPUs from Overheating</td><td>無/空白</td><td>5 則</td><td>Looks like you might be asking about 12VHPWR / 12V-2x6 cable compatibility. Please read the below for a comprehensive summary. 12VHPWR cable</td><td><a href="https://www.reddit.com/r/Corsair/comments/1sy1ojm/corsair_launches_thermalprotect_pcie_51_600w/">Reddit</a></td></tr><tr><td>ETA / compatibility</td><td>2026-05-01</td><td>Any plans for thermal protect cable for type 4 cable PSUs?</td><td>有</td><td>4 則</td><td>Hi there, There will be both Type4 and Type5 versions soon.</td><td><a href="https://www.reddit.com/r/Corsair/comments/1t0mhut/any_plans_for_thermal_protect_cable_for_type_4/">Reddit</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+      </div>
+    </section>
+    
+    
+    <section id="tab-2" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-2">
+      <div class="embedded-head">
+        <h2>TechPowerUp 原報告</h2>
+        <p>TechPowerUp Forum 產品洞察來源驗證</p>
+        <p><b>來源報告時間：</b>2026-07-08 11:20:40</p>
+        <p class="path">C:\Users\W11\Documents\Codex\2026-06-30\wireview-gpu-safeguard-gpu-shield-optiguard\outputs\techpowerup_forum_product_insights_verified_2026-07-08.html</p>
+      </div>
+      <div class="embedded-report">
+        
+  <h1>TechPowerUp Forum 產品洞察來源驗證</h1>
+  <div>產生時間：2026-07-08 10:29:22</div>
+  <div class="note">
+    驗證方法：只使用先前從已登入 TechPowerUp Forum session 讀取並保存的 23 則貼文/留言資料。
+    檢查結果：<span class="ok">23 / 23 筆來源 URL 與最終 URL 都是 www.techpowerup.com，且都有正文內容；阻擋/驗證頁筆數 0。</span>
+    本報告沒有使用其他網站資料；「需要改進」是由下方論壇證據歸納。
+    與 2026-07-01 實際讀取貼文依連結比對，新增貼文/留言：3。
+  </div>
+  
+    <section>
+      <h2>WireView</h2>
+      <div class="level">論壇使用者實際討論</div>
+      <p>定位較像監控/預警與安心工具；能看功率、pin 電流、溫度，但論壇也質疑它不解決接點根因，且自身接頭耐久與讀值準確性需要更清楚。</p>
+      <h3>逐項驗證依據</h3>
+      <ul><li><b>2026-06-26</b>：使用者在 RTX 5080 約 400 W 長時間負載下，用 WireView Pro 2 觀察功率、溫度、單 pin 電流與 pin 間差異。</li><li><b>2026-06-24</b>：留言把 WireView Pro II 比喻成監測心率的裝置，認為它幫助監控但不修正根因，且自身接頭劣化也會有成本。</li><li><b>2026-06-15</b>：留言詢問 Ampinel 或 WireView 測量是否準確，反映讀值可信度疑慮。</li></ul>
+      <h3>需要改進</h3>
+      <p>強化自身連接器耐久、提供讀值校正/精度說明、加入更明確的異常警報與事件記錄。</p>
+      <h3>本次讀取的 TechPowerUp 原始貼文/留言</h3>
+      <table>
+        <thead><tr><th>日期</th><th>Forum</th><th>文章</th><th>作者</th><th>來源</th><th>原始內容摘要</th></tr></thead>
+        <tbody><tr><td>2026-07-02T20:05:03+0800</td><td>News</td><td><span class="new">New!</span> Noctua Prepares Low-Profile AM5, Workstation Air Coolers, and Next-Gen PSU Collaborations for 2027</td><td>AleksandarK</td><td><a href="https://www.techpowerup.com/forums/threads/noctua-prepares-low-profile-am5-workstation-air-coolers-and-next-gen-psu-collaborations-for-2027.350466/">TechPowerUp</a></td><td>Noctua has released a new roadmap update for its upcoming products, providing concrete timelines for many items the company teased during this year&#x27;s Computex 2026 international show. One of the most interesting designs is the low-profile, 70 mm tall small fo…</td></tr><tr><td>2026-07-02T13:24:41+0800</td><td>NVIDIA GPUs</td><td><span class="new">New!</span> Close call... 5090 Burnt Cable</td><td>Frizz</td><td><a href="https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5748182">TechPowerUp</a></td><td>Nice! WV Pro 2 is great just remember to never take it off again from the GPU side if you ever tinker you can always just remove the psu cable from the Wireview itself. This in theory should preserve the terminals on your gpu and connector on wireview</td></tr><tr><td>2026-07-02T11:18:43+0800</td><td>NVIDIA GPUs</td><td><span class="new">New!</span> Close call... 5090 Burnt Cable</td><td>Dr. Dro</td><td><a href="https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5748147">TechPowerUp</a></td><td>Not offtopic actually! The PCIe 8-pin connector is not immune burning out. It&#x27;s just a lot rarer as its mechanical and electrical tolerances are a lot higher. I can definitely see a power hungry card like a 7900 XT burning out 8-pin cables if the OP was daisy…</td></tr></tbody>
+      </table>
+    </section>
+<section>
+<h2>2026-07-08 最新討論更新洞察</h2>
 <div class="grid">
-
-<div class="card"><h3>Thermal Grizzly WireView / Pro II</h3><div class="sub">聲量最高；Reddit r/ThermalGrizzly、TPU「Close call... 5090 Burnt Cable」大串為主要陣地</div>
-<h4 class="h-pos">優點</h4><ul>
-<li>per-pin 電流／電壓／溫度、警報、記錄、自動關機一次到位；「值得，買安心」（r/pcmasterrace）</li>
-<li>做工紮實、附件齊全、大致隨插即用；統一式前面板接頭實測可用（反駁部分評測）</li>
-<li>實戰價值：多次協助用戶抓出線材劣化（pin1 電流偏低並報錯）與重插無效的疑難故障；也讓 Equalizer 的殘餘不平衡現形</li>
-<li>TG 保固含 GPU 損害保險兩年，被視為「像保險」的關鍵買點；$80 的 WireView 壞掉也比壞卡好（犧牲品概念）</li>
-<li>燒線倖存者（Phanteks 原生線變色 10.8k 分熱帖、Lian Li 燒線帖）事後普遍加購</li></ul>
-<h4 class="h-neg">缺點</h4><ul>
-<li>機殼淨空是最大痛點：O11D XL 也關不上側板、有人為此換殼；Zotac 5090 AIO／Lynk+／FE 卡不相容；normal/reversed 版本要選對</li>
-<li>自身 12VHPWR 端子插拔 3-5 次即可見劣化（溫度讀數升高）；「增加一個故障點」</li>
-<li>價格偏高＋美國進口關稅＋缺貨等待；也有人直言「Wireview seems useless」（監控≠防護）；二手以 $30-40 流通</li>
-<li>Linux 無支援（成為換 OS 阻礙）</li></ul>
-<h4>改進需求</h4><ul>
-<li>Wired 分離顯示版（已回應，多人等貨中）、薄型化／FE 相容、更耐插拔端子、Linux 支援</li>
-<li>使用建議共識：裝上 GPU 後不再拆 GPU 側，要拆就拆 WireView 上的 PSU 線</li></ul>
+<div class="card"><h3>WireView Pro II 的新訊號：避免反覆拆 GPU 端接頭</h3><p>TechPowerUp 7/8 報告中的 New! 留言來自「Close call... 5090 Burnt Cable」討論：使用者稱 WireView Pro II 有幫助，但提醒安裝後不要反覆從 GPU 端拆下，若要整理或測試，應從 WireView 另一側拔 PSU cable，以減少 GPU 端子與 WireView connector 的磨耗。</p></div>
+<div class="card"><h3>洞察更新</h3><p>TechPowerUp 最新留言把 WireView 的價值從「監控」延伸到「降低插拔磨耗風險的中介層」。這與 Reddit 新討論中的 12V-2x6 mating cycle 焦慮一致：使用者不只擔心電流不平衡，也擔心實體插拔造成接點狀態惡化。</p></div>
+<div class="card"><h3>改進需求</h3><p>WireView / GPU Safeguard 類產品需要明確標示建議插拔策略、可承受插拔次數、是否可作為保護性中介接頭，以及拆裝後是否需要重新校驗 pin current / 溫度 / 接觸狀態。</p></div>
+<div class="card"><h3>8-pin 對照訊號</h3><p>另一則 New! 留言指出 PCIe 8-pin 並非完全不會燒，但其機械與電氣容忍度通常較高，因此燒毀較少見。這補強了「12VHPWR / 12V-2x6 的安全餘裕與容錯」仍是保護產品需求的根本背景。</p></div>
 </div>
-
-<div class="card"><h3>Aqua Computer AMPINEL</h3><div class="sub">唯一「主動平衡」方案；期待最高、供貨最differ災難</div>
-<h4 class="h-pos">優點</h4><ul>
-<li>唯一能主動控制 per-pin 電流分配的裝置（>7.5A 介入重分配）＋警報＋緊急關機；TPU 老手：「不能主動控電流的線都是白花錢，唯一例外是 Ampinel」</li>
-<li>$79-95 相對便宜；水冷圈接受度高（r/watercooling 裝機文 49 分）</li>
-<li>實際顯示 5080 430W 下 pin 差 1.3A 等真實數據，讓不平衡可見</li></ul>
-<h4 class="h-neg">缺點</h4><ul>
-<li>供貨災難為最大負評：上市即延三個月、下訂後「月月收到延期通知」、第三次延期後用戶怒轉 WireView；backorder 90 天</li>
-<li>Type A/B 選型混亂、缺乏清楚相容清單（Waterforce WB 用戶不知該買哪型）</li>
-<li>體積干涉：高 RAM＋下吹散熱器（D12L）衝突；Lynk+ 需自行切割頂板才裝得下</li>
-<li>端子耐久最差回報：插拔 2 次即出現可量測劣化、「重插比之前鬆」</li>
-<li>技術質疑：依 KCL 只在裝置端平衡，無法解 GPU 端接觸不良（THW 留言、多名 TPU 用戶）；效果「有限」</li></ul>
-<h4>改進需求</h4><ul><li>供貨與交期透明化、公開相容清單、低干涉外型、更耐用端子</li><li>與 Equalizer（crossbar 線）併用是否衝突，官方未解答（用戶提問中）</li></ul>
-</div>
-
-<div class="card"><h3>ASUS ROG Equalizer</h3><div class="sub">爭議最大：熱度高（安裝文 410 分）與信任危機並存</div>
-<h4 class="h-pos">優點</h4><ul>
-<li>4-spring 鍍金端子接觸面積大於一般 3-dimple、短時 17A/線、鍍錫無氧銅；官方定位「靠硬體熱裕度撐住異常，不中斷使用」</li>
-<li>Igor's Lab／HardwareBusters 實測熱耐受極佳（剪 6 條線才逼近熔化溫度）；「非萬靈丹但容錯優於標準線」</li>
-<li>有用戶 40 小時 HWiNFO log：per-pin 與原生線一致、無警告；也有用戶裝後「不再有 imbalance 警告」</li>
-<li>舊 Thor III／Strix Platinum 用戶 5 折升級方案；$50 價位不算貴</li></ul>
-<h4 class="h-neg">缺點</h4><ul>
-<li>chiphell 流傳燒毀照片引發退訂潮討論；多數（含版主、Igor）判定疑似 AI 假圖且原帖已刪，但信任傷害已造成</li>
-<li>der8auer 實測仍有明顯電流不平衡：busbar 位置錯誤（等化點離 GPU 太遠）；一用戶實測 Equalizer 變異（0.7-1.4A）比原廠 Strix 線（0.5-1.0A）大而換回</li>
-<li>結構性衝突：crossbar 把所有 pin 短路 → 讓 Seasonic OptiGuard／MSI Safeguard+／Corsair 等 per-pin 智慧 PSU「失明」（PSA 熱帖警告勿併用）</li>
-<li>線體接頭附近極硬，像槓桿使接頭受力（「難怪有一條掛了」vs「前 3cm 本來就不能凹」的爭論）；機殼淨空仍緊</li>
-<li>缺貨、黑色版無補貨消息、CableMod 標示「IN STOCK」實際 8/1 才出貨；初期不單獨販售</li>
-<li>被部分用戶斥為 snake oil／「17A 宣稱＝額定 9A 的近兩倍，照樣能燒」</li></ul>
-<h4>改進需求</h4><ul><li>busbar 位置重設計（靠 PSU 端）、柔性線身、與智慧 PSU 相容性說明、GPU Tweak III Power Detector+ 監控軟體遲未推出、穩定供貨與單售</li></ul>
-</div>
-
-<div class="card"><h3>Corsair ThermalProtect</h3><div class="sub">口碑最一致的「低價保底」方案；set-and-forget 派首選</div>
-<h4 class="h-pos">優點</h4><ul>
-<li>$25、隨插即用、任何有原生 12V-2x6 口的 PSU 通用（官方相容文件被引用）</li>
-<li>被動 65°C thermistor 斷 sense → 黑屏斷電，不依賴軟體；<b>已有實測觸發成功案例</b>：關機殼風扇跑 600W 可穩定重現觸發、實際遊戲（POE2）中救過一次</li>
-<li>線材品質獲讚：比 Thor III 原廠線好、滿載 11.99V、電壓 droop 明顯改善</li>
-<li>TPU 資深用戶群一致推薦：「買原生口 PSU 就順手加一條，錢不多可能救你的卡」</li></ul>
-<h4 class="h-neg">缺點</h4><ul>
-<li>感測點在 GPU 端 30mm 處：PSU 端無熱熔斷；毫秒級瞬時事件保護不了（Cooler Master GPU Shield 支持者的比較論點）</li>
-<li>屬「事後斷電」而非預防／平衡；觸發即黑屏關機（體驗中斷）</li>
-<li>客製 PSU（Alienware/Dell 1500W）相容性不明，用戶只能發問</li></ul>
-<h4>改進需求</h4><ul><li>PSU 端也要熱熔斷（雙端感測）；2x8pin PSU 端版本盡快推出；多人許願「Equalizer 端子＋ThermalProtect 熔斷＋內建電表」的混種旗艦，$150 也願意買</li></ul>
-</div>
-
-<div class="card"><h3>MSI GPU Safeguard / Safeguard+（MAG PLS／MPG Ai TS PSU）</h3><div class="sub">智慧 PSU 路線的先行者；「把 WireView 內建進 PSU」</div>
-<h4 class="h-pos">優點</h4><ul>
-<li>PSU 內建 per-pin 監控＋警示＋黑屏／降功率 75%／關機；硬體層全時運作，Afterburner/MSI Center 為加值介面；任何 12V-2x6 卡適用</li>
-<li>閾值可自訂（PSU.cfg：MaxCurrent、CurrentDif），教學帖 86 留言熱烈；MSI Center 資源占用不高（~35MB）</li>
-<li>裝機者回報 per-pin 滿載平均、監控畫面帶來實質安心感；法語區用戶大推「per-pin 監控 PSU」路線</li></ul>
-<h4 class="h-neg">缺點</h4><ul>
-<li>預設閾值過鬆（12A／差值 5.5A）需手動調緊才實用</li>
-<li>價格高（Ai1600TS 約 $500／加拿大 $810 CAD）且初期缺貨；「複雜方案解決五毛錢連接器問題」（THW）</li>
-<li>品牌包袱：舊款 MEG Ai1600T 自身 PSU 端＋GPU 端燒毀案例（官方 RMA 回收調查）；「MSI 線材會慢慢滑出」的舊事被重提</li>
-<li>與 crossbar 線（Equalizer）併用會失效（PSA 帖）</li></ul>
-<h4>改進需求</h4><ul><li>出廠預設值收緊、更平價瓦數段、監控外接小螢幕需求（有用戶想 24 小時盯 MSI Center）</li></ul>
-</div>
-
-<div class="card"><h3>Cooler Master GPU Shield</h3><div class="sub">「inline 毫秒斷電」概念受好評，但買不到獨立版</div>
-<h4 class="h-pos">優點</h4><ul>
-<li>位於 GPU 與 PSU 之間，被支持者視為能在毫秒級斷電、優於偵測點受限的溫感線；相容各家 PSU</li>
-<li>LED 插入狀態指示（紅=未插好/綠=正確）直觀防呆；PSU 版（MWE Gold V4，$102.99 起）與獨立 adapter 雙形態</li></ul>
-<h4 class="h-neg">缺點</h4><ul>
-<li>獨立 adapter 自 6/5 發表後遲未鋪貨，「只看得到 PSU 版」——想買的人在等（r/PcBuild 發問）</li>
-<li>TPU 留言：相較之下「TG 現貨可買」是實際考量；討論深度仍淺（多為新聞轉發）</li></ul>
-<h4>改進需求</h4><ul><li>獨立 adapter 盡速上市、第三方實測驗證斷電速度宣稱</li></ul>
-</div>
-
-<div class="card"><h3>Seasonic OptiGuard</h3><div class="sub">期待值最高、跳票最重的一家</div>
-<h4 class="h-pos">優點</h4><ul>
-<li>GPU rail 微秒級過壓/欠壓/突波保護＋藍牙 OptiGuard Dashboard；不少人「PSU 只等它」「我押 Seasonic，比 MSI 可信」</li></ul>
-<h4 class="h-neg">缺點</h4><ul>
-<li>供貨承諾崩壞：原定 2026 Q1 → 無限期；Computex 2026 只展「OptiGuard 2.0」且僅入 PRIME Enterprise（企業版）；消費級 Noctua TX 版 ETA 2027 Q2</li>
-<li>「1.0 到底出過沒有？」版本溝通混亂；新 FOCUS v5 也沒帶 OptiGuard</li>
-<li>用戶等到流失：有人因此轉買 WireView、有人「等累了」直接組機；被批重 AI/企業、輕消費者</li></ul>
-<h4>改進需求</h4><ul><li>給出可信上市時程、把 OptiGuard 下放消費級產品線</li></ul>
-</div>
-
-<div class="card"><h3>Segotep TITANLOAD / EX</h3><div class="sub">中國區「暴力強化」線材；海外靠代購的小眾信仰</div>
-<h4 class="h-pos">優點</h4><ul>
-<li>12A／14A（EX）強化 pin、宣稱峰值溫度降 72%（5090 實測文約 -16°C）；「接觸強度實際可遠超規格」的擁護者論點</li>
-<li>開箱評價：品質出色、磁吸盒包裝精緻；「等於 Equalizer 減掉爭議的 busbar」（TPU/Reddit 皆有此定位）；不怕彎折</li></ul>
-<h4 class="h-neg">缺點</h4><ul>
-<li>中國區限定、海外要私人代購；名稱在英語圈被大量嘲笑（"Bad name"為最高分留言）、發文者被質疑帶風向</li>
-<li>技術反論：線阻越低，pin 接觸阻抗差造成的電流不平衡反而更明顯（Noreng/TPU）；「治標」共識同樣適用</li>
-<li>長度僅 600mm、無官方海外通路與完整第三方測試</li></ul>
-<h4>改進需求</h4><ul><li>國際販售、更長線款、獨立實測（社群評測進行中：pin 不平衡/壓降/雙端溫度）</li></ul>
-</div>
-
-<div class="card"><h3>Gigabyte T-Guard</h3><div class="sub">聲量墊底組</div>
-<h4 class="h-pos">優點</h4><ul>
-<li>GAMING 系列 PSU 內建主動熱監控；法媒已有 1000GM PG5 實測、獲日語圈「保護方案一覽很清楚」轉發</li></ul>
-<h4 class="h-neg">缺點</h4><ul>
-<li>三大論壇幾乎零真實用戶心得（只有新聞轉貼）——行銷聲量未轉化為討論</li></ul>
-<h4>改進需求</h4><ul><li>需要可見的第三方實測與用戶案例</li></ul>
-</div>
-
-<div class="card"><h3>ASRock TempGuard <span class="newbadge">New!</span></h3><div class="sub">2025-08 以「L 型線材＋NTC 感測器」先行，2026-05 Computex 正式冠上品牌名；三站合計 17 筆（v4 補搜後）</div>
-<h4 class="h-pos">優點</h4><ul>
-<li>機制明確：線材 GPU 端內建 NTC 熱敏二極體，經 2 根可拆卸感測腳位回報 PSU，溫度過門檻觸發 PSU 既有的 OTP（過溫保護）斷電；適用 Taichi／Phantom Gaming／Steel Legend Platinum 系列，保固最長 10 年</li>
-<li>已有實戰救卡案例：MSI Ventus 5090 超頻至 1350W（額定 575W／線材額定 600W）於 3DMark Port Royal 跑分後，Phantom Gaming PG-1300G 觸發斷電、需等線材降溫才能重開——「PSU 大致做到了它該做的事」；另一案例（Palit 5090＋PG-1300G）用戶明確肯定「failsafe 斷電趕在更嚴重的事發生前」，GPU／PSU 事後測試皆正常</li>
-<li>促成購買決策：「就是因為有 temp guard 才選這顆 PSU」；也有用戶認為比起單純溫感線（ThermalProtect 類），內建於 PSU、有官方 OTP 邏輯把關更安心</li>
-<li>Phantom Gaming 系列價格較 Taichi 親民、同樣具備此功能</li></ul>
-<h4 class="h-neg">缺點</h4><ul>
-<li><span class="newbadge">New!</span> 已出現「保護完全沒擋住」的案例：MSI Trio 5090＋PG1000-PSF 原生感測線材仍燒毀，原po：「或許能救你家不失火，但擋不住接頭熔毀」——與救卡案例並存，代表 TempGuard 的效果不穩定，非每次都能即時反應</li>
-<li><span class="newbadge">New!</span> TPU 評測留言提出可能的根本原因：thermistor 只接觸線材中的 2 條 GND（接地）線，而實際會過熱熔毀的是 +12V 線，「感測器裝錯線」——可解釋為何部分案例救援失敗；同一留言指出 ASUS 的類似設計幾乎相同，暗示業界共用同一個缺陷</li>
-<li><span class="newbadge">New!</span> 感測器物理位置也被質疑：PG 1600G 原廠線的 thermistor 離實際接觸點「相當遠」，走線彎折會加大感測器與接點間的空氣間隙，使用者甚至考慮塗導熱膏來彌補，官方 $40 的 90 度轉接線設計可能更差</li>
-<li>救卡案例中 GPU 端接頭仍留下明顯變色、跑分成績明顯下滑——斷電門檻被質疑設太高，「幾乎做到但沒能在變色前即時斷電」</li>
-<li>核心技術質疑反覆出現：單一溫度感測點無法涵蓋 6 個 pin 各自的接觸不良（「除非每個 pin 都有自己的感測器，否則沒意義，而這根本做不到」）；熱傳導到感測器本身需要時間，線材可能在感測器反應前就已劣化</li>
-<li>大量技術問題官方未曾回答：溫度門檻多少？多久輪詢一次？觸發後是斷電還是黑屏？使用者如何得知是感測器觸發（而非其他故障）？連續觸發多次該怎麼辦？（同一問題在兩篇不同新聞下被追問兩次，均無解）</li>
-<li>需要專屬感測線材，衍生安裝限制：TC1650-T 用戶因線材在機殼內走線角度過大、關側板時被壓出約 45 度彎折，兩難於「保留 TempGuard 功能」與「換一般線材但失去保護」之間；<span class="newbadge">New!</span> 另有 TC-1300T 用戶擔心專屬規格若日後停產，屆時想換裝其他保護裝置（WireView／Astral）反而找不到「不含感測針腳」的相容替代線</li>
-<li>與 WireView Pro II／Ampinel 等 inline 監控裝置有功能重疊的疑問（是否要疊加、是否其中之一即多餘），廠商未提供指引</li>
-<li>被批評為治標：「no method is a solution, only mitigation，問題根源在連接器設計本身」；「該由 NVIDIA 扛的責任最後變成 PSU 業界要扛，可悲」</li></ul>
-<h4>改進需求</h4><ul><li>公開溫度門檻／觸發邏輯／通知機制的技術規格；依實戰案例（1350W 事故仍變色、Trio 5090 案例完全未擋住）調低斷電閾值；<span class="newbadge">New!</span> 感測器應移至 +12V 線而非 GND 線、並縮短與接點的物理距離；提供與其他監控裝置併用的相容性說明；感測線材需要更友善的走線設計（如直角版本，且現有直角版感測器位置疑似更差需重新設計）</li></ul>
-</div>
-
-</div></section>
-
-<section><h2>三、跨產品洞察與共通改進需求</h2>
-
-<details class="insight" open><summary>1. 共識：全部都是「緩解」，根因在連接器與 GPU 端設計</summary><ul>
-<li>反覆出現的技術共識：12V-2x6 無安全裕度（前航太工程師：軍規會 derate 30%，這裡「油門到底」）；RTX 40/50 取消了 RTX 30 的三路分流，GPU 端是單一 power plane，一線失效其餘全過載、級聯燒毀。</li>
-<li>NVIDIA 被指「禁止」板卡廠在新卡上做 per-pin 主動平衡 → 保護只能外掛（Ampinel/智慧 PSU 的存在理由）。der8auer 也曾想在 WireView 加 shunt 平衡而放棄（平衡 pin 無法降低總電流風險）。</li>
-<li>因此所有產品被資深用戶定位為 palliative care：「沒有任何線／轉接頭／裝置對此問題免疫」；不少人主張回歸 8-pin/EPS、改 48V、或強制召回換連接器。60 系換接頭是普遍願望，甚至有集體訴訟呼聲。</li>
-<li><span class="newbadge">New!</span> ASRock TempGuard 的討論把這個共識講得最具體：單點溫感無法涵蓋 6 個 pin 各自的接觸不良，實戰案例（5090 超頻 1350W）中 PSU「大致做到但沒能在變色前斷電」；TPU 用戶直言 mitigation 不是 solution，「該由 NVIDIA 扛的責任最後變成 PSU 業界要扛」。</li></ul></details>
-
-<details class="insight" open><summary>2. 連接器耐久性是新浮現的產品級痛點</summary><ul>
-<li>第一手數據（TPU）：Ampinel 端子 2 次插拔即劣化、WireView Pro 1 約 3-5 次、OEM 線 5-10 次——遠低於額定 30-40 次；「標準該修訂」獲響應。</li>
-<li>連鎖效應：用戶為測試換線把 GPU 端插拔用到 26 次而焦慮（30 次上限）；衍生使用守則「保護裝置裝上後永不拆 GPU 側」。</li>
-<li>改進需求：更耐插拔的端子材質／結構、產品自身接頭品質（被點名「這些產品自己的 12VHPWR 接頭不太好」）。</li></ul></details>
-
-<details class="insight" open><summary>3. 生態互斥：crossbar 線 vs per-pin 智慧 PSU</summary><ul>
-<li>高關注 PSA：Equalizer 這類把 pin 短路的 crossbar 線，會讓 OptiGuard／Safeguard+／PinProtect 等 per-pin 監控 PSU 看不到 GPU 端不平衡（KCL）→「想疊加保護反而互相抵銷」。</li>
-<li>用戶實際在問「Equalizer 能不能搭 Ampinel」「該用原生線還是第三方線」——廠商幾乎沒有跨品牌相容性指引，是明確的資訊缺口。</li>
-<li>疊加組合成為顯學：WVP2＋ThermalProtect、ASRock 溫感＋WVP2、甚至「Ampinel＋Equalizer×2＋Safeguard+ PSU」全套；社群需要「怎麼疊才有效」的權威指南。</li></ul></details>
-
-<details class="insight" open><summary>4. 供貨是整個品類的最大失分項</summary><ul>
-<li>Ampinel 三個月延期＋月月延、OptiGuard 消費版跳票到 2027、CM GPU Shield 獨立版買不到、Equalizer 缺貨＋通路庫存標示不實、Titanload 海外無售、WireView 部分地區難買＋關稅——「想買買不到」貫穿所有討論串。</li>
-<li>直接後果：用戶轉向現貨品（ThermalProtect、WireView），或改用土法（HWiNFO 電壓 delta 鬧鈴、溫度觸發重開機腳本、外接溫度感測器）。</li></ul></details>
-
-<details class="insight" open><summary>5. 相容性／淨空是購買前最大的不確定性</summary><ul>
-<li>WVP2 與 Ampinel 的實體尺寸問題重複出現：換機殼、切機殼頂板、與 RAM/散熱器/AIO 外殼/前面板接頭干涉、FE 不相容、normal/reversed 選錯。</li>
-<li>改進需求：官方相容查詢工具（卡型×機殼×方向）、薄型化、Wired/分離顯示設計（TG 已跟進）。</li></ul></details>
-
-<details class="insight" open><summary>6. 使用者要的監控體驗</summary><ul>
-<li>「不想在遊戲畫面上看監控」→ 外接小螢幕、裝置自帶螢幕、手機/藍牙 Dashboard（Seasonic 方向）都有需求。</li>
-<li>警報之外更想要「自動處置」：黑屏/降功率/關機皆可接受，但預設閾值要合理（MSI 預設太鬆被詬病）。</li>
-<li>保固/保險是差異化利器：TG「兩年連 GPU 一起保」被多次當成決策關鍵；反例是 ASUS 原廠線 RMA 流程「罐頭回覆一個月」。</li></ul></details>
-
-<details class="insight" open><summary>7. 資訊信任危機影響購買</summary><ul>
-<li>Equalizer「燒毀照」疑似 AI 假圖且原帖已刪，但足以讓準買家考慮退訂——廠商缺乏快速、公開的闢謠與失效調查機制。</li>
-<li>另一面是行銷誇大遭反感（「snake oil」「Hi-Fi 電源線要出現了」）；第三方實測（Igor's Lab、HardwareBusters、der8auer）是社群實際採信的仲裁者，廠商應主動送測。</li>
-<li>費用轉嫁民怨明顯：「卡已經夠貴，還要自費買保護」「以後訂閱制寄線」等嘲諷高頻出現。</li></ul></details>
 </section>
-</div>
 
-<div id="pgDetail" class="page">
-<div class="filters">
-  <span style="font-size:12.5px;color:var(--muted)">關鍵字：</span>
-  <span class="chip kwchip on" data-v="__all">全部</span>
-  <span class="chip kwchip" data-v="WireView">WireView</span>
-  <span class="chip kwchip" data-v="Ampinel">Ampinel</span>
-  <span class="chip kwchip" data-v="ROG Equalizer">ROG Equalizer</span>
-  <span class="chip kwchip" data-v="ThermalProtect">ThermalProtect</span>
-  <span class="chip kwchip" data-v="GPU Safeguard">GPU Safeguard</span>
-  <span class="chip kwchip" data-v="GPU Shield">GPU Shield</span>
-  <span class="chip kwchip" data-v="OptiGuard">OptiGuard</span>
-  <span class="chip kwchip" data-v="Titanload">Titanload</span>
-  <span class="chip kwchip" data-v="T-Guard">T-Guard</span>
-  <span class="chip kwchip" data-v="TempGuard">TempGuard <span class="newbadge">New!</span></span>
-  <span style="font-size:12.5px;color:var(--muted);margin-left:10px">Forum：</span>
-  <span class="chip fmchip on" data-v="__all">全部</span>
-  <span class="chip fmchip" data-v="Reddit">Reddit</span>
-  <span class="chip fmchip" data-v="TechPowerUp">TechPowerUp</span>
-  <span class="chip fmchip" data-v="Tom's Hardware">Tom's Hardware</span>
-  <input type="search" id="q" placeholder="搜尋標題／摘要…">
-  <span class="chip" id="sortBtn">日期：新→舊</span>
-  <span class="count" id="cnt"></span>
-</div>
-<div id="blocks"></div>
-<div class="note" style="margin-top:14px">明細依關鍵字分區，各區內依發文日期排序（可用上方按鈕切換新→舊／舊→新）。同時命中多個關鍵字的貼文會在每個相關區塊各列一次。日期標「約」者為由相對時間（「1 月前」等）換算的近似值。同文多版轉貼（cross-post）已合併為一列。連結欄若無固定網址（搜尋擷取所得），提供該站搜尋連結以便重現。<b>New!</b> 標示規則：與前一版報告比對，新增或內容有更新的項目會標示 <span class="newbadge">New!</span>。v3 新增關鍵字「TempGuard」共 12 筆；v4 補搜「不含品牌名」的相關討論（見下方方法論限制說明）新增 5 筆＋既有 1 筆補標關鍵字，皆為 New!；v1→v2 資料無變動。</div>
-<div class="note"><b>方法論限制與補強（v4）</b>：純品牌關鍵字搜尋有結構性盲點——官方新聞稿／行銷內容會用品牌名（如「TempGuard」），但用戶的事故回報／抱怨貼文常只用功能描述（thermistor、sensor、溫感線）或 PSU 型號（如 PG-1300G、TC-1650T），完全不提品牌名，因此搜不到。v4 針對 TempGuard 額外用「PSU 型號＋melt/burn」「thermistor＋asrock」等組合補搜三站，撈出 5 筆原本會被漏掉的討論（含 2 個未使用「TempGuard」字樣的實際燒毀案例），並過濾掉大量無關的一般組裝求助文，只留下確認相關者。此限制同樣可能適用於其他關鍵字（WireView、Ampinel 等亦可能有「型號/暱稱」討論未被涵蓋），但基於保持報告精簡，目前僅對 TempGuard 做此補強。</div>
-</div>
 
-<footer>
-資料擷取：2026-07-08。來源：old.reddit.com 搜尋（各關鍵字, sort=new）、techpowerup.com/forums 站內搜尋（order=date）、forums.tomshardware.com 站內搜尋（order=date），及重點討論串內文與留言。摘要僅根據實際讀到的內容撰寫。
-</footer>
+    <section>
+      <h2>GPU Safeguard</h2>
+      <div class="level">新聞/廠商描述 + 少量論壇疑問</div>
+      <p>功能主張是 PSU 端監控 12V-2x6 每 pin 電流、異常提醒與保護；論壇主要疑問是是否需 MSI 軟體或 Afterburner 啟用。</p>
+      <h3>逐項驗證依據</h3>
+      <ul><li><b>2026-03-25</b>：TechPowerUp 新聞內容描述 GPU Safeguard+ 會追蹤每 pin 即時電流並提供蜂鳴器/軟體彈窗。</li><li><b>2026-03-25</b>：留言者直接問 GPU Safeguard+ 是否必須先透過廠商軟體或 MSI Afterburner 啟用。</li><li><b>2026-04-07</b>：論壇討論提到 MSI 宣稱 GPU Safeguard 可監控 12V-2x6 connector 電流並在異常條件 alert。</li></ul>
+      <h3>需要改進</h3>
+      <p>公開啟用條件、是否能無軟體運作、觸發門檻、反應時間與警報後行為。</p>
+      <h3>本次讀取的 TechPowerUp 原始貼文/留言</h3>
+      <table>
+        <thead><tr><th>日期</th><th>Forum</th><th>文章</th><th>作者</th><th>來源</th><th>原始內容摘要</th></tr></thead>
+        <tbody><tr><td>2026-04-07T15:44:53+0800</td><td>Graphics Cards</td><td>Double 12VHPWR connectors in the future graphics cards may resolve overheating and melting cables?</td><td>maxfly</td><td><a href="https://www.techpowerup.com/forums/threads/double-12vhpwr-connectors-in-the-future-graphics-cards-may-resolve-overheating-and-melting-cables.346653/post-5704363">TechPowerUp</a></td><td>No pricing available yet but soon. MSI also advertises a GPU safeguard feature that monitors current on the 12V-2×6 connector and issues an alert when abnormal conditions are detected.</td></tr><tr><td>2026-03-25T18:16:49+0800</td><td>News</td><td>MSI Announces Safeguard+ for its MPG Ai TS Series PSUs</td><td>FR3D1</td><td><a href="https://www.techpowerup.com/forums/threads/msi-announces-safeguard-for-its-mpg-ai-ts-series-psus.347699/post-5697608">TechPowerUp</a></td><td>@TheLostSwede I&#x27;m a little confused; does this GPU Safeguard+ need to be enabled first via software—either through the manufacturer&#x27;s bloatware or MSI Afterburner? Best regards, Fred.</td></tr><tr><td>2026-03-25T17:42:26+0800</td><td>News</td><td>MSI Announces Safeguard+ for its MPG Ai TS Series PSUs</td><td>TheLostSwede</td><td><a href="https://www.techpowerup.com/forums/threads/msi-announces-safeguard-for-its-mpg-ai-ts-series-psus.347699/">TechPowerUp</a></td><td>High-end GPUs are hungrier than ever, and connector safety is a top priority. MSI&#x27;s new MPG Ai TS Series PSU introduces GPU Safeguard+, a proactive protection for 12V-2x6 interfaces that stops hardware damage before it even starts. Proactive Detection, Not Re…</td></tr></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>GPU Shield</h2>
+      <div class="level">僅讀到新聞/廠商描述，缺使用者實測</div>
+      <p>可驗證的內容是 Cooler Master 新聞宣稱 GPU Shield 會偵測異常電流、即時保護並用 LED alert；本次未讀到論壇使用者實測優缺點。</p>
+      <h3>逐項驗證依據</h3>
+      <ul><li><b>2026-06-08</b>：TechPowerUp 新聞描述 MWE Gold V4 的 GPU Shield Intelligent Current Management、abnormal current detection、active protection、LED alerts。</li></ul>
+      <h3>需要改進</h3>
+      <p>需要第三方或使用者實測：異常電流門檻、LED 可見性、是否記錄事件、是否保護 GPU 端接觸不良。</p>
+      <h3>本次讀取的 TechPowerUp 原始貼文/留言</h3>
+      <table>
+        <thead><tr><th>日期</th><th>Forum</th><th>文章</th><th>作者</th><th>來源</th><th>原始內容摘要</th></tr></thead>
+        <tbody><tr><td>2026-06-08T18:19:53+0800</td><td>News</td><td>Cooler Master Launches MWE Gold V4 Series with GPU Shield</td><td>btarunr</td><td><a href="https://www.techpowerup.com/forums/threads/cooler-master-launches-mwe-gold-v4-series-with-gpu-shield.349823/">TechPowerUp</a></td><td>Cooler Master, a global leader in PC components and tech lifestyle solutions, has launched MWE Gold V4, a fully modular power supply designed for high-performance gaming and creator systems. Built to meet the demands of next-generation hardware, the MWE Gold…</td></tr></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>OptiGuard</h2>
+      <div class="level">新聞/廠商描述 + 使用者期待</div>
+      <p>OptiGuard Dashboard 被描述為能監控 PSU、12V-2x6 輸出、每 pin 電流與接頭溫度；有論壇使用者表示看好但等待測試。</p>
+      <h3>逐項驗證依據</h3>
+      <ul><li><b>2026-06-04</b>：TechPowerUp 新聞描述 Seasonic OptiGuard Dashboard、Bluetooth、12V-2x6 real-time output、current per pin、connector temperature。</li><li><b>2026-04-20</b>：論壇留言表示目前更看好 Seasonic OptiGuard，原因是看起來 solid 並期待測試。</li></ul>
+      <h3>需要改進</h3>
+      <p>補齊長時間負載測試、警報門檻、App/藍牙可靠性、資料匯出與離線使用能力。</p>
+      <h3>本次讀取的 TechPowerUp 原始貼文/留言</h3>
+      <table>
+        <thead><tr><th>日期</th><th>Forum</th><th>文章</th><th>作者</th><th>來源</th><th>原始內容摘要</th></tr></thead>
+        <tbody><tr><td>2026-06-04T02:17:22+0800</td><td>News</td><td>Seasonic Brings its Latest PC and Server PSUs to Computex 2026</td><td>btarunr</td><td><a href="https://www.techpowerup.com/forums/threads/seasonic-brings-its-latest-pc-and-server-psus-to-computex-2026.349687/">TechPowerUp</a></td><td>Seasonic is a major OEM of switching power supplies for computers of nearly every shape and size. The company showed off its OEM-channel PSUs targeting servers and workstations; reference PSUs, and some of the more premium PSU models that retail under its own…</td></tr><tr><td>2026-04-20T20:35:45+0800</td><td>News</td><td>ASUS Introduces ROG Equalizer 12V-2x6 Cable for GPU Power Stability</td><td>lepudruk</td><td><a href="https://www.techpowerup.com/forums/threads/asus-introduces-rog-equalizer-12v-2x6-cable-for-gpu-power-stability.348123/post-5710438">TechPowerUp</a></td><td>The anti-burn/melt solutions are starting to show, and even more are coming in May (f.i. Seasonic and Corsair). For now, my money is on Seasonic because of their Optiguard - it looks solid, and I&#x27;m eager to see some tests of it.</td></tr><tr><td>2025-05-21T16:08:23+0800</td><td>News</td><td>Seasonic Shows 3,200 W PSU, 16-Pin Connector Cooler, and Advanced Surge Protection at Computex 2025</td><td>AleksandarK</td><td><a href="https://www.techpowerup.com/forums/threads/seasonic-shows-3-200-w-psu-16-pin-connector-cooler-and-advanced-surge-protection-at-computex-2025.337104/">TechPowerUp</a></td><td>At the Computex 2025, Seasonic introduced a range of advanced power solutions for desktop PC performance and reliability. The real standout piece was the PRIME PX-3200, a fully modular 3,200 W power supply compliant with ATX 3.1 standards. This unit delivers…</td></tr></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Ampinel</h2>
+      <div class="level">論壇使用者實際討論</div>
+      <p>討論中被視為類似 WireView 的監控/保護裝置，但有留言稱成功有限，也有使用者回報頻繁拆裝下連接器耐久不佳。</p>
+      <h3>逐項驗證依據</h3>
+      <ul><li><b>2026-06-16</b>：留言稱 Ampinel 是少數能做某種保護/控制的裝置，但 limited success。</li><li><b>2026-06-12</b>：搜尋結果與讀取內容顯示使用者回報 Ampinel 在頻繁拆裝情境下約 2 次後出現連接器問題。</li><li><b>2026-06-15</b>：留言詢問 Ampinel 或 WireView 測量是否準確，反映讀值疑慮。</li></ul>
+      <h3>需要改進</h3>
+      <p>提高插拔壽命、端子強度、讀值精度透明度，並明確說明是否有主動保護而非只監測。</p>
+      <h3>本次讀取的 TechPowerUp 原始貼文/留言</h3>
+      <table>
+        <thead><tr><th>日期</th><th>Forum</th><th>文章</th><th>作者</th><th>來源</th><th>原始內容摘要</th></tr></thead>
+        <tbody><tr><td>2026-06-16T23:49:42+0800</td><td>News</td><td>ASUS Introduces ROG Equalizer 12V-2x6 Cable for GPU Power Stability</td><td>Dr. Dro</td><td><a href="https://www.techpowerup.com/forums/threads/asus-introduces-rog-equalizer-12v-2x6-cable-for-gpu-power-stability.348123/post-5739126">TechPowerUp</a></td><td>All cables are shit, lol. This connector is shit. It can&#x27;t be helped. BTW the only device that can do what you&#x27;re suggesting is the Ampinel, with limited success</td></tr><tr><td>2026-06-16T03:40:10+0800</td><td>News</td><td>ASUS Introduces ROG Equalizer 12V-2x6 Cable for GPU Power Stability</td><td>Dr. Dro</td><td><a href="https://www.techpowerup.com/forums/threads/asus-introduces-rog-equalizer-12v-2x6-cable-for-gpu-power-stability.348123/post-5738492">TechPowerUp</a></td><td>The Equalizer doesn&#x27;t make anything worse, however, it comes with certain expectations generated by marketing and one&#x27;s limited understanding of how the cable works. The ROG Equalizer is advantageous due to its complex 4-spring gauges and busbar that shorts a…</td></tr><tr><td>2026-06-15T10:20:54+0800</td><td>NVIDIA GPUs</td><td>Close call... 5090 Burnt Cable</td><td>Dr. Dro</td><td><a href="https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5738035">TechPowerUp</a></td><td>HWiNFO64 is reporting 11.650V at 575 W load for me. Are you measuring this with the Ampinel or WireView? Since I understand reading can be inaccurate. Cable seems warm at best, nothing out of the ordinary. Running Star Rail with DLAA preset L, surprisingly he…</td></tr></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>ROG Equalizer</h2>
+      <div class="level">論壇技術討論</div>
+      <p>被討論為用 busbar 與 4-spring gauges 做均流/強化的 brute-force 解法；論壇同時指出它不是根治方案，PSU 端 busbar、主動溫度保護與測試透明度仍需改進。</p>
+      <h3>逐項驗證依據</h3>
+      <ul><li><b>2026-06-16</b>：留言解釋 Equalizer 的 4-spring gauges 與 busbar 可讓線材更像 parallel power plane，但足夠電流下仍可能出問題。</li><li><b>2026-06-24</b>：留言稱 ROG Equalizer 更像 brute-force cable，可承受熱不平衡，但不是解決根因。</li><li><b>2026-06-25</b>：論壇對疑似燒痕與報導真偽有爭議，顯示信任與驗證問題。</li></ul>
+      <h3>需要改進</h3>
+      <p>補 PSU 端均流設計、整合溫度/failsafe、公布 per-pin current 與溫升測試。</p>
+      <h3>本次讀取的 TechPowerUp 原始貼文/留言</h3>
+      <table>
+        <thead><tr><th>日期</th><th>Forum</th><th>文章</th><th>作者</th><th>來源</th><th>原始內容摘要</th></tr></thead>
+        <tbody><tr><td>2026-06-25T14:00:00+0800</td><td>NVIDIA GPUs</td><td>Close call... 5090 Burnt Cable</td><td>_roman_</td><td><a href="https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5743995">TechPowerUp</a></td><td>** German website claims ** Rog equalizer burn marks are *FAKE* burn marks. I think the english call it, someone used a sharpy to colour the connector black. Very quick reading headline, at the bottom, i did not read full: https://www.computerbase.de/news/gr.…</td></tr><tr><td>2026-06-24T16:23:43+0800</td><td>NVIDIA GPUs</td><td>Close call... 5090 Burnt Cable</td><td>Frizz</td><td><a href="https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5743488">TechPowerUp</a></td><td>My take on it is like everyone elses once theres a hotspot due to poor contact lower wattage will just delay the inevitable.. itll be slower since lower temps so itll give you a bigger chance of spotting something before its too late. ROG Equalizer is more li…</td></tr><tr><td>2026-06-17T06:29:15+0800</td><td>NVIDIA GPUs</td><td>Close call... 5090 Burnt Cable</td><td>Dr. Dro</td><td><a href="https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5739310">TechPowerUp</a></td><td>I&#x27;ve double checked it but there isn&#x27;t much i can do about it. As far as I can tell, it&#x27;s making contact, it seems fully inserted as the gray tip isn&#x27;t visible. Doesn&#x27;t seem to be warmer than i&#x27;d expect, anyway. I really need to buy the ROG Equalizer, see how…</td></tr></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Titanload</h2>
+      <div class="level">論壇比較討論</div>
+      <p>Titanload 在討論中被正面比較，使用者稱其 plug 接觸更強、能高於規格承載；但也被歸類為強化式緩解，不是 connector 架構永久解法。</p>
+      <h3>逐項驗證依據</h3>
+      <ul><li><b>2026-06-01</b>：留言稱 Titanload 的 plug 內部接觸更強，能 well above spec。</li><li><b>2026-06-01</b>：另一則留言批評 ASUS cable flawed，建議看 Segotep Titanload。</li><li><b>2026-06-16</b>：技術討論把 Titanload 與 ROG Equalizer 類產品歸為 overengineered/palliative care。</li></ul>
+      <h3>需要改進</h3>
+      <p>需要獨立長時間高電流、接觸電阻、插拔壽命測試，並加入監控/警報能力。</p>
+      <h3>本次讀取的 TechPowerUp 原始貼文/留言</h3>
+      <table>
+        <thead><tr><th>日期</th><th>Forum</th><th>文章</th><th>作者</th><th>來源</th><th>原始內容摘要</th></tr></thead>
+        <tbody><tr><td>2026-06-16T03:40:10+0800</td><td>News</td><td>ASUS Introduces ROG Equalizer 12V-2x6 Cable for GPU Power Stability</td><td>Dr. Dro</td><td><a href="https://www.techpowerup.com/forums/threads/asus-introduces-rog-equalizer-12v-2x6-cable-for-gpu-power-stability.348123/post-5738492">TechPowerUp</a></td><td>The Equalizer doesn&#x27;t make anything worse, however, it comes with certain expectations generated by marketing and one&#x27;s limited understanding of how the cable works. The ROG Equalizer is advantageous due to its complex 4-spring gauges and busbar that shorts a…</td></tr><tr><td>2026-06-01T09:44:45+0800</td><td>News</td><td>ASUS Now Bundles ROG Equalizer Cable with Thor III, Strix Platinum PSUs</td><td>user556</td><td><a href="https://www.techpowerup.com/forums/threads/asus-now-bundles-rog-equalizer-cable-with-thor-iii-strix-platinum-psus.349555/post-5731361">TechPowerUp</a></td><td>They&#x27;re not even close. The plug on the Titanload is a stronger contact inside the pins. It actually can deliver well above the spec. And that&#x27;s the real key here, the regular cable plugs are too weak to truly meet spec. All Asus has done is add gold plating…</td></tr><tr><td>2026-06-01T07:47:50+0800</td><td>News</td><td>ASUS Now Bundles ROG Equalizer Cable with Thor III, Strix Platinum PSUs</td><td>user556</td><td><a href="https://www.techpowerup.com/forums/threads/asus-now-bundles-rog-equalizer-cable-with-thor-iii-strix-platinum-psus.349555/post-5731303">TechPowerUp</a></td><td>It&#x27;s flawed is what that cable is, sadly. If you want one done right go look at Segotep&#x27;s Titanload.</td></tr></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>T-Guard</h2>
+      <div class="level">僅讀到新聞/廠商描述，缺使用者實測</div>
+      <p>可驗證內容是 Gigabyte 新聞宣稱 T-Guard 用 precision thermistors 做 active thermal monitoring；本次未讀到使用者實測或故障案例。</p>
+      <h3>逐項驗證依據</h3>
+      <ul><li><b>2026-04-16</b>：TechPowerUp 新聞描述 Gigabyte PSU 的 T-Guard active thermal monitoring 與 precision thermistors。</li></ul>
+      <h3>需要改進</h3>
+      <p>公開 thermistor 位置、溫度門檻、警報/保護動作、反應時間與第三方測試。</p>
+      <h3>本次讀取的 TechPowerUp 原始貼文/留言</h3>
+      <table>
+        <thead><tr><th>日期</th><th>Forum</th><th>文章</th><th>作者</th><th>來源</th><th>原始內容摘要</th></tr></thead>
+        <tbody><tr><td>2026-04-16T21:28:56+0800</td><td>News</td><td>Gigabyte&#x27;s New Gaming PSUs Secure Top-Tier GPUs with Exclusive T-Guard</td><td>TheLostSwede</td><td><a href="https://www.techpowerup.com/forums/threads/gigabytes-new-gaming-psus-secure-top-tier-gpus-with-exclusive-t-guard.348271/">TechPowerUp</a></td><td>Gigabyte Technology a leader in innovative cooling solutions, officially announced the launch of the all-new GAMING Series power supply units (PSUs) today. Positioning these units as the ultimate &quot;Hardware Guardian&quot; for high-performance systems, Gigabyte lead…</td></tr></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>ThermalProtect</h2>
+      <div class="level">論壇使用者實際討論</div>
+      <p>被多次視為帶 failsafe 的安全線材，對降低風險有幫助；但論壇仍認為它只是緩解，不是 connector 架構永久解法，且機殼 clearance 是實際問題。</p>
+      <h3>逐項驗證依據</h3>
+      <ul><li><b>2026-06-24</b>：留言認為 ThermalProtect 或 Equalizer on-hand 不會有壞處，且提到 ThermalProtect 承受壓力後仍正常。</li><li><b>2026-06-24</b>：另一留言稱最佳 cable 會是 Equalizer 與 ThermalProtect 的結合，但 connector style 本身仍應淘汰。</li><li><b>2026-06-24</b>：同討論提到多數機殼很難在 AIB 5080/5090 安裝後留下 4 cm 第一折彎距離。</li></ul>
+      <h3>需要改進</h3>
+      <p>結合均流與溫度 failsafe、改善線材彎折/低高度設計、提供事件記錄與觸發後處理指引。</p>
+      <h3>本次讀取的 TechPowerUp 原始貼文/留言</h3>
+      <table>
+        <thead><tr><th>日期</th><th>Forum</th><th>文章</th><th>作者</th><th>來源</th><th>原始內容摘要</th></tr></thead>
+        <tbody><tr><td>2026-06-24T20:37:46+0800</td><td>NVIDIA GPUs</td><td>Close call... 5090 Burnt Cable</td><td>Sol_Badguy</td><td><a href="https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5743586">TechPowerUp</a></td><td>Are you sure it&#x27;s 18AWG, because in that review the cables don&#x27;t have the insulation marked. https://overclock3d.net/reviews/psus/asus-rog-thor-iii-1200w-platinum-psu-review/ I highly doubt you would get an 18AWG 12+4 pin cable bundled with a 1200 W PSU. 12V-…</td></tr><tr><td>2026-06-24T14:27:58+0800</td><td>NVIDIA GPUs</td><td>Close call... 5090 Burnt Cable</td><td>Dr. Dro</td><td><a href="https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5743441">TechPowerUp</a></td><td>Yeah. Ultimately, all we can do is our due diligence to minimize the risks: at this point, it&#x27;s managing power draw, monitoring the thermal situation when placing the card under heavy and/or prolonged stress, and if possible, buying one of the safety cables.…</td></tr><tr><td>2026-06-24T04:22:10+0800</td><td>NVIDIA GPUs</td><td>Close call... 5090 Burnt Cable</td><td>Dr. Dro</td><td><a href="https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5743241">TechPowerUp</a></td><td>ASUS and Corsair are ultimately offering paliative care. The &quot;best&quot; cable would be an eventual union between the Equalizer and the ThermalProtect, with the characteristics of both cables. There is no permanent solution, this connector style needs to be retire…</td></tr></tbody>
+      </table>
+    </section>
+
+
+      </div>
+    </section>
+    
+    
+    <section id="tab-3" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-3">
+      <div class="embedded-head">
+        <h2>Tom&#x27;s Hardware 原報告</h2>
+        <p>Tom&#x27;s Hardware Forum GPU Safeguard 洞察報告</p>
+        <p><b>來源報告時間：</b>2026-07-08 11:20:40</p>
+        <p class="path">C:\Users\W11\Documents\Codex\2026-06-30\new-chat\outputs\tomshardware_gpu_safeguard_insights_2026-07-08.html</p>
+      </div>
+      <div class="embedded-report">
+        <main>
+<h1>Tom's Hardware Forum GPU Safeguard 洞察報告</h1>
+<p class="lead">日期：2026-07-08。資料來源只使用 Tom's Hardware Forum 站內搜尋結果與可讀到的 forum 摘錄；未使用其他網站印象。</p>
+<div class="note">本次低頻站內搜尋未遇到 429、403、驗證頁或 CAPTCHA。與前一次 2026-07-01 結果比對，新增項目已標示 New!。本次新增項目：1。搜尋結果：WireView 21 筆、GPU Safeguard 2 筆、GPU Shield 1 筆、Ampinel 7 筆、Titanload 1 筆；OptiGuard、ROG Equalizer、T-Guard、ThermalProtect 未找到完整命中。</div>
+<h2>重點洞察</h2><div class="grid">
+<section class="card"><span class="pill pro">優點</span><h3>WireView 的核心價值是監控與警報</h3><p>論壇討論仍把 WireView 視為 GPU 供電/溫度/功耗可視化工具；Pro 版的溫度感測、插線偵測與警報能提升即時風險感知。</p></section>
+<section>
+<h2>2026-07-08 最新討論更新洞察</h2>
+<div class="grid">
+<div class="card"><h3>GPU Shield 的新訊號：per-pin monitoring + 動態降功率</h3><p>7/8 報告中的 New! 項目來自 Tom's Hardware forum/news comments 摘錄：Cooler Master MWE Gold V4 與 GPU Shield adapter 被描述為具備 per-pin monitoring，並可在偵測到線材問題時動態降低功率。這讓 GPU Shield 的定位從單純 adapter/線材輔助，提升為「可監控且可介入」的保護方案。</p></div>
+<div class="card"><h3>洞察更新</h3><p>Tom's Hardware 最新可讀討論強化了跨來源共識：使用者關注的不是只有警告聲或彈窗，而是保護系統能否在異常電流發生時主動降低風險。這也讓 GPU Safeguard / GPU Shield / WireView 類產品的競爭點集中到偵測位置、介入速度、功率調整邏輯與事件紀錄。</p></div>
+<div class="card"><h3>改進需求</h3><p>GPU Shield 需要公開 per-pin 監控粒度、觸發門檻、動態降功率幅度、是否依賴 PSU/軟體、以及誤判或觸發後的使用者處理流程。若只說可保護，但沒有 log、警示原因與 RMA 證據鏈，仍難以解除高價 GPU 使用者疑慮。</p></div>
 </div>
+</section>
 
-<script>
-const D=[
-// ---- 2026-07-08 ----
-{kw:"ROG Equalizer",date:"2026-07-08",ap:0,forum:"Reddit",sub:"r/ASUSROG",tag:"GPU / PSU",title:"Help! pin power inbalance 5090 astral",url:"https://old.reddit.com/search?q=%22pin+power+inbalance+5090+astral%22",sum:"Astral 5090 只在 FurMark 觸發 per-pin 不平衡警示（其他測試正常）；重插無效，問是否該加購 Corsair 或 ASUS 強化線。31 留言。"},
-{kw:"ThermalProtect,TempGuard",date:"2026-07-08",ap:0,nv:4,forum:"Reddit",sub:"r/ASRock",tag:"Question",title:"ASRock Phantom Gaming PSU owners – has anyone had random shutdowns like this?",url:"https://old.reddit.com/search?q=%22ASRock+Phantom+Gaming+PSU+owners%22",sum:"PG 1300W＋5090 每 1-2 月無預警瞬斷、需 PSU 斷電重開；懷疑線上 thermistor 保護誤觸發或故障。附帶抱怨兩條原生線一條 pin 歪插不進、另一條要極用力。11 留言。"},
-{kw:"ThermalProtect,WireView",date:"2026-07-08",ap:0,forum:"Reddit",sub:"r/pcmasterrace, r/nvidia",tag:"Build/Photos",title:"Installed Wire View pro II and Corsair thermal protect cable on my RTX 5090, no more melting anxiety",url:"https://old.reddit.com/search?q=%22no+more+melting+anxiety%22",sum:"WVP2＋ThermalProtect 疊加使用的裝機展示；r/nvidia 版 73 分 33 留言——「監控＋熱熔斷」組合成為主流疊法。"},
-{kw:"ThermalProtect",date:"2026-07-08",ap:0,forum:"Reddit",sub:"r/Alienware",tag:"Question",title:"Corsair ThermalProtect cable works with Alienware Area 51 AAT2265?",url:"https://old.reddit.com/search?q=%22Corsair+ThermalProtect+cable+works+with+Alienware%22",sum:"問 Dell 客製 1500W PSU 能否使用 ThermalProtect；官方宣稱任何原生 12V-2x6 PSU 通用，但客製 PSU 相容性資訊不足。10 留言。"},
-// ---- 2026-07-07 ----
-{kw:"WireView",date:"2026-07-07",ap:0,forum:"Reddit",sub:"r/hardwareswap",tag:"SELLING",title:"[USA-VA][H] …Thermal Grizzly Wireview Pro 12VHPWR v1…",url:"https://old.reddit.com/search?q=%22Thermal+Grizzly+Wireview+Pro%22+hardwareswap",sum:"WireView Pro v1 二手出清，一個月內多次重刊、價格 $40→$35→$30 遞減——v1 在二手市場流通、需求轉向 Pro II。"},
-{kw:"WireView",date:"2026-07-07",ap:0,forum:"Reddit",sub:"r/buildapc",tag:"Build Upgrade",title:"GPU Efficiency recommendation",url:"https://old.reddit.com/search?q=%22GPU+Efficiency+recommendation%22",sum:"選卡條件中明列「必要時願加購 WireView Pro 2 以避開 12VHPWR 問題」，但拒絕任何影響保固／有損壞風險的方案。"},
-{kw:"Ampinel",date:"2026-07-07",ap:0,forum:"Reddit",sub:"r/watercooling",tag:"Build Ready",title:"Aquacomputer Ampinel for Waterforce WB",url:"https://old.reddit.com/search?q=%22Ampinel+for+Waterforce%22",sum:"Aorus Waterforce 5090 WB 不知該配 Ampinel Type A 還是 B；曾見清單但當時缺貨沒存——選型資訊與供貨的雙重問題。"},
-// ---- 2026-07-06 ----
-{kw:"ROG Equalizer",date:"2026-07-06",ap:0,forum:"Reddit",sub:"r/ASUSROG",tag:"PC Build",title:"Just installed my ROG Equalizer",url:"https://redd.it/1unth06",sum:"安裝展示文，410 分 82 留言——Equalizer 關注度極高。"},
-{kw:"GPU Safeguard",date:"2026-07-06",ap:0,forum:"Reddit",sub:"r/watercooling",tag:"Build Complete",title:"560mm Vertical Push/Pull Cooling Tower",url:"https://redd.it/1uodmf5",sum:"重度水冷 build 特別註明 PSU 選 MSI MAG Ai1600TS「for GPU Safeguard」——保護功能已成選購理由。199 分 46 留言。"},
-{kw:"GPU Safeguard",date:"2026-07-06",ap:0,forum:"Reddit",sub:"r/dapsCA",tag:"PC Parts",title:"MSI MAG A1000PLS PCIE5 …GPU Safeguard… $257.18 (lowest)",url:"https://old.reddit.com/search?q=%22MSI+MAG+A1000PLS%22",sum:"特價情報帖：GPU Safeguard 已下放至 1000W 白金級（A1000PLS），成為賣點關鍵字。"},
-// ---- 2026-07-05 ----
-{kw:"ROG Equalizer",date:"2026-07-05",ap:0,forum:"Reddit",sub:"r/cablemod",tag:"Order",title:"I have a question regarding to my order (ROG Equalizer)",url:"https://old.reddit.com/search?q=%22ROG+Equalizer%22+cablemod+order",sum:"CableMod EU 標「IN STOCK on June 8th」，下單後估 8/1 出貨——通路庫存標示不實、供貨不透明。"},
-{kw:"ThermalProtect",date:"2026-07-05",ap:0,forum:"Reddit",sub:"r/Corsair",tag:"Builds",title:"New build old RAM",url:"https://old.reddit.com/search?q=%22New+build+old+RAM%22+corsair",sum:"Build 清單直接含 ThermalProtect 12v-2x6（101 分）——已成 Corsair 生態系裝機常態配件。"},
-// ---- 2026-07-04 ----
-{kw:"WireView",date:"2026-07-04",ap:0,forum:"Reddit",sub:"r/PcBuild",tag:"Question",title:"Should I get Wireview pro II for my ROG Astral 5090?",url:"https://redd.it/1um7ne8",sum:"Astral 已有內建 per-pin 監控，WVP2 是否多餘？用戶以外接小螢幕監控、明言「不想在遊戲畫面上看監控數據」。15 留言。"},
-{kw:"Ampinel,ROG Equalizer,ThermalProtect",date:"2026-07-04",ap:0,forum:"Reddit",sub:"r/pcmasterrace, r/overclocking",tag:"Question",title:"Questions About 12V-2x6 Connector Wear and Cable Selection",url:"https://old.reddit.com/search?q=%22Questions+About+12V-2x6+Connector+Wear%22",sum:"Astral 5090＋Thor 1200P3 原廠線分布差、CableMod StealthSense 最平衡；為測線把 GPU 端插拔至 26 次（上限 30）而焦慮；已訂 Ampinel＋ThermalProtect，並問 Equalizer 與 Ampinel 能否併用——跨產品相容指引缺口。"},
-// ---- 2026-07-03 ----
-{kw:"WireView,ROG Equalizer",date:"2026-07-03",ap:0,forum:"Reddit",sub:"r/Corsair, r/watercooling",tag:"Build Complete",title:"Finished my first hardline dual loop build in a 9000D",url:"https://old.reddit.com/search?q=%22Finished+my+first+hardline+dual+loop%22",sum:"9000D 硬管雙迴路 build 用 ROG Equalizer 線，等 WVP2 Wired 版到貨；「收到 WVP2 後可能改回 Seasonic 原生線」——保護裝置優先於強化線的取捨。113 分。"},
-// ---- 2026-07-02 ----
-{kw:"GPU Shield",date:"2026-07-02",ap:0,forum:"Reddit",sub:"r/PcBuild",tag:"Question",title:"Anybody know when the Cooler Master GPU Shield (standalone adapter) will be widely available?",url:"https://old.reddit.com/search?q=%22Cooler+Master+GPU+Shield%22+standalone",sum:"6/5 上市至今只見 PSU 版。發文者認為 GPU Shield 位於 GPU 與 PSU 之間可毫秒級斷電，優於偵測點受限的 Corsair 溫感線；強調「12v 故障不總是使用者錯誤」。"},
-{kw:"ROG Equalizer",date:"2026-07-02",ap:0,forum:"Reddit",sub:"r/ASUSROG",tag:"PC Build",title:"I've seen reports of the ASUS ROG Equalizer cable burning. Should I cancel my order?",url:"https://redd.it/1uktwty",sum:"46 分 69 留言。燒毀照出自 chiphell 單一無脈絡貼文、已刪、多人（含版主與 Igor's Lab）判定疑似 AI 假圖；正方引 HWBusters「剪 6 線才熔」；反方批 snake oil、17A 宣稱近額定 2 倍、一人實測變異比原廠線大而退回；替代方案討論熱烈（WVP2 含 TG 兩年卡險、ThermalProtect、ASRock $199 溫感 PSU、Lian Li 年底跟進、Seasonic 消費版擱置）。"},
-{kw:"WireView",date:"2026-07-02",ap:0,forum:"TechPowerUp",sub:"News",tag:"News+留言",title:"Noctua Prepares Low-Profile AM5, Workstation Air Coolers, and Next-Gen PSU Collaborations for 2027",url:"https://www.techpowerup.com/forums/",sum:"WireView Pro II（Noctua 版）預告 Q3 上市：整條 12V-2x6 與逐 pin 電壓/功率/溫度/電流量測。6 回覆。"},
-{kw:"WireView",date:"2026-07-02",ap:0,forum:"TechPowerUp",sub:"NVIDIA GPUs",tag:"討論串",title:"Close call... 5090 Burnt Cable（#366-369）",url:"https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/",sum:"Dr. Dro：WireView 幫人診斷出重插無效的疑難故障（疑線材壓接/PSU 層級）救了卡；當地難買、進口貴。Frizz 使用守則：WVP2 裝上後永不拆 GPU 側，要拆拆 WireView 上的 PSU 線，保護 GPU 端子。"},
-// ---- 2026-07-01 ----
-{kw:"WireView",date:"2026-07-01",ap:0,forum:"Reddit",sub:"r/buildapc",tag:"Build Upgrade",title:"What's the better solution for the 12V-2x6 issue?",url:"https://old.reddit.com/search?q=%22better+solution+for+the+12V-2x6%22",sum:"「換 MSI MPG Ai1300TS（PSU 內建 per-pin 監控）」vs「留 Corsair RM1200x SHIFT＋WVP2」二選一——智慧 PSU 與外掛監控被視為等效方案。11 留言。"},
-{kw:"Ampinel",date:"2026-07-01",ap:0,forum:"Reddit",sub:"r/bilgisayar（土耳其語）",tag:"Öneri/Görüş",title:"Bu 5090 a kafa atmama az kaldı",url:"https://old.reddit.com/search?q=%22kafa+atmama+az+kald%C4%B1%22",sum:"pin delta 從 0.3A 無故惡化至 0.6A；Ampinel 下訂等貨中，問等待期間如何自救——非英語圈同樣受供貨延宕之苦。"},
-{kw:"ROG Equalizer",date:"2026-07-01",ap:0,forum:"Reddit",sub:"r/ASUS, r/PHbuildapc",tag:"Support-SOLVED",title:"12vhpwr cable replacement",url:"https://redd.it/1ujhhig",sum:"原廠線用不到 7 個月電流不均、重插更糟；ASUS 客服罐頭回覆一個月無進展，後經 ASUS_USA 介入才從台灣寄出替換線——RMA 流程是明確痛點。"},
-// ---- 2026-06-30 ----
-{kw:"ROG Equalizer",date:"2026-06-30",ap:0,forum:"Reddit",sub:"r/ASUSROG, r/ASUS",tag:"官方公告",title:"Announcing the ROG Equalizer Upgrade Program + Short FAQ（ASUS_MKTLeeM）",url:"https://old.reddit.com/search?q=%22ROG+Equalizer+Upgrade+Program%22",sum:"官方：Thor III／Strix Platinum 舊用戶 5 折購 Equalizer（至 2026-11-28）。FAQ 重點：4-spring 鍍金端子、短時 17A/線、鍍錫無氧銅、IVS 雙 pin 他牌 PSU 可不接、GPU Tweak III Power Detector+「coming soon」；定位＝靠硬體熱裕度不中斷使用（對比他牌偵測＋關機）。"},
-// ---- 2026-06-28 ----
-{kw:"WireView",date:"2026-06-28",ap:0,forum:"Reddit",sub:"r/pcmasterrace",tag:"Discussion",title:"WireView Pro II was worth it just for the peace of mind.",url:"https://old.reddit.com/search?q=%22worth+it+just+for+the+peace+of+mind%22",sum:"好評：per-pin 電流/電壓/溫度/警報/記錄/自動關機、做工紮實「像正式的防護裝置」；但機殼淨空問題嚴重到「為了裝它換了一顆機殼」。"},
-{kw:"ROG Equalizer",date:"2026-06-28",ap:0,forum:"Reddit",sub:"r/ASUSROG",tag:"Question",title:"Astral 5090 blinking red.",url:"https://redd.it/1uh218e",sum:"Strix 1200W 原廠線 per-pin 飆 9-11A 紅燈；重插 3-4 次無效；誤解 GPU Tweak 的「ROG Equalizer」開關＝把警戒值 9A→17A，質疑不治本；已附截圖向 ASUS 回報。19 留言。"},
-{kw:"WireView",date:"2026-06-28",ap:0,forum:"TechPowerUp",sub:"TPU Club Forum",tag:"閒聊串",title:"What's your latest tech purchase? #27,491",url:"https://www.techpowerup.com/forums/",sum:"WVP2 安裝細節回報：reset 接錯針腳觸發黃燈警示後修正；AIO 水管與 TG 裝置淨空剛好——安裝細節門檻的實例。"},
-// ---- 2026-06-27 ----
-{kw:"WireView",date:"2026-06-27",ap:0,forum:"Reddit",sub:"r/pcmasterrace",tag:"Question",title:"5090 Voltage",url:"https://old.reddit.com/search?q=%225090+Voltage%22+wireview",sum:"WVP2 裝不進機殼 → 退而用 HWiNFO 監 16-pin 電壓（11.66-11.82V）＋設 11.6V 鬧鈴替代——fit 問題直接把用戶推向土法監控。10 留言。"},
-// ---- 2026-06-26 ----
-{kw:"WireView",date:"2026-06-26",ap:0,forum:"TechPowerUp",sub:"NVIDIA GPUs",tag:"討論串",title:"Close call... 5090 Burnt Cable（#283）",url:"https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/",sum:"wolf 分享 WVP2 兩顆溫度感測器安裝位（連接器輸入端兩排線之間＋PCB 與背板間）——進階用法範本。"},
-{kw:"T-Guard",date:"2026-06-26",ap:0,forum:"Reddit",sub:"r/PCMRFR（法語）",tag:"評測轉貼",title:"Test GIGABYTE GAMING 1000GM PG5 : une alim 1000W ATX 3.1 avec 12V-2x6 natif et T-Guard",url:"https://old.reddit.com/search?q=GIGABYTE+1000GM+T-Guard",sum:"法媒 1000GM PG5（含 T-Guard）評測轉貼；0 留言——T-Guard 在 Reddit 幾乎只有新聞轉貼、無用戶討論。"},
-// ---- 2026-06-25 ----
-{kw:"WireView",date:"2026-06-25",ap:0,forum:"Reddit",sub:"r/pcmasterrace, r/buildapc",tag:"Question",title:"What is the best 12VHPWR cable for the RTX 5090?",url:"https://old.reddit.com/search?q=%22best+12VHPWR+cable+for+the+RTX+5090%22",sum:"MSI MAG A1250GL＋WVP2 使用中無問題，仍想加買「最可靠的強化線」——監控裝置催生強化線的加購需求。"},
-{kw:"WireView",date:"2026-06-25",ap:0,forum:"Reddit",sub:"r/ThermalGrizzly",tag:"Question/Advice",title:"Do I just keep replacing cables? Imbalance issues.",url:"https://old.reddit.com/search?q=%22Do+I+just+keep+replacing+cables%22",sum:"4090＋Corsair HX1200：WVP2 兩度抓到線材劣化（換新線兩週後 pin1 電流又偏低並報錯）；「難道要一直換線？」——WVP2 偵測有效，但突顯線材壽命問題。23 留言。"},
-{kw:"ROG Equalizer",date:"2026-06-25",ap:0,forum:"Reddit",sub:"r/ASUSROG",tag:"Question",title:"ROG Equalizer restock?",url:"https://old.reddit.com/search?q=%22ROG+Equalizer+restock%22",sum:"黑色版缺貨，問補貨時程。14 留言——缺貨常態化。"},
-{kw:"ROG Equalizer",date:"2026-06-25",ap:0,forum:"TechPowerUp",sub:"NVIDIA GPUs",tag:"討論串",title:"Close call... 5090 Burnt Cable（#266）",url:"https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/",sum:"_roman_：德媒指 Equalizer 燒痕是「假的」（像麥克筆塗黑）——假圖疑雲的後續。"},
-// ---- 2026-06-24 ----
-{kw:"WireView,ThermalProtect,ROG Equalizer",date:"2026-06-24",ap:0,forum:"TechPowerUp",sub:"NVIDIA GPUs",tag:"討論串",title:"Close call... 5090 Burnt Cable（#231-256）",url:"https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/",sum:"多人共識：「理想線＝Equalizer（強化端子）＋ThermalProtect（熱熔斷）的混種」，疑受專利阻礙；Frizz：「Equalizer 是暴力法——知道接觸不良遲早發生，就做一條撐得住熱的線；低瓦數只是延後結果但爭取發現時間」；wolf：16AWG Corsair 線＋WVP2「大半是安心感＋機殼儀表樂趣」；Dr. Dro：有 400W（5080 級）的燒毀記錄案例，不能大意。"},
-// ---- 2026-06-23 ----
-{kw:"WireView",date:"2026-06-23",ap:0,forum:"Reddit",sub:"r/PcBuild",tag:"Discussion",title:"Just installed the ThermalGrizzly WIREVIEW PRO II",url:"https://redd.it/1ucrbx6",sum:"5080 用戶詳細安裝心得：大致隨插即用；要自動關機須接主機板電源針腳（附分接線）；統一式前面板接頭實測可用（反駁部分評測）；normal/reversed 要按卡的卡扣方向選（Gigabyte=reversed）；FE 不相容。"},
-{kw:"ROG Equalizer,ThermalProtect",date:"2026-06-23",ap:0,forum:"TechPowerUp",sub:"NVIDIA GPUs",tag:"討論串",title:"Close call... 5090 Burnt Cable（#219-226）",url:"https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/",sum:"Dr. Dro 貼 Igor's Lab 完整測試：不信 chiphell 燒毀報告，令人安心；Frizz：「der8auer 對 Equalizer 太否定；Igor 與 HWBusters 的結論才對——線能熱承受極端狀況」；Frizz 實測 ThermalProtect 觸發條件可穩定重現（關機殼風扇＋600W）。"},
-// ---- 2026-06-21 ----
-{kw:"Ampinel",date:"2026-06-21",ap:0,forum:"Reddit",sub:"r/pcmasterrace",tag:"Question",title:"RAM Clearance… uhhhhhh",url:"https://old.reddit.com/search?q=%22RAM+Clearance%22+ampinel",sum:"Ampinel 與 Noctua D12L 第一顆風扇位置衝突（風扇上移會撞到 Ampinel），被迫考慮換低頭 RAM——體積干涉痛點。"},
-// ---- 2026-06-20 ----
-{kw:"ROG Equalizer",date:"2026-06-20",ap:0,forum:"Reddit",sub:"r/pcmasterrace",tag:"Discussion",title:"Checked My 5090 Cursed Cable Today After 8 Months of Daily Use…Ordered The Asus ROG Equalizer Cable",url:"https://redd.it/1ua31cv",sum:"8 個月日用無恙仍下訂 Equalizer：「知道它不能根治爛連接器，但線材品質／安培／耐溫較高」；自行監控 idle 電壓 12V＋目視檢查。76 留言。"},
-{kw:"ThermalProtect",date:"2026-06-20",ap:0,forum:"TechPowerUp",sub:"Power Supplies",tag:"求助串",title:"Power Supply for my build（#6-11）",url:"https://www.techpowerup.com/forums/",sum:"oxrufiioxo／Dr. Dro／Sol_Badguy 一致建議：買有原生 12V-2x6 口的 PSU 就加購 ThermalProtect（$25，「可能救你的卡」）；Sol_Badguy 透露將有 PSU 端 2x8pin 版本。"},
-// ---- 2026-06-19 ----
-{kw:"ThermalProtect",date:"2026-06-19",ap:0,forum:"TechPowerUp",sub:"NVIDIA GPUs",tag:"討論串",title:"Close call... 5090 Burnt Cable（#170,#183）",url:"https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/",sum:"Dr. Dro：「沒有任何線／裝置對此問題免疫；ThermalProtect 是目前最好的補救之一」；技術脈絡：RTX 40/50 無載平衡、單一 power plane，一線失聯其餘立即過載——Corsair 是第一個 inline 保護裝置。"},
-// ---- 2026-06-18 ----
-{kw:"WireView,ROG Equalizer",date:"2026-06-18",ap:0,forum:"Reddit",sub:"r/lianli",tag:"事故回報",title:"Dodged a Bullet this morning.",url:"https://redd.it/1u8m3et",sum:"Lian Li 12V-2x6 線材燒熔變色、GPU 倖免；歸咎 NVIDIA 連接器設計；事後立即訂 ROG Equalizer＋WireView Pro。82 分 55 留言。"},
-{kw:"WireView",date:"2026-06-18",ap:0,forum:"Reddit",sub:"r/pcmasterrace",tag:"Hardware（事故）",title:"My turn today, boys. Caught it before it turned into modern art.",url:"https://redd.it/1u85htp",sum:"10,818 分 845 留言的月度最大事故帖：5090 550-600W、16-pin 電壓 11.4-11.5V，Phanteks 原生線插拔僅 3-4 次即變色；退款換 Lian Li SX1200P 後 11.8V；「已加購 WireView Pro II 持續監控」——事故帖直接帶動保護產品購買。"},
-// ---- 2026-06-17 ----
-{kw:"Ampinel,ROG Equalizer",date:"2026-06-17",ap:0,forum:"TechPowerUp",sub:"News comments",tag:"新聞留言",title:"ASUS Introduces ROG Equalizer 12V-2x6 Cable…（#77-85）",url:"https://www.techpowerup.com/348123/asus-introduces-rog-equalizer-12v-2x6-cable-for-gpu-power-stability",sum:"Dr. Dro：「所有線都爛、連接器本身爛；唯一能主動平衡的只有 Ampinel、效果有限」；願花 $150 買「Equalizer busbar＋ThermalProtect thermistor＋內建電表」合體品；Sol_Badguy 引 der8auer：busbar 應放 PSU 端（等化點位置錯誤）；LittleBro：「不能主動控電流的線都是浪費錢」。"},
-{kw:"ROG Equalizer",date:"2026-06-17",ap:0,forum:"Reddit",sub:"r/ASUSROG",tag:"PC Build",title:"ROG Cronox build complete… Equalizer cable…",url:"https://redd.it/1u7ofxx",sum:"Cronox 機殼＋Equalizer：側玻璃淨空緊、仍需明顯彎折；「不認為任何 12V-2x6 線可以裝了就忘」，持續盯 pin 平衡。"},
-// ---- 2026-06-16 ----
-{kw:"WireView",date:"2026-06-16",ap:0,forum:"TechPowerUp",sub:"News comments",tag:"新聞留言",title:"（FSR 4.1 新聞串離題）wolf 的 5080＋WireView 壓測分享（#29）",url:"https://www.techpowerup.com/forums/",sum:"5080 開 111%／400W 長時間 8K 渲染壓測附 WireView 讀數；動機＝「安心感＋機殼 bling，零軟體成本的硬體監控」。"},
-{kw:"ThermalProtect",date:"2026-06-16",ap:0,forum:"TechPowerUp",sub:"NVIDIA GPUs",tag:"討論串",title:"Close call... 5090 Burnt Cable（#135-141）",url:"https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/",sum:"Sol_Badguy 批產業亂象：「Astral 卡＋WireView＋ThermalProtect＋smart PSU 全買＝在無法修復的設計上不停砸錢」；Dr. Dro 貼 ThermalProtect 安裝照（他的前一張卡在 Metro Exodus 中熔毀）。"},
-// ---- 2026-06-15 ----
-{kw:"WireView,Ampinel,ThermalProtect",date:"2026-06-15",ap:0,forum:"Reddit",sub:"r/pcmasterrace",tag:"Hardware",title:"Trying to keep the 12vhpwr demons at bay",url:"https://redd.it/1u60dr7",sum:"Ampinel 下訂後「每個月收到一次延期通知」；「Wireview seems useless」；改買 Corsair ThermalProtect＋自架 HWiNFO 溫度感測觸發重開機腳本——供貨延宕把用戶推向替代方案與土法。31 留言。"},
-{kw:"ROG Equalizer",date:"2026-06-15",ap:0,forum:"TechPowerUp",sub:"News comments",tag:"新聞留言",title:"ASUS Introduces ROG Equalizer…（#70-74 燒毀傳聞）",url:"https://www.techpowerup.com/348123/asus-introduces-rog-equalizer-12v-2x6-cable-for-gpu-power-stability",sum:"FR3D1 轉貼「Equalizer 據報燒毀」報導；Wirko 諷「非均勻燒痕證明它沒在均衡」；Grimling 酸「3 倍價錢燒起來比較安全？」；_roman_：來源已刪無法驗證；Sol_Badguy：「WireView 顯示用了 Equalizer 仍可能有輕微不平衡（量測本身也受 WireView 影響）」。"},
-// ---- 2026-06-14 ----
-{kw:"OptiGuard,GPU Safeguard,ROG Equalizer,ThermalProtect",date:"2026-06-14",ap:0,forum:"Reddit",sub:"r/pcmasterrace",tag:"Hardware（PSA）",title:"PSA - Don't Combine ASUS Equalizer With Smart PSUs",url:"https://old.reddit.com/search?q=%22Don%27t+Combine+ASUS+Equalizer%22",sum:"重要 PSA（20 留言）：Equalizer 的 crossbar 把所有 pin 短路，依 KCL 會讓 Seasonic OptiGuard／MSI Safeguard+／Corsair PinProtect 等 per-pin 監控 PSU 看不到 GPU 端不平衡（而多數故障就在 GPU 端）；要疊保護請改用無 crossbar 線或 ThermalProtect（65°C 經 sense pin 斷電）。"},
-// ---- 2026-06-13 ----
-{kw:"GPU Safeguard",date:"2026-06-13",ap:0,forum:"Reddit",sub:"r/pcmasterrace",tag:"Discussion（教學）",title:"PSA - You can tune MSI GPU Safeguard+ amp limits through Afterburner (PSU.cfg)",url:"https://old.reddit.com/search?q=%22tune+MSI+GPU+Safeguard%22",sum:"86 留言教學：改 PSU.cfg 把 MaxCurrent 12→9A、CurrentDif 5.5→1-3A，觸發降功率 75% 或直接關機——揭露預設閾值過鬆，須手動調緊才有實效。"},
-{kw:"WireView,Ampinel",date:"2026-06-13",ap:0,forum:"Reddit",sub:"r/ThermalGrizzly",tag:"Question/Advice",title:"Question regarding wireview pro 2",url:"https://old.reddit.com/search?q=%22Question+regarding+wireview+pro+2%22",sum:"Zotac 5090 AIO 外殼擋住 WVP2 裝不上；「很愛 WVP2（太太的機器在用）」但被迫考慮 Ampinel——fit 相容清單需求。"},
-{kw:"ROG Equalizer,ThermalProtect",date:"2026-06-13",ap:0,forum:"TechPowerUp",sub:"NVIDIA GPUs",tag:"討論串",title:"Close call... 5090 Burnt Cable（#106-124）",url:"https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/",sum:"BoggledBeagle：「Equalizer 接頭附近極硬、像槓桿使接頭變形，難怪有一條掛了」；Dragam1337 反駁「前 3cm 本來就不能凹，是使用者問題」；Frizz：「HWBusters 虐不壞 Equalizer，該案疑濫用；慶幸自己選 ThermalProtect」；Rulumi（5080）：「比起 Equalizer 更想買 ThermalProtect」。"},
-// ---- 2026-06-12 ----
-{kw:"WireView,Ampinel",date:"2026-06-12",ap:0,forum:"TechPowerUp",sub:"NVIDIA GPUs",tag:"討論串",title:"Close call... 5090 Burnt Cable（#49-102）",url:"https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/",sum:"關鍵耐久數據（Frizz 實測）：Ampinel 插拔 2 次即劣化、WireView Pro 1 約 3-5 次（高溫讀數）、OEM 線 5-10 次——「這些產品自身的 12vhpwr 接頭不太好」；Dr. Dro：「WireView/Ampinel 增加一個故障點、同受插拔壽命限制」；oxrufiioxo：「WVP2 保固連 GPU 一起保是其他線沒有的」「4090 鎖 330W、5090 該原廠附 WVP2」；Frizz：ThermalProtect 在 POE2 近 600W 低風流下實際觸發斷電救卡成功。"},
-// ---- 2026-06-11 ----
-{kw:"GPU Shield,Ampinel,ThermalProtect",date:"2026-06-11",ap:0,forum:"TechPowerUp",sub:"News comments",tag:"新聞留言",title:"Cooler Master Launches MWE Gold V4 Series with GPU Shield（#7-8）",url:"https://www.techpowerup.com/349823/cooler-master-launches-mwe-gold-v4-series-with-gpu-shield",sum:"Chaitanya：「Ampinel backorder 90 天，不如買現貨的 TG」＋点名 be quiet! Dark Power Pro 有 per-pin web 介面監控；Buddyspike：「TG 與 Ampinel 保護不錯但都貴，前者聽說會引入自己的問題」＋可惜 ASRock PG/Taichi 系列沒把溫感做進所有型號。"},
-// ---- 2026-06-09 ----
-{kw:"WireView,ThermalProtect",date:"2026-06-09",ap:0,forum:"TechPowerUp",sub:"News comments",tag:"新聞留言",title:"Thermal Grizzly Shows New WireView Pro II Noctua Edition and New WireView II at Computex 2026（#17）",url:"https://www.techpowerup.com/349824/thermal-grizzly-shows-new-wireview-pro-ii-noctua-edition-and-new-wireview-ii-at-computex-2026",sum:"Frizz 在 WireView 新品新聞下推 ThermalProtect：「set and forget；品質比 Thor III 原廠線好；600W 下 11.99V、droop 幾乎消失」——兩派路線（監控 vs 保底）交鋒縮影。"},
-// ---- 2026-06-08 ----
-{kw:"GPU Shield",date:"2026-06-08",ap:0,forum:"TechPowerUp",sub:"News",tag:"News+留言",title:"Cooler Master Launches MWE Gold V4 Series with GPU Shield",url:"https://www.techpowerup.com/349823/cooler-master-launches-mwe-gold-v4-series-with-gpu-shield",sum:"MWE Gold V4（750-1000W 金牌）內建 GPU Shield Intelligent Current Management（專利申請中）：異常電流偵測、即時主動保護、LED 警示。7 回覆。"},
-// ---- 2026-06 前半（約） ----
-{kw:"Ampinel",date:"2026-06-08",ap:1,forum:"Reddit",sub:"r/pcmasterrace",tag:"Question",title:"5090 cable bend",url:"https://redd.it/1tymbui",sum:"獲贈 5090 但機殼空間讓 Ampinel 與 WVP2 都裝不下（尺寸），只能確保彎折不過度＋監控——「想保護但物理上裝不了」的族群。26 留言。"},
-{kw:"Ampinel",date:"2026-06-05",ap:1,forum:"Reddit",sub:"r/watercooling",tag:"裝機分享",title:"Ampinel（up and running）",url:"https://redd.it/1twuei3",sum:"「等了很久的 Ampinel 終於裝上運作」（49 分）——正面案例，但「久等」再度印證交期問題。"},
-{kw:"OptiGuard",date:"2026-06-05",ap:1,forum:"Reddit",sub:"r/pcmasterrace",tag:"Discussion",title:"When is Seasonic Optiguard supposed to come out?",url:"https://old.reddit.com/search?q=%22Seasonic+Optiguard+supposed+to+come+out%22",sum:"原說 2026 Q1、現已跳票；Computex 只展 OptiGuard 2.0 無日期（「1.0 出過嗎？」）；「5090 買了，PSU 只等它」。14 留言。"},
-{kw:"OptiGuard",date:"2026-06-05",ap:1,forum:"Reddit",sub:"r/Seasonic",tag:"Discussion",title:"Computex 2026（Seasonic 總整理）",url:"https://old.reddit.com/search?q=%22Computex+2026%22+seasonic+optiguard",sum:"OptiGuard 僅入 PRIME Enterprise（企業）；消費級全系列（CORE/FOCUS/VERTEX/PRIME）皆無；PRIME TX Noctua 版（含 OptiGuard）ETA 2027 Q2；「Seasonic 的重心是 AI 與企業，不是一般消費者」。10 留言。"},
-{kw:"OptiGuard",date:"2026-06-04",ap:0,forum:"TechPowerUp",sub:"News + Graphics Cards",tag:"News+留言",title:"Seasonic Brings its Latest PC and Server PSUs to Computex 2026／Double 12VHPWR thread（#330）",url:"https://www.techpowerup.com/forums/",sum:"OptiGuard Dashboard：智慧 PSU 以藍牙配對回報監控。Kwadratowicz 民怨：「NVIDIA 放棄 per-pin 調節，變成 PSU 廠替卡收拾；卡貴之外還要加錢買聰明 PSU」。"},
-{kw:"Ampinel,WireView",date:"2026-06-03",ap:1,forum:"TechPowerUp",sub:"Graphics Cards",tag:"討論串",title:"Double 12VHPWR connectors in the future graphics cards may resolve overheating…（#317-326）",url:"https://www.techpowerup.com/forums/",sum:"Frizz：重插 Ampinel 後「比之前更容易插入」＝端子磨損；「線材佈線是平衡穩定的最大因素（僅次於插到底）」；Event Horizon：「額定 30-40 次、實際 2 次就劣化 → 標準該修訂」；rusty caterpillar 諷刺「以後 app 提醒你每季換線、訂閱制寄線」。"},
-{kw:"ROG Equalizer,Titanload",date:"2026-06-01",ap:0,forum:"TechPowerUp",sub:"News comments",tag:"新聞留言",title:"ASUS Now Bundles ROG Equalizer Cable with Thor III, Strix Platinum PSUs（#3-7）",url:"https://www.techpowerup.com/349555/asus-now-bundles-rog-equalizer-cable-with-thor-iii-strix-platinum-psus",sum:"user556：「Equalizer 有缺陷；要看做對的去看 Segotep Titanload——pin 內接觸更強、可遠超規格；一般線的插頭本來就弱到不符規格，ASUS 只是鍍金非長久之計」；Dr. Dro：「Titanload＝Equalizer 提案減 busbar，僅中國區販售；ASUS 用 4-spring vs 一般/Corsair 的 3-dimple」。"},
-// ---- 2026-05（約） ----
-{kw:"GPU Safeguard,WireView",date:"2026-05-28",ap:1,forum:"Reddit",sub:"r/MSI_Gaming, r/pcmasterrace",tag:"Discussion（事故）",title:"Burned MSI MEG Ai1600T PSU and 12VX2-6 Cable",url:"https://redd.it/1tgsqs4",sum:"undervolt＋小心使用仍雙端燒毀（PSU 端最嚴重），水冷 5090 FE 倖存；MSI RMA 換新並回收調查；苦主表態改買 Ai1600TS（GPU Safeguard）＋考慮 WVP2 Wired——舊旗艦 PSU 自身也會燒，成為新機種最有力的行銷背書。152＋71 留言。"},
-{kw:"GPU Safeguard",date:"2026-05-28",ap:1,forum:"Reddit",sub:"r/MSI_Gaming",tag:"Discussion",title:"MSI Ai1600TS arrived in Canada! Never been excited for a PSU before..",url:"https://redd.it/1tk054n",sum:"「第一次為 PSU 興奮」：per-pin 監控滿載電流平均；新線接頭側面多兩個卡榫；美亞進口比加拿大等貨便宜 $30 CAD——初期通路鋪貨不均。47 留言。"},
-{kw:"Ampinel,ThermalProtect,WireView",date:"2026-05-25",ap:1,forum:"Reddit",sub:"r/pcmasterrace",tag:"Hardware",title:"ThermalProtect cable finally arrived. My 4090 can unclench now.",url:"https://old.reddit.com/search?q=%22My+4090+can+unclench%22",sum:"ThermalProtect $25 好評：65°C 斷 sense 黑屏保護；缺點「PSU 端沒有熱熔斷、不完美」；不選 WVP2/Ampinel 的理由＝貴＋不想掛螢幕＋美國關稅＋常缺貨；背景：4090 兩度線材劣化都靠 HWiNFO 電壓 delta 預警。"},
-{kw:"WireView,Ampinel",date:"2026-05-25",ap:0,forum:"TechPowerUp",sub:"TPU Club Forum",tag:"閒聊串",title:"What's your latest tech purchase?（#27,245）",url:"https://www.techpowerup.com/forums/",sum:"lepudruk：「AquaComputer 第三次延期 AMPINEL（延到 6 月底），火大改買 WireView II PRO，終於能安心用新卡」——供貨延宕直接讓競品收單。"},
-{kw:"GPU Safeguard",date:"2026-05-26",ap:0,forum:"Tom's Hardware",sub:"News Comments",tag:"新聞留言",title:"Testing GPU Safeguard+ on the MSI MPG Ai1600TS PSU – solution aims to tame melting 16-pin connectors",url:"https://forums.tomshardware.com/threads/testing-gpu-safeguard-on-the-msi-mpg-ai1600ts-psu-%E2%80%93-solution-aims-to-tame-melting-16-pin-connectors.3896363/",sum:"Tom's 實測文的留言一面倒指向治本：「8-pin EPS 早就能安全跑 600W」「該廢標準或改 48V」「偵測該做在 GPU 板上」「用複雜方案解決五毛錢連接器問題」「OK 繃；該強制召回重設計」——PSU 端保護被視為權宜。10 回覆。"},
-{kw:"WireView",date:"2026-05-04",ap:0,forum:"Tom's Hardware",sub:"Graphics Cards",tag:"Question",title:"RTX 5090 + WireView Pro 2 Clearance issues in Lian Li O11D XL",url:"https://forums.tomshardware.com/threads/is-this-12vhpwr-amperage-distribution-okay.3891281/",sum:"O11 Dynamic XL（大機殼）＋Gigabyte 5090 OC 裝 WVP2 後側玻璃關不上——「連 XL 機殼都不夠」的 fit 極端案例。2 回覆。"},
-{kw:"GPU Safeguard,Ampinel,ROG Equalizer",date:"2026-05-15",ap:1,forum:"Reddit",sub:"r/pcmasterrace",tag:"Discussion",title:"Hey guys, what do you think about my NEW plan… the chain of hardware protection devices!",url:"https://old.reddit.com/search?q=%22chain+of+hardware+protection+devices%22",sum:"焦慮驅動的「全套疊加」計畫：Ampinel＋ROG Equalizer×2＋MSI Ai1600TS（Safeguard+）＋undervolt 450W；並指出「NVIDIA 在新一代卡上禁止 per-pin 主動平衡」——保護產品市場的荒謬感縮影。"},
-{kw:"GPU Safeguard",date:"2026-05-10",ap:1,forum:"Reddit",sub:"r/PcBuild",tag:"Question",title:"Are there any reviews about the new MSI PSUs? MSI MPG Ai1300TS / Ai1600TS",url:"https://old.reddit.com/search?q=%22Ai1300TS%22+reviews",sum:"對 Safeguard+ 有興趣，但想確認其他 PSU 指標沒有為此縮水——功能新賣點需要第三方評測背書。7 留言。"},
-{kw:"OptiGuard",date:"2026-05-10",ap:1,forum:"Reddit",sub:"r/Seasonic",tag:"新品情報",title:"New PSU coming soon（FOCUS PX v5）",url:"https://old.reddit.com/search?q=%22FOCUS+PX%22+optiguard",sum:"新 FOCUS v5 仍不含「大家等到不耐煩的 OptiGuard」——產品線更新未回應核心期待。"},
-{kw:"OptiGuard",date:"2026-05-08",ap:1,forum:"Reddit",sub:"r/Seasonic",tag:"Question",title:"When can we expect PSUs with Optiguard feature for sale in the EU?",url:"https://old.reddit.com/search?q=%22Optiguard%22+EU",sum:"歐洲用戶問上市時程——區域供貨資訊空白。"},
-{kw:"OptiGuard",date:"2026-05-05",ap:1,forum:"Reddit",sub:"r/cablemod",tag:"Question",title:"Fastest way to get an E-series cable?",url:"https://old.reddit.com/search?q=%22E-series+cable%22+optiguard",sum:"「PSU 暫不換，要等 Seasonic 出 OptiGuard 機種」——跳票直接凍結用戶的升級決策。"},
-{kw:"Ampinel",date:"2026-05-20",ap:1,forum:"Reddit",sub:"r/pcmasterrace, r/cablemod",tag:"Question",title:"Is it okay to use 16 pin to 3x8 pin PCIe cable on RTX 5090 with Ampinel?",url:"https://old.reddit.com/search?q=%22with+Ampinel%22+cablemod",sum:"CableMod 16pin-16pin 線 delta 1.5A、3x8pin 線 0.3A——同 PSU 不同線差異巨大；問 Ampinel 前端該配哪種線。"},
-{kw:"Ampinel",date:"2026-05-18",ap:1,forum:"Reddit",sub:"r/pcmasterrace",tag:"Hardware",title:"Ampinel arrived",url:"https://redd.it/1tdb2i4",sum:"主機暱稱「Toast」：「不想再買一張 5090，所以裝 Ampinel」。26 留言。"},
-{kw:"Ampinel,WireView",date:"2026-05-18",ap:1,forum:"Reddit",sub:"r/pcmasterraceFR（法語）",tag:"Matériel",title:"Nouvelle alimentation pour 5090",url:"https://redd.it/1td3ch4",sum:"改買 MSI MEG Ai1300TS（per-pin 監控＋異常自動關機線）體驗佳、「即時監控真的安心」；列 WVP2／Ampinel／Astral 為替代方案；想加購外接小螢幕 24 小時顯示監控。21 留言。"},
-{kw:"Ampinel",date:"2026-05-18",ap:1,forum:"Reddit",sub:"r/pcmasterrace",tag:"Discussion",title:"Could be worse",url:"https://old.reddit.com/search?q=%22Could+be+worse%22+ampinel",sum:"5080／430W：Ampinel 顯示最高最低 pin 差 1.3A（270 分 59 留言）——讓大眾第一次「看見」不平衡的實際量級。"},
-{kw:"Ampinel,WireView",date:"2026-05-15",ap:1,forum:"Reddit",sub:"r/LYNKplus",tag:"Mod 指南",title:"Wire pro 2 / Ampinel load balancer compatibility with the Lynk+",url:"https://old.reddit.com/search?q=%22Ampinel%22+lynk",sum:"WVP2 太厚裝不進 Lynk+（Wired 版「多加線材有違初衷」）；社群自行設計頂板切割改裝讓 Ampinel 裝入——用戶自力解 fit 問題。"},
-{kw:"Ampinel",date:"2026-05-12",ap:1,forum:"Reddit",sub:"r/PcBuildHelp, r/pcmasterrace",tag:"Build Question",title:"Ampinel 12v2x6 Input（micro gap）",url:"https://redd.it/1taghr4",sum:"安裝後 input 側手電筒角度下可見微小縫隙，已聽到卡扣聲仍不安——事故頻傳造成的插接焦慮（設計上需要更明確的到位指示）。"},
-{kw:"Ampinel",date:"2026-05-08",ap:1,forum:"Reddit",sub:"r/pcmasterrace",tag:"Hardware",title:"12v2x6 Cable Connections（twisted）",url:"https://redd.it/1t7gzm8",sum:"預組機 PSU 端 12v2x6 線被刻意扭轉安裝；Ampinel 到貨前檢查時發現——保護裝置帶動用戶主動檢查線路。"},
-{kw:"Ampinel",date:"2026-05-05",ap:1,forum:"Reddit",sub:"r/watercooling",tag:"Build Complete",title:"More rads (working but still WIP)",url:"https://redd.it/1t4jtfw",sum:"已訂 Ampinel 待到貨整線——水冷圈把 Ampinel 當標配的一般性提及。"},
-{kw:"Ampinel,WireView",date:"2026-05-05",ap:1,forum:"Reddit",sub:"r/gpu",tag:"Question",title:"which to order?",url:"https://old.reddit.com/search?q=%22Wireview+Pro+II+or+Ampinel%22",sum:"「WireView Pro II or Ampinel?」的直接二選一之問——兩者已是此品類的代名詞。"},
-{kw:"Ampinel",date:"2026-05-14",ap:1,forum:"Reddit",sub:"r/ThermalGrizzly",tag:"Fault/Issue",title:"Sandy Putty Pro",url:"https://old.reddit.com/search?q=%22Sandy+Putty+Pro%22",sum:"「等 Ampinel 到貨」順便重整水冷（等貨期之長的側面證據）。"},
-// ---- 2026-04（約） ----
-{kw:"GPU Safeguard",date:"2026-04-10",ap:1,forum:"Reddit",sub:"r/MSI_Gaming",tag:"Discussion",title:"Technical review of MPG AI1600TS",url:"https://old.reddit.com/search?q=%22AI1600TS%22+hardware+busters",sum:"轉貼 Hardware Busters 對 GPU Safeguard+ 的實測影片與評測——第三方驗證是社群採信關鍵。"},
-{kw:"GPU Safeguard",date:"2026-04-05",ap:1,forum:"Reddit",sub:"r/MSI_Gaming",tag:"News",title:"MSI 官方 blog：GPU Safeguard × Afterburner",url:"https://old.reddit.com/search?q=msi+gpu+safeguard+afterburner",sum:"官方說明：偵測異常電流時經 Afterburner 降功率保護 GPU。"},
-{kw:"GPU Safeguard",date:"2026-04-02",ap:1,forum:"Reddit",sub:"r/MSI_Gaming",tag:"Discussion",title:"New PSU's（等上市）",url:"https://old.reddit.com/search?q=%22GPU+safeguard%22+PSU+drop",sum:"「兒子的 build 就等這批 GPU Safeguard PSU 上市」——上市前已有指名購買。"},
-{kw:"GPU Safeguard",date:"2026-04-07",ap:0,forum:"TechPowerUp",sub:"Graphics Cards",tag:"討論串",title:"Double 12VHPWR connectors…（#146）",url:"https://www.techpowerup.com/forums/",sum:"maxfly 引 HWBusters：MAG A1000PLS 也有 GPU Safeguard（監控＋警示）——功能下放中階線。"},
-{kw:"T-Guard",date:"2026-04-16",ap:0,forum:"TechPowerUp",sub:"News",tag:"News+留言",title:"Gigabyte's New Gaming PSUs Secure Top-Tier GPUs with Exclusive T-Guard",url:"https://www.techpowerup.com/348271/gigabytes-new-gaming-psus-secure-top-tier-gpus-with-exclusive-t-guard",sum:"T-Guard 主動熱監控 PSU 發表，僅 3 回覆——同類產品中討論最冷清。"},
-{kw:"ROG Equalizer,Titanload",date:"2026-04-14",ap:0,forum:"TechPowerUp",sub:"News comments",tag:"新聞留言",title:"ASUS Introduces ROG Equalizer…（#44-58）",url:"https://www.techpowerup.com/348123/asus-introduces-rog-equalizer-12v-2x6-cable-for-gpu-power-stability",sum:"user556：「現有線全該召回、NVIDIA 買單；Titanload 這類 17A/14A 強化端子線才合格、不怕彎折」；LittleBro：「把線修好，問題只是移到下一個電阻差的位置（GPU 端子）」——治標 vs 治本大辯論。"},
-{kw:"OptiGuard",date:"2026-04-20",ap:0,forum:"TechPowerUp",sub:"News comments",tag:"新聞留言",title:"ASUS Introduces ROG Equalizer…（#61）",url:"https://www.techpowerup.com/348123/asus-introduces-rog-equalizer-12v-2x6-cable-for-gpu-power-stability",sum:"lepudruk：「防燒方案陸續出現，我押 Seasonic OptiGuard，看起來紮實、想看實測」——一個月後因 Ampinel 三度延期改買 WireView（見 5/25 條）——期待→失望→轉單的完整軌跡。"},
-{kw:"WireView",date:"2026-04-18",ap:0,forum:"Tom's Hardware",sub:"Open Source",tag:"Question",title:"Things stopping me from moving my main gaming PC to Linux",url:"https://forums.tomshardware.com/",sum:"WVP2＋Wigidash 的 Linux 支援與否列入換 OS 的阻礙清單——軟體生態需求。5 回覆。"},
-{kw:"GPU Safeguard,OptiGuard",date:"2026-04-01",ap:1,forum:"Reddit",sub:"r/PcBuild, r/pcmasterrace",tag:"Build Help",title:"Do I need this many reverse fans?",url:"https://old.reddit.com/search?q=%22Seasonic+Optiguard+or+MSI+Safeguard%22",sum:"「想等 Seasonic OptiGuard 或 MSI Safeguard+ PSU，但完全不知何時上市、等累了」——供貨不確定性拖住整台 build。"},
-// ---- 2026-03 以前 ----
-{kw:"GPU Safeguard",date:"2026-03-25",ap:0,forum:"TechPowerUp",sub:"News",tag:"News+留言",title:"MSI Announces Safeguard+ for its MPG Ai TS Series PSUs",url:"https://www.techpowerup.com/forums/",sum:"18 回覆：主打「主動偵測而非被動關機」；問答釐清：硬體層全時運作、Afterburner 只是加值；Kwadratowicz：「等於把 WireView 內建進 PSU，任何 12V-2x6 卡都適用」；MSI Center 資源占用 ~35MB 不算 bloat。"},
-{kw:"GPU Safeguard",date:"2026-02-11",ap:0,forum:"TechPowerUp",sub:"News",tag:"News+留言",title:"MSI Afterburner 4.6.7 Beta 2 Adds 16-Pin GPU Protection",url:"https://www.techpowerup.com/forums/",sum:"Afterburner 整合 GPU Safeguard+（PSU 端 per-pin 讀值、警報、動作觸發）。5 回覆。"},
-{kw:"Ampinel",date:"2026-02-09",ap:0,forum:"Tom's Hardware",sub:"News Comments",tag:"News+留言",title:"Load-balancing Ampinel adapter can save an Nvidia connector meltdown — finally on sale after three-month delay",url:"https://forums.tomshardware.com/",sum:"「延期三個月後終於開賣」成為標題本身——媒體也把交期當新聞點。15 回覆。"},
-{kw:"WireView",date:"2026-02-01",ap:0,forum:"Tom's Hardware",sub:"News Comments",tag:"新聞留言",title:"RTX 4090's 16-pin power connector erupts in smoke in shocking live footage",url:"https://forums.tomshardware.com/",sum:"Phaaze88：「瓦數不代表安全。買 WVP2 保護投資；本該插了就忘，如今卡價回升，沒藉口不保護」——事故新聞下的購買勸敗。"},
-{kw:"GPU Shield",date:"2026-01-07",ap:0,forum:"TechPowerUp",sub:"News",tag:"News+留言",title:"Cooler Master GPU Shield Adaptor and PSUs Addresses Pesky 12V-2x6 Connector Meltdowns（CES 2026）",url:"https://www.techpowerup.com/344831/cooler-master-gpu-shield-adaptor-and-psus-addresses-pesky-12v-2x6-connector-meltdowns",sum:"GPU Shield 核心技術發表：PSU＋drop-in adapter 兩形態、插入正確性 LED（紅/綠）、電流不平衡監控。12 回覆。"},
-{kw:"GPU Safeguard",date:"2026-01-07",ap:0,forum:"Tom's Hardware",sub:"News Comments",tag:"News+留言",title:"MSI introduces GPU Safeguard tech on its latest PSUs to fend off RTX 5090 meltdowns",url:"https://forums.tomshardware.com/",sum:"警示音＋pop-up＋強制黑屏的初代 GPU Safeguard 發表。14 回覆。"},
-{kw:"WireView",date:"2026-01-02",ap:0,forum:"Tom's Hardware",sub:"News Comments",tag:"新聞留言",title:"MSI teases new power supplies with 'instant protection'…",url:"https://forums.tomshardware.com/",sum:"Gururu：「WVP2 看起來很棒，但花 $1000+ 買卡之後還要加購，太貴」——外掛式方案的價格阻力。"},
-{kw:"Ampinel",date:"2026-01-03",ap:0,forum:"Tom's Hardware",sub:"Graphics Cards",tag:"Question",title:"Is this 12VHPWR amperage distribution okay ?",url:"https://forums.tomshardware.com/threads/is-this-12vhpwr-amperage-distribution-okay.3891281/",sum:"前軍規/航太工程師 Misgar 的深度分析：MilSpec 連接器 derate 30%、12V-2x6 卻頂規跑零裕度；單 pin 高阻→過熱→開路→其餘 pin 級聯過載；「不能監控『且介入』電流分布，這連接器就是等著出事」；熱像顯示熱點在連接器不在線。"},
-{kw:"Titanload",date:"2025-12-05",ap:0,forum:"TechPowerUp",sub:"News",tag:"News+留言",title:"Segotep Claims TITANLOAD 12V-2x6 Cable Lowers Temperatures",url:"https://www.techpowerup.com/343694/segotep-claims-titanload-12v-2x6-cable-lowers-temperatures",sum:"Titanload（12A pin）／EX（14A pin）發表：宣稱降阻抗與發熱。7 回覆。"},
-{kw:"Titanload",date:"2025-12-03",ap:0,forum:"Tom's Hardware",sub:"News Comments",tag:"News+留言",title:"Segotep's Titanload 12V-2x6 cables use heavier-duty pins to prevent meltdowns — drops peak temps by up to 72%",url:"https://forums.tomshardware.com/",sum:"「暴力法」強化 pin 線材報導，峰值溫度宣稱降 72%。8 回覆。"},
-{kw:"WireView",date:"2025-12-27",ap:0,forum:"Tom's Hardware",sub:"News Comments",tag:"新聞留言",title:"Nvidia GeForce RTX 5090 power wire reportedly caught fire despite using the original cable",url:"https://forums.tomshardware.com/",sum:"helper800：「我 5090＋WireView Pro，希望能減災」——原廠線也起火的案例下，監控被當最後防線。"},
-{kw:"WireView",date:"2025-11-02",ap:0,forum:"Tom's Hardware",sub:"News Comments",tag:"新聞留言",title:"'Never in your life buy a 5090 FE': repair tech slams…（#38,#43）",url:"https://forums.tomshardware.com/",sum:"YSCCC 引 der8auer：WireView 曾考慮內建 shunt 平衡而放棄——平衡 pin 也無法降低單線失效時的總電流風險；另有猶豫者「讀太多災情不敢買 5090」。"},
-{kw:"Titanload,Ampinel,WireView",date:"2026-06-05",ap:1,forum:"Reddit",sub:"r/overclocking",tag:"XOC Gear",title:"The ultimate OC cable?（Titanload Pro 開箱）",url:"https://redd.it/1tld0vb",sum:"55 留言：Titanload Pro 開箱＝「幾乎是 Equalizer 減去 pin 不平衡與失望」，14A/pin、600mm、包裝精緻；但名字被大量嘲笑、發文者被疑帶風向；技術反論（Noreng）：線阻越低反而放大接觸阻抗差的電流不平衡；共識「連接器才是故障點，線只是緩解」；「Titanload＋Ampinel 是目前最強疊法」之說。"},
-{kw:"ROG Equalizer,GPU Safeguard",date:"2026-06-06",ap:1,forum:"Reddit",sub:"r/pcmasterrace, r/ASUSROG",tag:"Hardware",title:"40hrs hwinfo log with ROG Equalizer + MSI Ai1600TS PSU",url:"https://redd.it/1tsvgg2",sum:"與 der8auer 評測相反的正面案例：40 小時 log（CS2 4K＋FurMark）per-pin 與原生線一致、Safeguard+ 顯示 Normal；「我的 GPU 對燒接頭免疫了」——注意：此組合正是 PSA 警告的 crossbar×smart PSU 疊法，兩帖結論衝突。"},
-{kw:"WireView",date:"2025-06-23",ap:0,forum:"Tom's Hardware",sub:"Graphics Cards / News Comments",tag:"Question",title:"\"Safe\" way to own a 5090 ／ ASUS BTF 1900W 測試留言",url:"https://forums.tomshardware.com/",sum:"faalin：WireView 能否改善線路負載存疑（GPU 端無分流設計）；helper800：「$80 的 WireView 壞掉也比壞 GPU 好——它是犧牲品／保險絲的概念」。"},
-{kw:"WireView",date:"2025-06-04",ap:0,forum:"Tom's Hardware",sub:"Review Comments",tag:"專題留言",title:"Self-destructing graphics cards: Why are power connectors melting…",url:"https://forums.tomshardware.com/",sum:"4090＋WireView 用戶問是否還需 undervolt；USAFRet：「出廠設定就不該需要 undervolt 才能不炸——什麼硬體都一樣」。"},
-{kw:"WireView",date:"2024-09-28",ap:0,forum:"Tom's Hardware",sub:"News Comments",tag:"News+留言",title:"Thermal Grizzly's nifty gadget can prevent Nvidia's 16-pin connector meltdowns（WireView GPU Pro 發表）",url:"https://forums.tomshardware.com/",sum:"18 回覆的早期定位討論：原始 WireView 是 OC 用電力監測，Pro 加溫度感測＋警報才算防護；「插入偵測只是 QoL」；早期規格只列 12VHPWR 未列 12V-2x6、上市延宕、保固疑問——產品從監測工具轉型安全裝置的起點。"},
-// ===== v3 新增：TempGuard（ASRock）2026-07-09 =====
-{kw:"TempGuard",date:"2026-05-29",ap:0,nv:3,forum:"Reddit",sub:"r/ASRock",tag:"News",title:"ASRock Celebrates A Decade of Taichi Mastery and Expands Its AI Ecosystem at COMPUTEX 2026",url:"https://old.reddit.com/search?q=%22ASRock+Celebrates+A+Decade+of+Taichi%22",sum:"官方新聞稿首次以「TempGuard」正式命名此功能：「ASRock 高階系列現搭載獨家 TempGuard 功能於 12V-2x6 接頭，提供額外一層熱保護」；隨 Taichi/Phantom Gaming/Steel Legend Platinum 系列 PSU 推出，保固最長 10 年。3 留言。"},
-{kw:"TempGuard",date:"2026-01-08",ap:1,nv:3,forum:"Reddit",sub:"r/pcmasterrace",tag:"Question",title:"Asrock PG 1300G and TC 1300T PSUs: Do the tempguards really prevent 5090s from melting?",url:"https://old.reddit.com/search?q=%22Do+the+tempguards+really+prevent%22",sum:"31 留言質疑感測器有效性：「線材可能在熱傳到感測器之前就已經開始熔化，尤其現在總熱量沒變，只是集中在更少的線上」；不確定過熱造成的電阻變化是否真能被感測器即時偵測到。"},
-{kw:"TempGuard",date:"2025-12-08",ap:1,nv:3,forum:"Reddit",sub:"r/ThermalGrizzly",tag:"Question/Advice",title:"Can I use the power supplies which have thermal sensors in the 12VHPWR connector with the Wireview Pro 2?",url:"https://old.reddit.com/search?q=%22thermal+sensors+in+the+12VHPWR+connector+with+the+Wireview%22",sum:"準備入手 WVP2 之餘，看中 ASRock Taichi TC-1300T 的 TempGuard，問兩者是否有相容性問題、或裝了 WVP2 後 TempGuard 就顯得多餘。1 留言。"},
-{kw:"TempGuard",date:"2025-07-08",ap:1,nv:3,forum:"Reddit",sub:"r/ASRock",tag:"Discussion",title:"ASRock Taichi series PSUs in stock at Newegg (US & Canada) & CCL Computers (UK)",url:"https://old.reddit.com/search?q=%22ASRock+Taichi+series+PSUs+in+stock%22",sum:"說明機制：「12V-2x6 線材內建溫度感測器，由 PSU 直接監控、異常時斷電（透過額外感測線接回 PSU，行銷名稱 TempGuard）」；Phantom Gaming 系列也有此功能且較便宜；Taichi 系列上市後長期缺貨（庫存忽有忽無）。8 留言。"},
-{kw:"TempGuard",date:"2025-07-08",ap:1,nv:3,forum:"Reddit",sub:"r/pcbuilding",tag:"-",title:"Finally decided on a psu",url:"https://old.reddit.com/search?q=%22Finally+decided+on+a+psu%22+tempguard",sum:"「就是因為有 temp guard 才選這顆 PSU」——功能已成為部分用戶選購 PSU 的決定性因素。18 留言。"},
-{kw:"TempGuard",date:"2025-07-08",ap:1,nv:3,forum:"Reddit",sub:"r/pcmasterrace",tag:"Question",title:"PC Build Help - GPU cable bend bad?",url:"https://old.reddit.com/gallery/1iwpara",sum:"ASRock TC1650-T 用戶：因為要用到 TempGuard 功能必須用該 PSU 專屬的感測線材，但線身在機殼內走線角度過大，關側板時被壓出約 45 度彎折於接頭附近，問是否安全、能否處理——TempGuard 專屬線材的物理安裝限制實例。8 留言。"},
-{kw:"TempGuard",date:"2026-05-29",ap:0,nv:3,forum:"TechPowerUp",sub:"News",tag:"News+留言",title:"ASRock Celebrates A Decade of Taichi Mastery and Expands Its AI Ecosystem at Computex",url:"https://www.techpowerup.com/forums/",sum:"同上官方 TempGuard 正式命名新聞，TPU 站內版。2 回覆。"},
-{kw:"TempGuard",date:"2025-11-03",ap:0,nv:3,forum:"TechPowerUp",sub:"NVIDIA GPUs",tag:"討論串",title:"12V-2x6 load imbalance（#10）",url:"https://www.techpowerup.com/forums/",sum:"rapidrush：使用 ASRock TC-1650T（內建 TempGuard thermistor 接頭），仍觀察到 Pin 6 似乎在分攤 Pin 1 的負載，但仍對選了這顆 PSU 感到安心——TempGuard 不解決不平衡本身，但被當作最後一道防線。"},
-{kw:"TempGuard",date:"2025-04-29",ap:0,nv:3,forum:"TechPowerUp",sub:"NVIDIA GPUs",tag:"討論串",title:"Is my ASUS Astral 5090 Safe? Red Light blinking while gaming（#22,#30）",url:"https://www.techpowerup.com/forums/",sum:"lepudruk：「這麼『有事』的卡，我會考慮 ASRock 新款、內建 TempGuard＋NTC 溫度感測的 PSU，理論上到溫就斷電」；LittleBro 潑冷水：「溫感應該放在接頭本身才有意義；廠商不斷推出各種所謂『解決方案』卻不肯正視這連接器根本該淘汰」。"},
-{kw:"TempGuard",date:"2025-08-25",ap:0,nv:3,forum:"TechPowerUp",sub:"News",tag:"News+留言",title:"ASRock Adds Overheating Protection to Its L-Shaped 12V-2x6 GPU Cable",url:"https://www.techpowerup.com/340290/asrock-adds-overheating-protection-to-its-l-shaped-12v-2x6-gpu-cable",sum:"TempGuard 前身（L 型直角線材＋NTC 溫度感測器）首發文，48 留言討論熱烈：TheDeeGee「除非 6 個 pin 各自都有感測器，否則沒意義，而這根本做不到」；_roman_ 連續追問「溫度門檻設多少？多久輪詢一次？觸發後是斷電還是黑屏？使用者怎麼知道是感測器觸發的？」全無答案；Dragokar 吐槽「一顆 thermistor 要賣這個價錢」；Dr. Dro 與 EsaT/Kenjiro/TheinsanegamerN 就「問題根源是 PSU 還是連接器/GPU 端負載平衡設計」激辯數十樓；售價約 $40（日本含稅 5,980 日圓），被認為偏貴。"},
-{kw:"TempGuard",date:"2026-01-08",ap:0,nv:3,forum:"TechPowerUp",sub:"News",tag:"News+留言",title:"ASRock PSUs at 2026 CES: L-type 12V-2x6 Cable with Overheat Protection",url:"https://www.techpowerup.com/344947/asrock-psus-at-2026-ces-l-type-12v-2x6-cable-with-overheat-protection",sum:"官方正式規格公布：除 12 電力 pin＋4 感測 pin 外，另有 2 根可拆卸接腳連到線材 GPU 端的熱敏二極體，溫度過門檻觸發 PSU 既有 OTP（過溫保護）斷電；適用 Taichi／Phantom Gaming／Steel Legend Platinum 系列。6 留言：_roman_ 再次追問同樣的技術問題（門檻、觸發邏輯、通知方式）均無解；halcyon 引用「kludge」定義評論：「業界分析這問題兩年後端出的就是這個，天啊」；Eliad Buchnik：WireView Pro II／Ampinel 是更好的緩解方案但更貴，強調任何方案都只是 mitigation 不是 solution，根本問題在連接器設計本身；jonnyGURU：「該由 NVIDIA 扛的責任，最後變成 PSU 業界要扛，很可悲」。"},
-{kw:"TempGuard,GPU Shield",date:"2026-01-01",ap:0,nv:3,forum:"TechPowerUp",sub:"News",tag:"News+留言",title:"RTX 5090 With 1350 W OC Saved From Melted Connector by ASRock PSU",url:"https://www.techpowerup.com/344571/rtx-5090-with-1350-w-oc-saved-from-melted-connector-by-asrock-psu",sum:"TempGuard 實戰案例（源自 Overclock.net 用戶 motivman）：MSI Ventus 5090 被超頻到 1350W（額定 575W TDP／線材額定 600W），完成 3DMark Port Royal 跑分後 PSU（Phantom Gaming PG-1300G）觸發斷電、需等線材降溫才能重開機；GPU 端接頭仍留下明顯變色、跑分成績也明顯下滑，用戶推測 ASRock 應調低斷電溫度門檻。25 留言：yzonker「PSU 大致做到了它該做的事，但沒能在變色前即時斷電，門檻該再降低」；Chrispy_ 提出關鍵數據對比：8-pin 每線額定 13A（實際僅需 4.2A，安全邊際大）vs 12V-2x6 每線額定僅 9.5A（需求 8.3A，幾乎無邊際，任一線失效其餘線立即全面超載）；Vayra86／charmer：「PSU 永遠無法真正解決這問題，全都在迴避核心——連接器與 GPU 端本身」。"},
-// ===== v4 新增：TempGuard 補搜（不含品牌名的實際案例／型號討論）2026-07-09 =====
-{kw:"TempGuard",date:"2026-07-04",ap:1,nv:4,forum:"Reddit",sub:"r/pcmasterrace",tag:"Hardware",title:"Another melted 5090",url:"https://www.reddit.com/r/pcmasterrace/comments/1umemdk/another_melted_5090/",sum:"貼文全程未出現「TempGuard」字樣，僅描述為「the one with the thermistor in the cable」：MSI Trio 5090＋ASRock PG1000-PSF 原生感測線材仍燒毀。原po：「或許能救你家不失火，但擋不住接頭熔毀」，用了原生線＋確認插到底＋看過有色標示，最後仍燒；已放棄 NVIDIA／AMD 這代連接器，改回雙 8-pin 的 9070XT。留言：alwaystired1982 指出連 350W 的 9070XT 都燒過，「連 350W 都扛不住，600W 更別提」；EAGLE_GAMES 也買了 Ampinel，「離譜到要靠別家公司來修 NVIDIA 的電流不平衡」。11 留言。"},
-{kw:"TempGuard",date:"2026-01-08",ap:1,nv:4,forum:"Reddit",sub:"r/pcmasterrace",tag:"Tech Support",title:"5090 burned my psu cable to my surprise.",url:"https://old.reddit.com/search?q=title%3A%22burned+my+psu+cable%22",sum:"58 留言：Palit 5090＋ASRock Phantom Gaming PG-1300G，PC無預警關機，檢查發現線材接頭處燒黑；原po肯定「1300 Asrock 的 failsafe 斷電趕在更嚴重的事發生前關機」——部分成功案例（斷電有效但接頭仍受損，與#TempGuard 1350W OC 案例的模式相同）。GPU 與 PSU 事後測試仍正常運作，但「對 Asrock 的信心動搖了」，改用 Seasonic PSU；Seasonic 客服建議務必用自家 12V-2x6 線，而非隨卡附贈的轉接頭。未使用「TempGuard」字樣，僅稱「failsafe switch off」。"},
-{kw:"TempGuard",date:"2026-02-08",ap:1,nv:4,forum:"Reddit",sub:"r/pcmasterrace",tag:"Hardware",title:"Thermistor location on AsRock PG 1600G for RTX 5090",url:"https://old.reddit.com/search?q=title%3A%22Thermistor+location%22",sum:"具體設計質疑（0 留言，但內容本身有技術價值）：PG 1600G 原廠線的 thermistor 位置離實際接觸點「相當遠」；為了塞進機殼必須彎折線材，往下彎會拉大感測器與接點間的空氣間隙（故改往上彎減少間隙）。發問：(1) 能否在接頭背面塗不導電導熱膏填補氣隙，確保熱量真正傳到感測器；(2) ASRock 另售 $40 的 90 度轉接線，但看設計感測器位置似乎更差，有人驗證過嗎？——首次點出「感測器與接點物理距離」這個具體設計缺陷。"},
-{kw:"TempGuard",date:"2025-12-08",ap:1,nv:4,forum:"Reddit",sub:"r/ASRock",tag:"Discussion",title:"ASRock Taichi TC-1300T 12v-2x6 cables proprietary only, or would a mod/DIY or cablemod cable made for this psu be possible?",url:"https://old.reddit.com/search?q=title%3A%22proprietary+only%22+asrock",sum:"問 TC-1300T 的 12V-2x6 線是否只能用原廠專屬線，或可用 DIY／CableMod 改裝線替代；原本計畫把 TempGuard 當第二層防護，另外疊加 WireView Pro II 或 ASUS Astral 內建監控之一；擔心設計是專屬規格，若日後有更好方案，屆時要找到「不含感測針腳也能用」的替代線材恐怕很難——反映專屬感測線材對日後升級／混搭防護裝置的鎖定疑慮。"},
-{kw:"TempGuard",date:"2026-04-17",ap:0,nv:4,forum:"TechPowerUp",sub:"Reviews",tag:"評測留言",title:"ASRock SL-1200P 1200 W（評測留言 #15）",url:"https://www.techpowerup.com/review/asrock-sl-1200p/",sum:"Router ero 提出目前最具體的技術批評：「thermistor 只接觸到 2 條線，而且是 GND（接地）線——不是好設計，真正會熔的是 +12V 線」；建議應該把感測器夾在 +12V 線之間才能有效偵測；並指出 ASUS 的線材設計幾乎一樣，唯一差異是把 sense 線切斷——暗示同類感測線材設計在業界互相抄襲、且共享同一個「感測器裝錯線」的根本缺陷，可解釋為何 TempGuard 在部分案例中未能及時斷電。"}
-];
-
-// ===== 版本比對機制 =====
-// VER=本版版號。未來產新版時：讀取前一版 HTML 的 D 陣列，以「url＋title」為鍵比對；
-// 新增的項目或 sum/date 有變動的項目，在該筆資料加上 nv:<新版號>，即會顯示 New! 標章。
-const VER=4;
-const KWORDER=["WireView","Ampinel","ROG Equalizer","ThermalProtect","GPU Safeguard","GPU Shield","OptiGuard","Titanload","T-Guard","TempGuard"];
-const KCOLOR={"WireView":["#7c3aed","#f3ecfe"],"Ampinel":["#0e7490","#e0f5fa"],"ROG Equalizer":["#b91c1c","#fdeaea"],"ThermalProtect":["#b45309","#fdf3e2"],"GPU Safeguard":["#15803d","#e6f6ea"],"GPU Shield":["#1d4ed8","#e6eefc"],"OptiGuard":["#a21caf","#fbe9fc"],"Titanload":["#374151","#eceff3"],"T-Guard":["#c2410c","#fdefe6"],"TempGuard":["#0369a1","#e3f2fc"]};
-function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
-let kwSel="__all",fmSel="__all",q="",sortAsc=false;
-function fbadge(f){return f==="Reddit"?"b-reddit":(f==="TechPowerUp"?"b-tpu":"b-thw")}
-function rowHtml(r){
-  return `<tr>
-    <td class="dt">${r.date}${r.ap?'<span class="approx">（約）</span>':''}${r.nv===VER?' <span class="newbadge">New!</span>':''}</td>
-    <td class="fm"><span class="badge ${fbadge(r.forum)}">${r.forum}</span><br><span class="approx">${esc(r.sub)}</span></td>
-    <td class="tg">${esc(r.tag)}</td>
-    <td class="ti">${esc(r.title)}</td>
-    <td><a href="${r.url}" target="_blank">開啟</a></td>
-    <td class="sm">${esc(r.sum)}</td></tr>`;
-}
-function render(){
-  const match=r=>{
-    if(fmSel!=="__all" && r.forum!==fmSel)return false;
-    if(q){const t=(r.title+" "+r.sum+" "+r.sub+" "+r.kw).toLowerCase(); if(!t.includes(q))return false;}
-    return true;
-  };
-  const kws=(kwSel==="__all")?KWORDER:[kwSel];
-  let shown=new Set(), html="";
-  for(const k of kws){
-    let rows=D.filter(r=>r.kw.split(",").includes(k)&&match(r));
-    if(!rows.length)continue;
-    rows.sort((a,b)=> sortAsc? a.date.localeCompare(b.date) : b.date.localeCompare(a.date));
-    rows.forEach(r=>shown.add(r.title));
-    const [kc,kbg]=KCOLOR[k]||["#2563eb","#e8f0fe"];
-    html+=`<div class="kwblock" style="--kc:${kc};--kbg:${kbg}">
-      <div class="kwhead"><h3>${k}</h3><span class="kcnt">${rows.length} 筆（依發文日期${sortAsc?"舊→新":"新→舊"}）</span></div>
-      <div class="tblbox"><table>
-      <thead><tr><th>發文日期</th><th>Forum</th><th>Tag</th><th>文章 Title</th><th>連結</th><th>本文／留言摘要</th></tr></thead>
-      <tbody>${rows.map(rowHtml).join("")}</tbody></table></div></div>`;
-  }
-  document.getElementById('blocks').innerHTML=html||'<div class="note">無符合條件的項目。</div>';
-  document.getElementById('cnt').textContent=`顯示 ${shown.size} / ${D.length} 篇（跨關鍵字者於各區重複列出）`;
-}
-document.querySelectorAll('.kwchip').forEach(c=>c.onclick=()=>{document.querySelectorAll('.kwchip').forEach(x=>x.classList.remove('on'));c.classList.add('on');kwSel=c.dataset.v;render();});
-document.querySelectorAll('.fmchip').forEach(c=>c.onclick=()=>{document.querySelectorAll('.fmchip').forEach(x=>x.classList.remove('on'));c.classList.add('on');fmSel=c.dataset.v;render();});
-document.getElementById('q').oninput=e=>{q=e.target.value.toLowerCase();render();};
-document.getElementById('sortBtn').onclick=()=>{sortAsc=!sortAsc;document.getElementById('sortBtn').textContent=sortAsc?"日期：舊→新":"日期：新→舊";render();};
-document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
-  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
-  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
-  t.classList.add('active');document.getElementById(t.dataset.page).classList.add('active');
-});
-document.getElementById('stTotal').textContent=D.length;
-document.getElementById('stReddit').textContent=D.filter(r=>r.forum==="Reddit").length;
-document.getElementById('stTpu').textContent=D.filter(r=>r.forum==="TechPowerUp").length;
-document.getElementById('stThw').textContent=D.filter(r=>r.forum==="Tom's Hardware").length;
-render();
-</script>
+<section class="card"><span class="pill con">缺點</span><h3>WireView 仍被視為補丁而非根因解法</h3><p>多個留言質疑「多插一個裝置」會增加故障點，也無法修正 12VHPWR/12V-2x6 接頭本身的高負載與接觸風險。</p></section>
+<section class="card"><span class="pill improve">改進</span><h3>WireView 需要更好安裝相容</h3><p>水平安裝 RTX 5090 時已有側板關不上案例；低高度、90 度、原生 12V-2x6、USB/軟體讀值與保固說明仍是明確需求。</p></section>
+<section class="card"><span class="pill pro">優點</span><h3>GPU Safeguard 能偵測 PSU 端異常</h3><p>GPU Safeguard/GPU Safeguard+ 的優點是能偵測突波、電流波動或 current imbalance，並以警告聲、彈窗、黑畫面或降功率降低風險。</p></section>
+<section class="card"><span class="pill con">缺點</span><h3>GPU Safeguard 被批評為症狀管理</h3><p>論壇留言認為這類 PSU 端保護仍是 band-aid；更根本的做法應該是改善連接器、增加安全餘裕，或在 GPU/負載端直接偵測。</p></section>
+<section class="card"><span class="pill new">新增洞察</span><h3>GPU Shield 新增 per-pin 監控路線</h3><p>依搜尋摘錄，Cooler Master GPU Shield adapter 具備 per-pin monitoring，並可動態降低功率以阻止線材問題；這是比單純告警更接近主動降載的方向。</p></section>
+</div>
+<h2>搜尋結果明細</h2><p class="small">以下依發文日期新到舊排序。摘要只根據站內搜尋摘錄整理。</p><table><thead><tr><th>關鍵字</th><th>發文日期</th><th>Forum 名稱</th><th>Tag</th><th>文章 Title</th><th>本文/留言摘要</th></tr></thead><tbody>
+<tr><td class="keyword">GPU Safeguard</td><td>2026-05-25</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/testing-gpu-safeguard-on-the-msi-mpg-ai1600ts-psu-%E2%80%93-solution-aims-to-tame-melting-16-pin-connectors.3896363/">News Testing GPU Safeguard+ on the MSI MPG Ai1600TS PSU – solution aims to tame melting 16-pin connectors</a></td><td>依摘錄摘要：MSI GPU Safeguard+ 是 PSU 端保護系統，目標是防止 12V-2x6 GPU 電源接頭過熱與熔毀。</td></tr>
+<tr><td class="keyword"><span class="newmark">New!</span>GPU Shield</td><td>2026-06-02</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/cooler-master-shows-off-new-mwe-gold-v4-power-supplies-and-gpu-shield-adapter-%E2%80%94-per-pin-monitoring-can-dynamically-scale-down-power-to-stop-cables.3896668/">News Cooler Master shows off new MWE Gold V4 Power supplies and GPU Shield adapter — per-pin monitoring can dynamically scale down power to stop cables...</a></td><td>依摘錄摘要：Cooler Master 在 Computex 展示 MWE Gold V4 電源供應器與 GPU Shield adapter；摘錄顯示 GPU Shield adapter 具備 per-pin monitoring，並可動態降低功率以阻止線材問題。</td></tr>
+<tr><td class="keyword">WireView</td><td>2026-05-04</td><td>Graphics Cards</td><td><span class="tag tag-question">Question</span></td><td><a href="https://forums.tomshardware.com/threads/subject-rtx-5090-wireview-pro-2-clearance-issues-in-lian-li-o11d-xl.3895703/">Question Subject: RTX 5090 + WireView Pro 2 Clearance issues in Lian Li O11D XL</a></td><td>依摘錄摘要：使用者安裝 WireView Pro 2 後，RTX 5090 OC 在 Lian Li O11 Dynamic XL 水平安裝時側板無法關上，痛點是寬卡與 WireView 凸出造成淨空不足。</td></tr>
+<tr><td class="keyword">WireView</td><td>2026-04-18</td><td>Open Source</td><td><span class="tag tag-question">Question</span></td><td><a href="https://forums.tomshardware.com/threads/things-stopping-me-from-moving-my-main-gaming-pc-to-linux-can-they-be-addressed.3895233/">Question Things stopping me from moving my main gaming PC to Linux, can they be addressed ?</a></td><td>依摘錄摘要：發問者想把主遊戲 PC 轉到 Linux，並詢問 WireView Pro II 與 Wigidash 等監控設備是否有 Linux 支援。</td></tr>
+<tr><td class="keyword">WireView</td><td>2026-04-03</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/win-a-prize-by-entering-your-build-into-the-inaugural-toms-hardware-rig-rundown-%E2%80%94-submit-a-build-to-get-your-setup-evaluated-by-our-expert-staff.3894508/post-23611788">News Win a prize by entering your build into the inaugural Tom&#39;s Hardware Rig Rundown — submit a build to get your setup evaluated by our expert staff</a></td><td>依摘錄摘要：留言者列出自己的高階電腦配置，其中包含 PNY RTX 5090 OC 與 WireView Pro 2。</td></tr>
+<tr><td class="keyword">Ampinel</td><td>2026-02-09</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/load-balancing-ampinel-adapter-can-save-an-nvidia-connector-meltdown-%E2%80%94-new-adapter-is-finally-on-sale-after-three-month-delay.3892841/">News Load-balancing Ampinel adapter can save an Nvidia connector meltdown — new adapter is finally on sale after three-month delay</a></td><td>依摘錄摘要：Ampinel GPU 電源轉接器上市，主打即時六通道負載平衡與防止接頭熔毀功能。</td></tr>
+<tr><td class="keyword">WireView</td><td>2026-02-01</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/rtx-4090%E2%80%99s-16-pin-power-connector-erupts-in-smoke-in-shocking-live-footage-%E2%80%94-gpu-melts-during-marvel-rivals-gameplay.3892475/post-23591623">News RTX 4090’s 16-pin power connector erupts in smoke in shocking live footage — GPU melts during Marvel Rivals gameplay</a></td><td>依摘錄摘要：留言者認為單看瓦數不足以掌握風險，建議使用 WireView Pro 2 監控並保護高價 GPU。</td></tr>
+<tr><td class="keyword">GPU Safeguard</td><td>2026-01-07</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/msi-introduces-gpu-safeguard-tech-on-its-latest-psus-to-fend-off-rtx-5090-meltdowns-%E2%80%94-warns-users-with-pop-up-and-buzzer-when-abnormal-current-is-d.3891507/">News MSI introduces GPU Safeguard tech on its latest PSUs to fend off RTX 5090 meltdowns — warns users with pop-up and buzzer when abnormal current is d...</a></td><td>依摘錄摘要：留言者擔心 5090 供電負載不平均，提到 WireView 但不確定它是否能改善單線負載問題。</td></tr>
+<tr><td class="keyword">WireView</td><td>2026-01-02</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/msi-teases-new-power-supplies-with-instant-protection-against-melting-rtx-5090-cables-%E2%80%94-promises-to-solve-12v-2x6-connector-woes-by-monitoring-in.3891258/post-23579932">News MSI teases new power supplies with &#39;instant protection&#39; against melting RTX 5090 cables — promises to solve 12V-2x6 connector woes by monitoring in...</a></td><td>依摘錄摘要：留言者認為 WireView Pro II GPU 看起來有吸引力，但在已花高價購買顯卡後再額外添購仍偏貴。</td></tr>
+<tr><td class="keyword">WireView</td><td>2025-12-27</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/nvidia-geforce-rtx-5090-power-wire-reportedly-caught-fire-despite-using-the-original-cable.3890981/post-23577768">News Nvidia GeForce RTX 5090 power wire reportedly caught fire despite using the original cable</a></td><td>依摘錄摘要：留言者表示自己使用 RTX 5090 與 WireView Pro，希望它能在顯卡或線材發生問題時降低災難性故障風險。</td></tr>
+<tr><td class="keyword">Titanload</td><td>2025-12-03</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/segoteps-titanload-12v-2x6-cables-use-heavier-duty-pins-to-prevent-meltdowns-%E2%80%94-brute-force-approach-purportedly-drops-peak-temps-by-up-to-72.3890020/">News Segotep&#39;s Titanload 12V-2x6 cables use heavier-duty pins to prevent meltdowns — brute-force approach purportedly drops peak temps by up to 72%</a></td><td>依摘錄摘要：Segotep Titanload / Titanload EX 12V-2x6 線材使用 12A/14A 較高規格 power pins，宣稱可降低峰值溫度並防止熔毀。</td></tr>
+<tr><td class="keyword">WireView</td><td>2025-11-02</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/%E2%80%98never-in-your-life-buy-a-5090-founders-edition%E2%80%99-repair-tech-slams-nvidia%E2%80%99s-flagship-card-design-for-train-wreck-melting-16-pin-power-connector.3888176/post-23557786">News ‘Never in your life buy a 5090 Founders Edition’: repair tech slams Nvidia’s flagship card design for train wreck melting 16-pin power connector</a></td><td>依摘錄摘要：留言者討論 16-pin 接頭承受高負載問題，提到 der8auer/WireView Pro 與 pin 間平衡設計，但摘錄未完整顯示後續論點。</td></tr>
+<tr><td class="keyword">Ampinel</td><td>2025-10-29</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/nvidias-16-pin-time-bomb-could-be-defused-by-this-95-gadget-%E2%80%94-ampinel-offers-load-balancing-that-nvidia-forgot-to-include.3887101/post-23556191">News Nvidia&#39;s 16-pin time bomb could be defused by this $95 gadget — Ampinel offers load balancing that Nvidia forgot to include</a></td><td>依摘錄摘要：摘錄提到 Ampinel 偵測任一電源線超過 7.5A 後會介入重新分配負載，以避免過熱與接頭熔毀。</td></tr>
+<tr><td class="keyword">Ampinel</td><td>2025-10-29</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/nvidias-16-pin-time-bomb-could-be-defused-by-this-95-gadget-%E2%80%94-ampinel-offers-load-balancing-that-nvidia-forgot-to-include.3887101/post-23556182">News Nvidia&#39;s 16-pin time bomb could be defused by this $95 gadget — Ampinel offers load balancing that Nvidia forgot to include</a></td><td>依摘錄摘要：留言者用電路觀點討論電流在導線兩端應一致，推論若平衡線路電流，GPU 與 PSU 側都會反映。</td></tr>
+<tr><td class="keyword">Ampinel</td><td>2025-10-18</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/nvidias-16-pin-time-bomb-could-be-defused-by-this-95-gadget-%E2%80%94-ampinel-offers-load-balancing-that-nvidia-forgot-to-include.3887101/post-23551945">News Nvidia&#39;s 16-pin time bomb could be defused by this $95 gadget — Ampinel offers load balancing that Nvidia forgot to include</a></td><td>依摘錄摘要：留言者指出 Tom’s 對接點額定電流的描述可能有誤，並提到每個接點 9.2A 較符合產品圖示。</td></tr>
+<tr><td class="keyword">Ampinel</td><td>2025-10-03</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/nvidias-16-pin-time-bomb-could-be-defused-by-this-95-gadget-%E2%80%94-ampinel-offers-load-balancing-that-nvidia-forgot-to-include.3887101/post-23546181">News Nvidia&#39;s 16-pin time bomb could be defused by this $95 gadget — Ampinel offers load balancing that Nvidia forgot to include</a></td><td>依摘錄摘要：留言者認為問題不是 NVIDIA 忘記做負載平衡，而是設計取捨或偷工，否則後續版本應已修正。</td></tr>
+<tr><td class="keyword">Ampinel</td><td>2025-10-02</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/nvidias-16-pin-time-bomb-could-be-defused-by-this-95-gadget-%E2%80%94-ampinel-offers-load-balancing-that-nvidia-forgot-to-include.3887101/">News Nvidia&#39;s 16-pin time bomb could be defused by this $95 gadget — Ampinel offers load balancing that Nvidia forgot to include</a></td><td>依摘錄摘要：Ampinel 是針對 16-pin 電源接頭顯卡的主動電源管理模組，主打補足負載平衡能力。</td></tr>
+<tr><td class="keyword">Ampinel</td><td>2025-10-02</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/nvidias-16-pin-time-bomb-could-be-defused-by-this-95-gadget-%E2%80%94-ampinel-offers-load-balancing-that-nvidia-forgot-to-include.3887101/post-23546049">News Nvidia&#39;s 16-pin time bomb could be defused by this $95 gadget — Ampinel offers load balancing that Nvidia forgot to include</a></td><td>依摘錄摘要：摘錄提到 Ampinel 偵測任一電源線超過 7.5A 後會介入重新分配負載，以避免過熱與接頭熔毀。</td></tr>
+<tr><td class="keyword">WireView</td><td>2025-08-16</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/diyer-creates-%E2%80%98rtx-5090-countermeasures%E2%80%99-with-cabling-spaghetti-to-mitigate-16-pin-meltdowns-%E2%80%94-system-automatically-shuts-down-when-the-overcurrent.3884830/post-23526204">News DIYer creates ‘RTX 5090 countermeasures’ with cabling spaghetti to mitigate 16-pin meltdowns — system automatically shuts down when the overcurrent...</a></td><td>依摘錄摘要：留言者把 DIY 防護方案與 WireView 這類商用品比較，認為 DIY 雖不精緻但代表玩家自行處理硬體安全問題。</td></tr>
+<tr><td class="keyword">WireView</td><td>2025-06-23</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/asus-rtx-5090-btf-2-5-gpu-successfully-pulls-over-1-900w-in-extreme-test-%E2%80%94-proprietary-metal-power-connector-kept-its-cool-unlike-plastic-16-pin-a.3881798/post-23501564">News Asus RTX 5090 BTF 2.5 GPU successfully pulls over 1,900W in extreme test — proprietary metal power connector kept its cool, unlike plastic 16-pin a...</a></td><td>依摘錄摘要：留言者認為 WireView Pro 相對主機板便宜，若線材故障，可能由 WireView 承受損傷而非顯卡。</td></tr>
+<tr><td class="keyword">WireView</td><td>2025-06-23</td><td>Graphics Cards</td><td><span class="tag tag-question">Question</span></td><td><a href="https://forums.tomshardware.com/threads/safe-way-to-own-a-5090-and-about-support-brackets.3881681/post-23501235">Question &quot;Safe&quot; way to own a 5090, and about support brackets ?</a></td><td>依摘錄摘要：留言者擔心 5090 供電負載不平均，提到 WireView 但不確定它是否能改善單線負載問題。</td></tr>
+<tr><td class="keyword">WireView</td><td>2025-06-04</td><td>Review Comments</td><td><span class="tag tag-other">Review</span></td><td><a href="https://forums.tomshardware.com/threads/self-destructing-graphics-cards-why-are-power-connectors-melting-and-what-can-you-do-about-it.3880710/post-23492899">Self-destructing graphics cards: Why are power connectors melting, and what can you do about it?</a></td><td>依摘錄摘要：留言者提到自己在 RTX 4090 與線材之間安裝 WireView，並觀察使用時功耗未接近 600W。</td></tr>
+<tr><td class="keyword">WireView</td><td>2025-05-22</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/thermal-grizzly%E2%80%99s-open-air-der8enchtable-is-designed-for-dedicated-pc-tinkerers.3879958/">News Thermal Grizzly’s open-air der8enchtable is designed for dedicated PC tinkerers</a></td><td>依摘錄摘要：文章提到 Thermal Grizzly 在 Computex 展示第二代 WireView Pro。</td></tr>
+<tr><td class="keyword">WireView</td><td>2025-04-06</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/another-rtx-5090-connector-melts-down-reportedly-taking-a-redditors-psu-with-it.3877239/post-23465770">News Another RTX 5090 connector melts down, reportedly taking a Redditor&#39;s PSU with it</a></td><td>依摘錄摘要：留言者認為 WireView Pro 可監控連接器並在過熱時警報，是目前降低風險的一種方式。</td></tr>
+<tr><td class="keyword">WireView</td><td>2025-03-26</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/thermal-grizzlys-wireview-pro-gpu-power-measuring-utility-gets-a-90-degree-adapter-revision.3876581/">News Thermal Grizzly&#39;s WireView Pro GPU power measuring utility gets a 90-degree adapter revision</a></td><td>依摘錄摘要：Thermal Grizzly 發表 WireView Pro 90 度版本，重點是 GPU 電源監控與更適合走線的 90 度轉接設計。</td></tr>
+<tr><td class="keyword">WireView</td><td>2024-09-29</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/thermal-grizzlys-nifty-gadget-can-prevent-nvidias-16-pin-connector-meltdowns-%E2%80%94-wireview-gpu-pro-features-a-gpu-power-monitor-connector-detection.3856326/post-23345302">News Thermal Grizzly&#39;s nifty gadget can prevent Nvidia&#39;s 16-pin connector meltdowns — WireView GPU Pro features a GPU power monitor, connector detection...</a></td><td>依摘錄摘要：留言者指出 WireView 不是 U 型轉接器，主要用途是監控功耗。</td></tr>
+<tr><td class="keyword">WireView</td><td>2024-09-29</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/thermal-grizzlys-nifty-gadget-can-prevent-nvidias-16-pin-connector-meltdowns-%E2%80%94-wireview-gpu-pro-features-a-gpu-power-monitor-connector-detection.3856326/post-23345342">News Thermal Grizzly&#39;s nifty gadget can prevent Nvidia&#39;s 16-pin connector meltdowns — WireView GPU Pro features a GPU power monitor, connector detection...</a></td><td>依摘錄摘要：留言者指出產品頁未列 12V-2x6，但認為對線材/轉接器未必是最關鍵問題。</td></tr>
+<tr><td class="keyword">WireView</td><td>2024-09-29</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/thermal-grizzlys-nifty-gadget-can-prevent-nvidias-16-pin-connector-meltdowns-%E2%80%94-wireview-gpu-pro-features-a-gpu-power-monitor-connector-detection.3856326/post-23345288">News Thermal Grizzly&#39;s nifty gadget can prevent Nvidia&#39;s 16-pin connector meltdowns — WireView GPU Pro features a GPU power monitor, connector detection...</a></td><td>依摘錄摘要：留言者認為偵測插線不良比較像便利功能，原始 WireView 主要是給超頻使用的 GPU 功耗監控器，Pro 版加入溫度感測與警報。</td></tr>
+<tr><td class="keyword">WireView</td><td>2024-09-29</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/thermal-grizzlys-nifty-gadget-can-prevent-nvidias-16-pin-connector-meltdowns-%E2%80%94-wireview-gpu-pro-features-a-gpu-power-monitor-connector-detection.3856326/post-23345389">News Thermal Grizzly&#39;s nifty gadget can prevent Nvidia&#39;s 16-pin connector meltdowns — WireView GPU Pro features a GPU power monitor, connector detection...</a></td><td>依摘錄摘要：留言者提到先前詢問時產品仍在概念階段，並關注是否已有熱感測探針與新 12V-2x6 標準。</td></tr>
+<tr><td class="keyword">WireView</td><td>2024-09-28</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/thermal-grizzlys-nifty-gadget-can-prevent-nvidias-16-pin-connector-meltdowns-%E2%80%94-wireview-gpu-pro-features-a-gpu-power-monitor-connector-detection.3856326/">News Thermal Grizzly&#39;s nifty gadget can prevent Nvidia&#39;s 16-pin connector meltdowns — WireView GPU Pro features a GPU power monitor, connector detection...</a></td><td>依摘錄摘要：WireView GPU Pro 可串接在 12VHPWR 連接器中，追蹤電壓、功耗與溫度等資料。</td></tr>
+<tr><td class="keyword">WireView</td><td>2024-09-28</td><td>News Comments</td><td><span class="tag tag-news">News</span></td><td><a href="https://forums.tomshardware.com/threads/thermal-grizzlys-nifty-gadget-can-prevent-nvidias-16-pin-connector-meltdowns-%E2%80%94-wireview-gpu-pro-features-a-gpu-power-monitor-connector-detection.3856326/post-23345120">News Thermal Grizzly&#39;s nifty gadget can prevent Nvidia&#39;s 16-pin connector meltdowns — WireView GPU Pro features a GPU power monitor, connector detection...</a></td><td>依摘錄摘要：留言者提到先前詢問時產品仍在概念階段，並關注是否已有熱感測探針與新 12V-2x6 標準。</td></tr>
+<tr><td class="keyword">WireView</td><td>2023-05-31</td><td>Power Supplies</td><td><span class="tag tag-question">Question</span></td><td><a href="https://forums.tomshardware.com/threads/how-to-measure-power-consumption.3808892/post-23016290">Question How to measure power consumption?</a></td><td>依摘錄摘要：留言者提到 WireView 已推出，但看起來只支援 GPU，並疑問 EPS/ATX 版本在哪裡。</td></tr>
+</tbody></table>
+<p class="small">驗證狀態：本報告所有連結均指向 forums.tomshardware.com；未命中關鍵字不產生洞察。</p>
+</main>
+      </div>
+    </section>
+    
+  </main>
+  <script>
+    function showTab(index) {
+      document.querySelectorAll('.tab-panel').forEach((panel, i) => panel.classList.toggle('active', i === index));
+      document.querySelectorAll('.tab-button').forEach((button, i) => {
+        button.classList.toggle('active', i === index);
+        button.setAttribute('aria-selected', i === index ? 'true' : 'false');
+      });
+    }
+  </script>
 </body>
 </html>
