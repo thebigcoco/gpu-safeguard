@@ -75,14 +75,15 @@ footer{margin-top:34px;color:var(--muted);font-size:12px;border-top:1px solid va
 <div class="wrap">
 <header>
   <h1>12V-2x6 / 12VHPWR 線材保護產品 — 論壇討論重點觀察</h1>
-  <span class="meta">產生時間：<b>2026-07-22 09:57</b>（v6）｜資料擷取：2026-07-22｜來源：Reddit（old.reddit 搜尋）、TechPowerUp Forums（站內搜尋）、Tom's Hardware Forums（站內搜尋）</span>
-  <span class="meta">版本歷程：v1 2026-07-08 初版 → v2 明細改依關鍵字分區＋版本比對機制 → v3 新增關鍵字「TempGuard」 → v4 補搜「不含品牌名」討論 → v5 2026-07-15 全 10 關鍵字增量重跑（涵蓋 2026-07-09～07-15），新增 9 筆，本週最大事件：ASRock TempGuard 被爆未能阻止 RTX 5090 燒毀 → v6 2026-07-22 全 10 關鍵字增量重跑（涵蓋 2026-07-16～07-22），新增 8 筆明細（本週焦點見下方）</span>
+  <span class="meta">產生時間：<b>2026-07-22 14:41</b>（v7）｜資料擷取：2026-07-22｜來源：Reddit（old.reddit 搜尋）、TechPowerUp Forums（站內搜尋）、Tom's Hardware Forums（站內搜尋）</span>
+  <span class="meta">版本歷程：v1 2026-07-08 初版 → v2 明細改依關鍵字分區＋版本比對機制 → v3 新增關鍵字「TempGuard」 → v4 補搜「不含品牌名」討論 → v5 2026-07-15 全 10 關鍵字增量重跑（涵蓋 2026-07-09～07-15），新增 9 筆，本週最大事件：ASRock TempGuard 被爆未能阻止 RTX 5090 燒毀 → v6 2026-07-22 09:57 全 10 關鍵字增量重跑（涵蓋 2026-07-16～07-22），新增 8 筆明細 → v7 2026-07-22 14:41 補漏：v6 的 Reddit 搜尋只讀了第 1 頁，WireView 當週討論量太大導致第 2 頁內容（含一則 174 分／177 留言的 WireView 本體熔毀事故）被遺漏，使用者回報後補上 1 筆，並修正搜尋流程</span>
 </header>
 <div class="spotlight">
-  <div class="spotlight-title">本週焦點（v6 ／ 2026-07-16 ～ 2026-07-22）</div>
+  <div class="spotlight-title">本週焦點（v7 ／ 2026-07-16 ～ 2026-07-22）</div>
   <ul>
+    <li><b>WireView 本體熔毀事故（174 分／177 留言，本輪聲量最高單篇）</b>——一顆使用超過一年的 WireView Pro（非 Pro II）在用戶持續忽視不平衡警報數週後，於高負載時局部熔毀、熔化塑膠殘留卡進 GPU 接頭。原PO與大多數留言都認為這是「警報早就在響、用戶沒有及時換線」的使用者疏失案例，而非裝置失效；Thermal Grizzly 官方已同意保固更換並升級到 Pro II。少數留言仍質疑「不到 10 秒就能燒穿」代表反應機制本身也有改善空間。</li>
     <li><b>OptiGuard 持續跳票，連旗艦新品都排除在外</b>——TechPowerUp 新開的「Seasonic Prime TX-1600W Noctua Edition」評測串證實：這款剛開賣的高階新品也沒搭載 OptiGuard，官方留言承認「仍在開發中」，建議先買 ROG Equalizer 或 ThermalProtect 過渡；也有技術質疑指出其設計是「per connector」而非「per pin」，即使上市也無法根治問題。</li>
-    <li><b>WireView 本週連爆兩起技術討論</b>——一起連接器 pin 位置不良的故障排除案例（WireView 正確攔截，根因是接頭組裝品質）；監控軟體背景常駐拖慢 FPS 約 30% 的效能問題，Thermal Grizzly 官方帳號親自回應說明。</li>
+    <li><b>WireView 另連爆兩起技術討論</b>——一起連接器 pin 位置不良的故障排除案例（WireView 正確攔截，根因是接頭組裝品質）；監控軟體背景常駐拖慢 FPS 約 30% 的效能問題，Thermal Grizzly 官方帳號親自回應說明。</li>
     <li><b>ASRock TempGuard 上週燒毀事故餘波持續</b>——PSU 選購文開始主動查證該功能可信度；GPU Safeguard 出現社群自製開源 Linux 監控工具；ROG Equalizer 可靠度排名在新評測串中再度落後 MSI／Corsair。</li>
   </ul>
 </div>
@@ -135,14 +136,16 @@ footer{margin-top:34px;color:var(--muted);font-size:12px;border-top:1px solid va
 <li>Wired 版供貨已實質改善：官方帳號 7 月中宣布預購「已正式開始出貨」，多名用戶陸續曬出到貨／安裝文（含一則 5090 FE 裝機文 103 分 40 留言，顯示 Wired 版可能已解決先前 FE 不相容的問題）</li>
 <li>實戰再添一例：5070 Ti（僅 300W，理論上不太需要）用戶裝上後 idle 就抓到電流不對，3DMark 測試 pin4 飆到 8A、pin3 僅 2A 並跳出不平衡警報；換一條同型號不同批線材後，滿載 pin 差控制在 15-20% 內，「要不是 WireView 根本不會知道這條線有問題」</li>
 <li>社群自製的非官方 Linux 應用功能追平官方 1.0.7 版（含韌體更新、主題編輯器），首次做到完全不需要 Windows 機器即可管理裝置，回應了先前「Linux 無支援」的缺口</li>
-<li><span class="newbadge">New!</span> Tom's Hardware 本週新增一則獨立推薦：在「Astral vs AORUS Master 5090」選購討論串中，用戶建議與其加價 $300 選 Astral 內建監控，不如把錢省下來另購 WireView Pro II，「便宜的保險，避免燒掉一張 $3000 顯卡」</li></ul>
+<li>Tom's Hardware 新增一則獨立推薦：在「Astral vs AORUS Master 5090」選購討論串中，用戶建議與其加價 $300 選 Astral 內建監控，不如把錢省下來另購 WireView Pro II，「便宜的保險，避免燒掉一張 $3000 顯卡」</li>
+<li><span class="newbadge">New!</span> 一起本體熔毀事故（174 分／177 留言）中，社群輿論大多力挺 WireView：原PO自陳警報已響數週、自己選擇降功率忽視而非換線，多數留言認為這證明「裝置有正確警示，是人沒聽」；原PO本人也在留言中澄清「WireView 這次確實救了我的卡」，TG 官方並同意保固升級到 Pro II——反而強化了「警報 = 該立刻換線，不是拿來降功率忽視」的使用守則共識</li></ul>
 <h4 class="h-neg">缺點</h4><ul>
 <li>機殼淨空是最大痛點：O11D XL 也關不上側板、有人為此換殼；Zotac 5090 AIO／Lynk+ 不相容；normal/reversed 版本要選對</li>
 <li>自身 12VHPWR 端子插拔 3-5 次即可見劣化（溫度讀數升高）；「增加一個故障點」</li>
 <li>價格偏高＋美國進口關稅＋缺貨等待；也有人直言「Wireview seems useless」（監控≠防護）；二手以 $30-40 流通</li>
 <li>Wired 版隱藏成本：統一式前面板接頭用戶需另購 $5-10 延長線才能用自動關機功能，盒內未附</li>
-<li><span class="newbadge">New!</span> 本週新增一起連接器 pin 位置不良的實戰案例：用戶裝上 WVP2 後立刻在遊戲中跳出「Current Imbalance」警報（line5/6 僅 0.1A/0.0A），社群協助檢查後發現 GPU 端連接器有兩根 pin 明顯縮進去太深，換一條備用線後恢復正常（idle 六 pin 平均 0.9A）——WireView 正確攔下了問題，但也再次凸顯連接器本身組裝品質不穩定</li>
-<li><span class="newbadge">New!</span> 監控軟體本身爆出效能問題：用戶回報「WireView 2 軟體」即使只在系統列待機，也會拖慢 FPS 約 30%（iRacing+VR 情境從 90fps 掉到 60fps 以下），經其他用戶用 3DMark 驗證確有此現象，推測是 USB 輪詢造成 CPU/DPC 延遲而非真的限制 GPU 功耗；Thermal Grizzly 官方帳號 Grizzly_Erik 親自回應：目前 1.0.7 版已降低負載，並澄清軟體「非必須常駐」，設定完裝置即可關閉；但原 PO 認為問題應在軟體內加註警語，而非讓用戶自行故障排除才發現</li></ul>
+<li>連接器 pin 位置不良的實戰案例：用戶裝上 WVP2 後立刻在遊戲中跳出「Current Imbalance」警報（line5/6 僅 0.1A/0.0A），社群協助檢查後發現 GPU 端連接器有兩根 pin 明顯縮進去太深，換一條備用線後恢復正常（idle 六 pin 平均 0.9A）——WireView 正確攔下了問題，但也再次凸顯連接器本身組裝品質不穩定</li>
+<li>監控軟體本身爆出效能問題：用戶回報「WireView 2 軟體」即使只在系統列待機，也會拖慢 FPS 約 30%（iRacing+VR 情境從 90fps 掉到 60fps 以下），經其他用戶用 3DMark 驗證確有此現象，推測是 USB 輪詢造成 CPU/DPC 延遲而非真的限制 GPU 功耗；Thermal Grizzly 官方帳號 Grizzly_Erik 親自回應：目前 1.0.7 版已降低負載，並澄清軟體「非必須常駐」，設定完裝置即可關閉；但原 PO 認為問題應在軟體內加註警語，而非讓用戶自行故障排除才發現</li>
+<li><span class="newbadge">New!</span> 同一起熔毀事故也留下技術疑點：少數留言指出從警報觸發到接頭熔化「不到 10 秒」，質疑光靠聲音警報、仰賴使用者手動反應的機制，在某些極端不平衡情境下可能來不及——即便本案最終判定主因是使用者長期忽視警報，也顯示「警報後留給使用者反應的時間窗」本身值得檢視，而非只靠「聽到就該關」的使用守則</li></ul>
 <h4>改進需求</h4><ul>
 <li>薄型化、更耐插拔端子；Wired 版統一式前面板延長線應隨附或至少明確標示需另購；官方 Linux 支援</li>
 <li>使用建議共識：裝上 GPU 後不再拆 GPU 側，要拆就拆 WireView 上的 PSU 線</li>
@@ -534,13 +537,15 @@ const D=[
 {kw:"TempGuard",date:"2026-07-19",ap:1,nv:6,forum:"Reddit",sub:"r/PcBuild, r/pcmasterrace",tag:"Question",title:"If pc estimates 618W, is there any reason to not just go for a 1000W PSU? / Is Phantom Gaming PG-1000G best PSU?",url:"https://www.reddit.com/r/PcBuild/search?q=title%3A%22If%20pc%20estimates%20618W%22&restrict_sr=on&sort=new",sum:"同一使用者（NotOebeltje）同日在 r/PcBuild 與 r/pcmasterrace 各發兩篇高度相似的選購文（共 4 篇，合計約 47 則留言），詢問 AsRock Phantom Gaming PG-1000G 是否為安全選擇，並在文中主動提到其 12V-2x6 接頭「也有 TempGuard，可因應燒毀事故」。發文時間點緊接在上週 TempGuard 失效事故爆紅之後，顯示該事故已讓「TempGuard 是否可信」成為選購 ASRock PSU 前的例行查證項目；留言內容尚待逐篇確認具體回覆。"},
 {kw:"OptiGuard,ROG Equalizer,ThermalProtect",date:"2026-07-22",ap:0,nv:6,forum:"TechPowerUp",sub:"Reviews",tag:"評測留言",title:"Seasonic Prime TX-1600W Noctua Edition（評測留言 #4,#10,#17,#18,#23,#24）",url:"https://www.techpowerup.com/forums/threads/seasonic-prime-tx-1600w-noctua-edition.349357/",sum:"TechPowerUp 新開的評測串本週（07-21～07-22）高度活躍：Router ero 證實 OptiGuard 確切搭載機型清單——PRIME ENTERPRISE TX-1600／TX-1300、PRIME ENTERPRISE PX-1600／PX-1300、PRIME TX Noctua Edition，其餘一律沒有；Dr. Dro 指出這款高階 PSU 雖有原生 12V-2x6 插座，但 OptiGuard「仍在開發中」，建議自行加購 Corsair ThermalProtect（$25）或 ASUS ROG Equalizer（$50）過渡，並認為前者依 der8auer／HWBusters 測試較後者可靠；Eliad Buchnik 提出技術質疑：OptiGuard 是「per connector」而非「per pin」平衡，即使上市仍無法解決個別 pin 接觸阻抗不均的根本問題；Buddyspike 認為 MSI 的 AI1300TS 等 PSU 保護方案比 ROG Equalizer 可靠；Godrilla 挖苦 Seasonic「把還沒上市的 Blackwell Super 排進 PSU 計算機的優先度，都比讓 OptiGuard 成為標準配備優先」。"},
 {kw:"WireView,ROG Equalizer",date:"2026-07-21",ap:0,nv:6,forum:"TechPowerUp",sub:"NVIDIA GPUs",tag:"討論串",title:"Close call... 5090 Burnt Cable（#498-555）",url:"https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/",sum:"本週（07-16～07-21）本串持續高頻更新：wolf 與 Frizz 分享用 WireView Pro 2 搭配 overrated 線材（16AWG）作為 Astral／GAMEROCK 等卡的標準防護組合，並指出 WVP2 內建風扇解決了水冷機殼原生無氣流的問題；Frizz（#555）提到手上有一組因「Oceania 地區未納入」而閒置的 ASUS ROG Equalizer 美國區 5 折升級折扣碼，公開願意轉讓；另有用戶討論 WireView Pro II 白色版與 ROG Equalizer／Corsair ThermalProtect 黑色版的外觀色系比較，以及 Thermal Grizzly 三年原廠延長保固（約 $99）的成本效益。"},
-{kw:"WireView",date:"2026-07-22",ap:0,nv:6,forum:"Tom's Hardware",sub:"Graphics Cards",tag:"Question",title:"Which to buy - - - an Astral 5090 or an AORUS Master 5090 ?",url:"https://forums.tomshardware.com/threads/which-to-buy-an-astral-5090-or-an-aorus-master-5090.3897751/",sum:"burrhead 在比較 Astral 與 AORUS Master 兩張 5090 的選購討論串中建議：與其加價 $300 選 Astral（內建逐 pin 監控），不如把預算省下改買 Thermal Grizzly WireView Pro II，「便宜的保險，避免接頭熔毀燒掉一張 $3000 顯卡」——反映 WireView 在部分玩家心中已被視為比原廠內建監控更具性價比的替代方案。"}
+{kw:"WireView",date:"2026-07-22",ap:0,nv:6,forum:"Tom's Hardware",sub:"Graphics Cards",tag:"Question",title:"Which to buy - - - an Astral 5090 or an AORUS Master 5090 ?",url:"https://forums.tomshardware.com/threads/which-to-buy-an-astral-5090-or-an-aorus-master-5090.3897751/",sum:"burrhead 在比較 Astral 與 AORUS Master 兩張 5090 的選購討論串中建議：與其加價 $300 選 Astral（內建逐 pin 監控），不如把預算省下改買 Thermal Grizzly WireView Pro II，「便宜的保險，避免接頭熔毀燒掉一張 $3000 顯卡」——反映 WireView 在部分玩家心中已被視為比原廠內建監控更具性價比的替代方案。"},
+// ===== v7 新增：補搜 v6 遺漏（Reddit 搜尋分頁未翻到第 2 頁）2026-07-22 =====
+{kw:"WireView",date:"2026-07-16",ap:1,nv:7,forum:"Reddit",sub:"r/ThermalGrizzly",tag:"Question/Advice",title:"WireView Pro melted on my Gigabyte AORUS RTX 5090 Xtreme Waterforce",url:"https://www.reddit.com/r/ThermalGrizzly/comments/1uxhwl3/wireview_pro_melted_on_my_gigabyte_aorus_rtx_5090/",sum:"174 分／177 則留言，本輪目前聲量最高的單篇：原PO的 WireView Pro（購於 2025-02，非 Pro II）在搭配 Gigabyte AORUS RTX 5090 Xtreme Waterforce 使用約一年後，換了主機平台（Z790→Z890）後開始在滿功率時持續跳警報，原PO以降功率至 85-90% 暫時壓下警報但未更換線材，直到某次遊玩中警報響起、聞到燒焦味，拔下後發現 WireView 本體已局部熔毀、且有熔化塑膠殘留卡在 5090 接頭內（GPU 接頭本身損傷輕微）。原PO於留言串明確澄清「這是我自己的錯，沒有及早換線或找 TG 求助，WireView 這次確實救了我的卡」。Thermal Grizzly 官方帳號 Grizzly_Erik 親自回覆致歉並提供支援信箱；原PO更新表示 TG 已同意保固更換連接器、並將 WireView Pro 升級為 Pro II。留言區大量回應聚焦「警報响了為什麼不立刻換線」，多數用戶認為這是使用者長期忽視警報、而非 WireView 本身失效的案例，但也有人指出「不到 10 秒就能讓接頭熔化，代表電流不平衡的門檻/反應機制本身也值得檢討」。"}
 ];
 
 // ===== 版本比對機制 =====
 // VER=本版版號。未來產新版時：讀取前一版 HTML 的 D 陣列，以「url＋title」為鍵比對；
 // 新增的項目或 sum/date 有變動的項目，在該筆資料加上 nv:<新版號>，即會顯示 New! 標章。
-const VER=6;
+const VER=7;
 const KWORDER=["WireView","Ampinel","ROG Equalizer","ThermalProtect","GPU Safeguard","GPU Shield","OptiGuard","Titanload","T-Guard","TempGuard"];
 const KCOLOR={"WireView":["#7c3aed","#f3ecfe"],"Ampinel":["#0e7490","#e0f5fa"],"ROG Equalizer":["#b91c1c","#fdeaea"],"ThermalProtect":["#b45309","#fdf3e2"],"GPU Safeguard":["#15803d","#e6f6ea"],"GPU Shield":["#1d4ed8","#e6eefc"],"OptiGuard":["#a21caf","#fbe9fc"],"Titanload":["#374151","#eceff3"],"T-Guard":["#c2410c","#fdefe6"],"TempGuard":["#0369a1","#e3f2fc"]};
 function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
