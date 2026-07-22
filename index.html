@@ -65,6 +65,10 @@ footer{margin-top:34px;color:var(--muted);font-size:12px;border-top:1px solid va
 .stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 18px;min-width:130px}
 .stat b{font-size:20px;display:block}
 .stat span{color:var(--muted);font-size:12px}
+.spotlight{background:#fff7ed;border:1px solid #fbd9ae;border-left:5px solid #c2410c;border-radius:10px;padding:12px 18px;margin:12px 0 6px}
+.spotlight-title{font-weight:700;font-size:14.5px;color:#9a3412;margin-bottom:6px}
+.spotlight ul{margin:2px 0 2px;padding-left:20px}
+.spotlight li{margin:3px 0;font-size:13px}
 </style>
 </head>
 <body>
@@ -72,8 +76,16 @@ footer{margin-top:34px;color:var(--muted);font-size:12px;border-top:1px solid va
 <header>
   <h1>12V-2x6 / 12VHPWR 線材保護產品 — 論壇討論重點觀察</h1>
   <span class="meta">產生時間：<b>2026-07-22 09:57</b>（v6）｜資料擷取：2026-07-22｜來源：Reddit（old.reddit 搜尋）、TechPowerUp Forums（站內搜尋）、Tom's Hardware Forums（站內搜尋）</span>
-  <span class="meta">版本歷程：v1 2026-07-08 初版 → v2 明細改依關鍵字分區＋版本比對機制 → v3 新增關鍵字「TempGuard」 → v4 補搜「不含品牌名」討論 → v5 2026-07-15 全 10 關鍵字增量重跑（涵蓋 2026-07-09～07-15），新增 9 筆，本週最大事件：ASRock TempGuard 被爆未能阻止 RTX 5090 燒毀 → v6 2026-07-22 全 10 關鍵字增量重跑（涵蓋 2026-07-16～07-22），新增 8 筆明細，本週焦點：<b>Seasonic Prime TX-1600W Noctua Edition 評測串證實 OptiGuard 仍未鋪貨到消費級</b>、WireView 接連出現「軟體效能損耗 30%」與「pin 位置不良」兩起技術討論，皆標示 <span class="newbadge">New!</span></span>
+  <span class="meta">版本歷程：v1 2026-07-08 初版 → v2 明細改依關鍵字分區＋版本比對機制 → v3 新增關鍵字「TempGuard」 → v4 補搜「不含品牌名」討論 → v5 2026-07-15 全 10 關鍵字增量重跑（涵蓋 2026-07-09～07-15），新增 9 筆，本週最大事件：ASRock TempGuard 被爆未能阻止 RTX 5090 燒毀 → v6 2026-07-22 全 10 關鍵字增量重跑（涵蓋 2026-07-16～07-22），新增 8 筆明細（本週焦點見下方）</span>
 </header>
+<div class="spotlight">
+  <div class="spotlight-title">本週焦點（v6 ／ 2026-07-16 ～ 2026-07-22）</div>
+  <ul>
+    <li><b>OptiGuard 持續跳票，連旗艦新品都排除在外</b>——TechPowerUp 新開的「Seasonic Prime TX-1600W Noctua Edition」評測串證實：這款剛開賣的高階新品也沒搭載 OptiGuard，官方留言承認「仍在開發中」，建議先買 ROG Equalizer 或 ThermalProtect 過渡；也有技術質疑指出其設計是「per connector」而非「per pin」，即使上市也無法根治問題。</li>
+    <li><b>WireView 本週連爆兩起技術討論</b>——一起連接器 pin 位置不良的故障排除案例（WireView 正確攔截，根因是接頭組裝品質）；監控軟體背景常駐拖慢 FPS 約 30% 的效能問題，Thermal Grizzly 官方帳號親自回應說明。</li>
+    <li><b>ASRock TempGuard 上週燒毀事故餘波持續</b>——PSU 選購文開始主動查證該功能可信度；GPU Safeguard 出現社群自製開源 Linux 監控工具；ROG Equalizer 可靠度排名在新評測串中再度落後 MSI／Corsair。</li>
+  </ul>
+</div>
 <div class="statbar">
   <div class="stat"><b id="stTotal">—</b><span>明細筆數</span></div>
   <div class="stat"><b id="stReddit">—</b><span>Reddit</span></div>
