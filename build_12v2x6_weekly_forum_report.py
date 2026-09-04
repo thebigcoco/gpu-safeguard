@@ -2436,6 +2436,7 @@ overview_cards = ''.join(
 
 html = f'''<!doctype html>
 <html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/png" href="thebigcoco-coconut-logo.png">
 <title>12V-2x6 保護產品每週論壇報告（{generated_at_label}）</title>
 <style>
 :root{{--bg:#f5f6f8;--card:#fff;--ink:#1c2330;--muted:#68758a;--line:#e3e7ee;--accent:#2563eb;--warn:#fff8e6;--orange:#b45309}}
