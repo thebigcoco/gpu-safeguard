@@ -2459,6 +2459,11 @@ generated_at_label = f"{GENERATED_AT.strftime('%Y-%m-%d %H:%M:%S')} Asia/Taipei"
 REPORT_VERSION = 'v1.6'
 V12_UPDATED_AT = '2026-08-19 14:45:56 Asia/Taipei'
 
+# 本版新增追蹤的關鍵字（結構性新增，不是「本週有新證據」）；用於在「一、本週焦點」與
+# 「二、產品功能重點」替該關鍵字加註 New!。只保留當前版本新增的項目，不隨版本累積——
+# 上一版新增的關鍵字（如 GPU Tweak III Auto-Shutdown）已經是 v1.5 的舊聞，這裡不再列入。
+new_keywords = {'EZDIY-FAB Alpha TS13'}
+
 # 版本紀錄（架構變動：新增論壇／關鍵字／版型調整）與內容更新紀錄（每次查核跑了什麼、
 # 找到什麼）分成兩份清單呈現，避免版本號被日常內容更新灌水，也讓兩種資訊各自好找。
 version_history = [
@@ -2497,7 +2502,10 @@ if new_rows:
         '<p>{summary}</p><div class="focus-comment"><b>留言重點</b>{comments}</div></article>'.format(
             date=escape(row['date']),
             source=escape(row['source']),
-            keywords=escape('、'.join(row['keywords'])),
+            keywords='、'.join(
+                escape(kwn) + (' <span class="new-badge">New!</span>' if kwn in new_keywords else '')
+                for kwn in row['keywords']
+            ),
             title=escape(row['title']),
             summary=escape(row['summary']),
             comments=escape(row['comments']),
@@ -2521,10 +2529,11 @@ else:
 
 overview_cards = ''.join(
     '<article class="product-card"><div class="product-head"><div><span class="product-vendor">{vendor}</span>'
-    '<h3>{keyword}</h3></div><span class="product-type">{category}</span></div>'
+    '<h3>{keyword} {new_badge}</h3></div><span class="product-type">{category}</span></div>'
     '<p>{function}</p></article>'.format(
         vendor=escape(keyword_vendor[k]),
         keyword=escape(k),
+        new_badge='<span class="new-badge">New!</span>' if k in new_keywords else '',
         category=escape(keyword_category[k]),
         function=escape(keyword_info[k][0]),
     ) for k in kw
