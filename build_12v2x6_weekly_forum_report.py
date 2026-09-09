@@ -2450,6 +2450,28 @@ weekly_focus_range = f'{weekly_focus_start}～{PERIOD_END.isoformat()}'
 generated_at_label = f"{GENERATED_AT.strftime('%Y-%m-%d %H:%M:%S')} Asia/Taipei"
 REPORT_VERSION = 'v1.6'
 V12_UPDATED_AT = '2026-08-19 14:45:56 Asia/Taipei'
+
+# 版本紀錄（架構變動：新增論壇／關鍵字／版型調整）與內容更新紀錄（每次查核跑了什麼、
+# 找到什麼）分成兩份清單呈現，避免版本號被日常內容更新灌水，也讓兩種資訊各自好找。
+version_history = [
+    ('v1.6', '2026-09-09', '新增 EZDIY-FAB Alpha TS13 為第 12 個追蹤關鍵字——U 型 12V-2x6 直通轉接器，內建 TFT 螢幕在不需軟體下顯示 GPU 功耗與接頭溫度，85°C 觸發警報（TechPowerUp 站方 W1zzard 親自評測發現）。'),
+    ('v1.5', '2026-09-02', '新增 ASUS GPU Tweak III Auto-Shutdown 為第 11 個追蹤關鍵字（僅追蹤其過流自動關機功能本身），順序排在 ROG Equalizer 旁邊（同為 ASUS 產品）；新增 PCGH Extreme 站內搜尋來源（先前因 Cloudflare 驗證頁未查核，已排查出正確搜尋路徑 /search/）；「五、搜尋結果明細」新增月份篩選。自本版起，日常內容更新不再逐次遞增版本號，只在架構變動（新增論壇、新增關鍵字、版型調整）時才進版；本版之前的 v1.2～v1.4 仍沿用舊制，其中部分屬於現在會歸類為「內容更新」的項目。'),
+    ('v1.4', '2026-09-02', '核讀 TechPowerUp 與 Tom’s Hardware 自上版以來的新內容（依現行規則屬內容更新，非架構變動）。'),
+    ('v1.3', '2026-08-26', 'Revision History 新增版本時間記錄，並更正 v1.2 的更新時間為上週報告時間。'),
+    ('v1.2', V12_UPDATED_AT, '新增 Hardwareluxx、ComputerBase、PCGH Extreme 與 Overclockers UK 四個論壇來源。'),
+]
+update_log = [
+    ('2026-09-09', 'PCGH Extreme：首次嘗試因網站訂閱／廣告同意視窗卡住頁面，使用者手動處理該視窗後重試成功；核讀 WireView 新增 1 筆——同一起 DLSS 5 熔損事件在德語論壇的獨立討論，並提供與 Hardware Unboxed 事件相符的跨論壇佐證（同一位「擁有贊助 WireView 卻沒使用」的知名 YouTuber）。'),
+    ('2026-09-09', 'TechPowerUp：改用「Newer than」欄位直接篩選 2026-09-02 之後、依日期排序，核讀全部關鍵字，新增本週兩起重大熔損事件報導（DLSS 5 測試熔損、Hardware Unboxed 自家測試機台熔損，後者同時涉及 WireView／ROG Equalizer／GPU Tweak III Auto-Shutdown／ThermalProtect）。Reddit：以 r/ThermalGrizzly 限定＋t=week 核讀 WireView，新增風扇異音案例（含原廠 RMA 率回覆）。'),
+    ('2026-09-02', '修正對 Reddit 搜尋失效原因的誤判——問題並非需要登入，而是 sort=new（依日期排序）參數本身失效，不論登入與否都會跳轉回與關鍵字無關的 r/all 最新內容；移除該參數、改用 relevance 排序（並視需要加上 subreddit 限定與 t=month/week）即可取得真實結果，用此方式核讀全部 11 個關鍵字。「四、使用者評價與改善方向」已依當輪新收錄的 TechPowerUp／Tom’s Hardware／Reddit／PCGH Extreme 明細重新整理 WireView、Ampinel、GPU Shield、ROG Equalizer、ThermalProtect 五張卡片的本週更新（含來源連結）；沒有新證據的產品維持原卡片內容，不強行補新內容。'),
+    ('2026-09-02', '核讀 TechPowerUp（10 個關鍵字全查）與 Tom’s Hardware（WireView）自上版以來的新內容，新增 8 筆明細；ComputerBase、Hardwareluxx、NGA玩家社區、Chiphell、百度貼吧、Overclockers UK、PCGH Extreme 當輪未查核。'),
+]
+version_history_rows = ''.join(
+    f'<li><b>{escape(v)}</b>｜{escape(d)}：{escape(desc)}</li>' for v, d, desc in version_history
+)
+update_log_rows = ''.join(
+    f'<li><b>{escape(d)}</b>：{escape(desc)}</li>' for d, desc in update_log
+)
 period_start_label = PERIOD_START.isoformat()
 period_end_label = PERIOD_END.isoformat()
 latest_reddit_date = max(row['date'] for row in rows if row['source'] == 'Reddit')
@@ -2557,7 +2579,8 @@ section{{margin:20px 0;scroll-margin-top:16px}} h2{{font-size:17px;border-left:4
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
 <section class="muted"><h2>七、Reddit 精確度與廣度確認</h2><ul><li><b>範圍：</b>以 {period_start_label}～{period_end_label} 為日期界線，交叉查找產品全名、常見拼法、相關 PSU 型號、per-pin／telemetry／保護功能詞、12V-2x6／12VHPWR 風險語句，以及標題沒有產品名的主文與留言。</li><li><b>固定查詢線：</b>{escape('；'.join(reddit_required_query_lanes))}。每條查詢至少檢查到超出日期界線，不只讀畫面最前面的結果。</li><li><b>本次覆蓋稽核：</b>已把原兩個月版本向前補查至 2026-01-01；「MSI MPG Ai1600TS」搜尋頁的 7 篇候選逐篇判讀，5 篇納入，2 篇因沒有新增保護證據或已有內容更完整的同型號討論涵蓋而排除。納入 URL 已由產生器自動對帳。</li><li><b>精確度：</b>每篇納入資料都必須在實際可見的標題、主文或留言出現目標產品，並人工排除 NVIDIA Shield、一般 GPU 散熱護罩、OptiGuard 殺蟲劑／電梯零件及其他用途 T-Guard。</li><li><b>廣度：</b>同一篇涉及多項產品時使用多關鍵字標記；點選任一相關產品都能找到該篇，不只歸到第一個產品。</li><li><b>限制：</b>Reddit 搜尋可能動態載入或省略部分內文與留言；因此必須切換 Relevance／New、Posts／Comments、持續讀到日期界線並逐篇核讀。「沒有結果」仍不能解讀為「沒有討論」。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
-<section class="revision-history"><h2>Revision History</h2><ul><li><b>{REPORT_VERSION}</b>｜{generated_at_label}：新增 EZDIY-FAB Alpha TS13 為第 12 個追蹤關鍵字——U 型 12V-2x6 直通轉接器，內建 TFT 螢幕在不需軟體下顯示 GPU 功耗與接頭溫度，85°C 觸發警報（TechPowerUp 站方 W1zzard 親自評測發現）。同一輪也核讀了本週新內容：TechPowerUp 改用「Newer than」欄位直接篩選 2026-09-02 之後、依日期排序，逐一核讀全部關鍵字，新增本週兩起重大熔損事件報導（DLSS 5 測試熔損、Hardware Unboxed 自家測試機台熔損，後者同時涉及 WireView／ROG Equalizer／GPU Tweak III Auto-Shutdown／ThermalProtect）；Reddit 以 r/ThermalGrizzly 限定＋t=week 核讀 WireView，新增風扇異音案例（含原廠 RMA 率回覆）；PCGH Extreme 首次嘗試因網站訂閱／廣告同意視窗卡住頁面而未能查核，使用者手動處理該視窗後重試成功，核讀 WireView 新增 1 筆——同一起 DLSS 5 事件在德語論壇的獨立討論，並提供與 Hardware Unboxed 事件相符的跨論壇佐證（同一位「擁有贊助 WireView 卻沒使用」的知名 YouTuber）。</li><li><b>v1.5</b>｜2026-09-02：新增 ASUS GPU Tweak III Auto-Shutdown 為第 11 個追蹤關鍵字（僅追蹤其過流自動關機功能本身），順序排在 ROG Equalizer 旁邊（同為 ASUS 產品）。修正對 Reddit 搜尋失效原因的誤判——問題並非需要登入，而是 sort=new（依日期排序）參數本身失效，不論登入與否都會跳轉回與關鍵字無關的 r/all 最新內容；移除該參數、改用 relevance 排序（並視需要加上 subreddit 限定與 t=month/week）即可取得真實結果，用此方式核讀全部 11 個關鍵字，並新增 PCGH Extreme（先前因 Cloudflare 驗證頁未查核，已排查出正確搜尋路徑 /search/）。「四、使用者評價與改善方向」已依本輪新收錄的 TechPowerUp／Tom's Hardware／Reddit／PCGH Extreme 明細重新整理 WireView、Ampinel、GPU Shield、ROG Equalizer、ThermalProtect 五張卡片的本週更新（含來源連結）；沒有新證據的產品（GPU Safeguard、Titanload、T-Guard、OptiGuard、TempGuard）維持原卡片內容，不強行補新內容。「五、搜尋結果明細」新增月份篩選（與關鍵字／論壇／New! 篩選並列，可複合篩選）。日常內容更新（新增明細、修正查詢方式、充實既有卡片）不再逐次遞增版本號，只在架構變動（新增論壇、新增關鍵字、版型調整）時才進版。</li><li><b>v1.4</b>｜2026-09-02：核讀 TechPowerUp（10 個關鍵字全查）與 Tom's Hardware（WireView）自上版以來的新內容，新增 8 筆明細；ComputerBase、Hardwareluxx、NGA玩家社區、Chiphell、百度貼吧、Overclockers UK、PCGH Extreme 本次未查核。</li><li><b>v1.3</b>｜2026-08-26 09:33:01 Asia/Taipei：Revision History 新增版本時間記錄，並更正 v1.2 的更新時間為上週報告時間。</li><li><b>v1.2</b>｜{V12_UPDATED_AT}：新增 Hardwareluxx、ComputerBase、PCGH Extreme 與 Overclockers UK。</li></ul></section>
+<section class="revision-history"><h2>版本紀錄（架構變動）</h2><div class="note" style="margin-top:0">只記錄新增論壇來源、新增／調整追蹤關鍵字、版型或篩選功能調整這類架構層級變動；逐次的查核與新增明細請見下方「內容更新紀錄」。</div><ul>{version_history_rows}</ul></section>
+<section class="revision-history"><h2>內容更新紀錄</h2><div class="note" style="margin-top:0">記錄每次查核實際跑了哪些來源／關鍵字、找到並新增了什麼；不對應版本號，同一版本號下可能有多筆更新紀錄。</div><ul>{update_log_rows}</ul></section>
 <div class="note"><b>方法與限制：</b>搜尋範圍包含標題、主文及留言；標題未出現產品名，只要內文或留言完整命中且可排除同名產品，也會納入。每項產品以產品全名、品牌／型號、功能情境交叉查找；Reddit 另分別檢視 Relevance、New 與 Comments。ComputerBase 與 Hardwareluxx 以站內可讀討論頁及站外索引交叉查找後，再逐頁閱讀。結果逐一記錄「納入／排除原因」，再以標準化 URL 與報告明細對帳。產生器若發現已判定納入的 URL 不在明細中，會直接中止。本版共收錄 {len(rows)} 筆已核讀主文與頁面可見留言。摘要只寫可見內容，不做臆測；無留言、跨站轉貼、未驗證圖片、單一使用者設定或留言者推測均會明確標示。Reddit 的「更多回覆」與未載入留言可能無法完整讀取，因此留言摘要代表本次可見內容，不代表整串所有留言。已排除 OptiGuard 殺蟲劑／電梯零件、其他用途的 T-Guard，以及散熱護罩類 GPU shield。<br><b>前版比對：</b>{escape(previous_report_label)}；以明細的標準化連結判定 New!，不使用標題文字比對。{'' if previous_report else '本次找不到前版，因此不將既有資料全部標為 New!。'}</div>
 <footer class="muted">本報告只反映本次可讀取且通過關鍵字與同名產品排除規則的內容；有效明細不足不代表論壇沒有相關討論。</footer>
 <script>
