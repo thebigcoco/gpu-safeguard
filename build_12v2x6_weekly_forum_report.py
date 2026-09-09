@@ -1270,7 +1270,7 @@ rows.extend([
     },
 ])
 
-kw = ['WireView', 'GPU Safeguard', 'GPU Shield', 'OptiGuard', 'Ampinel', 'ROG Equalizer', 'GPU Tweak III Auto-Shutdown', 'Titanload', 'T-Guard', 'ThermalProtect', 'TempGuard']
+kw = ['WireView', 'GPU Safeguard', 'GPU Shield', 'OptiGuard', 'Ampinel', 'ROG Equalizer', 'GPU Tweak III Auto-Shutdown', 'Titanload', 'T-Guard', 'ThermalProtect', 'TempGuard', 'EZDIY-FAB Alpha TS13']
 keyword_info = {
     'WireView': (
         '逐針腳量測 12V-2x6 的電流，並監控電壓、溫度與功率；用於提早發現負載不均、接觸異常與過熱風險。',
@@ -1327,6 +1327,11 @@ keyword_info = {
         'ASUS ROG 官方技術說明',
         'https://rog-forum.asus.com/t5/technologies-explained/gpu-tweak-iii-v2-1-8-0-adds-power-detector-auto-shutdown/ba-p/1158169'
     ),
+    'EZDIY-FAB Alpha TS13': (
+        'U 型 12V-2x6 直通轉接器，內建 TFT 螢幕即時顯示 GPU 功耗與接頭溫度，無需搭配軟體；溫度超過 85°C 會發出警報。鋁合金外殼，標稱可支援 600W，提供黑／白兩色，並各有正向與翻轉（相容部分 ASUS 顯示卡接頭方向）版本。',
+        'EZDIY-FAB 官方商品頁',
+        'https://ezdiy-fab.com/collections/12v-2x6-adapter'
+    ),
 }
 keyword_category = {
     'WireView': 'GPU 端串接式監控／保護轉接器',
@@ -1340,6 +1345,7 @@ keyword_category = {
     'ThermalProtect': '內建被動溫度開關的 12V-2x6 線材',
     'TempGuard': 'PSU 專用溫度感測保護線材',
     'GPU Tweak III Auto-Shutdown': 'GPU Tweak III 軟體內選配的逐 pin 過流自動關機功能（僅此功能，非整套軟體）',
+    'EZDIY-FAB Alpha TS13': 'GPU 端無軟體溫度／功耗顯示與警報轉接器',
 }
 keyword_vendor = {
     'WireView': 'Thermal Grizzly',
@@ -1353,6 +1359,7 @@ keyword_vendor = {
     'ThermalProtect': 'CORSAIR',
     'TempGuard': 'ASRock',
     'GPU Tweak III Auto-Shutdown': 'ASUS',
+    'EZDIY-FAB Alpha TS13': 'EZDIY-FAB',
 }
 # 產品功能／關鍵字功能表／使用者評價三個區塊改依品牌字母排序（不分大小寫）呈現；
 # 這連帶決定第五節篩選晶片的關鍵字順序，讓全報告排序邏輯一致。
@@ -1361,6 +1368,7 @@ product_display_names = {
     k: (
         'MSI GPU Safeguard+' if k == 'GPU Safeguard'
         else 'ASUS ROG Equalizer' if k == 'ROG Equalizer'
+        else k if k == 'EZDIY-FAB Alpha TS13'
         else f'{vendor} {k}'
     )
     for k, vendor in keyword_vendor.items()
@@ -1546,6 +1554,7 @@ keyword_search_aliases = {
     'ThermalProtect': 'ThermalProtect、Thermal Protect、CORSAIR ThermalProtect、海盜船溫控保護線、OTP 高溫保護線、防燒線',
     'TempGuard': 'TempGuard、ASRock TempGuard、華擎溫度保護線、熱敏保護線、高溫斷電',
     'GPU Tweak III Auto-Shutdown': 'GPU Tweak III auto-shutdown、GPU Tweak III shutdown、Power Detector+ auto-shutdown、Power Detector+ shutdown、ROG Astral／ROG Matrix per-pin shutdown、12.5A 過流保護；注意：純粹的 GPU Tweak III 超頻／風扇／RGB 相關討論不算命中，須同時提到過流關機／Power Detector+ 才納入',
+    'EZDIY-FAB Alpha TS13': 'EZDIY-FAB Alpha TS13、EZDIY-FAB 12V-2x6 adapter、Alpha TS13、EZDIY 溫度顯示轉接器',
 }
 reddit_required_query_lanes = (
     '產品全名（Relevance＋New）',
@@ -1713,6 +1722,13 @@ pm_info['GPU Tweak III Auto-Shutdown'] = (
     'P1：公開 12.5A 門檻與可調觸發秒數（1～5 分鐘）的訂定依據，並說明是否會隨韌體或硬體世代調整。P1：提供不需額外設定即可啟用的建議預設值，並清楚說明關機後如何判斷是誤報還是真正過流。P1：考慮納入電壓驟降等輔助監控訊號，補強單純電流門檻的偵測盲點。P2：擴大支援到更多具備逐 pin 監控硬體的機型，而非僅限最高階卡。',
     '剛列入追蹤：TechPowerUp／Reddit 各 1 篇討論，尚無擁有者觸發或長期使用回報',
     'https://www.techpowerup.com/forums/threads/asus-gpu-tweak-iii-adds-auto-shutdown-to-prevent-12v-2%C3%976-meltdowns.351662/'
+)
+pm_info['EZDIY-FAB Alpha TS13'] = (
+    'TechPowerUp 由 W1zzard 親自評測：官方描述可在不需軟體的情況下即時顯示 GPU 功耗與接頭溫度，評測並以 600W 負載＋熱風槍測試驗證 85°C 警報確實會觸發。',
+    '留言者 Erratic4^2 表示雖然肯定這個裝置的構想，但如果要花大錢組頂級主機，他仍寧願多花錢買有逐 pin 監控的 WireView Pro II（並表示自己已經買了）。另一位留言者 roman 質疑評測本身的量測方法：分流電阻＋類比數位轉換器的做法準確度未經已知誤差的量測儀器驗證，建議應改用 TRUE RMS 電流鉗表或搭配示波器的電流探棒才能驗證讀值。這款產品本身只顯示整體功耗與單點接頭溫度，不像 WireView／Ampinel 有逐 pin 電流資料，也沒有自動關機或降載機制。',
+    'P1：公開量測方法與校正依據，說明功耗與溫度讀值的誤差範圍。P1：考慮加入逐 pin（而非僅整體）電流顯示，或至少說明為何選擇單點溫度感測而非逐 pin。P2：累積更多獨立使用者的長期使用與觸發案例，目前僅有 1 篇官方評測、尚無社群長期回報。',
+    '剛列入追蹤：僅 1 篇 TechPowerUp 官方評測與討論串，尚無使用者長期回報',
+    'https://www.techpowerup.com/review/ezdiy-fab-alpha-ts13/'
 )
 
 # Refresh product-level evidence and priorities with the newly read owner posts.
@@ -2037,10 +2053,6 @@ rows.extend([
 # 2026-09-09 weekly refresh：TechPowerUp 用「Newer than」欄位直接篩選 2026-09-02 之後、
 # 依日期排序，逐一核讀全部 11 個關鍵字；Reddit 用 subreddit 限定＋t=week 核讀 WireView。
 # PCGH Extreme 這次因網站彈出的訂閱／廣告同意視窗導致頁面渲染卡住，未能查核，留待下次。
-# 另外發現 TechPowerUp 上有一款新產品 EZDIY-FAB Alpha TS13（W1zzard 親自評測：U 型
-# 12V-2x6 轉接器＋內建 TFT 螢幕顯示 GPU 功耗與接頭溫度、無需軟體、85°C 警報）尚未列入
-# 追蹤關鍵字，先記錄於此，是否新增為第 12 個關鍵字待使用者確認：
-# https://www.techpowerup.com/forums/threads/ezdiy-fab-alpha-ts13.351975/
 rows.extend([
     {
         'date': '2026-09-08', 'source': 'TechPowerUp Forums', 'keyword': 'WireView', 'match': '留言',
@@ -2064,6 +2076,14 @@ rows.extend([
         'summary': '發文者表示 WireView Pro 2 原本運作良好，某天開機時突然聽到風扇發出研磨聲，聯繫客服後先把風扇關閉；他也提醒其他使用者留意這個潛在問題。',
         'comments': '至少兩名其他使用者回報相同狀況：一人也收到原廠承諾寄送新風扇，並反問風扇對整體監控功能是否關鍵（其裝置本身溫度不高，約 50°C）；另一人表示自己有 3 台裝置，全部在使用幾個月後都開始出現異音。Thermal Grizzly 官方代表 Grizzly_Erik 在串內回覆，說明整體 RMA 率低於 1%，強調在真實生產流程（零件公差、供應商、組裝、運輸）下無法保證每一台都完全無瑕；並指出願意在網路上發文抱怨的多是遇到問題的使用者，大量正常運作的使用者通常不會特別發文，因此討論串中的負面案例比例不能直接當作整體故障率。這是原廠對已知風扇異音問題的公開說明，不是獨立第三方的故障率統計。',
         'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1w909u4/wireview_pro_2_fan_started_grinding_today/'
+    },
+    {
+        'date': '2026-09-08', 'source': 'TechPowerUp Forums', 'keyword': 'EZDIY-FAB Alpha TS13',
+        'match': '標題＋內文＋留言',
+        'title': 'EZDIY-FAB Alpha TS13',
+        'summary': 'TechPowerUp 站方人員 W1zzard 親自撰寫評測：EZDIY-FAB Alpha TS13 是 U 型 12V-2x6 直通轉接器，內建 TFT 螢幕在不需軟體的情況下即時顯示 GPU 功耗與接頭溫度，超過 85°C 會發出警報；評測以 600W 負載並用熱風槍加熱測試，確認警報確實會觸發。',
+        'comments': '留言者 Erratic4^2 表示肯定這個裝置的構想與整體評價，但認為如果要花大錢組頂級主機，他仍寧願多花錢買有逐 pin 監控的 Thermal Grizzly WireView Pro II，並表示自己已經買了。另一位留言者 phanbuey 附和表示自己也是相同想法。留言者 roman 則從量測方法角度提出質疑：評測用分流電阻＋類比數位轉換器量測電流，準確度需要用已知誤差的儀器驗證，建議應改用 TRUE RMS 電流鉗表或搭配示波器的電流探棒（他提到 igorslab 有這類設備）才能驗證讀值是否準確；這是留言者對評測方法論的技術意見，不是對產品本身故障或觸發效果的評論。',
+        'url': 'https://www.techpowerup.com/forums/threads/ezdiy-fab-alpha-ts13.351975/'
     },
 ])
 
@@ -2415,7 +2435,7 @@ previous_report_date_match = re.search(r'(\d{4}-\d{2}-\d{2})', previous_report_l
 weekly_focus_start = previous_report_date_match.group(1) if previous_report_date_match else PERIOD_START.isoformat()
 weekly_focus_range = f'{weekly_focus_start}～{PERIOD_END.isoformat()}'
 generated_at_label = f"{GENERATED_AT.strftime('%Y-%m-%d %H:%M:%S')} Asia/Taipei"
-REPORT_VERSION = 'v1.5'
+REPORT_VERSION = 'v1.6'
 V12_UPDATED_AT = '2026-08-19 14:45:56 Asia/Taipei'
 period_start_label = PERIOD_START.isoformat()
 period_end_label = PERIOD_END.isoformat()
@@ -2520,11 +2540,11 @@ section{{margin:20px 0;scroll-margin-top:16px}} h2{{font-size:17px;border-left:4
 </div>
 <div class="tblbox"><table id="detailTable"><thead><tr><th>發文日期（新到舊）</th><th>來源</th><th>關鍵字</th><th>命中位置</th><th>標題</th><th>主文內容（發生什麼）</th><th>留言結論／使用者評價</th><th>連結</th></tr></thead><tbody>{detail}</tbody></table></div></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
-<section class="muted"><h2>六、搜尋來源狀態</h2><ul><li>Reddit：納入 {sum(r['source']=='Reddit' for r in rows)} 篇唯一討論串；最新可核對結果為 {latest_reddit_date}。本次以 r/ThermalGrizzly 限定＋t=week 核讀 WireView，新增 1 筆（風扇異音，含原廠 RMA 率回覆）；其餘 10 個關鍵字本次未查核。</li><li>Tom's Hardware Forums：納入 {sum(r['source']=="Tom's Hardware Forums" for r in rows)} 筆；本次未查核。</li><li>TechPowerUp Forums：本次改用「Newer than」欄位直接篩選 2026-09-02 之後、依日期排序，逐一核讀全部 11 個關鍵字，新增 2 筆，包含兩起本週重大熔損事件（DLSS 5 測試熔損、Hardware Unboxed 自家測試機台熔損），後者同時涉及 WireView／ROG Equalizer／GPU Tweak III Auto-Shutdown／ThermalProtect 四個關鍵字。另發現一款尚未追蹤的新產品 EZDIY-FAB Alpha TS13（W1zzard 親自評測），是否新增為第 12 個關鍵字待使用者確認。</li><li>ComputerBase Forum：納入 {sum(r['source']=='ComputerBase Forum' for r in rows)} 筆；本次未查核。</li><li>Hardwareluxx Forum：納入 {sum(r['source']=='Hardwareluxx Forum' for r in rows)} 筆；本次未查核。</li><li>Overclockers UK Forums：納入 {sum(r['source']=='Overclockers UK Forums' for r in rows)} 筆；本次未查核。</li><li>PC Games Hardware Extreme：納入 {sum(r['source']=='PC Games Hardware Extreme' for r in rows)} 筆；本次因網站彈出訂閱／廣告同意視窗導致頁面卡住無法操作，未能查核。</li><li>NGA玩家社區：納入 {sum(r['source']=='NGA玩家社區' for r in rows)} 筆 2025-07-01 以後資料；本次未查核。</li><li>Chiphell：納入 {sum(r['source']=='Chiphell' for r in rows)} 筆 2025-07-01 以後資料；本次未查核。</li><li>百度貼吧：納入 {sum(r['source'].startswith('百度貼吧') for r in rows)} 筆 2025-07-01 以後資料；本次未查核。既有資料均保留英文產品名、中文變體與 12V-2x6 情境搜尋。</li></ul></section>
+<section class="muted"><h2>六、搜尋來源狀態</h2><ul><li>Reddit：納入 {sum(r['source']=='Reddit' for r in rows)} 篇唯一討論串；最新可核對結果為 {latest_reddit_date}。本次以 r/ThermalGrizzly 限定＋t=week 核讀 WireView，新增 1 筆（風扇異音，含原廠 RMA 率回覆）；其餘 10 個關鍵字本次未查核。</li><li>Tom's Hardware Forums：納入 {sum(r['source']=="Tom's Hardware Forums" for r in rows)} 筆；本次未查核。</li><li>TechPowerUp Forums：本次改用「Newer than」欄位直接篩選 2026-09-02 之後、依日期排序，逐一核讀全部 11 個關鍵字，新增 2 筆，包含兩起本週重大熔損事件（DLSS 5 測試熔損、Hardware Unboxed 自家測試機台熔損），後者同時涉及 WireView／ROG Equalizer／GPU Tweak III Auto-Shutdown／ThermalProtect 四個關鍵字；另發現並新增 EZDIY-FAB Alpha TS13 為第 12 個追蹤關鍵字（W1zzard 親自評測的 U 型無軟體溫度／功耗顯示轉接器）。</li><li>ComputerBase Forum：納入 {sum(r['source']=='ComputerBase Forum' for r in rows)} 筆；本次未查核。</li><li>Hardwareluxx Forum：納入 {sum(r['source']=='Hardwareluxx Forum' for r in rows)} 筆；本次未查核。</li><li>Overclockers UK Forums：納入 {sum(r['source']=='Overclockers UK Forums' for r in rows)} 筆；本次未查核。</li><li>PC Games Hardware Extreme：納入 {sum(r['source']=='PC Games Hardware Extreme' for r in rows)} 筆；本次因網站彈出訂閱／廣告同意視窗導致頁面卡住無法操作，未能查核。</li><li>NGA玩家社區：納入 {sum(r['source']=='NGA玩家社區' for r in rows)} 筆 2025-07-01 以後資料；本次未查核。</li><li>Chiphell：納入 {sum(r['source']=='Chiphell' for r in rows)} 筆 2025-07-01 以後資料；本次未查核。</li><li>百度貼吧：納入 {sum(r['source'].startswith('百度貼吧') for r in rows)} 筆 2025-07-01 以後資料；本次未查核。既有資料均保留英文產品名、中文變體與 12V-2x6 情境搜尋。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
 <section class="muted"><h2>七、Reddit 精確度與廣度確認</h2><ul><li><b>範圍：</b>以 {period_start_label}～{period_end_label} 為日期界線，交叉查找產品全名、常見拼法、相關 PSU 型號、per-pin／telemetry／保護功能詞、12V-2x6／12VHPWR 風險語句，以及標題沒有產品名的主文與留言。</li><li><b>固定查詢線：</b>{escape('；'.join(reddit_required_query_lanes))}。每條查詢至少檢查到超出日期界線，不只讀畫面最前面的結果。</li><li><b>本次覆蓋稽核：</b>已把原兩個月版本向前補查至 2026-01-01；「MSI MPG Ai1600TS」搜尋頁的 7 篇候選逐篇判讀，5 篇納入，2 篇因沒有新增保護證據或已有內容更完整的同型號討論涵蓋而排除。納入 URL 已由產生器自動對帳。</li><li><b>精確度：</b>每篇納入資料都必須在實際可見的標題、主文或留言出現目標產品，並人工排除 NVIDIA Shield、一般 GPU 散熱護罩、OptiGuard 殺蟲劑／電梯零件及其他用途 T-Guard。</li><li><b>廣度：</b>同一篇涉及多項產品時使用多關鍵字標記；點選任一相關產品都能找到該篇，不只歸到第一個產品。</li><li><b>限制：</b>Reddit 搜尋可能動態載入或省略部分內文與留言；因此必須切換 Relevance／New、Posts／Comments、持續讀到日期界線並逐篇核讀。「沒有結果」仍不能解讀為「沒有討論」。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
-<section class="revision-history"><h2>Revision History</h2><ul><li><b>{REPORT_VERSION}</b>｜{generated_at_label}：新增 ASUS GPU Tweak III Auto-Shutdown 為第 11 個追蹤關鍵字（僅追蹤其過流自動關機功能本身），順序排在 ROG Equalizer 旁邊（同為 ASUS 產品）。修正對 Reddit 搜尋失效原因的誤判——問題並非需要登入，而是 sort=new（依日期排序）參數本身失效，不論登入與否都會跳轉回與關鍵字無關的 r/all 最新內容；移除該參數、改用 relevance 排序（並視需要加上 subreddit 限定與 t=month/week）即可取得真實結果，用此方式核讀全部 11 個關鍵字，並新增 PCGH Extreme（先前因 Cloudflare 驗證頁未查核，已排查出正確搜尋路徑 /search/）。「四、使用者評價與改善方向」已依本輪新收錄的 TechPowerUp／Tom's Hardware／Reddit／PCGH Extreme 明細重新整理 WireView、Ampinel、GPU Shield、ROG Equalizer、ThermalProtect 五張卡片的本週更新（含來源連結）；沒有新證據的產品（GPU Safeguard、Titanload、T-Guard、OptiGuard、TempGuard）維持原卡片內容，不強行補新內容。「五、搜尋結果明細」新增月份篩選（與關鍵字／論壇／New! 篩選並列，可複合篩選）。日常內容更新（新增明細、修正查詢方式、充實既有卡片）不再逐次遞增版本號，只在架構變動（新增論壇、新增關鍵字、版型調整）時才進版。2026-09-09 內容更新（沿用本版號，非架構變動）：改用 TechPowerUp「Newer than」欄位直接篩選新內容、核讀全部 11 個關鍵字，新增 2 筆，含本週兩起重大熔損事件報導；Reddit 以 r/ThermalGrizzly 限定核讀 WireView 新增 1 筆；PCGH Extreme 因網站訂閱／廣告同意視窗卡住頁面，本次未能查核；另發現尚未追蹤的新產品 EZDIY-FAB Alpha TS13，待使用者確認是否新增為關鍵字。</li><li><b>v1.4</b>｜2026-09-02：核讀 TechPowerUp（10 個關鍵字全查）與 Tom's Hardware（WireView）自上版以來的新內容，新增 8 筆明細；ComputerBase、Hardwareluxx、NGA玩家社區、Chiphell、百度貼吧、Overclockers UK、PCGH Extreme 本次未查核。</li><li><b>v1.3</b>｜2026-08-26 09:33:01 Asia/Taipei：Revision History 新增版本時間記錄，並更正 v1.2 的更新時間為上週報告時間。</li><li><b>v1.2</b>｜{V12_UPDATED_AT}：新增 Hardwareluxx、ComputerBase、PCGH Extreme 與 Overclockers UK。</li></ul></section>
+<section class="revision-history"><h2>Revision History</h2><ul><li><b>{REPORT_VERSION}</b>｜{generated_at_label}：新增 EZDIY-FAB Alpha TS13 為第 12 個追蹤關鍵字——U 型 12V-2x6 直通轉接器，內建 TFT 螢幕在不需軟體下顯示 GPU 功耗與接頭溫度，85°C 觸發警報（TechPowerUp 站方 W1zzard 親自評測發現）。同一輪也核讀了本週新內容：TechPowerUp 改用「Newer than」欄位直接篩選 2026-09-02 之後、依日期排序，逐一核讀全部關鍵字，新增本週兩起重大熔損事件報導（DLSS 5 測試熔損、Hardware Unboxed 自家測試機台熔損，後者同時涉及 WireView／ROG Equalizer／GPU Tweak III Auto-Shutdown／ThermalProtect）；Reddit 以 r/ThermalGrizzly 限定＋t=week 核讀 WireView，新增風扇異音案例（含原廠 RMA 率回覆）；PCGH Extreme 因網站訂閱／廣告同意視窗卡住頁面，本次未能查核。</li><li><b>v1.5</b>｜2026-09-02：新增 ASUS GPU Tweak III Auto-Shutdown 為第 11 個追蹤關鍵字（僅追蹤其過流自動關機功能本身），順序排在 ROG Equalizer 旁邊（同為 ASUS 產品）。修正對 Reddit 搜尋失效原因的誤判——問題並非需要登入，而是 sort=new（依日期排序）參數本身失效，不論登入與否都會跳轉回與關鍵字無關的 r/all 最新內容；移除該參數、改用 relevance 排序（並視需要加上 subreddit 限定與 t=month/week）即可取得真實結果，用此方式核讀全部 11 個關鍵字，並新增 PCGH Extreme（先前因 Cloudflare 驗證頁未查核，已排查出正確搜尋路徑 /search/）。「四、使用者評價與改善方向」已依本輪新收錄的 TechPowerUp／Tom's Hardware／Reddit／PCGH Extreme 明細重新整理 WireView、Ampinel、GPU Shield、ROG Equalizer、ThermalProtect 五張卡片的本週更新（含來源連結）；沒有新證據的產品（GPU Safeguard、Titanload、T-Guard、OptiGuard、TempGuard）維持原卡片內容，不強行補新內容。「五、搜尋結果明細」新增月份篩選（與關鍵字／論壇／New! 篩選並列，可複合篩選）。日常內容更新（新增明細、修正查詢方式、充實既有卡片）不再逐次遞增版本號，只在架構變動（新增論壇、新增關鍵字、版型調整）時才進版。</li><li><b>v1.4</b>｜2026-09-02：核讀 TechPowerUp（10 個關鍵字全查）與 Tom's Hardware（WireView）自上版以來的新內容，新增 8 筆明細；ComputerBase、Hardwareluxx、NGA玩家社區、Chiphell、百度貼吧、Overclockers UK、PCGH Extreme 本次未查核。</li><li><b>v1.3</b>｜2026-08-26 09:33:01 Asia/Taipei：Revision History 新增版本時間記錄，並更正 v1.2 的更新時間為上週報告時間。</li><li><b>v1.2</b>｜{V12_UPDATED_AT}：新增 Hardwareluxx、ComputerBase、PCGH Extreme 與 Overclockers UK。</li></ul></section>
 <div class="note"><b>方法與限制：</b>搜尋範圍包含標題、主文及留言；標題未出現產品名，只要內文或留言完整命中且可排除同名產品，也會納入。每項產品以產品全名、品牌／型號、功能情境交叉查找；Reddit 另分別檢視 Relevance、New 與 Comments。ComputerBase 與 Hardwareluxx 以站內可讀討論頁及站外索引交叉查找後，再逐頁閱讀。結果逐一記錄「納入／排除原因」，再以標準化 URL 與報告明細對帳。產生器若發現已判定納入的 URL 不在明細中，會直接中止。本版共收錄 {len(rows)} 筆已核讀主文與頁面可見留言。摘要只寫可見內容，不做臆測；無留言、跨站轉貼、未驗證圖片、單一使用者設定或留言者推測均會明確標示。Reddit 的「更多回覆」與未載入留言可能無法完整讀取，因此留言摘要代表本次可見內容，不代表整串所有留言。已排除 OptiGuard 殺蟲劑／電梯零件、其他用途的 T-Guard，以及散熱護罩類 GPU shield。<br><b>前版比對：</b>{escape(previous_report_label)}；以明細的標準化連結判定 New!，不使用標題文字比對。{'' if previous_report else '本次找不到前版，因此不將既有資料全部標為 New!。'}</div>
 <footer class="muted">本報告只反映本次可讀取且通過關鍵字與同名產品排除規則的內容；有效明細不足不代表論壇沒有相關討論。</footer>
 <script>
