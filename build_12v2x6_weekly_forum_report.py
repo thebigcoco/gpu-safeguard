@@ -2467,7 +2467,7 @@ new_keywords = {'EZDIY-FAB Alpha TS13'}
 # 版本紀錄（架構變動：新增論壇／關鍵字／版型調整）與內容更新紀錄（每次查核跑了什麼、
 # 找到什麼）分成兩份清單呈現，避免版本號被日常內容更新灌水，也讓兩種資訊各自好找。
 version_history = [
-    ('v1.6', '2026-09-09', '新增 EZDIY-FAB Alpha TS13 為第 12 個追蹤關鍵字——U 型 12V-2x6 直通轉接器，內建 TFT 螢幕在不需軟體下顯示 GPU 功耗與接頭溫度，85°C 觸發警報（TechPowerUp 站方 W1zzard 親自評測發現）。'),
+    ('v1.6', '2026-09-09', '新增 EZDIY-FAB Alpha TS13 為第 12 個追蹤關鍵字——U 型 12V-2x6 直通轉接器，內建 TFT 螢幕在不需軟體下顯示 GPU 功耗與接頭溫度，85°C 觸發警報（TechPowerUp 站方 W1zzard 親自評測發現）。「五、搜尋結果明細」改為預設只顯示前 10 筆（依目前篩選條件），點擊「顯示更多」再逐次多顯示 10 筆，避免長表格一次全部展開。'),
     ('v1.5', '2026-09-02', '新增 ASUS GPU Tweak III Auto-Shutdown 為第 11 個追蹤關鍵字（僅追蹤其過流自動關機功能本身），順序排在 ROG Equalizer 旁邊（同為 ASUS 產品）；新增 PCGH Extreme 站內搜尋來源（先前因 Cloudflare 驗證頁未查核，已排查出正確搜尋路徑 /search/）；「五、搜尋結果明細」新增月份篩選。自本版起，日常內容更新不再逐次遞增版本號，只在架構變動（新增論壇、新增關鍵字、版型調整）時才進版；本版之前的 v1.2～v1.4 仍沿用舊制，其中部分屬於現在會歸類為「內容更新」的項目。'),
     ('v1.4', '2026-09-02', '核讀 TechPowerUp 與 Tom’s Hardware 自上版以來的新內容（依現行規則屬內容更新，非架構變動）。'),
     ('v1.3', '2026-08-26', 'Revision History 新增版本時間記錄，並更正 v1.2 的更新時間為上週報告時間。'),
@@ -2557,6 +2557,7 @@ section{{margin:20px 0;scroll-margin-top:16px}} h2{{font-size:17px;border-left:4
 .pm-products{{display:grid;gap:14px}} .pm-product{{background:var(--card);border:1px solid #d9e0ea;border-radius:12px;overflow:hidden;box-shadow:0 3px 12px rgba(35,52,78,.05)}} .pm-product-head{{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 16px;background:linear-gradient(135deg,#f5f8ff,#fff);border-bottom:1px solid var(--line)}} .pm-product-head h3{{display:flex;align-items:center;gap:8px;margin:2px 0 0;font-size:17px;color:#173b7a}} .pm-kicker{{font-size:10.5px;font-weight:700;letter-spacing:.08em;color:var(--muted)}} .pm-aspects{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}} .pm-aspect{{margin:0;padding:14px 16px;border-right:1px solid var(--line)}} .pm-aspect:last-child{{border-right:0}} .pm-aspect h4{{margin:0 0 9px;padding:0 0 7px;border-bottom:2px solid;font-size:13px}} .pm-positive h4{{color:#166534;border-color:#86c99a}} .pm-negative h4{{color:#991b1b;border-color:#efaaaa}} .pm-action h4{{color:#1d4ed8;border-color:#9ab8f5}} .pm-list{{margin:0;padding-left:18px;color:#374151}} .pm-list li{{margin:0 0 7px;padding-left:2px;line-height:1.62}} .pm-list li:last-child{{margin-bottom:0}} .pm-list li::marker{{color:#8090a8}} .pm-empty{{margin:0;color:var(--muted);font-style:italic}} .pm-new{{margin-top:11px;padding:10px 11px;background:#fff8ed;border:1px solid #fed7aa;border-radius:8px}} .pm-new-title{{display:flex;align-items:center;gap:6px;margin-bottom:7px;color:#9a4b08;font-size:12px}} .pm-new .pm-list{{color:#533b26}} .pm-new-source{{margin-top:7px;font-size:12px;line-height:1.7}} .pm-new-source>.new-badge{{margin-right:5px}} .pm-new-source>b{{color:#9a4b08}} .pm-evidence{{display:flex;align-items:flex-start;gap:12px;padding:10px 16px;background:#fafbfc;border-top:1px solid var(--line);font-size:12px}} .pm-evidence>a{{font-weight:600;white-space:nowrap}} .pm-evidence .pm-new-source{{margin:0;padding-left:12px;border-left:1px solid var(--line)}}
 .new-badge{{display:inline-block;padding:2px 7px;border-radius:999px;background:#dc2626;color:#fff;font-size:11px;font-weight:700;vertical-align:1px}} .revision-history{{margin-top:26px;padding:13px 16px;background:var(--card);border:1px solid var(--line);border-radius:10px}} .revision-history h2{{margin:0 0 8px;font-size:15px}} .revision-history ul{{margin:0;padding-left:20px}} .revision-history b{{color:#1d4ed8}}
 .filters{{display:grid;gap:10px;margin:0 0 12px;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:10px}} .filter-group{{display:grid;grid-template-columns:62px 1fr;gap:10px;align-items:start}} .filter-label{{padding-top:6px;font-size:12px;color:var(--muted);font-weight:600}} .chips{{display:flex;flex-wrap:wrap;gap:7px}} .filter-chip{{border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);padding:5px 11px;font:inherit;font-size:12.5px;cursor:pointer}} .filter-chip:hover{{border-color:#93b4f4;background:#f5f8ff}} .filter-chip.active{{border-color:var(--accent);background:var(--accent);color:#fff}} .new-filter{{color:#b91c1c;border-color:#fecaca;font-weight:700}} .new-filter.active{{border-color:#b91c1c;background:#dc2626;color:#fff}} .result-count{{color:var(--muted);font-size:12.5px;text-align:right}} tr[hidden]{{display:none}}
+.load-more-row{{display:flex;justify-content:center;padding:14px 0}} .load-more-btn{{border:1px solid var(--accent);border-radius:999px;background:#fff;color:var(--accent);padding:8px 22px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}} .load-more-btn:hover{{background:var(--accent);color:#fff}} .load-more-btn[hidden]{{display:none}}
 @media(max-width:900px){{.wrap{{padding:14px}}.tblbox{{overflow-x:auto}}table{{min-width:1200px}}.pm-priorities,.focus-grid,.product-grid{{grid-template-columns:1fr}}.focus-summary{{grid-template-columns:1fr}}.focus-more{{grid-column:auto}}.pm-product-head{{align-items:flex-start;flex-direction:column}}.pm-product-head .evidence{{width:100%;white-space:normal}}.pm-aspects{{grid-template-columns:1fr}}.pm-aspect{{border-right:0;border-bottom:1px solid var(--line)}}.pm-aspect:last-child{{border-bottom:0}}.pm-evidence{{display:block}}.pm-evidence .pm-new-source{{margin-top:8px;padding:8px 0 0;border-left:0;border-top:1px solid var(--line)}}}} @media(max-width:600px){{.brand-title{{align-items:flex-start}}.brand-logo{{width:42px;height:42px}}}}
 </style></head><body><div class="wrap">
 <header><div class="brand-title"><img class="brand-logo" src="thebigcoco-coconut-logo.png" alt="TheBigCoco 椰子標誌"><div class="brand-copy"><h1>12V-2x6 / 12VHPWR 保護產品 — 每週論壇報告</h1><span class="meta"><b>{REPORT_VERSION}</b>｜產生時間：<b>{generated_at_label}</b>｜資料期間：{period_start_label}～{period_end_label}</span></div></div></header>
@@ -2588,9 +2589,10 @@ section{{margin:20px 0;scroll-margin-top:16px}} h2{{font-size:17px;border-left:4
   <div class="filter-group"><span class="filter-label">論壇</span><div class="chips" id="forumChips"><button type="button" class="filter-chip active" data-value="">全部</button>{forum_chips}</div></div>
   <div class="filter-group"><span class="filter-label">月份</span><div class="chips" id="monthChips"><button type="button" class="filter-chip active" data-value="">全部</button>{month_chips}</div></div>
   <div class="filter-group"><span class="filter-label">版本</span><div class="chips" id="newChips"><button type="button" class="filter-chip active" data-value="">全部</button><button type="button" class="filter-chip new-filter" data-value="1">New!</button></div></div>
-  <div class="result-count">顯示 <b id="visibleCount">{len(rows)}</b>／{len(rows)} 筆</div>
+  <div class="result-count">顯示 <b id="visibleCount">{len(rows)}</b>／<span id="matchedCount">{len(rows)}</span> 筆</div>
 </div>
-<div class="tblbox"><table id="detailTable"><thead><tr><th>發文日期（新到舊）</th><th>來源</th><th>關鍵字</th><th>命中位置</th><th>標題</th><th>主文內容（發生什麼）</th><th>留言結論／使用者評價</th><th>連結</th></tr></thead><tbody>{detail}</tbody></table></div></section>
+<div class="tblbox"><table id="detailTable"><thead><tr><th>發文日期（新到舊）</th><th>來源</th><th>關鍵字</th><th>命中位置</th><th>標題</th><th>主文內容（發生什麼）</th><th>留言結論／使用者評價</th><th>連結</th></tr></thead><tbody>{detail}</tbody></table></div>
+<div class="load-more-row"><button type="button" id="loadMoreBtn" class="load-more-btn" hidden>顯示更多</button></div></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
 <section class="muted"><h2>六、搜尋來源狀態</h2><ul><li>Reddit：納入 {sum(r['source']=='Reddit' for r in rows)} 篇唯一討論串；最新可核對結果為 {latest_reddit_date}。本次以 r/ThermalGrizzly 限定＋t=week 核讀 WireView，新增 1 筆（風扇異音，含原廠 RMA 率回覆）；其餘 10 個關鍵字本次未查核。</li><li>Tom's Hardware Forums：納入 {sum(r['source']=="Tom's Hardware Forums" for r in rows)} 筆；本次未查核。</li><li>TechPowerUp Forums：本次改用「Newer than」欄位直接篩選 2026-09-02 之後、依日期排序，逐一核讀全部 11 個關鍵字，新增 2 筆，包含兩起本週重大熔損事件（DLSS 5 測試熔損、Hardware Unboxed 自家測試機台熔損），後者同時涉及 WireView／ROG Equalizer／GPU Tweak III Auto-Shutdown／ThermalProtect 四個關鍵字；另發現並新增 EZDIY-FAB Alpha TS13 為第 12 個追蹤關鍵字（W1zzard 親自評測的 U 型無軟體溫度／功耗顯示轉接器）。</li><li>ComputerBase Forum：納入 {sum(r['source']=='ComputerBase Forum' for r in rows)} 筆；本次未查核。</li><li>Hardwareluxx Forum：納入 {sum(r['source']=='Hardwareluxx Forum' for r in rows)} 筆；本次未查核。</li><li>Overclockers UK Forums：納入 {sum(r['source']=='Overclockers UK Forums' for r in rows)} 筆；本次未查核。</li><li>PC Games Hardware Extreme：納入 {sum(r['source']=='PC Games Hardware Extreme' for r in rows)} 筆；首次嘗試時網站彈出訂閱／廣告同意視窗導致頁面卡住無法操作，使用者手動處理該視窗後重試成功。本次以站內 /search/ 表單、「Neuer als」篩選 2026-09-02 之後、依日期排序核讀 WireView，新增 1 筆——同一起 DLSS 5 熔損事件在德語論壇的獨立討論，並提供了與 Hardware Unboxed 事件相符的跨論壇佐證；其餘 11 個關鍵字本次未查核。</li><li>NGA玩家社區：納入 {sum(r['source']=='NGA玩家社區' for r in rows)} 筆 2025-07-01 以後資料；本次未查核。</li><li>Chiphell：納入 {sum(r['source']=='Chiphell' for r in rows)} 筆 2025-07-01 以後資料；本次未查核。</li><li>百度貼吧：納入 {sum(r['source'].startswith('百度貼吧') for r in rows)} 筆 2025-07-01 以後資料；本次未查核。既有資料均保留英文產品名、中文變體與 12V-2x6 情境搜尋。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
@@ -2603,21 +2605,27 @@ section{{margin:20px 0;scroll-margin-top:16px}} h2{{font-size:17px;border-left:4
 <script>
 const detailRows = [...document.querySelectorAll('#detailTable tbody tr')];
 const visibleCount = document.getElementById('visibleCount');
+const matchedCount = document.getElementById('matchedCount');
+const loadMoreBtn = document.getElementById('loadMoreBtn');
+const PAGE_SIZE = 10;
 let selectedKeyword = '';
 let selectedForum = '';
 let selectedMonth = '';
 let selectedNew = '';
+let shownCount = PAGE_SIZE;
 function applyFilters() {{
-  let visible = 0;
-  detailRows.forEach(row => {{
-    const show = (!selectedKeyword || row.dataset.keyword.split('|').includes(selectedKeyword)) &&
-                 (!selectedForum || row.dataset.forum === selectedForum) &&
-                 (!selectedMonth || row.dataset.month === selectedMonth) &&
-                 (!selectedNew || row.dataset.new === selectedNew);
-    row.hidden = !show;
-    if (show) visible++;
-  }});
-  visibleCount.textContent = visible;
+  const matched = detailRows.filter(row =>
+    (!selectedKeyword || row.dataset.keyword.split('|').includes(selectedKeyword)) &&
+    (!selectedForum || row.dataset.forum === selectedForum) &&
+    (!selectedMonth || row.dataset.month === selectedMonth) &&
+    (!selectedNew || row.dataset.new === selectedNew)
+  );
+  const shown = Math.min(shownCount, matched.length);
+  const shownSet = new Set(matched.slice(0, shown));
+  detailRows.forEach(row => {{ row.hidden = !shownSet.has(row); }});
+  visibleCount.textContent = shown;
+  matchedCount.textContent = matched.length;
+  loadMoreBtn.hidden = shown >= matched.length;
 }}
 function bindChips(containerId, onSelect) {{
   const buttons = [...document.querySelectorAll(`#${{containerId}} .filter-chip`)];
@@ -2625,6 +2633,7 @@ function bindChips(containerId, onSelect) {{
     buttons.forEach(item => item.classList.remove('active'));
     button.classList.add('active');
     onSelect(button.dataset.value);
+    shownCount = PAGE_SIZE;
     applyFilters();
   }}));
 }}
@@ -2632,6 +2641,11 @@ bindChips('keywordChips', value => selectedKeyword = value);
 bindChips('forumChips', value => selectedForum = value);
 bindChips('monthChips', value => selectedMonth = value);
 bindChips('newChips', value => selectedNew = value);
+loadMoreBtn.addEventListener('click', () => {{
+  shownCount += PAGE_SIZE;
+  applyFilters();
+}});
+applyFilters();
 </script>
 </div></body></html>'''
 OUT.write_text(html, encoding='utf-8')
