@@ -2400,6 +2400,14 @@ pm_weekly_updates = {
             ('PCGH Extreme 3 年長期使用經驗', 'https://extreme.pcgameshardware.de/threads/high-power-stecker-defekt.677281/'),
         ],
     },
+    'EZDIY-FAB Alpha TS13': {
+        'pros': '',
+        'cons': '',
+        'actions': '',
+        'sources': [
+            ('TechPowerUp 官方評測與討論串', 'https://www.techpowerup.com/review/ezdiy-fab-alpha-ts13/'),
+        ],
+    },
 }
 
 def pm_points(value):
