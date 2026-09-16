@@ -2100,6 +2100,60 @@ rows.extend([
     },
 ])
 
+# 2026-09-16 weekly refresh：TechPowerUp 用「Newer than」= 2026-09-08、依日期排序，
+# 逐一核讀全部 12 個關鍵字；Reddit 針對 TempGuard 事件追查原始貼文；PCGH Extreme 用
+# 「Neuer als」= 2026-09-08 核讀 Ampinel／GPU Shield。GPU Tweak III Auto-Shutdown、
+# Titanload、T-Guard、OptiGuard、GPU Safeguard 本次查核沒有找到新內容。
+rows.extend([
+    {
+        'date': '2026-09-12', 'source': 'TechPowerUp Forums', 'keyword': 'GPU Shield',
+        'keywords': ['GPU Shield', 'WireView', 'ROG Equalizer', 'Ampinel', 'ThermalProtect'],
+        'match': '標題＋內文＋留言',
+        'title': 'Cooler Master GPU Shield Adapter Officially Launches in the US',
+        'summary': 'Cooler Master GPU Shield 轉接線正式在美國上市，售價 49.99 美元；先前已於 2026 年 8 月初在中國上市，2026 CES 曾首次亮相。功能為監控電流異常時同時發出聲光警示並主動降低電流，雙色接頭端子設計協助使用者目視確認是否插到底，線長 200mm。',
+        'comments': 'Dr. Dro 說明它與 Thermal Grizzly WireView Pro II 的差異：WireView Pro II 有逐 pin 讀數與螢幕，功能更進階；GPU Shield 較接近「智慧型延長線」，加入類似 Astral 系列的電流感測，但不與電腦通訊，且監控門檻是固定的。他也指出中國版提供 3 年保固＋更換保障，全球版僅 1 年產品保固。spartan051 補充：WireView Pro I／II 本身並不會主動平衡逐 pin 電流，只監控溫度與電流。kazuviking 與 Eviling 就 GPU Shield 與 ROG Equalizer 比較：kazuviking 認為 ROG Equalizer 是目前唯一能真正處理 12V-2x6 高故障率的「笨方法」（被動均流），Ampinel 更好但更貴，GPU Shield 之類的裝置只會延後、不會避免熔損；Eviling 則指出 GPU Shield 有蜂鳴器＋斷電功能，而 Equalizer 的斷電功能需另外安裝 Windows 專用軟體（即 GPU Tweak III Auto-Shutdown）才能使用。Sol_Badguy 對 ASUS 官方公布 ROG Equalizer 的 17A 額定提出技術質疑：以接頭端子尺寸換算，17A 相較於 Molex／HCS 業界慣用的安全係數高出約 85%，認為這個數字「過度樂觀」；這是留言者依公開端子規格表換算的個人技術推論，非原廠或第三方的獨立測試結果。',
+        'url': 'https://www.techpowerup.com/forums/threads/cooler-master-gpu-shield-adapter-officially-launches-in-the-us.352611/'
+    },
+    {
+        'date': '2026-09-14', 'source': 'TechPowerUp Forums', 'keyword': 'TempGuard', 'match': '標題＋內文＋留言',
+        'title': 'ASRock’s TempGuard Failed to Stop a PSU-Side Connector Meltdown on a $15,000 RTX PRO 6000 Rig',
+        'summary': '主文轉述一名維修技師的 Reddit 貼文：一套搭載 ASRock Taichi TC-1650T 電源（原生 12V-2x6 線材、內建 ASRock 自家 NTC 溫度感測與 TempGuard 系統）的主機，搭配約 1.5 萬美元的 NVIDIA RTX PRO 6000 Blackwell Workstation Edition 顯示卡，即使兩端接頭都已完全插妥，PSU 端接頭仍熔損並與插座熔合；GPU 端未受損。技師指出感測器裝在線材的接地（ground）側而非應監控的 12V 側，可能是未能即時偵測升溫的原因。主文並提及 TempGuard 過去曾成功攔截一張改裝分流電阻、瞬間拉超過 1300W 的 RTX 5090，避免接頭熔損；同一款 GPU＋PSU 組合先前（今年 3 月）也曾發生類似熔損事故。',
+        'comments': '留言 Shrek 質疑「感測器裝錯側」的說法：接地 pin 與 12V pin 同樣會因電流而發熱，未必是感測器位置的問題。Geofrancis 則認為這是設計瑕疵而非單一產品瑕疵：他指出 TechPowerUp 先前的 CES 報導照片已可清楚看到感測器裝在錯誤的一側，並附上該篇報導連結佐證，代表並非只有這次出貨的個別瑕疵。Athena 則推測此事恐怕會導致召回，屬留言者個人臆測。這些是留言者依外部報導與照片做出的推論，沒有原廠正式的根因調查報告可供查核。',
+        'url': 'https://www.techpowerup.com/forums/threads/asrocks-tempguard-failed-to-stop-a-psu-side-connector-meltdown-on-a-15-000-rtx-pro-6000-rig.352658/'
+    },
+    {
+        'date': '2026-09-13', 'source': 'Reddit', 'keyword': 'TempGuard', 'match': '標題＋內文＋留言',
+        'title': 'ASRock PSU thermal protection fails to prevent melted 16-pin cable on $16,000 RTX PRO 6000 GPU',
+        'summary': '此為前述 TechPowerUp 報導所引用的原始 Reddit 貼文，轉貼 videocardz.com 報導：一套 600W RTX PRO 6000 Blackwell 顯示卡在 16-pin 電源線熔入 PSU 插座後仍存活；貼文並提及同一條電源線先前也曾在 GPU 端發生過熔損。',
+        'comments': '留言者 underwaterair 從技術角度質疑僅靠溫度感測是否足夠：他引述 Buildzoid 先前的分析，認為問題在於感測探頭與實際發熱點有距離、且不是逐 pin／逐線感測，即使探頭本身正常也可能量不到真正過熱的那一路；他並指出目前所知唯一具備逐 pin 感測的是 ASUS Astral 系列顯卡本身，但預設僅監控、不會主動採取動作，除非使用者自行設定觸發條件。串內多則留言呼籲應直接重新設計接頭或召回顯卡，屬使用者個人立場，非原廠回應。',
+        'url': 'https://www.reddit.com/r/ASRock/comments/1wf6dtj/asrock_psu_thermal_protection_fails_to_prevent/'
+    },
+    {
+        'date': '2026-09-10', 'source': 'TechPowerUp Forums', 'keyword': 'EZDIY-FAB Alpha TS13',
+        'keywords': ['EZDIY-FAB Alpha TS13', 'Ampinel', 'ThermalProtect'], 'match': '留言',
+        'title': 'EZDIY-FAB Alpha TS13',
+        'summary': '同一評測討論串本週持續有新留言。outlw6669 認為 Alpha TS13 只是「簡單的早期警示裝置」，除了警報之外沒有主動保護機制，若要花 53 歐元不如加碼買 Aqua Computer Ampinel（約 100 歐元），因為 Ampinel 同時具備監控告警、主動保護與電流均流。Chrispy_ 認為它本質上「只是一台沒有資料記錄的 Thermal Grizzly WireView」，而不是他原先期待、具備數位電位計或 MOSFET 主動均流控制器的裝置；他並指出目前市面上似乎只有 Ampinel 真正取代了 Nvidia 自 40 系列起從設計中拿掉的電流均流電路，且經他搜尋後確認市面上沒有其他類似產品。',
+        'comments': 'Claudio 留言力挺 Ampinel，稱其為市場上「唯一能在需要時主動均流」的產品，並表示自己在 5090 上使用、「睡得很安穩」。qlum 則指出 EZDIY-FAB 這類裝置是依電流（而非僅溫度）反應，電流不平衡才是真正的風險來源，因此雖然保護程度較低，仍可能比純溫度感測裝置更有意義，但不確定是否也能保護 PSU 端。串內另有一段 Aleksandar_038 與 Chrispy_ 的長篇交叉討論：Aleksandar_038 主張應由顯卡廠商（他specifically 指 MSI、Asus、Sapphire 等 AIB，而非電源廠）負責；Chrispy_ 則從電力原理解釋：PSU 的職責只是依負載端要求供電並維持電壓，電流監控只能發生在負載端（即 GPU），並非 PSU 該負責的事；Aleksandar_038 其後澄清自己原意是指 AIB 板卡廠，而非電源供應器廠商。這段交叉討論屬於使用者對 12V-2x6 故障歸屬的個人技術論點，沒有原廠或第三方驗證。',
+        'url': 'https://www.techpowerup.com/forums/threads/ezdiy-fab-alpha-ts13.351975/post-5786734'
+    },
+    {
+        'date': '2026-09-10', 'source': 'TechPowerUp Forums', 'keyword': 'ThermalProtect',
+        'keywords': ['ThermalProtect', 'WireView', 'ROG Equalizer'], 'match': '留言',
+        'title': 'Close call... 5090 Burnt Cable',
+        'summary': '長期討論串本週新增內容：知名使用者 Dr. Dro 在串中回報自己原生插接的 12V-2x6 接頭，於 600W 負載下量到約 11.65V（電壓降約 2.9%）；留言者 Dragam1337 指出如此明顯的壓降代表可能有異常接觸阻抗，通常與升溫有關（他自己的裝置僅降約 0.1V）。',
+        'comments': 'Dr. Dro 說明自己先前嘗試購買 WireView 未成功，目前只有 Corsair ThermalProtect，並表示「唯一能做的是拆下 ThermalProtect、改裝 ROG Equalizer」，但因目前沒有明顯異常訊號、且擔心「越去動它風險越高」，決定先維持現狀觀察。這是單一使用者在缺乏逐 pin 電流資料（如 WireView 可提供）情況下、僅憑電壓量測做出的個人風險判斷，不代表 ThermalProtect 本身有故障，也沒有實際觸發紀錄。',
+        'url': 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5787553'
+    },
+    {
+        'date': '2026-09-11', 'source': 'PC Games Hardware Extreme', 'keyword': 'Ampinel',
+        'keywords': ['Ampinel', 'WireView'], 'match': '標題＋內文',
+        'title': 'Geforce RTX 5090: 8-Pin-Stromanschlüsse schlagen 12V-2×6（討論串內留言）',
+        'summary': '留言者 ParrotHH 在一張二手 Asus TUF RTX 4090 OG OC（原插座插拔不超過約 20 次）上加裝 Ampinel，開機後直接跑 FurMark：Aquasuite 監控軟體顯示 6 路電流中出現約 40% 的不平衡（4.1A 對 7.1A），且 Ampinel 有主動介入均流（顯示「Ausgleich／平衡」視窗）。',
+        'comments': 'ParrotHH 認為即使有這樣的不平衡，短期內大機率仍會正常運作，但長期而言這類不平衡通常只會惡化、不會自行改善，是一顆「定時炸彈」。他先前在另一台全新 Corsair 線材上（同樣以電流鉗表量測）也發現類似不平衡，因此推測多數 12V-2x6 接線可能都存在一定程度的不平衡、其中不少已超出規格，只是運氣好尚未出事；這是他個人在兩套系統上的量測與主觀推論，沒有第三方或原廠統計數據佐證。他也提到已為另一台 RTX 5090 FE 主機加購 WireView 2 Pro Wired 版（因為 Ampinel 的外型在該主機裝不下），未來可能一併分享比較結果。',
+        'url': 'https://extreme.pcgameshardware.de/threads/geforce-rtx-5090-8-pin-stromanschluesse-schlagen-12v-2-6.677683/post-12147632'
+    },
+])
+
 # 本版指定日期界線；避免歷史基準資料在擴大搜尋時意外越界。
 rows = [
     row for row in rows
@@ -2352,60 +2406,65 @@ pm_weekly_updates['Titanload']['sources'].append(('Chiphell 鑫谷強流線相�
 
 # Keep New! product-evaluation deltas limited to evidence added in this report.
 pm_weekly_updates = {
-    'WireView': {
-        'pros': 'PCGH Extreme 使用者在 Ampinel 疑似故障後改用 WireView Pro II Wired 版，靠線材把感測本體與 12V-2x6 接頭分離、避免額外重量壓在插槽上，開機、韌體更新與 Furmark 測試後數值恢復正常。Reddit 另一則直立安裝案例分享走線經驗，留言者也肯定監控帶來的安心感。',
-        'cons': 'Reddit 案例顯示連自己另外新買的 MODDIY 線材都出現電流分布不均，證實「全新線材」本身也可能不符規格，不只舊化或損傷線材才會觸發不平衡警告。AMD Radeon RX 9070 XT 使用者的討論確認熔損不限 Nvidia 顯示卡；社群對「WireView 是否比 PSU 本身更重要」仍有爭論（The8Darkness 表示降壓降頻仍熔損，Brembars 反駁多半是插接或線材品質問題），沒有共識。',
-        'actions': '應提供更多直立安裝、不同機殼的官方走線範例；針對「全新線材品質參差」提供出廠品管或使用者可自行驗證的步驟；跨廠牌（AMD／Nvidia）相容性與 Linux 支援應更清楚宣傳。',
-        'sources': [
-            ('PCGH Extreme Wired 版安裝經驗', 'https://extreme.pcgameshardware.de/threads/rtx-5090-trifft-auf-thermal-grizzly-wireview-pro-ii-in-der-wired-version.677226/'),
-            ('Reddit 直立安裝與全新線材不良案例', 'https://www.reddit.com/r/ThermalGrizzly/comments/1w2v5v1/wireview_pro_2_wired/'),
-            ('Reddit AMD 9070 XT 是否值得詢問', 'https://www.reddit.com/r/ThermalGrizzly/comments/1w2xjye/wireview_pro_ii_worth_for_9070_xt_on_linux/'),
-            ("Tom's Hardware 高階顯卡選購建議", 'https://forums.tomshardware.com/threads/power-supply-and-12vhpwr.3899315/post-23651390'),
-        ],
-    },
-    'Ampinel': {
-        'pros': 'PCGH Extreme 使用者提到自己的 Ampinel 在最初半年「運作無瑕」，直到近兩週才開始重複出現電流差過大警報，顯示並非一開始就有問題。',
-        'cons': '兩起獨立案例都是使用者因 Ampinel 疑似故障而改用 WireView 替代：一起是電流差過大警報加上裝置在插槽中逐漸鬆動，另一起拆機後發現 3 根明顯退縮 pin、確認拿到的是已知有問題的 Rev.4，原廠並未召回舊批。',
-        'actions': '應加強出廠 pin 品管與光學檢查；應公開 Rev.4／Rev.5 差異與換修流程；建議提供退縮 pin 判讀標準供使用者自行初步檢查，而非只能送修才能確認。',
-        'sources': [
-            ('PCGH Extreme 半年後開始告警案例', 'https://extreme.pcgameshardware.de/threads/rtx-5090-trifft-auf-thermal-grizzly-wireview-pro-ii-in-der-wired-version.677226/'),
-            ('Reddit 退縮 pin 與 Rev.4 已知問題', 'https://www.reddit.com/r/watercooling/comments/1vzqn6s/free_aquacomputer_ampinel_for_reviewer/'),
-        ],
-    },
     'GPU Shield': {
-        'pros': '使用者在 RTX 5090D 上實裝後於留言公開完整分級行為：單 pin 低於 9A 綠燈、9–12A 閃紅燈、12–15A 恆亮＋蜂鳴器並延遲 3 分鐘斷電、超過 15A 立即斷電；使用 1.5 年沒有誤觸發過。留言者認為逐 pin 門檻優於監控總功率，因為熔損通常是單一接點承擔全部負載，只看總瓦數看不出來。',
-        'cons': '「GPU 熔損 3 年全額理賠」保固目前只隨中國版販售提供，是否全球上市未知，且拿 Thermal Grizzly 號稱全球保固的做法對比顯得保守。多則留言質疑這只是多一個故障點，也有人質疑 60°C 溫度探頭門檻是否過低、可能被 GPU 餘溫誤觸發。',
-        'actions': '應公開全球保固／上市計畫；應提供螺絲孔固定選項取代僅魔鬼氈固定墊；應公開更多獨立第三方誤觸發率與熱測試數據。',
+        'pros': '正式美國上市，售價確認為 49.99 美元，先前已於 8 月初在中國上市；中國版提供「GPU 熔損 3 年全額理賠」保固，優於全球版僅 1 年產品保固的條件。',
+        'cons': '多名使用者在美國上市討論串中將它評為功能較陽春的「智慧型延長線」：沒有 WireView 的逐 pin 讀值，也不像 ROG Equalizer／Ampinel 具備物理性主動均流，僅監控＋斷電；kazuviking 直言這類裝置「只會延後、不會真正避免熔損」。',
+        'actions': '應公開是否會把 3 年全額理賠保固擴大到全球市場；應提供逐 pin（而非僅整體）電流讀值，拉近與 WireView／Ampinel 的監控落差。',
         'sources': [
-            ('Reddit 5090D 實裝與分級門檻', 'https://www.reddit.com/r/nvidia/comments/1w0ebt5/cooler_master_gpu_shield_installed_on_a_5090d/'),
-            ('Reddit 台灣開箱與保固範圍', 'https://www.reddit.com/r/overclocking/comments/1w4rvzs/cooler_master_gpu_shield_adapter_cable_unboxing/'),
+            ('TechPowerUp 美國上市討論串', 'https://www.techpowerup.com/forums/threads/cooler-master-gpu-shield-adapter-officially-launches-in-the-us.352611/'),
+        ],
+    },
+    'TempGuard': {
+        'pros': '',
+        'cons': '本週新增第二起獨立事故：一套 ASRock Taichi TC-1650T 電源＋約 1.5 萬美元 RTX PRO 6000 Blackwell 顯示卡，PSU 端接頭熔損並與插座熔合，TempGuard 未能及時關機；技師與留言者指出感測器裝在接地側而非應監控的 12V 側，且 TechPowerUp 先前 CES 報導照片已可見同樣裝設方式，顯示可能是設計層級的問題而非單一瑕疵品。TempGuard 過去雖曾成功攔截一次 1300W 異常過流事故，但本次與去年 3 月同款 GPU＋PSU 組合的熔損事故顯示其防護並非在所有情境下都可靠。',
+        'actions': '應公開感測器安裝位置的設計依據，並說明後續批次是否會調整到 12V 側；應提供獨立第三方針對感測位置與觸發延遲的驗證測試。',
+        'sources': [
+            ('TechPowerUp PSU 端熔損事故報導', 'https://www.techpowerup.com/forums/threads/asrocks-tempguard-failed-to-stop-a-psu-side-connector-meltdown-on-a-15-000-rtx-pro-6000-rig.352658/'),
+            ('Reddit r/ASRock 原始貼文與感測位置質疑', 'https://www.reddit.com/r/ASRock/comments/1wf6dtj/asrock_psu_thermal_protection_fails_to_prevent/'),
+        ],
+    },
+    'WireView': {
+        'pros': '本週在 GPU Shield 美國上市討論串與 EZDIY-FAB 討論串中，多名使用者持續把 WireView Pro II 列為預算內首選的逐 pin 監控方案；PCGH Extreme 使用者也提到已為第二台主機加購 WireView 2 Pro Wired 版。',
+        'cons': '知名使用者 Dr. Dro 在「Close call... 5090 Burnt Cable」串中回報自己嘗試購買 WireView 未成功，目前只能靠電壓量測（11.65V，降約 2.9%）間接判斷是否有異常，凸顯沒有 WireView 時逐 pin 診斷能力的落差。',
+        'actions': '應改善熱門地區的到貨／供應穩定度，避免有意加裝逐 pin 監控的使用者因缺貨被迫改用功能較弱的替代品。',
+        'sources': [
+            ('TechPowerUp GPU Shield 上市討論串比較', 'https://www.techpowerup.com/forums/threads/cooler-master-gpu-shield-adapter-officially-launches-in-the-us.352611/'),
+            ('TechPowerUp Close call 購買未成與電壓量測', 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5787553'),
+            ('PCGH Extreme Ampinel 使用者加購 WireView', 'https://extreme.pcgameshardware.de/threads/geforce-rtx-5090-8-pin-stromanschluesse-schlagen-12v-2-6.677683/post-12147632'),
         ],
     },
     'ROG Equalizer': {
-        'pros': 'ASUS 透過 GPU Tweak III 新增的 Power Detector+ auto-shutdown，把 Equalizer 生態系從純被動線材延伸到可主動關機；留言認為這類軟體介入即使不完美，也優於單純警告。',
-        'cons': '留言質疑 Nvidia Founders Edition 隨附的「章魚頭」轉接器本身也內建類似橋接式均流設計，但做工不如 Equalizer 版本，且沒有對照測試佐證兩者實際差異；ROG Equalizer 本身仍被留言視為「並非完美方案」。',
-        'actions': '應公開與 GPU Tweak III auto-shutdown 的整合方式與門檻設定；應獨立測試比較 FE 原廠橋接與 ROG Equalizer 橋接的實際差異。',
+        'pros': '在 GPU Shield 上市討論串中，多名使用者（如 kazuviking）仍將 ROG Equalizer 視為目前唯一真正處理 12V-2x6 高故障率的被動均流方案。',
+        'cons': 'Sol_Badguy 對官方公布的 17A 額定提出技術質疑：以接頭端子尺寸換算，17A 相較業界（Molex／HCS）慣用安全係數高出約 85%，認為過於樂觀；Eviling 也指出其斷電功能仍須額外安裝 GPU Tweak III 才能使用，不像 GPU Shield 開箱即有蜂鳴＋斷電。',
+        'actions': '應公開 17A 額定的實測依據與安全係數計算方式，回應社群對數字過度樂觀的質疑；應讓斷電保護功能不必依賴額外安裝軟體。',
         'sources': [
-            ('TechPowerUp／Reddit GPU Tweak III 公告討論', 'https://www.techpowerup.com/forums/threads/asus-gpu-tweak-iii-adds-auto-shutdown-to-prevent-12v-2%C3%976-meltdowns.351662/'),
-            ('TechPowerUp FE 轉接器橋接設計討論', 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5776023'),
+            ('TechPowerUp GPU Shield 上市討論串比較與 17A 質疑', 'https://www.techpowerup.com/forums/threads/cooler-master-gpu-shield-adapter-officially-launches-in-the-us.352611/'),
+        ],
+    },
+    'Ampinel': {
+        'pros': 'PCGH Extreme 使用者以 FurMark 實測記錄到 Ampinel 主動介入均流的具體畫面（6 路電流約 40% 不平衡、Aquasuite 顯示「Ausgleich／平衡」視窗），是本週少數有實測數據佐證主動均流確實運作的案例；EZDIY-FAB 討論串中 Claudio 也表示自己在 5090 上使用 Ampinel、「睡得很安穩」。',
+        'cons': '同一位 PCGH 使用者指出，即使是全新 Corsair 線材也測到類似逐 pin 不平衡，顯示問題可能普遍存在於多數 12V-2x6 接線、不只是老化線材；EZDIY-FAB 討論串中 Chrispy_ 則指出 Ampinel 目前近乎是市面上唯一具備主動均流電路的產品，選擇有限。',
+        'actions': '應公布更多不同 GPU／PSU 組合下、出廠與使用一段時間後的逐 pin 不平衡分布統計，協助使用者判斷自己的線材是否落在正常範圍。',
+        'sources': [
+            ('PCGH Extreme FurMark 40% 不平衡實測', 'https://extreme.pcgameshardware.de/threads/geforce-rtx-5090-8-pin-stromanschluesse-schlagen-12v-2-6.677683/post-12147632'),
+            ('TechPowerUp EZDIY-FAB 討論串 Ampinel 比較', 'https://www.techpowerup.com/forums/threads/ezdiy-fab-alpha-ts13.351975/post-5786734'),
         ],
     },
     'ThermalProtect': {
-        'pros': 'PCGH Extreme 使用者分享僅用 Corsair 轉接線 3 年（2023 年至今）、歷經 6–7 次插拔與更換顯卡／機殼，從未發熱；TechPowerUp 留言持續把它列為組裝清單常見搭配建議。',
-        'cons': 'TechPowerUp 留言批評觸發門檻不夠精確；舊款（Type 4）Corsair PSU 使用者仍無法直接受惠，需等待原廠相容版本，無公開時程。',
-        'actions': '應公開 Type 4 PSU 相容版本上市時程；針對「觸發點精確度」提供更多獨立測試數據，並公開顏色指示（白→黃→橙→棕）對應的溫度區間。',
+        'pros': '「Close call... 5090 Burnt Cable」串中，Dr. Dro 本週持續以 ThermalProtect 作為唯一保護裝置在使用。',
+        'cons': 'Dr. Dro 回報原生接頭電壓降約 2.9%，留言者認為屬異常訊號，但因 ThermalProtect 本身不具備逐 pin 監控能力，只能靠電壓粗略推估、無法進一步判斷根因；GPU Shield 上市討論串中也有留言把它列為「延後但不解決」的方案之一。',
+        'actions': '應考慮加入基本的電壓或電流讀值輸出，讓使用者在觸發前有更早期的診斷依據，而不僅是溫度斷電。',
         'sources': [
-            ('TechPowerUp 組裝建議與相容 PSU 討論', 'https://www.techpowerup.com/forums/threads/critique-my-pc-part-picker.352125/post-5779344'),
-            ('TechPowerUp 觸發點精確度質疑', 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5772336'),
-            ('PCGH Extreme 3 年長期使用經驗', 'https://extreme.pcgameshardware.de/threads/high-power-stecker-defekt.677281/'),
+            ('TechPowerUp Close call 電壓降觀察', 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5787553'),
+            ('TechPowerUp GPU Shield 上市討論串比較', 'https://www.techpowerup.com/forums/threads/cooler-master-gpu-shield-adapter-officially-launches-in-the-us.352611/'),
         ],
     },
     'EZDIY-FAB Alpha TS13': {
-        'pros': '',
-        'cons': '',
-        'actions': '',
+        'pros': 'qlum 指出它依電流（而非僅溫度）反應，電流不平衡才是真正的風險來源，因此雖保護程度較低，仍可能比純溫度感測裝置更有意義。',
+        'cons': 'outlw6669、Chrispy_ 等多位留言者認為它只是「陽春版 WireView」，缺乏主動均流或逐 pin 電流監控功能；若預算許可，多數留言仍建議直接選擇具備主動均流的 Ampinel。',
+        'actions': '應考慮加入至少基本的逐 pin 電流指示，而不僅是整體溫度與功耗，以拉近與 WireView／Ampinel 的功能落差。',
         'sources': [
-            ('TechPowerUp 官方評測與討論串', 'https://www.techpowerup.com/review/ezdiy-fab-alpha-ts13/'),
+            ('TechPowerUp 討論串本週延伸留言', 'https://www.techpowerup.com/forums/threads/ezdiy-fab-alpha-ts13.351975/post-5786734'),
         ],
     },
 }
@@ -2474,6 +2533,8 @@ version_history = [
     ('v1.2', V12_UPDATED_AT, '新增 Hardwareluxx、ComputerBase、PCGH Extreme 與 Overclockers UK 四個論壇來源。'),
 ]
 update_log = [
+    ('2026-09-16', 'TechPowerUp：用「Newer than」= 2026-09-08、依日期排序，核讀全部 12 個關鍵字，新增本週最重大事件——Cooler Master GPU Shield 正式美國上市（同串涉及 WireView／ROG Equalizer／Ampinel／ThermalProtect 的跨產品比較與 ASUS 17A 額定質疑），以及 ASRock TempGuard 未能攔截 15,000 美元 RTX PRO 6000 熔損事故（技師指出感測器裝在接地側而非 12V 側）；另補充 EZDIY-FAB Alpha TS13 討論串本週延伸的 Ampinel 比較與 AIB／Nvidia 責任歸屬辯論，以及「Close call... 5090 Burnt Cable」長串中 Dr. Dro 的 ThermalProtect 電壓降觀察。GPU Tweak III Auto-Shutdown、Titanload、T-Guard、OptiGuard、GPU Safeguard 本次查核沒有找到新內容。'),
+    ('2026-09-16', 'Reddit：追查 TechPowerUp TempGuard 報導所引用的原始 r/ASRock 貼文，新增留言者對「感測器位置不足以偵測」的技術質疑與 ASUS Astral 逐 pin 監控的提及。PCGH Extreme：用「Neuer als」= 2026-09-08 核讀 Ampinel，新增使用者 FurMark 實測 40% 逐 pin 電流不平衡、Ampinel 主動介入均流的具體案例。'),
     ('2026-09-09', 'PCGH Extreme：首次嘗試因網站訂閱／廣告同意視窗卡住頁面，使用者手動處理該視窗後重試成功；核讀 WireView 新增 1 筆——同一起 DLSS 5 熔損事件在德語論壇的獨立討論，並提供與 Hardware Unboxed 事件相符的跨論壇佐證（同一位「擁有贊助 WireView 卻沒使用」的知名 YouTuber）。'),
     ('2026-09-09', 'TechPowerUp：改用「Newer than」欄位直接篩選 2026-09-02 之後、依日期排序，核讀全部關鍵字，新增本週兩起重大熔損事件報導（DLSS 5 測試熔損、Hardware Unboxed 自家測試機台熔損，後者同時涉及 WireView／ROG Equalizer／GPU Tweak III Auto-Shutdown／ThermalProtect）。Reddit：以 r/ThermalGrizzly 限定＋t=week 核讀 WireView，新增風扇異音案例（含原廠 RMA 率回覆）。'),
     ('2026-09-02', '修正對 Reddit 搜尋失效原因的誤判——問題並非需要登入，而是 sort=new（依日期排序）參數本身失效，不論登入與否都會跳轉回與關鍵字無關的 r/all 最新內容；移除該參數、改用 relevance 排序（並視需要加上 subreddit 限定與 t=month/week）即可取得真實結果，用此方式核讀全部 11 個關鍵字。「四、使用者評價與改善方向」已依當輪新收錄的 TechPowerUp／Tom’s Hardware／Reddit／PCGH Extreme 明細重新整理 WireView、Ampinel、GPU Shield、ROG Equalizer、ThermalProtect 五張卡片的本週更新（含來源連結）；沒有新證據的產品維持原卡片內容，不強行補新內容。'),
