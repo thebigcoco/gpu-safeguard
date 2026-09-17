@@ -2148,8 +2148,8 @@ rows.extend([
         'date': '2026-09-11', 'source': 'PC Games Hardware Extreme', 'keyword': 'Ampinel',
         'keywords': ['Ampinel', 'WireView'], 'match': '標題＋內文',
         'title': 'Geforce RTX 5090: 8-Pin-Stromanschlüsse schlagen 12V-2×6（討論串內留言）',
-        'summary': '留言者 ParrotHH 在一張二手 Asus TUF RTX 4090 OG OC（原插座插拔不超過約 20 次）上加裝 Ampinel，開機後直接跑 FurMark：Aquasuite 監控軟體顯示 6 路電流中出現約 40% 的不平衡（4.1A 對 7.1A），且 Ampinel 有主動介入均流（顯示「Ausgleich／平衡」視窗）。',
-        'comments': 'ParrotHH 認為即使有這樣的不平衡，短期內大機率仍會正常運作，但長期而言這類不平衡通常只會惡化、不會自行改善，是一顆「定時炸彈」。他先前在另一台全新 Corsair 線材上（同樣以電流鉗表量測）也發現類似不平衡，因此推測多數 12V-2x6 接線可能都存在一定程度的不平衡、其中不少已超出規格，只是運氣好尚未出事；這是他個人在兩套系統上的量測與主觀推論，沒有第三方或原廠統計數據佐證。他也提到已為另一台 RTX 5090 FE 主機加購 WireView 2 Pro Wired 版（因為 Ampinel 的外型在該主機裝不下），未來可能一併分享比較結果。',
+        'summary': '留言者 ParrotHH 在一張二手 Asus TUF RTX 4090 OG OC（原插座插拔不超過約 20 次）上加裝 Ampinel，開機後直接跑 FurMark：Aquasuite 監控軟體顯示 6 路電流中出現約 40% 的不平衡（4.1A 對 7.1A），且 Ampinel 的「Ausgleich／平衡」面板同時顯示有介入動作；但他本人也明確表示「不知道沒有這個調節機制時會是什麼樣子」，並非有無 Ampinel 的前後對照。',
+        'comments': 'ParrotHH 隨後刻意搖晃線材、來回移動接頭中的 pin，同一項測試的不平衡明顯改善（電流差從約 3.1A 降到約 0.8A）；但這個改善是接續在「刻意搖晃線材」動作之後出現，較可能是插接觸點狀態改變所致，貼文本身沒有說明是 Ampinel 的均流機制隨時間發揮作用，不能當成「Ampinel 主動均流確實把不平衡修正好」的證據。他認為即使有這樣的不平衡，短期內大機率仍會正常運作，但長期而言這類不平衡通常只會惡化、不會自行改善，是一顆「定時炸彈」。他先前在另一台全新 Corsair 線材上（同樣以電流鉗表量測）也發現類似不平衡，因此推測多數 12V-2x6 接線可能都存在一定程度的不平衡、其中不少已超出規格，只是運氣好尚未出事；這是他個人在兩套系統上的量測與主觀推論，沒有第三方或原廠統計數據佐證。他也提到已為另一台 RTX 5090 FE 主機加購 WireView 2 Pro Wired 版（因為 Ampinel 的外型在該主機裝不下），未來可能一併分享比較結果。',
         'url': 'https://extreme.pcgameshardware.de/threads/geforce-rtx-5090-8-pin-stromanschluesse-schlagen-12v-2-6.677683/post-12147632'
     },
 ])
@@ -2442,9 +2442,9 @@ pm_weekly_updates = {
         ],
     },
     'Ampinel': {
-        'pros': 'PCGH Extreme 使用者以 FurMark 實測記錄到 Ampinel 主動介入均流的具體畫面（6 路電流約 40% 不平衡、Aquasuite 顯示「Ausgleich／平衡」視窗），是本週少數有實測數據佐證主動均流確實運作的案例；EZDIY-FAB 討論串中 Claudio 也表示自己在 5090 上使用 Ampinel、「睡得很安穩」。',
-        'cons': '同一位 PCGH 使用者指出，即使是全新 Corsair 線材也測到類似逐 pin 不平衡，顯示問題可能普遍存在於多數 12V-2x6 接線、不只是老化線材；EZDIY-FAB 討論串中 Chrispy_ 則指出 Ampinel 目前近乎是市面上唯一具備主動均流電路的產品，選擇有限。',
-        'actions': '應公布更多不同 GPU／PSU 組合下、出廠與使用一段時間後的逐 pin 不平衡分布統計，協助使用者判斷自己的線材是否落在正常範圍。',
+        'pros': 'PCGH Extreme 使用者以 FurMark 實測記錄到 Ampinel「Ausgleich／平衡」面板在 40% 逐 pin 不平衡（4.1A 對 7.1A）時同步顯示介入動作，確認該機制確實有在運作；EZDIY-FAB 討論串中 Claudio 也表示自己在 5090 上使用 Ampinel、「睡得很安穩」。',
+        'cons': '同一位 PCGH 使用者的測試無法證明 Ampinel 的均流機制真的把不平衡修正好：後續測得的改善（電流差從約 3.1A 降到約 0.8A）是接在他刻意搖晃線材、重新插接 pin 之後出現，較可能來自接觸狀態改變，而非 Ampinel 隨時間調節的結果；他自己也表示不知道沒有這個機制時會是什麼樣子，沒有真正的有無對照。他也指出即使是全新 Corsair 線材也測到類似逐 pin 不平衡，顯示問題可能普遍存在於多數 12V-2x6 接線、不只是老化線材；EZDIY-FAB 討論串中 Chrispy_ 則指出 Ampinel 目前近乎是市面上唯一具備主動均流電路的產品，選擇有限。',
+        'actions': '應提供有／無 Ampinel 介入的前後對照數據（而非僅顯示介入動作本身），並公布更多不同 GPU／PSU 組合下、出廠與使用一段時間後的逐 pin 不平衡分布統計，協助使用者判斷自己的線材是否落在正常範圍、均流機制是否確實有效。',
         'sources': [
             ('PCGH Extreme FurMark 40% 不平衡實測', 'https://extreme.pcgameshardware.de/threads/geforce-rtx-5090-8-pin-stromanschluesse-schlagen-12v-2-6.677683/post-12147632'),
             ('TechPowerUp EZDIY-FAB 討論串 Ampinel 比較', 'https://www.techpowerup.com/forums/threads/ezdiy-fab-alpha-ts13.351975/post-5786734'),
