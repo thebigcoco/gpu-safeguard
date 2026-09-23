@@ -2249,6 +2249,11 @@ previous_report = (
 )
 previous_urls = extract_detail_urls(previous_report) if previous_report else set()
 
+previous_report_label = previous_report.name if previous_report else '無可用前版'
+previous_report_date_match = re.search(r'(\d{4}-\d{2}-\d{2})', previous_report_label)
+weekly_focus_start = previous_report_date_match.group(1) if previous_report_date_match else PERIOD_START.isoformat()
+weekly_focus_range = f'{weekly_focus_start}～{PERIOD_END.isoformat()}'
+
 for row in rows:
     if row['url'] in content_review_overrides:
         row.update(content_review_overrides[row['url']])
@@ -2516,7 +2521,9 @@ def pm_points(value):
 def pm_delta(value):
     if not value:
         return ''
-    return '<div class="pm-new"><div class="pm-new-title"><span class="new-badge">New!</span><b>本週更新</b></div>{}</div>'.format(pm_points(value))
+    return '<div class="pm-new"><div class="pm-new-title"><span class="new-badge">New!</span><b>本週更新</b> <span class="pm-new-date">({escape_range})</span></div>{points}</div>'.format(
+        escape_range=escape(weekly_focus_range), points=pm_points(value)
+    )
 
 def pm_weekly_sources(items):
     if not items:
@@ -2525,7 +2532,7 @@ def pm_weekly_sources(items):
         f'<a href="{escape(url, quote=True)}" target="_blank" rel="noopener">{escape(label)}</a>'
         for label, url in items
     )
-    return f'<div class="pm-new-source"><span class="new-badge">New!</span><b>本週依據：</b>{links}</div>'
+    return f'<div class="pm-new-source"><span class="new-badge">New!</span><b>本週依據（{escape(weekly_focus_range)}）：</b>{links}</div>'
 
 pm_cards = ''.join(
     '<article class="pm-product"><div class="pm-product-head"><div><span class="pm-kicker">產品評價</span><h3>{keyword} {row_new}</h3></div>'
@@ -2548,10 +2555,6 @@ pm_cards = ''.join(
     ) for k in kw
 )
 
-previous_report_label = previous_report.name if previous_report else '無可用前版'
-previous_report_date_match = re.search(r'(\d{4}-\d{2}-\d{2})', previous_report_label)
-weekly_focus_start = previous_report_date_match.group(1) if previous_report_date_match else PERIOD_START.isoformat()
-weekly_focus_range = f'{weekly_focus_start}～{PERIOD_END.isoformat()}'
 generated_at_label = f"{GENERATED_AT.strftime('%Y-%m-%d %H:%M:%S')} Asia/Taipei"
 REPORT_VERSION = 'v1.6'
 V12_UPDATED_AT = '2026-08-19 14:45:56 Asia/Taipei'
