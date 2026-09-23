@@ -1570,6 +1570,12 @@ reddit_discovery_audit = [
     ('MSI MPG Ai1600TS', 'https://www.reddit.com/r/MSI_Gaming/comments/1uxj6a2/msi_mpg_ai1600ts_perpin_current_monitoring_i/', '納入', '逐 pin Linux／Prometheus 工具'),
     ('MSI MPG Ai1600TS', 'https://www.reddit.com/r/PcBuild/comments/1skbkld/are_there_any_reviews_about_the_new_msi_psus_msi/', '排除', '一般購買詢問，可見內容未提供 Safeguard 實測或新增功能證據'),
     ('MSI MPG Ai1600TS', 'https://www.reddit.com/r/MSI_Gaming/comments/1su0hfu/the_msi_ai1600ts_is_too_noisy/', '排除', '噪音個案已由內容更完整且有原廠回應的同型號討論涵蓋'),
+    ('ROG Equalizer／WireView', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wi53nd/update_post_rog_equalizer_with_wvp_2/', '納入', 'RTX 5080 pin 電流、溫度與 bridge 前後監控範圍留言'),
+    ('ROG Equalizer／WireView', 'https://www.reddit.com/r/ThermalGrizzly/comments/1whd8yh/wireview_pro_2_and_rog_equalizer/', '納入', 'Thermal Grizzly 回覆監控邊界及使用者接頭／故障疑慮'),
+    ('GPU Safeguard', 'https://www.reddit.com/r/watercooling/comments/1wihia6/rtx_5090_owners_worth_upgrading_to_a/', '納入', 'MSI MPG Ai1300TS 買家說明整合式 per-pin 監控的選購理由'),
+    ('WireView', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wi64cq/wireview_pro_ii_thermals_question/', '納入', '高功耗水冷系統 WireView IN／OUT 溫度與 pin 讀值'),
+    ('WireView', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wlzsav/gigabyte_rtx_4090_windforce_wireview_pro_2/', '納入', 'RTX 4090 與 Wired 版相容性回覆'),
+    ('GPU Safeguard／Ampinel／WireView', 'https://www.reddit.com/r/gpu/comments/1wfcl7m/whats_currently_the_best_option_for_protecting_a/', '納入', '使用者比較外接監控／主動均流／整合式 PSU 的選擇與疑慮'),
 ]
 pm_info = {
     'WireView': (
@@ -2156,8 +2162,8 @@ rows.extend([
 
 # 2026-09-23 weekly refresh：TechPowerUp 用「Newer than」= 2026-09-16、依日期排序，
 # 逐一核讀全部 12 個關鍵字；PCGH Extreme 用「Neuer als」= 2026-09-16 核讀
-# WireView／Ampinel／ROG Equalizer／ThermalProtect／GPU Shield。Reddit 本次因瀏覽器
-# 擴充功能的安全限制無法連線（非網站本身的同意視窗問題），本輪未能查核，留待下次。
+# WireView／Ampinel／ROG Equalizer／ThermalProtect／GPU Shield。Reddit 改以公開搜尋
+# 結果與可讀頁面補查，逐篇閱讀 6 筆唯一討論及可見留言；跨版重貼排除。
 # GPU Safeguard、OptiGuard、Titanload、T-Guard、GPU Tweak III Auto-Shutdown、
 # EZDIY-FAB Alpha TS13（單獨關鍵字搜尋）本次查核沒有找到新內容。
 rows.extend([
@@ -2206,6 +2212,54 @@ rows.extend([
         'summary': 'PCGH 編輯部報導一起案例：一張 PNY GeForce RTX 5090 的 16-pin 電源接頭嚴重熔損，但事發時系統僅在跑 2D／低負載內容，非高負載遊戲或壓力測試；機主反映 PNY 客服拒絕受理保固；報導本身承認目前缺乏量測數據可以確認熔損成因。',
         'comments': '留言者 Zandalor01 提出技術解讀：他引述 IgorsLab、der8auer 等分析者的見解，認為這類熔損多半與瞬時負載高低關聯較小，主因是接頭本身端子數量偏少、公差偏大、材料抗磨耗設計不足，導致個別 pin 接觸電阻升高、逐漸發熱惡化，即使在低負載下也可能發生；因此建議使用者盡量做到「插一次就不要再拔動」以減少磨耗。他也提到 der8auer 的 WireView 轉接器或許有助於監控與緊急斷電，但特別提出一個尚未在本報告見過的疑慮：即使 WireView 事先偵測到異常、或事後能佐證是接觸不良而非使用者過失，顯卡廠商仍可能反過來主張「問題出在 WireView 本身」而拒絕受理保固——這是留言者個人推測的風險，目前沒有真實案例可佐證廠商是否真的會這樣認定。',
         'url': 'https://extreme.pcgameshardware.de/threads/geforce-rtx-5090-16-pin-stecker-bei-2d-spiel-stark-verschmort.677842/post-12150096'
+    },
+    {
+        'date': '2026-09-22', 'source': 'Reddit', 'keyword': 'ROG Equalizer',
+        'keywords': ['ROG Equalizer', 'WireView', 'GPU Safeguard'], 'match': '內文＋留言',
+        'title': 'Update Post (ROG Equalizer with WVP 2)',
+        'summary': 'RTX 5080 Astral 使用者將 ASUS ROG Equalizer 與 WireView Pro II 串接；Steel Nomad 兩次測試中，WireView pin 2–6 約 5.3–5.7A、pin 1 約 3.0–3.3A，總電流約 30–31A，WireView OUT 約 50°C（室溫 20°C），功率約 370W。發文者自行注意到約 2.4A 的 pin 差距，但也明確說這不是嚴謹科學測試。',
+        'comments': '留言有兩種方向：有人以 5080、最高 pin 未超過 6A 或「約 2.5A 可接受」表示暫時安全，也有人提醒 Equalizer 的 bridge 可能讓 WireView 只看到 bridge 到 GPU 的短段，PSU 到 bridge 的個別電流與阻抗變化未被同樣監控；另有人認為 WireView 增加故障點。發文者重插後回報差距降至約 1.5A。這些是留言者判讀與單機讀值，沒有共同門檻或對照測試。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1wi53nd/update_post_rog_equalizer_with_wvp_2/'
+    },
+    {
+        'date': '2026-09-22', 'source': 'Reddit', 'keyword': 'ROG Equalizer',
+        'keywords': ['ROG Equalizer', 'WireView', 'GPU Safeguard', 'GPU Tweak III Auto-Shutdown'], 'match': '內文＋留言',
+        'title': 'WireView Pro 2 and ROG Equalizer',
+        'summary': 'RTX 5080 Astral OC 使用者搭配 ROG Equalizer、Strix 1000W Platinum PSU，因不想長時間開 HWiNFO，詢問在顯卡已有逐 pin 監控時是否仍需要 WireView Pro II。',
+        'comments': 'Thermal Grizzly 代表說明：若 Equalizer bridge 位於上游，WireView 只能評估 bridge 到 GPU 的區段，無法看到 PSU 到 bridge 的個別分配，但仍可監控它看得到的區段。留言者另提到 WireView 增加第二個接頭、有人曾遇到第一條量測線／pin 1 燒損而讀值為 0A，以及 GPU Tweak III 可作為不常駐 HWiNFO 的替代；另有 MSI MPG Ai1300TS 使用者偏好把 per-pin 監控整合在 PSU。這些是個案與原廠代表說明，沒有統一的故障率或性能對照。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1whd8yh/wireview_pro_2_and_rog_equalizer/'
+    },
+    {
+        'date': '2026-09-20', 'source': 'Reddit', 'keyword': 'GPU Safeguard',
+        'keywords': ['GPU Safeguard', 'GPU Shield', 'WireView', 'Ampinel', 'ThermalProtect'], 'match': '內文＋留言',
+        'title': 'RTX 5090 owners: Worth upgrading to a thermal-protected 12V-2x6 setup if you’ve had zero issues?',
+        'summary': 'RTX 5090 使用者已有約一年無線材問題，仍在 Ampinel、WireView Pro II、Corsair ThermalProtect 與維持現狀之間比較，並擔心水冷背板空間。',
+        'comments': '9/20 一名 MSI MPG Ai1300TS 買家說，選 GPU Safeguard+ 是因為本來就要換 PSU、想避免機內增加額外裝置與接頭；他回報 MSI Center 介面清楚、PSU 能裝入機殼，並在 FurMark 將 GPU 從 575W／60°C 降壓到 500W／55°C。這是購買理由與單機降壓結果，沒有 Safeguard+ 實際觸發資料。串內另有 GPU Shield、WireView、Ampinel、ThermalProtect 的偏好爭論，沒有共識測試。',
+        'url': 'https://www.reddit.com/r/watercooling/comments/1wihia6/rtx_5090_owners_worth_upgrading_to_a/'
+    },
+    {
+        'date': '2026-09-16', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '內文＋留言',
+        'title': 'WireView Pro II Thermals Question',
+        'summary': '水冷系統使用者在 4K 高負載下讓 GPU 持續約 550–580W、45–60 分鐘，回報 WireView GPU IN 約 70°C；多個 pin 約 8.5–9.3A，GPU OUT 約 55°C，因水冷背板導熱條件不同而詢問是否正常。',
+        'comments': '留言建議重新插接、確認接點並在 WireView 附近增加風流；原發文者回覆未看到明顯電流不平衡。這是單一水冷系統的溫度與電流讀值，沒有故障或長期壽命結論。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1wi64cq/wireview_pro_ii_thermals_question/'
+    },
+    {
+        'date': '2026-09-21', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '內文＋留言',
+        'title': 'Gigabyte RTX 4090 Windforce - Wireview Pro 2 compatibility',
+        'summary': 'Gigabyte RTX 4090 Windforce 使用者詢問 WireView Pro II 相容性。',
+        'comments': 'Thermal Grizzly 代表回覆，若是 12VHPWR／12V-2x6 顯卡，應選 Wired 版本；串內另提供尺寸圖供使用者確認。這是相容性說明，沒有實際負載或保護效果測試。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1wlzsav/gigabyte_rtx_4090_windforce_wireview_pro_2/'
+    },
+    {
+        'date': '2026-09-13', 'source': 'Reddit', 'keyword': 'GPU Safeguard',
+        'keywords': ['GPU Safeguard', 'Ampinel', 'WireView'], 'match': '內文＋留言',
+        'title': 'What’s currently the best option for protecting a 12vhpwr GPU from melting?',
+        'summary': '使用者比較 Ampinel、WireView Pro II 與 MSI MPG Ai1300TS，並提出價格、保固、額外接頭及是否值得更換整台 PSU 的疑問。',
+        'comments': '留言分別提到 WireView 的逐 pin 讀值、保固與自動關機腳本，Ampinel 的主動均流，以及 MSI 整合式 PSU 不需外接轉接器；不同使用者對額外接頭、價格與是否能處理根因有不同看法，沒有形成共同推薦或對照測試。',
+        'url': 'https://www.reddit.com/r/gpu/comments/1wfcl7m/whats_currently_the_best_option_for_protecting_a/'
     },
 ])
 
@@ -2512,6 +2566,59 @@ pm_weekly_updates = {
     },
 }
 
+# Reddit 補查：以下只整理 2026-09-13～2026-09-22 實際讀到的主文與可見留言。
+pm_weekly_updates['WireView'] = {
+    'pros': 'Reddit 一名 RTX 5080 Astral 使用者在約 370W、室溫 20°C 的 Steel Nomad 測試中，回報 WireView OUT 約 50°C，pin 2–6 約 5.3–5.7A、pin 1 約 3.0–3.3A；另一名水冷使用者在 550–580W、45–60 分鐘負載下讀到 GPU IN 約 70°C、GPU OUT 約 55°C。這些都是單機讀值，不能推論普遍安全門檻。',
+    'cons': '留言指出 ROG Equalizer bridge 可能使 WireView 只看到 bridge 到 GPU 的短段，PSU 到 bridge 的個別分配未被同樣監控；也有人認為 WireView 增加第二個接頭，並回報曾有量測線／pin 1 燒損而讀值為 0A。另有高負載水冷案例需要重新插接或增加風流的建議，但沒有共同根因。',
+    'actions': '應在介面清楚標示 GPU 端、bridge 後與 PSU 端的實際監控範圍；對 0A、單 pin 失聯、IN 高溫與 bridge 組合提供停用／重插／換修流程，並公布接頭熱點、長時間負載與故障注入的重複測試。',
+    'sources': [
+        ('ROG Equalizer＋WVP2 pin／溫度讀值', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wi53nd/update_post_rog_equalizer_with_wvp_2/'),
+        ('WVP2 水冷高負載溫度問題', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wi64cq/wireview_pro_ii_thermals_question/'),
+        ('Equalizer bridge 監控邊界與接頭疑慮', 'https://www.reddit.com/r/ThermalGrizzly/comments/1whd8yh/wireview_pro_2_and_rog_equalizer/'),
+    ],
+}
+pm_weekly_updates['GPU Safeguard'] = {
+    'pros': '一名 MSI MPG Ai1300TS 買家表示，選 GPU Safeguard+ 的直接理由是本來就要換 PSU，且不想在機內增加外接監控器與額外接頭；他回報 MSI Center 介面清楚、PSU 可裝入機殼，並分享降壓後 FurMark 約由 575W／60°C 降至 500W／55°C。這是購買理由與單機降壓結果，沒有 Safeguard+ 實際觸發資料。',
+    'cons': '同一討論串的其他留言仍在比較外接監控器、GPU Shield、Ampinel 與 ThermalProtect，顯示使用者會權衡水冷背板空間、價格與額外接頭；串內沒有 Safeguard+ 的異常觸發或失效個案。',
+    'actions': '應公開整合式 per-pin 監控相較外接裝置的完整監控邊界、觸發門檻、事件記錄與保固處理；同時提供機殼／水冷相容性與「只為 Safeguard+ 更換 PSU」的成本及升級決策資訊。',
+    'sources': [
+        ('MSI MPG Ai1300TS 買家選購理由與降壓結果', 'https://www.reddit.com/r/watercooling/comments/1wihia6/rtx_5090_owners_worth_upgrading_to_a/'),
+    ],
+}
+pm_weekly_updates['ROG Equalizer'] = {
+    'pros': 'RTX 5080 Astral 使用者在 WireView 讀值中看到 pin 2–6 約 5.3–5.7A、pin 1 約 3.0–3.3A，重插後回報差距由約 2.4A 降至約 1.5A；這是同一系統的前後觀察，不是控制測試。',
+    'cons': 'Thermal Grizzly 代表明確說明，Equalizer bridge 在 WireView 上游時，WireView 看不到 PSU 到 bridge 的個別分配；留言也質疑把 GPU 端讀值當成全路徑平衡。另有人認為串接 WireView 增加故障點，沒有資料能證明兩者組合已解決所有接頭風險。',
+    'actions': '應公開 bridge 前後兩側的逐 pin 量測點、Equalizer＋WireView 的可見與不可見區段，並提供相同 GPU／功率下的前後對照；產品說明需避免讓使用者把局部讀值解讀成 PSU 至 GPU 全路徑的均流結果。',
+    'sources': [
+        ('RTX 5080 Astral pin 差與重插後讀值', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wi53nd/update_post_rog_equalizer_with_wvp_2/'),
+        ('Thermal Grizzly 對 bridge 監控範圍的說明', 'https://www.reddit.com/r/ThermalGrizzly/comments/1whd8yh/wireview_pro_2_and_rog_equalizer/'),
+    ],
+}
+pm_weekly_updates['Ampinel'] = {
+    'pros': 'Reddit 使用者在比較 5090 防護方案時，把 Ampinel 列為可考慮的主動均流選項；這是選購討論中的產品認知，沒有本次新增的 Ampinel 實機量測或觸發紀錄。',
+    'cons': '同一討論串的主要疑慮是水冷背板空間、價格及是否值得為了防護更換整個 PSU；留言沒有提供 Ampinel 的前後對照或故障率資料。',
+    'actions': '應以實機清單補充水冷背板與機殼淨空、價格／保固及主動均流的可驗證測試，避免只在多產品選購討論中以「主動均流」作為未經實測的優勢。',
+    'sources': [
+        ('5090 防護方案比較', 'https://www.reddit.com/r/watercooling/comments/1wihia6/rtx_5090_owners_worth_upgrading_to_a/'),
+    ],
+}
+pm_weekly_updates['ThermalProtect'] = {
+    'pros': 'Reddit 使用者將 ThermalProtect 列為 5090 的外接選項之一，與 WireView、Ampinel 及整合式 PSU 一起比較；本次沒有讀到它的新增實機觸發或長期使用數據。',
+    'cons': '選購討論顯示使用者仍擔心水冷背板空間、額外接頭及是否值得改裝；沒有留言能證明 ThermalProtect 在該串中已改善實際接頭風險。',
+    'actions': '應提供水冷／背板相容性、額外接頭影響、觸發前後行為與長期誤報資料，並用相同系統與外接監控、整合式 PSU 做可核對比較。',
+    'sources': [
+        ('5090 防護方案比較', 'https://www.reddit.com/r/watercooling/comments/1wihia6/rtx_5090_owners_worth_upgrading_to_a/'),
+    ],
+}
+pm_weekly_updates['GPU Shield'] = {
+    'pros': 'Reddit 留言把 GPU Shield 列為可考慮的替代方案之一，但本次沒有讀到 GPU Shield 的實際安裝、觸發或長期使用資料。',
+    'cons': '同一串留言對 GPU Shield 是否實際有用存在分歧，沒有共同測試或故障案例可判斷其保護效果。',
+    'actions': '應公開獨立的接觸不良／過熱故障注入測試、動態降功率與警報門檻，並與 WireView、Ampinel、ThermalProtect 在接頭數量及可見監控範圍上做同條件比較。',
+    'sources': [
+        ('GPU Shield 選購爭論', 'https://www.reddit.com/r/watercooling/comments/1wihia6/rtx_5090_owners_worth_upgrading_to_a/'),
+    ],
+}
+
 def pm_points(value):
     points = [point.strip() for point in re.split(r'(?<=[。！？])\s*|；', value or '') if point.strip()]
     if not points:
@@ -2521,7 +2628,7 @@ def pm_points(value):
 def pm_delta(value):
     if not value:
         return ''
-    return '<div class="pm-new"><div class="pm-new-title"><span class="new-badge">New!</span><b>本週更新</b> <span class="pm-new-date">({escape_range})</span></div>{points}</div>'.format(
+    return '<div class="pm-new"><div class="pm-new-title"><span class="new-badge">New!</span><b>本次新增</b> <span class="pm-new-date">({escape_range})</span></div>{points}</div>'.format(
         escape_range=escape(weekly_focus_range), points=pm_points(value)
     )
 
@@ -2532,15 +2639,108 @@ def pm_weekly_sources(items):
         f'<a href="{escape(url, quote=True)}" target="_blank" rel="noopener">{escape(label)}</a>'
         for label, url in items
     )
-    return f'<div class="pm-new-source"><span class="new-badge">New!</span><b>本週依據（{escape(weekly_focus_range)}）：</b>{links}</div>'
+    return f'<div class="pm-new-source"><span class="new-badge">New!</span><b>本次依據（{escape(weekly_focus_range)}）：</b>{links}</div>'
+
+def extract_previous_new_parts(markup):
+    """Read the previous report's marked New! blocks by product and aspect."""
+    section_match = re.search(r'<section id="reviews">(.*?)<div class="tabs">', markup, re.S)
+    section_markup = section_match.group(1) if section_match else markup
+    cards = {}
+    for card_match in re.finditer(r'<article class="pm-product">(.*?)</article>', section_markup, re.S):
+        card = card_match.group(1)
+        heading_match = re.search(r'<h3>(.*?)</h3>', card, re.S)
+        if not heading_match:
+            continue
+        product = re.sub(r'<[^>]+>', '', heading_match.group(1)).replace('New!', '').strip()
+        parts = {}
+        for class_name, key in (
+            ('pm-positive', 'pros'),
+            ('pm-negative', 'cons'),
+            ('pm-action', 'actions'),
+        ):
+            aspect_match = re.search(
+                rf'<section class="pm-aspect {class_name}">(.*?)</section>', card, re.S
+            )
+            if aspect_match:
+                aspect = aspect_match.group(1)
+                start = aspect.find('<div class="pm-new">')
+                parts[key] = aspect[start:] if start >= 0 else ''
+        source_match = re.search(r'<footer class="pm-evidence">.*?(<div class="pm-new-source">.*?</div>)</footer>', card, re.S)
+        parts['sources'] = source_match.group(1) if source_match else ''
+        if any(parts.values()):
+            cards[product] = parts
+    return cards
+
+previous_evaluation_parts = {}
+comparison_report = REPORT_DIR / '12v2x6_gpu_protection_weekly_report_2026-09-23_110544.html'
+if comparison_report.exists():
+    previous_evaluation_parts = extract_previous_new_parts(
+        comparison_report.read_text(encoding='utf-8')
+    )
+
+def previous_new_content(fragment):
+    if not fragment:
+        return ''
+    return fragment.replace(
+        '<b>本週更新</b>',
+        '<b>前版內容（報告時間：2026-09-23 11:05:44）</b>'
+    ).replace(
+        '本週依據（2026-09-17～2026-09-23）',
+        '前版依據（報告時間：2026-09-23 11:05:44）'
+    )
+
+def extract_new_items(fragment):
+    if not fragment:
+        return []
+    list_match = re.search(r'<ul class="pm-list">(.*?)</ul>', fragment, re.S)
+    if not list_match:
+        return []
+    return re.findall(r'<li>(.*?)</li>', list_match.group(1), re.S)
+
+def merged_new_content(old_fragment, current_fragment):
+    old_items = extract_new_items(old_fragment)
+    current_items = extract_new_items(current_fragment)
+    if not old_items and not current_items:
+        return ''
+    items = []
+    items.extend(f'<li><b>前版內容：</b>{item}</li>' for item in old_items)
+    if current_items:
+        items.append(
+            '<li><b><span class="new-badge">New!</span>本次新增（{0}）：</b>'
+            '<ul class="pm-list">{1}</ul></li>'.format(
+                escape(weekly_focus_range),
+                ''.join(f'<li>{item}</li>' for item in current_items)
+            )
+        )
+    return '<div class="pm-new"><div class="pm-new-title"><b>前版內容與本次新增</b></div><ul class="pm-list">{}</ul></div>'.format(
+        ''.join(items)
+    )
+
+def merged_new_sources(old_fragment, current_fragment):
+    old_links = re.findall(r'<a\s[^>]*>.*?</a>', old_fragment or '', re.S)
+    current_links = re.findall(r'<a\s[^>]*>.*?</a>', current_fragment or '', re.S)
+    if not old_links and not current_links:
+        return ''
+    parts = []
+    if old_links:
+        parts.append(
+            '<span><b>前版依據（報告時間：2026-09-23 11:05:44）：</b>{}</span>'.format('、'.join(old_links))
+        )
+    if current_links:
+        parts.append(
+            '<span><b><span class="new-badge">New!</span>本次依據（{0}）：</b>{1}</span>'.format(
+                escape(weekly_focus_range), '、'.join(current_links)
+            )
+        )
+    return '<div class="pm-new-source">{}</div>'.format('<br>'.join(parts))
 
 pm_cards = ''.join(
     '<article class="pm-product"><div class="pm-product-head"><div><span class="pm-kicker">產品評價</span><h3>{keyword} {row_new}</h3></div>'
     '<span class="evidence">{strength}</span></div><div class="pm-aspects">'
-    '<section class="pm-aspect pm-positive"><h4>優點／使用價值</h4>{pros}{new_pros}</section>'
-    '<section class="pm-aspect pm-negative"><h4>缺點／使用疑慮</h4>{cons}{new_cons}</section>'
-    '<section class="pm-aspect pm-action"><h4>改善方向</h4>{actions}{new_actions}</section></div>'
-    '<footer class="pm-evidence"><a href="{url}" target="_blank" rel="noopener">查看既有依據</a>{new_sources}</footer></article>'.format(
+    '<section class="pm-aspect pm-positive"><h4>優點／使用價值</h4>{pros}{merged_pros}</section>'
+    '<section class="pm-aspect pm-negative"><h4>缺點／使用疑慮</h4>{cons}{merged_cons}</section>'
+    '<section class="pm-aspect pm-action"><h4>改善方向</h4>{actions}{merged_actions}</section></div>'
+    '<footer class="pm-evidence"><a href="{url}" target="_blank" rel="noopener">查看既有依據</a>{merged_sources}</footer></article>'.format(
         keyword=escape(product_display_names[k]),
         row_new='<span class="new-badge">New!</span>' if k in pm_weekly_updates else '',
         pros=pm_points(pm_info[k][0]),
@@ -2548,10 +2748,22 @@ pm_cards = ''.join(
         actions=pm_points(pm_info[k][2]),
         strength=escape(pm_info[k][3]),
         url=escape(pm_info[k][4], quote=True),
-        new_pros=pm_delta(pm_weekly_updates.get(k, {}).get('pros', '')),
-        new_cons=pm_delta(pm_weekly_updates.get(k, {}).get('cons', '')),
-        new_actions=pm_delta(pm_weekly_updates.get(k, {}).get('actions', '')),
-        new_sources=pm_weekly_sources(pm_weekly_updates.get(k, {}).get('sources', [])),
+        merged_pros=merged_new_content(
+            previous_evaluation_parts.get(product_display_names[k], {}).get('pros', ''),
+            pm_delta(pm_weekly_updates.get(k, {}).get('pros', ''))
+        ),
+        merged_cons=merged_new_content(
+            previous_evaluation_parts.get(product_display_names[k], {}).get('cons', ''),
+            pm_delta(pm_weekly_updates.get(k, {}).get('cons', ''))
+        ),
+        merged_actions=merged_new_content(
+            previous_evaluation_parts.get(product_display_names[k], {}).get('actions', ''),
+            pm_delta(pm_weekly_updates.get(k, {}).get('actions', ''))
+        ),
+        merged_sources=merged_new_sources(
+            previous_evaluation_parts.get(product_display_names[k], {}).get('sources', ''),
+            pm_weekly_sources(pm_weekly_updates.get(k, {}).get('sources', []))
+        ),
     ) for k in kw
 )
 
@@ -2574,6 +2786,7 @@ version_history = [
     ('v1.2', V12_UPDATED_AT, '新增 Hardwareluxx、ComputerBase、PCGH Extreme 與 Overclockers UK 四個論壇來源。'),
 ]
 update_log = [
+    ('2026-09-23', 'Reddit：補查 2026-09-13～2026-09-22 的公開搜尋結果與可讀頁面，逐篇核讀 6 筆唯一討論及可見留言，新增 ROG Equalizer／WireView、GPU Safeguard、GPU Shield、Ampinel、ThermalProtect 資料；跨版重貼排除。因部分直接頁面仍受快取／擴充功能限制，未把搜尋不到解讀為沒有討論。'),
     ('2026-09-23', 'TechPowerUp：用「Newer than」= 2026-09-16、依日期排序，核讀全部 12 個關鍵字。「Close call... 5090 Burnt Cable」長串本週最活躍，新增 ThermalProtect／ROG Equalizer 相容性與規格比較（3-dimple vs. 4-spring 端子）、引用 igorslab.de 對 Equalizer 端子壁厚度的機構質疑，以及 Dr. Dro 對「理想安全線材」的個人構想（結合 Equalizer 高承載設計＋ThermalProtect 溫度斷電＋可重置保險絲，目前無任何產品如此設計）。另有新討論串：DLSS 5 導致當機的使用者被建議加裝 ThermalProtect／ROG Equalizer；EZDIY-FAB Alpha TS13 在一篇 mini-ITX 改裝完工文中確認成功安裝。GPU Safeguard、OptiGuard、Titanload、T-Guard、GPU Tweak III Auto-Shutdown、GPU Shield 本次查核沒有找到新內容；ASRock TempGuard 相關討論串本週僅有大量重複性意見交鋒，沒有可查核的新事實，故本輪未收錄。'),
     ('2026-09-23', 'PCGH Extreme：用「Neuer als」= 2026-09-16 核讀 WireView／Ampinel／ROG Equalizer／ThermalProtect／GPU Shield。新增一起 PNY RTX 5090 於 2D／低負載情境下 16-pin 接頭熔損的案例（PNY 拒絕保固），留言者引用 IgorsLab／der8auer 的見解說明此類熔損與負載高低關聯較小、主因是接頭端子設計本身，並首次提出「即使加裝 WireView，廠商仍可能反過來以『問題出在 WireView』為由拒絕保固」的疑慮（屬個人推測，無實際案例佐證）。另有上週 FurMark 測試使用者 ParrotHH 的後續回覆，確認已為 RTX 5090 FE 加裝 WireView 2 Pro（與 4090 上的 Ampinel 並用），純屬購買計畫完成與主觀心得，無新量測數據。Reddit：本次因瀏覽器擴充功能的安全限制無法連線（整個 reddit.com 網域被封鎖，並非個別頁面的同意視窗問題），本輪未能查核，下次再補。'),
     ('2026-09-16', 'TechPowerUp：用「Newer than」= 2026-09-08、依日期排序，核讀全部 12 個關鍵字，新增本週最重大事件——Cooler Master GPU Shield 正式美國上市（同串涉及 WireView／ROG Equalizer／Ampinel／ThermalProtect 的跨產品比較與 ASUS 17A 額定質疑），以及 ASRock TempGuard 未能攔截 15,000 美元 RTX PRO 6000 熔損事故（技師指出感測器裝在接地側而非 12V 側）；另補充 EZDIY-FAB Alpha TS13 討論串本週延伸的 Ampinel 比較與 AIB／Nvidia 責任歸屬辯論，以及「Close call... 5090 Burnt Cable」長串中 Dr. Dro 的 ThermalProtect 電壓降觀察。GPU Tweak III Auto-Shutdown、Titanload、T-Guard、OptiGuard、GPU Safeguard 本次查核沒有找到新內容。'),
@@ -2698,9 +2911,9 @@ section{{margin:20px 0;scroll-margin-top:16px}} h2{{font-size:17px;border-left:4
 <div class="tblbox"><table id="detailTable"><thead><tr><th>發文日期（新到舊）</th><th>來源</th><th>關鍵字</th><th>命中位置</th><th>標題</th><th>主文內容（發生什麼）</th><th>留言結論／使用者評價</th><th>連結</th></tr></thead><tbody>{detail}</tbody></table></div>
 <div class="load-more-row"><button type="button" id="loadMoreBtn" class="load-more-btn" hidden>顯示更多</button></div></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
-<section class="muted"><h2>六、搜尋來源狀態</h2><ul><li>Reddit：納入 {sum(r['source']=='Reddit' for r in rows)} 篇唯一討論串；最新可核對結果為 {latest_reddit_date}。本次以 r/ThermalGrizzly 限定＋t=week 核讀 WireView，新增 1 筆（風扇異音，含原廠 RMA 率回覆）；其餘 10 個關鍵字本次未查核。</li><li>Tom's Hardware Forums：納入 {sum(r['source']=="Tom's Hardware Forums" for r in rows)} 筆；本次未查核。</li><li>TechPowerUp Forums：本次改用「Newer than」欄位直接篩選 2026-09-02 之後、依日期排序，逐一核讀全部 11 個關鍵字，新增 2 筆，包含兩起本週重大熔損事件（DLSS 5 測試熔損、Hardware Unboxed 自家測試機台熔損），後者同時涉及 WireView／ROG Equalizer／GPU Tweak III Auto-Shutdown／ThermalProtect 四個關鍵字；另發現並新增 EZDIY-FAB Alpha TS13 為第 12 個追蹤關鍵字（W1zzard 親自評測的 U 型無軟體溫度／功耗顯示轉接器）。</li><li>ComputerBase Forum：納入 {sum(r['source']=='ComputerBase Forum' for r in rows)} 筆；本次未查核。</li><li>Hardwareluxx Forum：納入 {sum(r['source']=='Hardwareluxx Forum' for r in rows)} 筆；本次未查核。</li><li>Overclockers UK Forums：納入 {sum(r['source']=='Overclockers UK Forums' for r in rows)} 筆；本次未查核。</li><li>PC Games Hardware Extreme：納入 {sum(r['source']=='PC Games Hardware Extreme' for r in rows)} 筆；首次嘗試時網站彈出訂閱／廣告同意視窗導致頁面卡住無法操作，使用者手動處理該視窗後重試成功。本次以站內 /search/ 表單、「Neuer als」篩選 2026-09-02 之後、依日期排序核讀 WireView，新增 1 筆——同一起 DLSS 5 熔損事件在德語論壇的獨立討論，並提供了與 Hardware Unboxed 事件相符的跨論壇佐證；其餘 11 個關鍵字本次未查核。</li><li>NGA玩家社區：納入 {sum(r['source']=='NGA玩家社區' for r in rows)} 筆 2025-07-01 以後資料；本次未查核。</li><li>Chiphell：納入 {sum(r['source']=='Chiphell' for r in rows)} 筆 2025-07-01 以後資料；本次未查核。</li><li>百度貼吧：納入 {sum(r['source'].startswith('百度貼吧') for r in rows)} 筆 2025-07-01 以後資料；本次未查核。既有資料均保留英文產品名、中文變體與 12V-2x6 情境搜尋。</li></ul></section>
+<section class="muted"><h2>六、搜尋來源狀態</h2><ul><li>Reddit：納入 {sum(r['source']=='Reddit' for r in rows)} 篇唯一討論串；最新可核對結果為 {latest_reddit_date}。本次以公開搜尋結果與可讀頁面補查 6 筆唯一討論及可見留言，涵蓋 WireView、GPU Safeguard、GPU Shield、Ampinel、ROG Equalizer、ThermalProtect；同一內容的跨版重貼排除。部分直接頁面仍受快取／擴充功能限制，因此沒有把搜尋不到解讀為沒有討論。</li><li>Tom's Hardware Forums：納入 {sum(r['source']=="Tom's Hardware Forums" for r in rows)} 筆；本次未查核。</li><li>TechPowerUp Forums：本次改用「Newer than」欄位直接篩選 2026-09-02 之後、依日期排序，逐一核讀全部 11 個關鍵字，新增 2 筆，包含兩起本週重大熔損事件（DLSS 5 測試熔損、Hardware Unboxed 自家測試機台熔損），後者同時涉及 WireView／ROG Equalizer／GPU Tweak III Auto-Shutdown／ThermalProtect 四個關鍵字；另發現並新增 EZDIY-FAB Alpha TS13 為第 12 個追蹤關鍵字（W1zzard 親自評測的 U 型無軟體溫度／功耗顯示轉接器）。</li><li>ComputerBase Forum：納入 {sum(r['source']=='ComputerBase Forum' for r in rows)} 筆；本次未查核。</li><li>Hardwareluxx Forum：納入 {sum(r['source']=='Hardwareluxx Forum' for r in rows)} 筆；本次未查核。</li><li>Overclockers UK Forums：納入 {sum(r['source']=='Overclockers UK Forums' for r in rows)} 筆；本次未查核。</li><li>PC Games Hardware Extreme：納入 {sum(r['source']=='PC Games Hardware Extreme' for r in rows)} 筆；首次嘗試時網站彈出訂閱／廣告同意視窗導致頁面卡住無法操作，使用者手動處理該視窗後重試成功。本次以站內 /search/ 表單、「Neuer als」篩選 2026-09-02 之後、依日期排序核讀 WireView，新增 1 筆——同一起 DLSS 5 熔損事件在德語論壇的獨立討論，並提供了與 Hardware Unboxed 事件相符的跨論壇佐證；其餘 11 個關鍵字本次未查核。</li><li>NGA玩家社區：納入 {sum(r['source']=='NGA玩家社區' for r in rows)} 筆 2025-07-01 以後資料；本次未查核。</li><li>Chiphell：納入 {sum(r['source']=='Chiphell' for r in rows)} 筆 2025-07-01 以後資料；本次未查核。</li><li>百度貼吧：納入 {sum(r['source'].startswith('百度貼吧') for r in rows)} 筆 2025-07-01 以後資料；本次未查核。既有資料均保留英文產品名、中文變體與 12V-2x6 情境搜尋。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
-<section class="muted"><h2>七、Reddit 精確度與廣度確認</h2><ul><li><b>範圍：</b>以 {period_start_label}～{period_end_label} 為日期界線，交叉查找產品全名、常見拼法、相關 PSU 型號、per-pin／telemetry／保護功能詞、12V-2x6／12VHPWR 風險語句，以及標題沒有產品名的主文與留言。</li><li><b>固定查詢線：</b>{escape('；'.join(reddit_required_query_lanes))}。每條查詢至少檢查到超出日期界線，不只讀畫面最前面的結果。</li><li><b>本次覆蓋稽核：</b>已把原兩個月版本向前補查至 2026-01-01；「MSI MPG Ai1600TS」搜尋頁的 7 篇候選逐篇判讀，5 篇納入，2 篇因沒有新增保護證據或已有內容更完整的同型號討論涵蓋而排除。納入 URL 已由產生器自動對帳。</li><li><b>精確度：</b>每篇納入資料都必須在實際可見的標題、主文或留言出現目標產品，並人工排除 NVIDIA Shield、一般 GPU 散熱護罩、OptiGuard 殺蟲劑／電梯零件及其他用途 T-Guard。</li><li><b>廣度：</b>同一篇涉及多項產品時使用多關鍵字標記；點選任一相關產品都能找到該篇，不只歸到第一個產品。</li><li><b>限制：</b>Reddit 搜尋可能動態載入或省略部分內文與留言；因此必須切換 Relevance／New、Posts／Comments、持續讀到日期界線並逐篇核讀。「沒有結果」仍不能解讀為「沒有討論」。</li></ul></section>
+<section class="muted"><h2>七、Reddit 精確度與廣度確認</h2><ul><li><b>範圍：</b>以 {period_start_label}～{period_end_label} 為日期界線，交叉查找產品全名、常見拼法、相關 PSU 型號、per-pin／telemetry／保護功能詞、12V-2x6／12VHPWR 風險語句，以及標題沒有產品名的主文與留言。</li><li><b>固定查詢線：</b>{escape('；'.join(reddit_required_query_lanes))}。每條查詢至少檢查到超出日期界線，不只讀畫面最前面的結果。</li><li><b>本次覆蓋稽核：</b>除既有 MSI MPG Ai1600TS 候選外，本次補查 6 筆 Reddit 唯一討論，逐篇閱讀主文與可見留言；納入 URL 已由產生器自動對帳，跨版重貼排除。</li><li><b>精確度：</b>每篇納入資料都必須在實際可見的標題、主文或留言出現目標產品，並人工排除 NVIDIA Shield、一般 GPU 散熱護罩、OptiGuard 殺蟲劑／電梯零件及其他用途 T-Guard。</li><li><b>廣度：</b>同一篇涉及多項產品時使用多關鍵字標記；點選任一相關產品都能找到該篇，不只歸到第一個產品。本次也從產品比較題、型號相容性題及 PSU 整合式監控討論補入標題未必包含完整產品名的內容。</li><li><b>限制：</b>Reddit 搜尋可能動態載入或省略部分內文與留言；本次部分直接頁面受快取／瀏覽器擴充功能限制，因此以公開搜尋結果與可讀頁面交叉核對，未把「沒有結果」解讀為「沒有討論」。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
 <section class="revision-history"><h2>版本紀錄（架構變動）</h2><div class="note" style="margin-top:0">只記錄新增論壇來源、新增／調整追蹤關鍵字、版型或篩選功能調整這類架構層級變動；逐次的查核與新增明細請見下方「內容更新紀錄」。</div><ul>{version_history_rows}</ul></section>
 <section class="revision-history"><h2>內容更新紀錄</h2><div class="note" style="margin-top:0">記錄每次查核實際跑了哪些來源／關鍵字、找到並新增了什麼；不對應版本號，同一版本號下可能有多筆更新紀錄。</div><ul>{update_log_rows}</ul></section>
