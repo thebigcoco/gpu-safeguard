@@ -3,6 +3,7 @@ import re
 from collections import Counter
 from datetime import date, datetime
 from html import escape
+from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
@@ -1576,6 +1577,12 @@ reddit_discovery_audit = [
     ('WireView', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wi64cq/wireview_pro_ii_thermals_question/', '納入', '高功耗水冷系統 WireView IN／OUT 溫度與 pin 讀值'),
     ('WireView', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wlzsav/gigabyte_rtx_4090_windforce_wireview_pro_2/', '納入', 'RTX 4090 與 Wired 版相容性回覆'),
     ('GPU Safeguard／Ampinel／WireView', 'https://www.reddit.com/r/gpu/comments/1wfcl7m/whats_currently_the_best_option_for_protecting_a/', '納入', '使用者比較外接監控／主動均流／整合式 PSU 的選擇與疑慮'),
+    ('WireView', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wsukcp/wireview_pro_ii_6_wire_monitoring_gap/', '納入', '6 條 +12V 監控範圍與接地回流說明'),
+    ('WireView', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wsh3dj/going_from_regular_wv_pro_2_to_noctua_edition/', '納入', '一般版升級 Noctua Edition 的價格與風扇疑慮'),
+    ('WireView', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wrh7l1/wireview_pro_ii_gpu_noctua_edition_is_here/', '納入', 'Noctua Edition 上市、風扇、Wired 版與相容性留言'),
+    ('WireView', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wrt3eg/is_there_a_way_to_replace_the_fan/', '納入', '風扇磨擦聲、客服更換與拆解教學'),
+    ('WireView', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wrwyo9/which_version_to_get/', '納入', '垂直安裝時的版本與機殼路徑相容性'),
+    ('OptiGuard', 'https://www.reddit.com/r/nvidia/comments/1wp9dx4/rtx_5090_12v2x6_connector_reaches_917c_with_dlss/', '納入', '91.7°C 接頭事件中的個人推薦，無 OptiGuard 實測'),
 ]
 pm_info = {
     'WireView': (
@@ -2261,6 +2268,86 @@ rows.extend([
         'comments': '留言分別提到 WireView 的逐 pin 讀值、保固與自動關機腳本，Ampinel 的主動均流，以及 MSI 整合式 PSU 不需外接轉接器；不同使用者對額外接頭、價格與是否能處理根因有不同看法，沒有形成共同推薦或對照測試。',
         'url': 'https://www.reddit.com/r/gpu/comments/1wfcl7m/whats_currently_the_best_option_for_protecting_a/'
     },
+    {
+        'date': '2026-09-28', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '內文＋留言',
+        'title': 'WireView Pro II - 6 Wire Monitoring Gap',
+        'summary': '新購買者提出 WireView Pro II 只監控 6 條 +12V 線，但 12 條線都承載電流，因而認為這可能是不完整的監控實作。',
+        'comments': '留言說明 12 條中另有 6 條是接地線；回覆者表示 GPU 的主要 12V 功率經由 6 條 +12V 線輸入，接地回流還會經由 GPU、主機板與 PCIe 插槽的多條接地路徑分流，因此接地線電流較低。原發文者後續表示實測接地回流只有一部分，且 +12V 讀值與 WireView 顯示一致。這是該串的技術說明與單機確認，沒有獨立安全門檻測試。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1wsukcp/wireview_pro_ii_6_wire_monitoring_gap/'
+    },
+    {
+        'date': '2026-09-28', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '標題＋內文＋留言',
+        'title': 'Going from Regular WV Pro 2 To Noctua Edition?',
+        'summary': 'WireView Pro II 使用者詢問是否應從一般版換成 Noctua Edition，以降低未來風扇問題的疑慮。',
+        'comments': '留言有人打算把一般版移到另一台電腦，也有人認為約 200 美元的換機成本難以合理化；另有使用者表示一般版風扇正在故障但遊戲與 AI 負載溫度仍正常，且目前沒有新版風扇失效率資料。其他留言指出風扇平常很少啟動，Noctua 版對既有使用者的實際價值尚不明確。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1wsh3dj/going_from_regular_wv_pro_2_to_noctua_edition/'
+    },
+    {
+        'date': '2026-09-27', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '標題＋內文＋留言',
+        'title': 'WireView Pro II GPU Noctua Edition is here!',
+        'summary': 'Thermal Grizzly 在 r/ThermalGrizzly 宣布 WireView Pro II GPU Noctua Edition 上市；主文要求購買前查核相容清單，但沒有新的電流或溫度實測。',
+        'comments': '留言集中在約 80 美元價差、Noctua frameless A4x10 風扇與較大外殼、原版風扇很少啟動、Wired 版預計約 2–3 個月、Linux 支援尚非官方、白色版本，以及 SFF 厚度／相容性。這些是留言者的價格、外觀與相容性意見，不能推成新版已降低多少溫度。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1wrh7l1/wireview_pro_ii_gpu_noctua_edition_is_here/'
+    },
+    {
+        'date': '2026-09-27', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '標題＋內文＋留言',
+        'title': 'Is there a way to replace the fan?',
+        'summary': 'WireView II 使用者表示風扇啟動時出現很大的磨擦聲，詢問是否應聯絡客服或自行更換。',
+        'comments': '留言建議聯絡 Thermal Grizzly 申請更換，並指出原廠有拆解教學；原發文者因此表示想改用 Noctua Edition。另一名留言者說自己的裝置從未聽到風扇啟動，但串內沒有足以估計故障率的樣本或統計。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1wrt3eg/is_there_a_way_to_replace_the_fan/'
+    },
+    {
+        'date': '2026-09-27', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '標題＋內文＋留言',
+        'title': 'Which Version to get?',
+        'summary': '使用者因垂直安裝 Gigabyte RTX 4090，詢問一般、反向或 Wired 版 WireView Pro II 的選擇。',
+        'comments': '留言建議垂直安裝選 Wired 版以保留螢幕可視性，並說明一般／反向版本主要是接頭方向差異；也提到 Wired 版有較多安裝位置，但仍需依顯示卡接頭方向與機殼路徑確認。這是相容性建議，沒有負載或保護效果測試。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1wrwyo9/which_version_to_get/'
+    },
+    {
+        'date': '2026-09-24', 'source': 'Reddit', 'keyword': 'OptiGuard',
+        'keywords': ['OptiGuard'], 'match': '留言',
+        'title': 'RTX 5090 12V-2x6 connector reaches 91.7°C with DLSS 5, 16-pin input peaks at 647W',
+        'summary': '主文轉貼一項 RTX 5090 DLSS 5 測試：平均功耗接近 600W、16-pin 接頭量到 91.7°C；同文指出 RTX 5080 低於 53°C。',
+        'comments': '留言者分別提出 410W power limit、降壓後約 515–525W 或不使用 DLSS 5 等降低負載方式；也有人認為 90°C 接頭問題不應簡化歸因於 DLSS 5，另有人僅以個人看法推薦 Seasonic OptiGuard。未讀到 OptiGuard 在此事件中的實測或觸發資料。',
+        'url': 'https://www.reddit.com/r/nvidia/comments/1wp9dx4/rtx_5090_12v2x6_connector_reaches_917c_with_dlss/'
+    },
+    {
+        'date': '2026-09-28', 'source': 'TechPowerUp Forums', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '標題＋內文＋留言',
+        'title': 'Thermal Grizzly and Noctua Introduce WireView Pro II Noctua Edition GPU Monitoring Device',
+        'summary': 'TechPowerUp 新聞串轉貼 Noctua Edition 發布資料：產品以逐條 12V 導體監控、TFT 顯示、聲音警示及可選自動關機為基礎，並主打較安靜的客製化散熱；官方公布建議售價 189.90 美元／歐元。',
+        'comments': '可見留言有人認為 190 美元相對一般版過貴，也有人嘲諷高功耗顯卡需要為接頭加主動散熱；另一則留言提到 WireView 可在不平衡或過熱時關機，並有留言討論原版風扇噪音。這些是論壇反應，官方貼文內的 300W／400W／480W 風扇啟動與噪音數據屬發布資料，不當成使用者實測。',
+        'url': 'https://www.techpowerup.com/forums/threads/thermal-grizzly-and-noctua-introduce-wireview-pro-ii-noctua-edition-gpu-monitoring-device.353137/'
+    },
+    {
+        'date': '2026-09-28', 'source': 'Chiphell', 'keyword': 'WireView',
+        'keywords': ['WireView', '12V-2x6'], 'match': '標題＋內文＋留言',
+        'title': '[PC硬件] 暴力熊、猫头鹰推出 12V-2×6 监控设备 WireView Pro II Noctua Edition：更强散热',
+        'summary': 'Chiphell 轉貼 IT之家資料，介紹 WireView Pro II Noctua Edition：整合鋁製散熱片、較大的 Noctua NF-A4x10n 風扇與客製風扇格柵；轉貼內容稱多數時間可停轉，極端測試下風扇啟動所需功耗為原版 2 倍、多個功率點平均低 3°C，400～480W 時公布 10cm 風扇噪音 21.5dB(A)、1m 1.5dB(A)，定價 189.90 美元。以上是轉貼的發布資料，不是 Chiphell 使用者實測。',
+        'comments': '可見留言多為負面或懷疑式反應：有人表示這是在替問題接口增加外設，有人批評價格／產品定位，也有人指出這實際上是轉接顯卡供電。留言沒有提供 Noctua Edition 的實機電流、溫度或保護觸發測試，因此不能從本串確認改善幅度或可靠度。',
+        'url': 'https://www.chiphell.com/thread-2905450-1-1.html'
+    },
+    {
+        'date': '2026-09-27', 'source': 'Hardwareluxx Forum', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '標題＋內文＋留言',
+        'title': '[User-Review] Thermal Grizzly Wireview Pro II “Noctua Edition” im Lesertest',
+        'summary': 'Hardwareluxx 使用者完整測試 WireView Pro II Noctua Edition：記錄逐線電流監控、TFT 顯示、半主動風扇、溫度感測與自動關機等功能；約 20°C 室溫下模組峰值約 44°C、風扇未自行啟動，強制約 40% 轉速後表面溫度下降約 6°C。這是單一使用者測試，文中也說熱天結果可能不同。',
+        'comments': '作者列出的優點包括逐 pin 監控、無軟體自動關機、24 個月延伸保固、可獨立運作、低噪音與相容性清單；缺點是硬體／軟體目前只有英文，以及 Noctua Edition 價格高，作者認為相較一般版約貴 80 歐元，理性上不易合理化。留言者因高價 GPU 與 RMA 爭議表示願意購買，並詢問卡扣可拆性、是否能確認插到底、USB splitter 與軟體負載；作者回覆可用扁平工具拆卡扣、可從側面確認插到底，但 USB splitter 不在配件內。不能把單一測試推成普遍溫度或風扇壽命結論。',
+        'url': 'https://www.hardwareluxx.de/community/threads/thermal-grizzly-wireview-pro-ii-%E2%80%9Cnoctua-edition%E2%80%9D-im-lesertest.1382401/'
+    },
+    {
+        'date': '2026-09-28', 'source': 'Hardwareluxx Forum', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '內文＋留言',
+        'title': 'Thermal Grizzly Lesertest: Testet eine von drei WireView Pro II Varianten!',
+        'summary': 'Hardwareluxx WireView Wired 版測試者在安裝主機板電源按鈕 splitter 時，表示小型接頭在正常、仔細按壓下從焊點脫落；他認為該重要接頭固定方式過弱，並附圖詢問原廠。這是單一安裝個案。',
+        'comments': 'der8auer 回覆表示理解並道歉，建議直接聯絡客服，會安排更換；測試者後續表示已完成聯絡。留言支持的是換貨處理，不代表已確認普遍設計失效或故障率。',
+        'url': 'https://www.hardwareluxx.de/community/threads/thermal-grizzly-lesertest-testet-eine-von-drei-wireview-pro-ii-varianten.1381759/post-31282820'
+    },
 ])
 
 # 本版指定日期界線；避免歷史基準資料在擴大搜尋時意外越界。
@@ -2304,9 +2391,150 @@ previous_report = (
 previous_urls = extract_detail_urls(previous_report) if previous_report else set()
 
 previous_report_label = previous_report.name if previous_report else '無可用前版'
+previous_generated_at_label = '無可用前版'
+if previous_report:
+    try:
+        previous_markup = previous_report.read_text(encoding='utf-8')
+    except (OSError, UnicodeError):
+        previous_markup = ''
+    previous_generated_match = re.search(r'產生時間：<b>([^<]+)</b>', previous_markup)
+    if previous_generated_match:
+        previous_generated_at_label = previous_generated_match.group(1)
 previous_report_date_match = re.search(r'(\d{4}-\d{2}-\d{2})', previous_report_label)
 weekly_focus_start = previous_report_date_match.group(1) if previous_report_date_match else PERIOD_START.isoformat()
 weekly_focus_range = f'{weekly_focus_start}～{PERIOD_END.isoformat()}'
+
+# 明細中的問題標籤只從該筆標題、主文摘要與留言摘要的明確文字產生；
+# 沒有實際問題描述的功能／規格討論不加標籤，避免把一般風險提醒誤標成故障。
+ISSUE_TAG_RULES = [
+    ('風扇噪音', r'風扇[^。；，,]{0,50}(?:噪音|異音|摩擦聲)|(?:噪音|異音|摩擦聲)[^。；，,]{0,50}風扇|fan noise|fan.*(?:noisy|noise)'),
+    ('風扇故障', r'風扇[^。；，,]{0,50}(?:故障|失效|損壞|自行更換|更換|失效率)|(?:故障|失效|損壞)[^。；，,]{0,50}風扇|fan.*(?:failure|fault|replace)'),
+    ('線圈噪音', r'coil whine|線圈聲|線圈噪音'),
+    ('接頭熔損', r'熔損|熔化|燒損|burnt cable|burn.*connector|melting'),
+    ('接頭高溫', r'(?:接頭|連接器|connector)[^。；，,]{0,22}(?:高溫|過熱|\d+(?:\.\d+)?°C)|(?:高溫|過熱)[^。；，,]{0,22}(?:接頭|連接器|connector)'),
+    ('接頭／焊點脫落', r'(?:接頭|連接器|splitter)[^。；，,]{0,24}(?:脫落|斷裂|破裂)|(?:脫落|斷裂|破裂)[^。；，,]{0,24}(?:接頭|連接器|焊點|splitter)|焊點[^。；，,]{0,24}(?:脫落|斷裂)|splitter.*(?:broke|detached)'),
+    ('電流不平衡', r'電流不平衡|pin[^。；，,]{0,18}(?:不平衡|差距)|imbalance|current difference'),
+    ('軟體／效能問題', r'軟體[^。；，,]{0,24}(?:bug|負載|斷線|效能)|(?:FPS|效能下降|斷線|bug)[^。；，,]{0,24}(?:軟體|WireView|監控)|software.*(?:load|bug|disconnect)'),
+    ('安裝／相容性問題', r'無法安裝|安裝[^。；，,]{0,24}(?:問題|困難|不相容)|相容性問題|相容性疑慮|compatibility|空間[^。；，,]{0,18}(?:不足|問題)'),
+    ('價格／溢價疑慮', r'(?:價格|價差|溢價)[^。；，,]{0,18}(?:高|貴|過高|過貴)|(?:過貴|價格效益|換機成本)'),
+    ('供貨／交期問題', r'交期|缺貨|供貨|上市[^。；，,]{0,18}(?:延後|等待)|shipping delay'),
+    ('保固／售後問題', r'拒絕受理保固|保固爭議|拒保|RMA[^。；，,]{0,30}(?:故障|換貨|申請|率|爭議)|安排換貨|聯絡客服[^。；，,]{0,30}(?:更換|故障|問題)|保固[^。；，,]{0,18}(?:拒絕|申請|更換|爭議)'),
+]
+
+# 本次逐筆讀取主文與可見留言後的人工覆核結果。
+# 已讀不到內容、只看到驗證頁或只有一般規格／風險討論者，刻意留空，避免把推測寫成產品問題。
+ISSUE_TAG_OVERRIDES = {canonical_url(url): tags for url, tags in [
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1wsh3dj/going_from_regular_wv_pro_2_to_noctua_edition/', ['風扇可靠性疑慮']),
+    ('https://www.techpowerup.com/forums/threads/thermal-grizzly-and-noctua-introduce-wireview-pro-ii-noctua-edition-gpu-monitoring-device.353137/', ['風扇噪音', '價格／溢價疑慮']),
+    ('https://www.chiphell.com/thread-2905450-1-1.html', []),
+    ('https://www.hardwareluxx.de/community/threads/thermal-grizzly-lesertest-testet-eine-von-drei-wireview-pro-ii-varianten.1381759/post-31282820', ['接頭／焊點脫落']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1wrt3eg/is_there_a_way_to_replace_the_fan/', ['風扇噪音', '風扇故障／更換']),
+    ('https://www.reddit.com/r/nvidia/comments/1wp9dx4/rtx_5090_12v2x6_connector_reaches_917c_with_dlss/', ['接頭高溫']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1wi53nd/update_post_rog_equalizer_with_wvp_2/', ['電流不平衡']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1whd8yh/wireview_pro_2_and_rog_equalizer/', []),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5794186', ['接頭熔損案例']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1wlzsav/gigabyte_rtx_4090_windforce_wireview_pro_2/', ['安裝／相容性問題']),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5793615', ['接頭熔損風險討論']),
+    ('https://extreme.pcgameshardware.de/threads/geforce-rtx-5090-16-pin-stecker-bei-2d-spiel-stark-verschmort.677842/post-12150096', []),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1wi64cq/wireview_pro_ii_thermals_question/', ['接頭高溫']),
+    ('https://www.techpowerup.com/forums/threads/asrocks-tempguard-failed-to-stop-a-psu-side-connector-meltdown-on-a-15-000-rtx-pro-6000-rig.352658/', ['接頭熔損案例', '保護功能失效', '感測位置疑慮']),
+    ('https://www.reddit.com/r/ASRock/comments/1wf6dtj/asrock_psu_thermal_protection_fails_to_prevent/', ['接頭熔損案例', '保護功能失效', '感測位置疑慮']),
+    ('https://www.reddit.com/r/gpu/comments/1wfcl7m/whats_currently_the_best_option_for_protecting_a/', []),
+    ('https://www.techpowerup.com/forums/threads/cooler-master-gpu-shield-adapter-officially-launches-in-the-us.352611/', ['額外接點／故障風險']),
+    ('https://extreme.pcgameshardware.de/threads/geforce-rtx-5090-8-pin-stromanschluesse-schlagen-12v-2-6.677683/post-12147632', []),
+    ('https://www.techpowerup.com/forums/threads/ezdiy-fab-alpha-ts13.351975/post-5786734', ['量測準確度疑慮', '保護功能限制']),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5787553', ['接頭熔損風險討論']),
+    ('https://www.techpowerup.com/forums/threads/dlss-5-testing-ends-in-a-melted-rtx-5090-connector-power-shoots-past-600-w.352412/post-5786049', ['接頭熔損案例']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1w909u4/wireview_pro_2_fan_started_grinding_today/', ['風扇噪音', '風扇故障／更換', '保固／售後問題']),
+    ('https://extreme.pcgameshardware.de/threads/dlss-5-schuld-nutzer-berichtet-von-geschmolzenem-stromstecker-seiner-rtx-5090.677607/', []),
+    ('https://www.techpowerup.com/forums/threads/hardware-unboxed-falls-victim-to-melted-rtx-5090-power-connector-as-cable-reaches-175%C2%B0c.352273/', ['接頭熔損案例', '接頭高溫', '電流不平衡']),
+    ('https://www.reddit.com/r/overclocking/comments/1w4rvzs/cooler_master_gpu_shield_adapter_cable_unboxing/', ['保固／售後限制', '安裝／固定問題']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1w2xjye/wireview_pro_ii_worth_for_9070_xt_on_linux/', []),
+    ('https://www.reddit.com/r/nvidia/comments/1w0ebt5/cooler_master_gpu_shield_installed_on_a_5090d/', []),
+    ('https://www.reddit.com/r/watercooling/comments/1vzqn6s/free_aquacomputer_ampinel_for_reviewer/', ['接頭／製造品質問題']),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5776023', ['接頭高溫', '接頭熔損風險討論']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1vy0wa9/wireview_pro_ii_get_disconnected_by_aida64/', ['軟體／效能問題']),
+    ('https://extreme.pcgameshardware.de/threads/high-power-stecker-defekt.677281/', []),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1vvxc1d/curious_has_there_been_any_melted_cables_with_wvp2/', ['接頭熔損風險討論']),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5772478', ['接頭高溫']),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5772336', ['接頭熔損風險討論']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1vrjtee/wire_view_pro_2_installed_and_can_now_sleep_a/', ['電流不平衡']),
+    ('https://www.reddit.com/r/LinusTechTips/comments/1vqt4vi/regarding_melting_12vhpwr_power_cables_for_nvidia/', ['接頭熔損風險討論']),
+    ('https://forums.tomshardware.com/threads/power-supply-and-12vhpwr.3899315/post-23651390', ['接頭熔損案例', '保固／售後問題']),
+    ('https://bbs.nga.cn/read.php?tid=47371845', []),
+    ('https://bbs.nga.cn/read.php?tid=47361387', []),
+    ('https://bbs.nga.cn/read.php?tid=47355461', ['安裝／相容性問題', '保固／售後限制']),
+    ('https://bbs.nga.cn/read.php?tid=47354624', ['安裝／相容性問題', '供貨／交期問題']),
+    ('https://bbs.nga.cn/read.php?tid=47343776', ['安裝／相容性問題', '價格／溢價疑慮', '額外接點／故障風險', '保固／售後限制']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1vebo4v/is_the_thermal_grizzly_wireview_pro_ii_worth/', ['接頭熔損風險討論']),
+    ('https://www.reddit.com/r/RTX5080/comments/1vckxvp/rog_equalizer/', ['電流不平衡']),
+    ('https://www.techpowerup.com/forums/threads/nvidia-rtx-50-series-gpus-could-see-another-20-30-price-hike-in-2026.351234/post-5762766', []),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5762386', ['接頭熔損風險討論']),
+    ('https://www.reddit.com/r/RTX5080/comments/1vaveb8/new_nvidia_user_scared_of_the_12v2x6_cable/', ['接頭熔損風險討論']),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5761950', ['接頭熔損風險討論', '保固／售後問題']),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5760564', ['接頭熔損風險討論', '保固／售後問題']),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5760028', ['保固／售後限制', '價格／溢價疑慮']),
+    ('https://www.reddit.com/r/watercooling/comments/1v5wh2i/ampinel_installed/', ['安裝／相容性問題']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1v1r6oc/just_got_the_wireview_pro_ii_and_immediately_got/', ['電流不平衡']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1v1jb4z/just_installed_my_new_wireview_pro_ii_wired/', ['安裝／相容性問題']),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5756316', []),
+    ('https://www.reddit.com/r/pcmasterrace/comments/1v120m6/bad_plastic_injection_or_potential_melting/', ['接頭熔損案例', '保固／售後問題']),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5755006', ['接頭熔損風險討論', '保固／售後問題']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1uy826k/wireview_pro_ii_wired_on_rtx_pro_6000_finally_the/', []),
+    ('https://www.chiphell.com/thread-2847439-1-1.html', ['安裝／相容性問題']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1uxhwl3/wireview_pro_melted_on_my_gigabyte_aorus_rtx_5090/', ['接頭熔損案例', '電流不平衡', '保固／售後問題']),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5753286', []),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5752634', ['接頭熔損案例', '保護功能失效', '感測位置疑慮']),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5752674', ['保護功能限制', '接頭熔損風險討論']),
+    ('https://www.reddit.com/r/ASRock/comments/1utcp5x/asrock_tempguard_failed_to_shut_down_system_after/', ['接頭熔損案例', '保護功能失效', '感測位置疑慮']),
+    ('https://www.reddit.com/r/pcmasterrace/comments/1ust8i0/avoid_12vhpwr_melting/', ['接頭熔損風險討論']),
+    ('https://www.reddit.com/r/MSI_Gaming/comments/1ur8ybe/avoid_msi_ai1600ts_if_you_when_something_silent/', ['線圈噪音', '接頭／焊點脫落']),
+    ('https://www.techpowerup.com/forums/threads/msi-mpg-ai1600ts.346215/', ['價格／溢價疑慮', '供貨／交期問題', '軟體／語言限制', '量測準確度疑慮']),
+    ('https://www.reddit.com/r/nvidia/comments/1uoepk0/installed_wire_view_pro_ii_and_corsair_thermal/', []),
+    ('https://www.reddit.com/r/overclocking/comments/1umu2yx/questions_about_12v2x6_connector_wear_and_cable/', ['電流不平衡']),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5748182', ['接頭熔損風險討論']),
+    ('https://www.reddit.com/r/pcmasterrace/comments/1ulyjce/is_it_werid_that_i_can_afford_an_rtx_5090_but_im/', ['接頭熔損風險討論']),
+    ('https://bbs.nga.cn/read.php?tid=47090177', ['電流不平衡', '價格／溢價疑慮', '接頭熔損風險討論']),
+    ('https://www.reddit.com/r/ASUSROG/comments/1uktwty/ive_seen_reports_of_the_asus_rog_equalizer_cable/', ['接頭熔損風險討論', '電流不平衡']),
+    ('https://www.reddit.com/r/coolermaster/comments/1ukfz35/gpu_shield_availability/', []),
+    ('https://www.reddit.com/r/pcmasterrace/comments/1uhce46/wireview_pro_ii_was_worth_it_just_for_the_peace/', []),
+    ('https://www.computerbase.de/forum/threads/asus-rog-equalizer-schmorstellen-am-kabel-sind-eine-faelschung.2273324/page-10', []),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5737373', []),
+    ('https://bbs.nga.cn/read.php?tid=46975741', ['接頭熔損案例']),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5736651', []),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5736530', []),
+    ('https://www.techpowerup.com/forums/threads/thermal-grizzly-shows-new-wireview-pro-ii-noctua-edition-and-new-wireview-ii-at-computex-2026.349824/', []),
+    ('https://www.techpowerup.com/forums/threads/cooler-master-launches-mwe-gold-v4-series-with-gpu-shield.349823/', []),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1tt727g/wireview_pro_ii_w_5090_current_imbalance_limits/', ['電流不平衡']),
+    ('https://www.reddit.com/r/MSI_Gaming/comments/1tgsqs4/burned_meg_ai1600t_connector/', []),
+    ('https://www.hardwareluxx.de/community/threads/mpg-ai1300ts-pcie5-release.1376483/', []),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1t32e5j/wireview_pro_2_connection_overheating/', ['電流不平衡', '接頭高溫', '保固／售後問題']),
+    ('https://www.reddit.com/r/hardware/comments/1sy32o6/corsair_thermalprotect_review/', []),
+    ('https://www.hardwareluxx.de/community/threads/temperatur%C3%BCberwachung-mit-sense-eingriff-das-corsair-thermalprotect-600w-12v-2x6-kabel-ausprobiert.1378713/', []),
+    ('https://www.hardwareluxx.de/community/threads/offizieller-nvidia-rtx-5090-overclocking-und-modding-thread.1363289/page-141', []),
+    ('https://www.hardwareluxx.de/community/threads/schmelzende-12v-2x6-stecker-asus-rog-equalizer-kabel-h%C3%A4lt-in-extrem-situationen-durch.1378270/', []),
+    ('https://www.reddit.com/r/MSI_Gaming/comments/1sgb4pz/msi_ai1600ts_technical_review/', []),
+    ('https://extreme.pcgameshardware.de/threads/schmelzende-stromstecker-bei-gpus-msi-will-mit-hardware-alarmsignal-entgegensteuern.673250/', []),
+    ('https://www.techpowerup.com/forums/threads/msi-announces-safeguard-for-its-mpg-ai-ts-series-psus.347699/', []),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1ry7pkp/wireview_pro_ii_thoughts/', []),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1r6t767/need_exact_cable_recommendation_aorus_p1200w_rtx/', []),
+    ('https://www.computerbase.de/forum/threads/wireview-pro-ii-neue-firmware-und-software-mit-vielen-verbesserungen.2265325/', []),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1qsczjr/wireview_saved_my_4090/', []),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1qlnurz/pin2_pin6_current_imbalance_summary/', []),
+    ('https://www.computerbase.de/forum/threads/thermal-grizzly-wireview-pro-ii-im-test-der-luxus-schutz-fuer-das-12v-2x6-stecker-problem.2263460/page-14', []),
+    ('https://bbs.nga.cn/read.php?tid=45988787', ['接頭熔損風險討論', '保固／售後問題']),
+    ('https://www.computerbase.de/forum/threads/msi-netzteile-gpu-safeguard-schuetzt-vor-12v-2x6-steckerschaeden.2262806/', ['接頭熔損風險討論']),
+    ('https://bbs.nga.cn/read.php?tid=45950741', ['保護功能限制', '保固／售後問題']),
+    ('https://www.reddit.com/r/coolermaster/comments/1q6adeu/cooler_master_gpu_shield_ces/', []),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1q2dbfa/wireview_extension_for_fe/', []),
+]}
+
+def detect_issue_tags(row):
+    override_key = canonical_url(row.get('url', ''))
+    if override_key in ISSUE_TAG_OVERRIDES:
+        return ISSUE_TAG_OVERRIDES[override_key]
+    evidence = ' '.join(str(row.get(key, '')) for key in ('title', 'summary', 'comments'))
+    return [tag for tag, pattern in ISSUE_TAG_RULES if re.search(pattern, evidence, flags=re.I)]
 
 for row in rows:
     if row['url'] in content_review_overrides:
@@ -2317,6 +2545,7 @@ for row in rows:
         row['keywords'] = [row['keyword']]
     row.setdefault('keyword', row['keywords'][0])
     row['reviewed'] = True
+    row['issue_tags'] = detect_issue_tags(row)
     row['is_new'] = bool(previous_report and canonical_url(row['url']) not in previous_urls)
     if 'match' not in row:
         title_hit = row['keyword'].casefold() in row['title'].casefold()
@@ -2340,11 +2569,12 @@ forum_chips = ''.join(f'<button type="button" class="filter-chip" data-value="{e
 month_chips = ''.join(f'<button type="button" class="filter-chip" data-value="{escape(m, quote=True)}">{escape(m)}</button>' for m in months)
 detail = ''.join(
     '<tr data-keyword="{keyword_attr}" data-forum="{source_attr}" data-month="{month_attr}" data-new="{is_new_attr}"><td class="dt">{date}</td><td>{source}</td><td>{keyword_labels}</td>'
-    '<td>{match}</td><td class="ti">{new_badge}{title}</td><td class="sm">{summary}</td><td class="sm">{comments}</td>'
+    '<td>{match}</td><td class="ti">{new_badge}{title}</td><td class="issue-cell">{issue_labels}</td><td class="sm">{summary}</td><td class="sm">{comments}</td>'
     '<td><a href="{url}" target="_blank" rel="noopener">開啟</a></td></tr>'.format(
         **{k: escape(str(v)) for k, v in r.items() if k != 'url'},
         keyword_attr=escape('|'.join(r['keywords']), quote=True),
         keyword_labels=' '.join(f'<span class="badge">{escape(k)}</span>' for k in r['keywords']),
+        issue_labels=' '.join(f'<span class="issue-tag">{escape(tag)}</span>' for tag in r['issue_tags']) or '<span class="issue-none">—</span>',
         is_new_attr='1' if r['is_new'] else '0',
         new_badge='<span class="new-badge">New!</span> ' if r['is_new'] else '',
         source_attr=escape(r['source'], quote=True),
@@ -2618,6 +2848,38 @@ pm_weekly_updates['GPU Shield'] = {
         ('GPU Shield 選購爭論', 'https://www.reddit.com/r/watercooling/comments/1wihia6/rtx_5090_owners_worth_upgrading_to_a/'),
     ],
 }
+# 本次產生報告只放 2026-09-23～2026-09-29 的新評價；前版 New! 內容由
+# previous_report 動態讀回，避免把 9/17～9/23 的內容重複標成本週新增。
+pm_weekly_updates = {
+    'WireView': {'pros': '', 'cons': '', 'actions': '', 'sources': []},
+}
+pm_weekly_updates['WireView']['pros'] += ' 本週 Reddit 有使用者確認 WireView 的 +12V 讀值與其自行量到的 +12V 電流一致；另有垂直安裝使用者認為 Wired 版可保留螢幕可視性。這些是單機確認與安裝偏好，沒有新增的保護效果對照測試。'
+pm_weekly_updates['WireView']['cons'] += ' Noctua Edition 討論集中反映約 80 美元／190 美元級距的價格溢價、一般版風扇很少啟動、既有風扇磨擦聲與更換疑慮，以及 Wired 版交期、Linux 非官方支援、白色版本、SFF 厚度與垂直安裝相容性問題；目前沒有新版風扇失效率資料。'
+pm_weekly_updates['WireView']['actions'] += ' 應公布一般版與 Noctua Edition 的風扇失效率、壽命、噪音與實際溫度對照，並提供版本／方向／垂直與 SFF 機殼相容表、Wired 版時程及官方 Linux 支援；風扇異音應有清楚的更換與保固流程。'
+pm_weekly_updates['WireView']['sources'].extend([
+    ('Reddit 6-wire 監控範圍與接地回流', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wsukcp/wireview_pro_ii_6_wire_monitoring_gap/'),
+    ('Reddit 一般版升級 Noctua Edition', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wsh3dj/going_from_regular_wv_pro_2_to_noctua_edition/'),
+    ('Reddit Noctua Edition 上市留言', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wrh7l1/wireview_pro_ii_gpu_noctua_edition_is_here/'),
+    ('Reddit 風扇更換問題', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wrt3eg/is_there_a_way_to_replace_the_fan/'),
+    ('Reddit 垂直安裝版本選擇', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wrwyo9/which_version_to_get/'),
+    ('TechPowerUp Noctua Edition 新聞串', 'https://www.techpowerup.com/forums/threads/thermal-grizzly-and-noctua-introduce-wireview-pro-ii-noctua-edition-gpu-monitoring-device.353137/'),
+])
+pm_weekly_updates['WireView']['pros'] += ' Hardwareluxx 單一使用者測試在約 20°C 室溫下量到模組峰值約 44°C；風扇未自行啟動，強制約 40% 轉速後表面溫度下降約 6°C。該測試也實際使用了逐線監控、TFT 顯示與自動關機功能，但不能外推到所有機殼或環境。'
+pm_weekly_updates['WireView']['cons'] += ' Hardwareluxx 測試者回報 Wired 版主機板電源按鈕 splitter 的小型接頭在仔細安裝時從焊點脫落，原廠後續安排換貨；這是單一安裝個案。Chiphell 轉貼串的留言則質疑額外轉接設備與 189.90 美元價格，但沒有提供實機測試。'
+pm_weekly_updates['WireView']['actions'] += ' 應以多機殼、熱環境與不同功耗條件驗證 Noctua Edition 的風扇啟動門檻、噪音與降溫效果；同時改善 splitter 接頭的機械固定／應力釋放，公開 USB header／splitter 配件需求與卡扣拆卸指引，並清楚說明單一換貨個案不等於普遍故障率。'
+pm_weekly_updates['WireView']['sources'].extend([
+    ('Hardwareluxx Noctua Edition 使用者測試', 'https://www.hardwareluxx.de/community/threads/thermal-grizzly-wireview-pro-ii-%E2%80%9Cnoctua-edition%E2%80%9D-im-lesertest.1382401/'),
+    ('Hardwareluxx Wired 版 splitter 接頭個案', 'https://www.hardwareluxx.de/community/threads/thermal-grizzly-lesertest-testet-eine-von-drei-wireview-pro-ii-varianten.1381759/post-31282820'),
+    ('Chiphell Noctua Edition 轉貼與留言', 'https://www.chiphell.com/thread-2905450-1-1.html'),
+])
+pm_weekly_updates['OptiGuard'] = {
+    'pros': '',
+    'cons': '本週 RTX 5090 接頭 91.7°C 討論中只有一名留言者以個人看法推薦 Seasonic OptiGuard；沒有讀到 OptiGuard 的實機量測、保護觸發或該事件的產品介入資料。',
+    'actions': '應在產品上市後公開相同功耗與接頭異常條件下的逐 pin、溫度、觸發門檻與關機／降載紀錄，不能以單一留言推薦取代實測。',
+    'sources': [
+        ('Reddit RTX 5090 91.7°C 接頭討論', 'https://www.reddit.com/r/nvidia/comments/1wp9dx4/rtx_5090_12v2x6_connector_reaches_917c_with_dlss/'),
+    ],
+}
 
 def pm_points(value):
     points = [point.strip() for point in re.split(r'(?<=[。！？])\s*|；', value or '') if point.strip()]
@@ -2672,8 +2934,8 @@ def extract_previous_new_parts(markup):
     return cards
 
 previous_evaluation_parts = {}
-comparison_report = REPORT_DIR / '12v2x6_gpu_protection_weekly_report_2026-09-23_110544.html'
-if comparison_report.exists():
+comparison_report = previous_report
+if comparison_report and comparison_report.exists():
     previous_evaluation_parts = extract_previous_new_parts(
         comparison_report.read_text(encoding='utf-8')
     )
@@ -2692,10 +2954,34 @@ def previous_new_content(fragment):
 def extract_new_items(fragment):
     if not fragment:
         return []
-    list_match = re.search(r'<ul class="pm-list">(.*?)</ul>', fragment, re.S)
-    if not list_match:
-        return []
-    return re.findall(r'<li>(.*?)</li>', list_match.group(1), re.S)
+    class LeafListParser(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.stack = []
+            self.items = []
+
+        def handle_starttag(self, tag, attrs):
+            if tag == 'li':
+                if self.stack:
+                    self.stack[-1]['has_child_li'] = True
+                self.stack.append({'parts': [], 'has_child_li': False})
+
+        def handle_endtag(self, tag):
+            if tag == 'li' and self.stack:
+                item = self.stack.pop()
+                if not item['has_child_li']:
+                    text = ''.join(item['parts']).strip()
+                    text = re.sub(r'^前版內容：\s*', '', text)
+                    if text:
+                        self.items.append(text)
+
+        def handle_data(self, data):
+            if self.stack:
+                self.stack[-1]['parts'].append(data)
+
+    parser = LeafListParser()
+    parser.feed(fragment)
+    return parser.items
 
 def merged_new_content(old_fragment, current_fragment):
     old_items = extract_new_items(old_fragment)
@@ -2724,7 +3010,9 @@ def merged_new_sources(old_fragment, current_fragment):
     parts = []
     if old_links:
         parts.append(
-            '<span><b>前版依據（報告時間：2026-09-23 11:05:44）：</b>{}</span>'.format('、'.join(old_links))
+            '<span><b>前版依據（報告時間：{0}）：</b>{1}</span>'.format(
+                escape(previous_generated_at_label), '、'.join(old_links)
+            )
         )
     if current_links:
         parts.append(
@@ -2780,12 +3068,16 @@ new_keywords = {'EZDIY-FAB Alpha TS13'}
 # 找到什麼）分成兩份清單呈現，避免版本號被日常內容更新灌水，也讓兩種資訊各自好找。
 version_history = [
     ('v1.6', '2026-09-09', '新增 EZDIY-FAB Alpha TS13 為第 12 個追蹤關鍵字——U 型 12V-2x6 直通轉接器，內建 TFT 螢幕在不需軟體下顯示 GPU 功耗與接頭溫度，85°C 觸發警報（TechPowerUp 站方 W1zzard 親自評測發現）。「五、搜尋結果明細」改為預設只顯示前 10 筆（依目前篩選條件），點擊「顯示更多」再逐次多顯示 10 筆，避免長表格一次全部展開。'),
-    ('v1.5', '2026-09-02', '新增 ASUS GPU Tweak III Auto-Shutdown 為第 11 個追蹤關鍵字（僅追蹤其過流自動關機功能本身），順序排在 ROG Equalizer 旁邊（同為 ASUS 產品）；新增 PCGH Extreme 站內搜尋來源（先前因 Cloudflare 驗證頁未查核，已排查出正確搜尋路徑 /search/）；「五、搜尋結果明細」新增月份篩選。自本版起，日常內容更新不再逐次遞增版本號，只在架構變動（新增論壇、新增關鍵字、版型調整）時才進版；本版之前的 v1.2～v1.4 仍沿用舊制，其中部分屬於現在會歸類為「內容更新」的項目。'),
-    ('v1.4', '2026-09-02', '核讀 TechPowerUp 與 Tom’s Hardware 自上版以來的新內容（依現行規則屬內容更新，非架構變動）。'),
+    ('v1.5', '2026-09-02', '新增 ASUS GPU Tweak III Auto-Shutdown 為第 11 個追蹤關鍵字（僅追蹤其過流自動關機功能本身），順序排在 ROG Equalizer 旁邊（同為 ASUS 產品）；新增 PCGH Extreme 站內搜尋來源（先前因 Cloudflare 驗證頁未查核，已排查出正確搜尋路徑 /search/）；「五、搜尋結果明細」新增月份篩選。自本版起，日常內容更新不再逐次遞增版本號，只在架構變動（新增論壇、新增關鍵字、版型調整）時才進版；本版之前的 v1.2～v1.3 仍沿用舊制，其中部分屬於現在會歸類為「內容更新」的項目。'),
     ('v1.3', '2026-08-26', 'Revision History 新增版本時間記錄，並更正 v1.2 的更新時間為上週報告時間。'),
     ('v1.2', V12_UPDATED_AT, '新增 Hardwareluxx、ComputerBase、PCGH Extreme 與 Overclockers UK 四個論壇來源。'),
 ]
 update_log = [
+    ('2026-09-29', 'Hardwareluxx：逐頁核讀本週兩筆 WireView 討論：Noctua Edition 使用者測試與 Wired 版主機板電源按鈕 splitter 接頭脫落／原廠換貨回覆；前者納入約 20°C、模組峰值約 44°C、強制風扇後表面溫度下降約 6°C 等單機資料，後者標示為單一安裝個案。'),
+    ('2026-09-29', 'Chiphell：逐頁核讀 9/28 的 WireView Pro II Noctua Edition 轉貼串與 10 則可見留言；主文是 IT之家發布資料的轉貼，留言主要質疑額外轉接設備、價格與產品定位，沒有新增實機量測或保護觸發證據。'),
+    ('2026-09-29', '百度貼吧、NGA玩家社區、ComputerBase、Overclockers UK、PCGH Extreme：以本週日期與產品／在地用語重新查找；百度顯卡吧找到 9/24「燒接口5090」與 9/23 供電線問題，但前者可讀正文沒有提供足夠的產品／測試細節，後者是一般 8-pin 問題，均不納入 12V-2x6 明細；NGA搜尋介面本輪仍未穩定回傳關鍵字結果，其他論壇未找到可直接新增且已完整核讀的本週唯一討論。'),
+    ('2026-09-29', 'Reddit：補查 2026-09-24～2026-09-28 的公開搜尋結果與可讀頁面，逐篇核讀 6 筆唯一討論及可見留言，新增 WireView 的 6-wire 監控範圍、Noctua Edition 價格／風扇／Linux／相容性、風扇更換、垂直安裝，以及一件 91.7°C 接頭事件中對 OptiGuard 的個人推薦；後者沒有 OptiGuard 實測，未作效果推論。'),
+    ('2026-09-29', 'TechPowerUp：在 Chrome 的站內搜尋以「WireView」及「Newer than 2026-09-23」、依日期排序查找，逐頁閱讀 9/28 的 Thermal Grizzly／Noctua WireView Pro II 討論串及可見留言，新增 1 筆；官方發布資料與使用者留言分開記錄，未把官方測試數據當成使用者實測。'),
     ('2026-09-23', 'Reddit：補查 2026-09-13～2026-09-22 的公開搜尋結果與可讀頁面，逐篇核讀 6 筆唯一討論及可見留言，新增 ROG Equalizer／WireView、GPU Safeguard、GPU Shield、Ampinel、ThermalProtect 資料；跨版重貼排除。因部分直接頁面仍受快取／擴充功能限制，未把搜尋不到解讀為沒有討論。'),
     ('2026-09-23', 'TechPowerUp：用「Newer than」= 2026-09-16、依日期排序，核讀全部 12 個關鍵字。「Close call... 5090 Burnt Cable」長串本週最活躍，新增 ThermalProtect／ROG Equalizer 相容性與規格比較（3-dimple vs. 4-spring 端子）、引用 igorslab.de 對 Equalizer 端子壁厚度的機構質疑，以及 Dr. Dro 對「理想安全線材」的個人構想（結合 Equalizer 高承載設計＋ThermalProtect 溫度斷電＋可重置保險絲，目前無任何產品如此設計）。另有新討論串：DLSS 5 導致當機的使用者被建議加裝 ThermalProtect／ROG Equalizer；EZDIY-FAB Alpha TS13 在一篇 mini-ITX 改裝完工文中確認成功安裝。GPU Safeguard、OptiGuard、Titanload、T-Guard、GPU Tweak III Auto-Shutdown、GPU Shield 本次查核沒有找到新內容；ASRock TempGuard 相關討論串本週僅有大量重複性意見交鋒，沒有可查核的新事實，故本輪未收錄。'),
     ('2026-09-23', 'PCGH Extreme：用「Neuer als」= 2026-09-16 核讀 WireView／Ampinel／ROG Equalizer／ThermalProtect／GPU Shield。新增一起 PNY RTX 5090 於 2D／低負載情境下 16-pin 接頭熔損的案例（PNY 拒絕保固），留言者引用 IgorsLab／der8auer 的見解說明此類熔損與負載高低關聯較小、主因是接頭端子設計本身，並首次提出「即使加裝 WireView，廠商仍可能反過來以『問題出在 WireView』為由拒絕保固」的疑慮（屬個人推測，無實際案例佐證）。另有上週 FurMark 測試使用者 ParrotHH 的後續回覆，確認已為 RTX 5090 FE 加裝 WireView 2 Pro（與 4090 上的 Ampinel 並用），純屬購買計畫完成與主觀心得，無新量測數據。Reddit：本次因瀏覽器擴充功能的安全限制無法連線（整個 reddit.com 網域被封鎖，並非個別頁面的同意視窗問題），本輪未能查核，下次再補。'),
@@ -2866,7 +3158,7 @@ html = f'''<!doctype html>
 .wrap{{max-width:1840px;margin:auto;padding:20px 24px 60px}} header{{display:flex;flex-wrap:wrap;gap:12px;align-items:center}} .brand-title{{display:flex;align-items:center;gap:12px}} .brand-logo{{width:48px;height:48px;object-fit:contain;flex:none}} .brand-copy h1{{font-size:21px;margin:0 0 3px}} .meta{{font-size:12.5px;color:var(--muted)}}
 .note{{background:var(--warn);border:1px solid #f1e3a6;border-radius:8px;padding:11px 14px;margin:14px 0;font-size:13px}} .tabs{{display:flex;gap:8px;margin:14px 0}} .tab{{padding:7px 18px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-weight:600}} .tab.active{{background:var(--accent);color:#fff}}
 .statbar{{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}} .stat{{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 18px;min-width:130px}} .stat b{{font-size:20px;display:block}} .stat span{{font-size:12px;color:var(--muted)}}
-section{{margin:20px 0;scroll-margin-top:16px}} h2{{font-size:17px;border-left:4px solid var(--accent);padding-left:10px}} .section-range{{display:inline-block;margin-left:7px;padding:2px 8px;border-radius:999px;background:#eef1f6;color:var(--muted);font-size:11.5px;font-weight:600;vertical-align:2px}} table{{border-collapse:collapse;background:var(--card);width:100%;border:1px solid var(--line)}} th,td{{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}} th{{background:#eef1f6;white-space:nowrap;font-size:12.5px}} td.dt{{white-space:nowrap}} td.ti{{min-width:300px;font-weight:600}} td.sm{{min-width:280px;color:#333}} .num{{text-align:right}} .badge{{display:inline-block;margin:1px 2px 1px 0;padding:2px 8px;border-radius:999px;background:#e8f0fe;color:#1d4ed8;font-size:12px}} a{{color:var(--accent);text-decoration:none}} a:hover{{text-decoration:underline}} .muted{{color:var(--muted)}} ul{{margin-top:6px}}
+section{{margin:20px 0;scroll-margin-top:16px}} h2{{font-size:17px;border-left:4px solid var(--accent);padding-left:10px}} .section-range{{display:inline-block;margin-left:7px;padding:2px 8px;border-radius:999px;background:#eef1f6;color:var(--muted);font-size:11.5px;font-weight:600;vertical-align:2px}} table{{border-collapse:collapse;background:var(--card);width:100%;border:1px solid var(--line)}} th,td{{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}} th{{background:#eef1f6;white-space:nowrap;font-size:12.5px}} td.dt{{white-space:nowrap}} td.ti{{min-width:300px;font-weight:600}} td.sm{{min-width:280px;color:#333}} td.issue-cell{{min-width:140px}} .num{{text-align:right}} .badge{{display:inline-block;margin:1px 2px 1px 0;padding:2px 8px;border-radius:999px;background:#e8f0fe;color:#1d4ed8;font-size:12px}} .issue-tag{{display:inline-block;margin:1px 2px 3px 0;padding:3px 7px;border-radius:6px;background:#fff1e8;color:#b54708;border:1px solid #f2c7a5;font-size:11.5px;line-height:1.25}} .issue-none{{color:#9aa3af}} a{{color:var(--accent);text-decoration:none}} a:hover{{text-decoration:underline}} .muted{{color:var(--muted)}} ul{{margin-top:6px}}
 .focus-summary{{display:grid;grid-template-columns:160px minmax(230px,1fr) minmax(320px,2fr);gap:10px;margin-bottom:12px}} .focus-summary>div{{display:flex;flex-direction:column;gap:3px;background:linear-gradient(135deg,#eff6ff,#fff);border:1px solid #cfe0ff;border-radius:10px;padding:11px 14px}} .focus-summary span{{font-size:11.5px;color:var(--muted);font-weight:600}} .focus-summary b{{font-size:14px;color:#173b7a}} .focus-summary>div:first-child b{{font-size:22px;color:var(--accent)}}
 .focus-grid{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}} .focus-card{{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:14px;box-shadow:0 2px 8px rgba(35,52,78,.04)}} .focus-card h3{{font-size:15px;line-height:1.4;margin:8px 0 7px}} .focus-card p{{margin:0 0 10px;color:#303b4c}} .focus-meta{{display:flex;align-items:center;gap:6px;flex-wrap:wrap}} .focus-meta span{{font-size:11.5px;background:#eef1f6;color:#526075;border-radius:999px;padding:2px 7px}} .focus-meta .focus-keyword{{background:#e8f0fe;color:#1d4ed8}} .focus-comment{{border-left:3px solid #9ab8f5;background:#f7f9fd;border-radius:0 7px 7px 0;padding:8px 10px;color:#58657a;font-size:12.5px}} .focus-comment b{{display:block;color:#30486f;font-size:11.5px;margin-bottom:2px}} .focus-more{{grid-column:1/-1;text-align:center;background:#fff7ed;border:1px dashed #fdba74;border-radius:9px;padding:9px;color:#9a4b08}} .focus-empty{{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:15px}} .focus-empty b{{color:var(--accent)}} .focus-empty span{{color:var(--muted)}}
 .product-grid{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}} .product-card{{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:13px 15px}} .product-card:hover{{border-color:#b8caf0;box-shadow:0 3px 10px rgba(35,52,78,.05)}} .product-head{{display:flex;gap:12px;justify-content:space-between;align-items:flex-start;margin-bottom:7px}} .product-head h3{{font-size:15.5px;line-height:1.25;margin:2px 0 0;color:#183f83}} .product-vendor{{display:block;color:var(--muted);font-size:11.5px;font-weight:600}} .product-type{{max-width:48%;background:#f0f4fa;color:#4c5e78;border-radius:7px;padding:4px 7px;font-size:11px;line-height:1.35;text-align:right}} .product-card p{{margin:0;color:#374151;line-height:1.6}}
@@ -2877,7 +3169,7 @@ section{{margin:20px 0;scroll-margin-top:16px}} h2{{font-size:17px;border-left:4
 .load-more-row{{display:flex;justify-content:center;padding:14px 0}} .load-more-btn{{border:1px solid var(--accent);border-radius:999px;background:#fff;color:var(--accent);padding:8px 22px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}} .load-more-btn:hover{{background:var(--accent);color:#fff}} .load-more-btn[hidden]{{display:none}}
 @media(max-width:900px){{.wrap{{padding:14px}}.tblbox{{overflow-x:auto}}table{{min-width:1200px}}.pm-priorities,.focus-grid,.product-grid{{grid-template-columns:1fr}}.focus-summary{{grid-template-columns:1fr}}.focus-more{{grid-column:auto}}.pm-product-head{{align-items:flex-start;flex-direction:column}}.pm-product-head .evidence{{width:100%;white-space:normal}}.pm-aspects{{grid-template-columns:1fr}}.pm-aspect{{border-right:0;border-bottom:1px solid var(--line)}}.pm-aspect:last-child{{border-bottom:0}}.pm-evidence{{display:block}}.pm-evidence .pm-new-source{{margin-top:8px;padding:8px 0 0;border-left:0;border-top:1px solid var(--line)}}}} @media(max-width:600px){{.brand-title{{align-items:flex-start}}.brand-logo{{width:42px;height:42px}}}}
 </style></head><body><div class="wrap">
-<header><div class="brand-title"><img class="brand-logo" src="thebigcoco-coconut-logo.png" alt="TheBigCoco 椰子標誌"><div class="brand-copy"><h1>12V-2x6 / 12VHPWR 保護產品 — 每週論壇報告</h1><span class="meta"><b>{REPORT_VERSION}</b>｜產生時間：<b>{generated_at_label}</b>｜資料期間：{period_start_label}～{period_end_label}</span></div></div></header>
+<header><div class="brand-title"><img class="brand-logo" src="thebigcoco-coconut-logo.png" alt="TheBigCoco 椰子標誌"><div class="brand-copy"><h1>12V-2x6 / 12VHPWR 保護產品 — 每週論壇報告</h1><span class="meta"><b>{REPORT_VERSION}</b>｜產生時間：<b>{generated_at_label}</b>｜上次更新時間：<b>{escape(previous_generated_at_label)}</b>｜資料期間：{period_start_label}～{period_end_label}</span></div></div></header>
 <div class="statbar"><div class="stat"><b>{len(rows)}</b><span>有效明細</span></div><div class="stat"><b>{sum(bool(r.get('reviewed')) for r in rows)}</b><span>已核讀明細</span></div><div class="stat"><b>{len(new_rows)}</b><span>本週New</span></div><div class="stat"><b>{sum(r['source']=="Tom's Hardware Forums" for r in rows)}</b><span>Tom's Hardware</span></div><div class="stat"><b>{sum(r['source']=='Reddit' for r in rows)}</b><span>Reddit（已驗證）</span></div><div class="stat"><b>{sum(r['source']=='TechPowerUp Forums' for r in rows)}</b><span>TechPowerUp</span></div><div class="stat"><b>{sum(r['source']=='ComputerBase Forum' for r in rows)}</b><span>ComputerBase</span></div><div class="stat"><b>{sum(r['source']=='Hardwareluxx Forum' for r in rows)}</b><span>Hardwareluxx</span></div><div class="stat"><b>{sum(r['source']=='Overclockers UK Forums' for r in rows)}</b><span>Overclockers UK</span></div><div class="stat"><b>{sum(r['source']=='PC Games Hardware Extreme' for r in rows)}</b><span>PCGH Extreme</span></div><div class="stat"><b>{sum(r['source']=='NGA玩家社區' for r in rows)}</b><span>NGA玩家社區</span></div><div class="stat"><b>{sum(r['source']=='Chiphell' for r in rows)}</b><span>Chiphell</span></div><div class="stat"><b>{sum(r['source'].startswith('百度貼吧') for r in rows)}</b><span>百度貼吧</span></div></div>
 <div class="tabs"><a class="tab active" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
 <section id="weekly-focus"><h2>一、本週焦點 <span class="section-range">{escape(weekly_focus_range)}</span></h2>{weekly_focus}</section>
@@ -2908,10 +3200,10 @@ section{{margin:20px 0;scroll-margin-top:16px}} h2{{font-size:17px;border-left:4
   <div class="filter-group"><span class="filter-label">版本</span><div class="chips" id="newChips"><button type="button" class="filter-chip active" data-value="">全部</button><button type="button" class="filter-chip new-filter" data-value="1">New!</button></div></div>
   <div class="result-count">顯示 <b id="visibleCount">{len(rows)}</b>／<span id="matchedCount">{len(rows)}</span> 筆</div>
 </div>
-<div class="tblbox"><table id="detailTable"><thead><tr><th>發文日期（新到舊）</th><th>來源</th><th>關鍵字</th><th>命中位置</th><th>標題</th><th>主文內容（發生什麼）</th><th>留言結論／使用者評價</th><th>連結</th></tr></thead><tbody>{detail}</tbody></table></div>
+<div class="note">本次問題標籤已逐筆讀取主文與可見留言後人工覆核；只有來源明確提到的問題才標示。驗證頁、空白頁或只有一般規格／風險討論者不把推測寫成故障；「—」表示本筆未讀到可確認的產品問題，不代表產品絕對沒有問題。</div><div class="tblbox"><table id="detailTable"><thead><tr><th>發文日期（新到舊）</th><th>來源</th><th>關鍵字</th><th>命中位置</th><th>標題</th><th>問題標籤</th><th>主文內容（發生什麼）</th><th>留言結論／使用者評價</th><th>連結</th></tr></thead><tbody>{detail}</tbody></table></div>
 <div class="load-more-row"><button type="button" id="loadMoreBtn" class="load-more-btn" hidden>顯示更多</button></div></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
-<section class="muted"><h2>六、搜尋來源狀態</h2><ul><li>Reddit：納入 {sum(r['source']=='Reddit' for r in rows)} 篇唯一討論串；最新可核對結果為 {latest_reddit_date}。本次以公開搜尋結果與可讀頁面補查 6 筆唯一討論及可見留言，涵蓋 WireView、GPU Safeguard、GPU Shield、Ampinel、ROG Equalizer、ThermalProtect；同一內容的跨版重貼排除。部分直接頁面仍受快取／擴充功能限制，因此沒有把搜尋不到解讀為沒有討論。</li><li>Tom's Hardware Forums：納入 {sum(r['source']=="Tom's Hardware Forums" for r in rows)} 筆；本次未查核。</li><li>TechPowerUp Forums：本次改用「Newer than」欄位直接篩選 2026-09-02 之後、依日期排序，逐一核讀全部 11 個關鍵字，新增 2 筆，包含兩起本週重大熔損事件（DLSS 5 測試熔損、Hardware Unboxed 自家測試機台熔損），後者同時涉及 WireView／ROG Equalizer／GPU Tweak III Auto-Shutdown／ThermalProtect 四個關鍵字；另發現並新增 EZDIY-FAB Alpha TS13 為第 12 個追蹤關鍵字（W1zzard 親自評測的 U 型無軟體溫度／功耗顯示轉接器）。</li><li>ComputerBase Forum：納入 {sum(r['source']=='ComputerBase Forum' for r in rows)} 筆；本次未查核。</li><li>Hardwareluxx Forum：納入 {sum(r['source']=='Hardwareluxx Forum' for r in rows)} 筆；本次未查核。</li><li>Overclockers UK Forums：納入 {sum(r['source']=='Overclockers UK Forums' for r in rows)} 筆；本次未查核。</li><li>PC Games Hardware Extreme：納入 {sum(r['source']=='PC Games Hardware Extreme' for r in rows)} 筆；首次嘗試時網站彈出訂閱／廣告同意視窗導致頁面卡住無法操作，使用者手動處理該視窗後重試成功。本次以站內 /search/ 表單、「Neuer als」篩選 2026-09-02 之後、依日期排序核讀 WireView，新增 1 筆——同一起 DLSS 5 熔損事件在德語論壇的獨立討論，並提供了與 Hardware Unboxed 事件相符的跨論壇佐證；其餘 11 個關鍵字本次未查核。</li><li>NGA玩家社區：納入 {sum(r['source']=='NGA玩家社區' for r in rows)} 筆 2025-07-01 以後資料；本次未查核。</li><li>Chiphell：納入 {sum(r['source']=='Chiphell' for r in rows)} 筆 2025-07-01 以後資料；本次未查核。</li><li>百度貼吧：納入 {sum(r['source'].startswith('百度貼吧') for r in rows)} 筆 2025-07-01 以後資料；本次未查核。既有資料均保留英文產品名、中文變體與 12V-2x6 情境搜尋。</li></ul></section>
+<section class="muted"><h2>六、搜尋來源狀態</h2><ul><li>Reddit：納入 {sum(r['source']=='Reddit' for r in rows)} 篇唯一討論串；最新可核對結果為 {latest_reddit_date}。本次以公開搜尋結果與可讀頁面補查 6 筆唯一討論及可見留言，涵蓋 WireView、GPU Safeguard、GPU Shield、Ampinel、ROG Equalizer、ThermalProtect；同一內容的跨版重貼排除。部分直接頁面仍受快取／擴充功能限制，因此沒有把搜尋不到解讀為沒有討論。</li><li>Tom's Hardware Forums：納入 {sum(r['source']=="Tom's Hardware Forums" for r in rows)} 筆；本次未找到可直接新增且已完整核讀的本週唯一討論。</li><li>TechPowerUp Forums：前次以「Newer than」= 2026-09-02、依日期排序完成 12 個關鍵字查核；本次在 Chrome 站內搜尋以 WireView、「Newer than」= 2026-09-23、依日期排序，逐頁閱讀 9/28 的 Thermal Grizzly／Noctua WireView Pro II 討論串及可見留言，新增 1 筆；官方發布資料與使用者留言分開記錄。</li><li>ComputerBase Forum：納入 {sum(r['source']=='ComputerBase Forum' for r in rows)} 筆；本次以站外索引與可讀結果查找 2026-09-23 以後內容，未找到可直接新增且已完整核讀的唯一討論。</li><li>Hardwareluxx Forum：納入 {sum(r['source']=='Hardwareluxx Forum' for r in rows)} 筆；本次逐頁核讀 2 筆新 WireView 討論——Noctua Edition 使用者測試與 Wired 版 splitter 接頭脫落／原廠換貨回覆，均已納入明細。</li><li>Overclockers UK Forums：納入 {sum(r['source']=='Overclockers UK Forums' for r in rows)} 筆；本次以站外索引與可讀結果查找 2026-09-23 以後內容，未找到可直接新增且已完整核讀的唯一討論。</li><li>PC Games Hardware Extreme：納入 {sum(r['source']=='PC Games Hardware Extreme' for r in rows)} 筆；本次重新查找 2026-09-23 以後內容，已收錄資料之外未找到可直接新增且已完整核讀的唯一討論。</li><li>NGA玩家社區：納入 {sum(r['source']=='NGA玩家社區' for r in rows)} 筆 2025-07-01 以後資料；本次使用已登入 Chrome 重新嘗試站內搜尋多組英文／中文關鍵字，但搜尋介面未穩定回傳可核讀結果，故沒有把空結果當成沒有討論。</li><li>Chiphell：納入 {sum(r['source']=='Chiphell' for r in rows)} 筆 2025-07-01 以後資料；本次直接檢查論壇首頁與新品區，逐頁核讀 9/28 的 WireView Pro II Noctua Edition 轉貼串及可見留言，新增 1 筆。</li><li>百度貼吧：納入 {sum(r['source'].startswith('百度貼吧') for r in rows)} 筆 2025-07-01 以後資料；本次已登入 Chrome 查找顯卡吧、電源吧與電腦吧，使用「燒接口／供電接口／12V-2x6／12VHPWR／WireView／Ampinel」等詞；顯卡吧有 9/24 與 9/23 結果，但可讀內容不足或屬一般 8-pin 問題，未納入本版 12V-2x6 明細。既有資料均保留英文產品名、中文變體與 12V-2x6 情境搜尋。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
 <section class="muted"><h2>七、Reddit 精確度與廣度確認</h2><ul><li><b>範圍：</b>以 {period_start_label}～{period_end_label} 為日期界線，交叉查找產品全名、常見拼法、相關 PSU 型號、per-pin／telemetry／保護功能詞、12V-2x6／12VHPWR 風險語句，以及標題沒有產品名的主文與留言。</li><li><b>固定查詢線：</b>{escape('；'.join(reddit_required_query_lanes))}。每條查詢至少檢查到超出日期界線，不只讀畫面最前面的結果。</li><li><b>本次覆蓋稽核：</b>除既有 MSI MPG Ai1600TS 候選外，本次補查 6 筆 Reddit 唯一討論，逐篇閱讀主文與可見留言；納入 URL 已由產生器自動對帳，跨版重貼排除。</li><li><b>精確度：</b>每篇納入資料都必須在實際可見的標題、主文或留言出現目標產品，並人工排除 NVIDIA Shield、一般 GPU 散熱護罩、OptiGuard 殺蟲劑／電梯零件及其他用途 T-Guard。</li><li><b>廣度：</b>同一篇涉及多項產品時使用多關鍵字標記；點選任一相關產品都能找到該篇，不只歸到第一個產品。本次也從產品比較題、型號相容性題及 PSU 整合式監控討論補入標題未必包含完整產品名的內容。</li><li><b>限制：</b>Reddit 搜尋可能動態載入或省略部分內文與留言；本次部分直接頁面受快取／瀏覽器擴充功能限制，因此以公開搜尋結果與可讀頁面交叉核對，未把「沒有結果」解讀為「沒有討論」。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
