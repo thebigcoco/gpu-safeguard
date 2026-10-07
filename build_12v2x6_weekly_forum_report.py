@@ -2350,6 +2350,84 @@ rows.extend([
     },
 ])
 
+# 2026-10-07 weekly refresh：Reddit 逐篇核讀主文與可見留言；TechPowerUp 以
+# Newer than=2026-09-29、依日期排序搜尋產品全名與主要別名，並逐筆核讀有實質
+# 使用經驗或產品比較的留言。其他論壇以相同日期範圍與在地用語補查，未找到可新增、
+# 且能完整讀取主文與留言的唯一討論。
+reddit_discovery_audit.extend([
+    ('WireView／GPU Safeguard+／Ampinel／ROG Equalizer', 'https://www.reddit.com/r/buildapc/comments/1ww7rp7/just_bought_a_5090_how_do_i_prevent_the_melting/', '納入', '5090 FE 使用者比較外接逐 pin 監控與整合式 PSU；完整可見留言已讀'),
+    ('WireView／ROG Equalizer', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wt3sdk/wireview_pro_2_makes_me_crazy/', '納入', '反覆不平衡告警、自動關機及與 GPU Tweak 3 讀值差異'),
+    ('WireView', 'https://www.reddit.com/r/pcmasterrace/comments/1wvgc0k/the_latest_cutscene_in_the_12v2x6_connector/', '納入', '針對換線能否根治 12V-2x6 熔損的討論'),
+    ('WireView', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wu2xtp/wireview_pro_2_compatibility/', '納入', 'Gainward RTX 5080 Phoenix V2 相容性及原廠回覆'),
+])
+rows.extend([
+    {
+        'date': '2026-10-03', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView', 'GPU Safeguard', 'Ampinel', 'ROG Equalizer'],
+        'match': '標題＋內文＋留言',
+        'title': 'Just bought a 5090. How do I prevent the melting cable?',
+        'summary': 'RTX 5090 FE 使用者採用 1250W Gold、ATX 3.1 電源與原生 12VHPWR 線，未使用第三方轉接器；因擔心接頭熔損而詢問預防方式。主文本身沒有回報已發生故障。',
+        'comments': '留言建議 WireView Pro II、MSI GPU Safeguard+ 或 Corsair PinProtect+。支持 WireView 的留言者描述其可偵測逐 pin 不平衡、指出異常 pin 並自動關機；另一派提醒 WireView／Ampinel 類外接監控器會額外增加兩個 12V-2x6 接頭，也有人指出 WireView Pro II 直插版不適合 5090 FE。ROG Equalizer 被提及但沒有本串實測。這些是選購建議與個人看法，沒有這篇貼文自身的保護觸發結果。',
+        'url': 'https://www.reddit.com/r/buildapc/comments/1ww7rp7/just_bought_a_5090_how_do_i_prevent_the_melting/'
+    },
+    {
+        'date': '2026-10-02', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '內文＋留言',
+        'title': 'The latest cut-scene in the 12v-2x6 connector charade!',
+        'summary': '發文者引用 Thermal Grizzly／der8auer 對線材因素的影片結論，詢問更換線材究竟能否一次解決問題，或日後仍可能再發生；主文沒有回報自己的接頭故障。',
+        'comments': '留言把可能原因分別歸於 GPU 缺乏逐 pin 均流、接頭安全裕度不足、線材／接點電阻及廠商保固政策；另有一名使用者表示同一條線搭配 WireView 約六個月未看到惡化。這些是技術觀點與單機經驗，本串沒有對照測試或根因確認。',
+        'url': 'https://www.reddit.com/r/pcmasterrace/comments/1wvgc0k/the_latest_cutscene_in_the_12v2x6_connector/'
+    },
+    {
+        'date': '2026-09-30', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '標題＋內文＋留言',
+        'title': 'Wireview pro 2 compatibility',
+        'summary': 'Gainward RTX 5080 Phoenix V2 使用者因相容清單未列該卡，詢問一般版、反向版與 Noctua Edition 是否能安裝。',
+        'comments': 'Thermal Grizzly 代表表示「未列入」只代表尚未實體或目視驗證，不等同確定不相容；應依產品技術圖確認接頭周圍散熱器、護罩與機殼淨空，而不是只比較顯卡總長與厚度。代表同時確認 Noctua Edition 外殼較大，尺寸不與一般版相同；另一名 Gigabyte RTX 5080 使用者表示凹入式接頭改用 Wired 版可安裝，但提醒自動關機線仍受主機板前面板接頭形式限制。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1wu2xtp/wireview_pro_2_compatibility/'
+    },
+    {
+        'date': '2026-09-29', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView', 'ROG Equalizer'], 'match': '標題＋內文＋留言',
+        'title': 'Wireview Pro 2 makes me crazy',
+        'summary': '使用者年初替 RTX 5090 與 RTX 5080 各購買一台 WireView Pro II，兩台很快都出現不平衡警告；5090 系統在重新插接、更換線材及先後更換三台 ATX 3.1 電源後仍反覆告警，執行《Control Resonant》時即使降壓、80% 功耗上限、約 380～400W，也曾在一分鐘內觸發自動關機。拔除 WireView 後，GPU Tweak 3 的逐 pin 讀值與溫度看起來正常。',
+        'comments': '一名留言者表示自己遇過相同情況，最後判斷是 WireView 接頭本身；另一名留言者認為動態負載下逐 pin 依序取樣可能產生看似不平衡的畫面，建議用 FurMark 穩定負載驗證。原發文者表示已使用最新韌體，且不同遊戲的表現不同；Thermal Grizzly 代表建議限制 FPS 並拉長取樣間隔。串內沒有確認根因究竟是接頭、取樣方式或遊戲負載。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1wt3sdk/wireview_pro_2_makes_me_crazy/'
+    },
+    {
+        'date': '2026-10-05', 'source': 'TechPowerUp Forums', 'keyword': 'ThermalProtect',
+        'keywords': ['ThermalProtect'], 'match': '留言',
+        'title': 'Close call... 5090 Burnt Cable — ThermalProtect 實際關機觸發',
+        'summary': '長期討論串中，Dr. Dro 回報前一晚執行 DLSS 5 mod 時，Corsair ThermalProtect 曾觸發關機。',
+        'comments': '另一名留言者把這視為線材保護有動作，但同時追問顯示卡狀況；Dr. Dro 只補充該負載在 4K 下會持續拉到功耗上限。串內沒有提供觸發溫度、感測端、事件紀錄或關機後檢查結果，因此可確認的是「曾關機」，不能判定已避免了何種損傷。',
+        'url': 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5803151'
+    },
+    {
+        'date': '2026-10-01', 'source': 'TechPowerUp Forums', 'keyword': 'GPU Shield',
+        'keywords': ['GPU Shield'], 'match': '內文＋留言',
+        'title': 'ElmorLabs PMD2X Features Per-Wire 12V-2×6 Monitoring With Overcurrent Alarm',
+        'summary': '主文介紹 ElmorLabs PMD2X 的逐線電流、功率與電壓監控及可設定聲音警報，並明確把其用途比作 Cooler Master GPU Shield；這是競品比較提及，不是 GPU Shield 本身的新測試。',
+        'comments': '留言一方面肯定監控所有線路，另一方面批評又增加接頭、只是補救根本問題，並質疑標示的電流誤差 ±0.5A（10A 時約 5%）與未說明 min／max／average 的量測方法。這些疑慮針對 PMD2X，不應直接套用到 GPU Shield。',
+        'url': 'https://www.techpowerup.com/forums/threads/elmorlabs-pmd2x-features-per-wire-12v-2%C3%976-monitoring-with-overcurrent-alarm.353274/'
+    },
+    {
+        'date': '2026-09-30', 'source': 'TechPowerUp Forums', 'keyword': 'ROG Equalizer',
+        'keywords': ['ROG Equalizer', 'Titanload'], 'match': '留言',
+        'title': 'Close call... 5090 Burnt Cable — ROG Equalizer 高功耗單機觀察',
+        'summary': '使用者收到新的 ROG Equalizer 線材後，裝在 RTX 5090 Lightning Z、1kW BIOS 系統，以約 960～980W 跑分，表示 GPU 端接頭摸起來仍冷，並希望再取得 Titanload 線材做比較。',
+        'comments': '使用者同時說原本 Seasonic 隨附線材仍是他的首選，理由是不用額外付費；另一名留言者表示當時在 Amazon 與 AliExpress 都找不到 Titanload。這是單一系統、未提供逐 pin 與溫度數字的短期觀察，不能推成普遍耐受 1kW 或 Equalizer 已完成均流驗證。',
+        'url': 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5799681'
+    },
+    {
+        'date': '2026-09-29', 'source': 'TechPowerUp Forums', 'keyword': 'ThermalProtect',
+        'keywords': ['ThermalProtect'], 'match': '留言',
+        'title': 'Close call... 5090 Burnt Cable — ThermalProtect 機殼走線個案',
+        'summary': '使用者收到白色 ThermalProtect 後，表示線材較軟、在 Torrent Compact 中反而更難避免接頭處碰到側板，也太短而無法從主機板背後走線；他原本希望使用直角轉接器，但不想再增加故障點。',
+        'comments': '回覆者認為問題主要是機殼對該顯卡的淨空不足，並指出 ThermalProtect 無法像較硬的原廠線材一樣承受重量、維持彎折路徑。原發文者另設定 HWiNFO 在 12VHPWR 電壓低於 12.00V 時警示，但沒有回報 ThermalProtect 觸發或接頭故障。',
+        'url': 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5799657'
+    },
+])
+
 # 本版指定日期界線；避免歷史基準資料在擴大搜尋時意外越界。
 rows = [
     row for row in rows
@@ -2526,6 +2604,14 @@ ISSUE_TAG_OVERRIDES = {canonical_url(url): tags for url, tags in [
     ('https://www.computerbase.de/forum/threads/msi-netzteile-gpu-safeguard-schuetzt-vor-12v-2x6-steckerschaeden.2262806/', ['接頭熔損風險討論']),
     ('https://bbs.nga.cn/read.php?tid=45950741', ['保護功能限制', '保固／售後問題']),
     ('https://www.reddit.com/r/coolermaster/comments/1q6adeu/cooler_master_gpu_shield_ces/', []),
+    ('https://www.reddit.com/r/buildapc/comments/1ww7rp7/just_bought_a_5090_how_do_i_prevent_the_melting/', ['接頭熔損風險討論']),
+    ('https://www.reddit.com/r/pcmasterrace/comments/1wvgc0k/the_latest_cutscene_in_the_12v2x6_connector/', ['接頭熔損風險討論']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1wu2xtp/wireview_pro_2_compatibility/', ['安裝／相容性問題']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1wt3sdk/wireview_pro_2_makes_me_crazy/', ['電流不平衡', '告警／量測差異', '自動關機觸發']),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5803151', ['保護關機觸發']),
+    ('https://www.techpowerup.com/forums/threads/elmorlabs-pmd2x-features-per-wire-12v-2%C3%976-monitoring-with-overcurrent-alarm.353274/', []),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5799681', []),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5799657', ['安裝／相容性問題']),
     ('https://www.reddit.com/r/ThermalGrizzly/comments/1q2dbfa/wireview_extension_for_fe/', []),
 ]}
 
@@ -2848,37 +2934,53 @@ pm_weekly_updates['GPU Shield'] = {
         ('GPU Shield 選購爭論', 'https://www.reddit.com/r/watercooling/comments/1wihia6/rtx_5090_owners_worth_upgrading_to_a/'),
     ],
 }
-# 本次產生報告只放 2026-09-23～2026-09-29 的新評價；前版 New! 內容由
-# previous_report 動態讀回，避免把 9/17～9/23 的內容重複標成本週新增。
+# 本次產生報告只放 2026-09-29～2026-10-07 的新評價；前版 New! 內容由
+# previous_report 動態讀回，避免把前一週內容重複標成本次新增。
 pm_weekly_updates = {
-    'WireView': {'pros': '', 'cons': '', 'actions': '', 'sources': []},
-}
-pm_weekly_updates['WireView']['pros'] += ' 本週 Reddit 有使用者確認 WireView 的 +12V 讀值與其自行量到的 +12V 電流一致；另有垂直安裝使用者認為 Wired 版可保留螢幕可視性。這些是單機確認與安裝偏好，沒有新增的保護效果對照測試。'
-pm_weekly_updates['WireView']['cons'] += ' Noctua Edition 討論集中反映約 80 美元／190 美元級距的價格溢價、一般版風扇很少啟動、既有風扇磨擦聲與更換疑慮，以及 Wired 版交期、Linux 非官方支援、白色版本、SFF 厚度與垂直安裝相容性問題；目前沒有新版風扇失效率資料。'
-pm_weekly_updates['WireView']['actions'] += ' 應公布一般版與 Noctua Edition 的風扇失效率、壽命、噪音與實際溫度對照，並提供版本／方向／垂直與 SFF 機殼相容表、Wired 版時程及官方 Linux 支援；風扇異音應有清楚的更換與保固流程。'
-pm_weekly_updates['WireView']['sources'].extend([
-    ('Reddit 6-wire 監控範圍與接地回流', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wsukcp/wireview_pro_ii_6_wire_monitoring_gap/'),
-    ('Reddit 一般版升級 Noctua Edition', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wsh3dj/going_from_regular_wv_pro_2_to_noctua_edition/'),
-    ('Reddit Noctua Edition 上市留言', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wrh7l1/wireview_pro_ii_gpu_noctua_edition_is_here/'),
-    ('Reddit 風扇更換問題', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wrt3eg/is_there_a_way_to_replace_the_fan/'),
-    ('Reddit 垂直安裝版本選擇', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wrwyo9/which_version_to_get/'),
-    ('TechPowerUp Noctua Edition 新聞串', 'https://www.techpowerup.com/forums/threads/thermal-grizzly-and-noctua-introduce-wireview-pro-ii-noctua-edition-gpu-monitoring-device.353137/'),
-])
-pm_weekly_updates['WireView']['pros'] += ' Hardwareluxx 單一使用者測試在約 20°C 室溫下量到模組峰值約 44°C；風扇未自行啟動，強制約 40% 轉速後表面溫度下降約 6°C。該測試也實際使用了逐線監控、TFT 顯示與自動關機功能，但不能外推到所有機殼或環境。'
-pm_weekly_updates['WireView']['cons'] += ' Hardwareluxx 測試者回報 Wired 版主機板電源按鈕 splitter 的小型接頭在仔細安裝時從焊點脫落，原廠後續安排換貨；這是單一安裝個案。Chiphell 轉貼串的留言則質疑額外轉接設備與 189.90 美元價格，但沒有提供實機測試。'
-pm_weekly_updates['WireView']['actions'] += ' 應以多機殼、熱環境與不同功耗條件驗證 Noctua Edition 的風扇啟動門檻、噪音與降溫效果；同時改善 splitter 接頭的機械固定／應力釋放，公開 USB header／splitter 配件需求與卡扣拆卸指引，並清楚說明單一換貨個案不等於普遍故障率。'
-pm_weekly_updates['WireView']['sources'].extend([
-    ('Hardwareluxx Noctua Edition 使用者測試', 'https://www.hardwareluxx.de/community/threads/thermal-grizzly-wireview-pro-ii-%E2%80%9Cnoctua-edition%E2%80%9D-im-lesertest.1382401/'),
-    ('Hardwareluxx Wired 版 splitter 接頭個案', 'https://www.hardwareluxx.de/community/threads/thermal-grizzly-lesertest-testet-eine-von-drei-wireview-pro-ii-varianten.1381759/post-31282820'),
-    ('Chiphell Noctua Edition 轉貼與留言', 'https://www.chiphell.com/thread-2905450-1-1.html'),
-])
-pm_weekly_updates['OptiGuard'] = {
-    'pros': '',
-    'cons': '本週 RTX 5090 接頭 91.7°C 討論中只有一名留言者以個人看法推薦 Seasonic OptiGuard；沒有讀到 OptiGuard 的實機量測、保護觸發或該事件的產品介入資料。',
-    'actions': '應在產品上市後公開相同功耗與接頭異常條件下的逐 pin、溫度、觸發門檻與關機／降載紀錄，不能以單一留言推薦取代實測。',
-    'sources': [
-        ('Reddit RTX 5090 91.7°C 接頭討論', 'https://www.reddit.com/r/nvidia/comments/1wp9dx4/rtx_5090_12v2x6_connector_reaches_917c_with_dlss/'),
-    ],
+    'WireView': {
+        'pros': '本週討論再次顯示使用者重視逐 pin 告警與自動關機：5090 FE 選購串把 WireView Pro II 視為可指出異常 pin 並切斷系統的方案；另一名使用者也曾在《Control Resonant》中實際觸發自動關機。後者同時存在量測差異，不能直接視為已確認避免熔損。',
+        'cons': '一名使用者的兩台 WireView Pro II 都曾反覆顯示電流不平衡；5090 系統重新插接、換線及更換三台 ATX 3.1 電源後仍告警，但拔除 WireView 後 GPU Tweak 3 顯示正常。留言分別懷疑 WireView 接頭本身及動態負載下逐 pin 非同步取樣，串內沒有確認根因。相容性串也確認「未列入相容表」不代表可安裝，Noctua Edition 外殼尺寸不同，凹入式 GPU 接頭可能只能使用 Wired 版。',
+        'actions': '應讓告警頁同步顯示取樣時間、平均視窗與穩態／動態負載判斷，提供與 GPU 內建逐 pin 監控交叉確認的步驟；反覆告警時應能匯出事件記錄供原廠判讀。相容表需以接頭周圍幾何、外殼尺寸、GPU 接頭凹入深度、機殼淨空與前面板關機線相容性呈現。',
+        'sources': [
+            ('反覆不平衡與自動關機', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wt3sdk/wireview_pro_2_makes_me_crazy/'),
+            ('Gainward RTX 5080 相容性', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wu2xtp/wireview_pro_2_compatibility/'),
+            ('5090 FE 防護方案比較', 'https://www.reddit.com/r/buildapc/comments/1ww7rp7/just_bought_a_5090_how_do_i_prevent_the_melting/'),
+        ],
+    },
+    'GPU Safeguard': {
+        'pros': '5090 FE 選購串中，留言者把 MSI GPU Safeguard+ 與 Corsair PinProtect+ 視為內建逐 pin 監控的方案；相較外接 WireView／Ampinel，支持者看重不需在顯卡供電路徑再增加兩個 12V-2x6 接頭。',
+        'cons': '本週仍沒有 GPU Safeguard+ 在接觸不良、電流不平衡或高溫條件下實際觸發的完整紀錄；這次新增內容只支持「整合式架構較少額外接頭」的選購理由，不能證明保護效果優於外接裝置。',
+        'actions': '應公開逐 pin 異常的觸發門檻、降載／關機時間、斷電後事件記錄，以及和外接監控器在相同故障注入條件下的對照，讓「少兩個接頭」與實際保護效果分開評估。',
+        'sources': [
+            ('5090 FE 防護方案比較', 'https://www.reddit.com/r/buildapc/comments/1ww7rp7/just_bought_a_5090_how_do_i_prevent_the_melting/'),
+        ],
+    },
+    'Ampinel': {
+        'pros': '',
+        'cons': '本週 5090 FE 選購串把 Ampinel 與 WireView 一起列為外接逐 pin 監控／保護選項；反對者的具體疑慮是這類轉接器會額外增加兩個 12V-2x6 接頭。串內沒有 Ampinel 的安裝、均流或保護觸發測試。',
+        'actions': '應在產品資料中清楚量化新增接頭、接觸電阻與機械負載，並以實際故障注入證明主動均流／關機功能能抵銷新增接頭的風險；選購頁需明示不相容顯卡與水冷背板。',
+        'sources': [
+            ('5090 FE 防護方案比較', 'https://www.reddit.com/r/buildapc/comments/1ww7rp7/just_bought_a_5090_how_do_i_prevent_the_melting/'),
+        ],
+    },
+    'ROG Equalizer': {
+        'pros': 'TechPowerUp 一名 RTX 5090 Lightning Z 使用者在 1kW BIOS、約 960～980W 跑分後表示 GPU 端接頭摸起來仍冷；這是短期、單機且沒有溫度與逐 pin 數字的觀察。',
+        'cons': '同一使用者仍把免費的 Seasonic 原廠線材列為首選，且尚未完成 Titanload 對照。Reddit 選購串只有對 ROG Equalizer 失敗傳聞的提及，沒有可核對的原始事件，因此本週不能新增故障結論。',
+        'actions': '應以同一系統、固定總功率，公開 GPU／PSU 兩端逐 pin、接頭溫度及重複次數；高功耗展示也要明確標示量測時間與儀器，避免把「摸起來冷」解讀成已證明長期安全或主動均流。',
+        'sources': [
+            ('ROG Equalizer 高功耗單機觀察', 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5799681'),
+            ('5090 FE 防護方案比較', 'https://www.reddit.com/r/buildapc/comments/1ww7rp7/just_bought_a_5090_how_do_i_prevent_the_melting/'),
+        ],
+    },
+    'ThermalProtect': {
+        'pros': 'TechPowerUp 使用者回報執行 DLSS 5 mod 時 ThermalProtect 曾觸發關機，是本週新增的實際保護動作紀錄；但沒有觸發溫度、感測端或關機後檢查資料。',
+        'cons': '另一名使用者在 Torrent Compact 中發現 ThermalProtect 較軟、接頭處更容易碰到側板，線長也不足以從主機板背後走線；回覆者認為核心問題是機殼淨空不足。這是具體安裝限制，不是線材保護失效。',
+        'actions': '應提供可讀的觸發事件記錄，至少包含溫度、感測位置、負載、觸發時間與關機後檢查；同時補上線長、最小彎曲半徑、側板淨空及 90 度版本，避免使用者以壓迫接頭的方式完成走線。',
+        'sources': [
+            ('ThermalProtect 關機觸發', 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5803151'),
+            ('ThermalProtect 機殼走線個案', 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5799657'),
+        ],
+    },
 }
 
 def pm_points(value):
@@ -3073,6 +3175,9 @@ version_history = [
     ('v1.2', V12_UPDATED_AT, '新增 Hardwareluxx、ComputerBase、PCGH Extreme 與 Overclockers UK 四個論壇來源。'),
 ]
 update_log = [
+    ('2026-10-07', 'Reddit：以產品全名、品牌型號與 12V-2x6 情境詞補查 2026-09-29 之後的結果，逐篇核讀 4 筆唯一討論及可見留言；新增 WireView 反覆不平衡／自動關機與 GPU Tweak 3 讀值差異、Gainward RTX 5080 相容性、5090 FE 防護方案比較，以及換線是否能根治熔損的討論。'),
+    ('2026-10-07', 'TechPowerUp：完成驗證後，以 Newer than=2026-09-29、依日期排序查核全部產品全名及主要別名；新增 ThermalProtect 實際關機觸發、ThermalProtect 小機殼走線限制、ROG Equalizer 約 960～980W 的未量化單機觀察，以及 PMD2X 對 GPU Shield 的功能比較。產品使用經驗、留言推論與競品內容已分開標示。'),
+    ('2026-10-07', 'Tom’s Hardware、ComputerBase、Hardwareluxx、Overclockers UK、PCGH Extreme、Chiphell、NGA玩家社區與百度貼吧：以 2026-09-29 之後日期、產品全名及中德英在地用語補查公開可讀結果；本輪未找到可新增、且能完整核讀主文與留言的唯一討論，未把搜尋雜訊或只有摘要的頁面納入。'),
     ('2026-09-29', 'Hardwareluxx：逐頁核讀本週兩筆 WireView 討論：Noctua Edition 使用者測試與 Wired 版主機板電源按鈕 splitter 接頭脫落／原廠換貨回覆；前者納入約 20°C、模組峰值約 44°C、強制風扇後表面溫度下降約 6°C 等單機資料，後者標示為單一安裝個案。'),
     ('2026-09-29', 'Chiphell：逐頁核讀 9/28 的 WireView Pro II Noctua Edition 轉貼串與 10 則可見留言；主文是 IT之家發布資料的轉貼，留言主要質疑額外轉接設備、價格與產品定位，沒有新增實機量測或保護觸發證據。'),
     ('2026-09-29', '百度貼吧、NGA玩家社區、ComputerBase、Overclockers UK、PCGH Extreme：以本週日期與產品／在地用語重新查找；百度顯卡吧找到 9/24「燒接口5090」與 9/23 供電線問題，但前者可讀正文沒有提供足夠的產品／測試細節，後者是一般 8-pin 問題，均不納入 12V-2x6 明細；NGA搜尋介面本輪仍未穩定回傳關鍵字結果，其他論壇未找到可直接新增且已完整核讀的本週唯一討論。'),
