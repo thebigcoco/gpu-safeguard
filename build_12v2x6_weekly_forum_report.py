@@ -1553,14 +1553,15 @@ keyword_search_aliases = {
     'Titanload': 'Titanload、Segotep Titanload、鑫谷強流線、14A 強流線、TITANLOAD 強流線',
     'T-Guard': 'T-Guard、GIGABYTE T-Guard、技嘉主動熱監控、12V-2x6 熱敏保護',
     'ThermalProtect': 'ThermalProtect、Thermal Protect、CORSAIR ThermalProtect、海盜船溫控保護線、OTP 高溫保護線、防燒線',
-    'TempGuard': 'TempGuard、ASRock TempGuard、華擎溫度保護線、熱敏保護線、高溫斷電',
+    'TempGuard': 'TempGuard、ASRock TempGuard；Taichi TC-1650T／TC-1300T／TC-3000P；Phantom Gaming PG-1600G／PG-1300G／PG-1000G／PG-850G／PG-750G／PG-1000PSF／PG-850PSF；Steel Legend SL-1200P／SL-1000P／SL-850P；CB-12V2X6L600W／90-UCX060-71XCAB；NTC sensor／temperature sensor／thermistor／Heißleiter、auto shutoff／cable over-temperature protection、華擎溫度保護線、熱敏保護線、高溫斷電；另以 ASRock＋完整 PSU／線材型號＋12V-2x6＋melted／smoking／arcing 交叉查找未寫產品名的事故文',
     'GPU Tweak III Auto-Shutdown': 'GPU Tweak III auto-shutdown、GPU Tweak III shutdown、Power Detector+ auto-shutdown、Power Detector+ shutdown、ROG Astral／ROG Matrix per-pin shutdown、12.5A 過流保護；注意：純粹的 GPU Tweak III 超頻／風扇／RGB 相關討論不算命中，須同時提到過流關機／Power Detector+ 才納入',
     'EZDIY-FAB Alpha TS13': 'EZDIY-FAB Alpha TS13、EZDIY-FAB 12V-2x6 adapter、Alpha TS13、EZDIY 溫度顯示轉接器',
 }
 reddit_required_query_lanes = (
-    '產品全名（Relevance＋New）',
-    '品牌／型號（Relevance＋New）',
-    '功能詞與 12V-2x6 情境（Relevance＋New）',
+    '產品全名與別名（Relevance＋New）',
+    '廠牌＋完整 PSU／線材型號（Relevance＋New）',
+    '廠牌＋保護功能描述（per-pin／temperature sensor／auto shutoff）',
+    '12V-2x6／12VHPWR＋事故詞（melted／burnt／smoking／arcing）',
     'Comments 分頁',
 )
 reddit_discovery_audit = [
@@ -2540,6 +2541,96 @@ rows.extend([
     },
 ])
 
+# 補收 2026-10-04 的漏網文章：標題未出現 TempGuard，僅寫 ASRock Taichi 1300W。
+# 後續以廠牌＋完整型號＋功能／事故詞交叉查找，不再只依產品名稱。
+reddit_discovery_audit.append((
+    'TempGuard／GPU Safeguard+／WireView',
+    'https://www.reddit.com/r/pcmasterrace/comments/1wwrelq/melted_msi_suprim_rtx_5090_asrock_taichi_1300w/',
+    '納入',
+    '已讀主文與可見留言；補收 TempGuard 未關機、MSI 保固更換及後續改用 GPU Safeguard+ 的內容',
+))
+rows.append({
+    'date': '2026-10-04', 'source': 'Reddit', 'keyword': 'TempGuard',
+    'keywords': ['TempGuard', 'GPU Safeguard', 'WireView'], 'match': '標題＋內文＋留言',
+    'title': 'Melted MSI Suprim RTX 5090 - ASRock Taichi 1300W（TempGuard 未關機）',
+    'summary': 'MSI RTX 5090 Suprim 使用者表示，顯示卡搭配 ASRock Taichi TC-1300T 與原生 600W 12V-2x6 線材穩定使用約 12 個月；兩端曾確認完全插入、線材沒有急彎，顯示卡長期降壓並設 90% 功耗上限。某次低負載時先失去畫面，接著聞到焦味並看到 GPU 接頭冒煙、產生電弧；GPU 端接頭嚴重熔損，PSU／線材端也受損。發文者表示 ASRock 的溫度感測自動關機功能在冒煙與產生電弧時兩次都沒有關機。這是單一使用者回報，故障起點仍未確認。',
+    'comments': 'MSI 因線材兩端都受損而無法判定故障起點，但接受顯示卡保固，約 3.5 週後以整新品更換；ASRock 的電源保固檢查仍在等待。發文者之後改用 MSI Ai1300TS GPU Safeguard+，回報接頭較緊、目前逐 pin 差值約 0.1～0.4A，並把差值警報設為超過 1.0A；尚未發生實際保護觸發。留言有人主張 ASRock 感測器位於接地側而非 12V 側，但本串沒有獨立拆解或量測佐證；其他留言則比較 WireView 與 PSU 內建逐 pin 監控，意見不一。',
+    'url': 'https://www.reddit.com/r/pcmasterrace/comments/1wwrelq/melted_msi_suprim_rtx_5090_asrock_taichi_1300w/'
+})
+
+# 本次以完整型號、配件料號與功能詞補查；以下 Reddit 討論均已閱讀主文與
+# 頁面可見留言。跨版重貼只保留原始討論，不重複計數。
+for audit_item in [
+    (
+        'WireView／GPU Safeguard+',
+        'https://www.reddit.com/r/Noctua/comments/1x5w0pt/update_on_my_build_im_adding_a_lil_gpusafety/',
+        '納入',
+        '已讀主文與可見留言；包含 WireView Pro II Noctua Edition 的選購理由、LCD 待機需求，以及外接監控器與整合式 PSU 的比較',
+    ),
+    (
+        'TempGuard／WireView',
+        'https://www.reddit.com/r/ASRock/comments/1wnjh6i/the_ntc_temperature_sensor_on_my_sl1200p_is_next/',
+        '納入',
+        '已讀主文與可見留言；以 SL-1200P 型號及 NTC sensor 命中，補收直式與 90 度線材的感測器位置拆解',
+    ),
+    (
+        'TempGuard',
+        'https://www.reddit.com/r/pcmasterrace/comments/1wp2zp9/pny_denied_my_rtx_5090_warranty_claim_in_writing/',
+        '納入',
+        '已讀主文與可見留言；以 PG-1600G 型號及熔損／保固詞命中，TempGuard 是否接妥及啟用未獲確認',
+    ),
+    (
+        'TempGuard',
+        'https://www.reddit.com/r/ASRock/comments/1wst09n/looking_to_buy_the_lshaped_12vhpwr_cable_for_my/',
+        '納入',
+        '已讀主文與可見留言；以 SL-1000P、CB-12V2X6L600W 與 90-UCX060-71XCAB 命中線材相容性討論',
+    ),
+]:
+    reddit_discovery_audit.append(audit_item)
+
+rows.extend([
+    {
+        'date': '2026-10-15', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView', 'GPU Safeguard'], 'match': '標題＋內文＋留言',
+        'title': 'Update on my build: I’m adding a lil GPU-safety',
+        'summary': '發文者為全 Noctua 主題電腦選購 WireView Pro II Noctua Edition；主因是喜歡 Noctua 版本，並把逐 pin 監控視為額外安全性。主文沒有告警、熔損或關機事件。',
+        'comments': '一名已使用約一週的買家希望低負載或待機時可關閉 LCD。支持者重視逐 pin 可視性與 Thermal Grizzly 延長保障；反對者認為外接轉接器會多出兩個接頭，偏好整合監控的 MSI Ai1300TS／Ai1600TS。兩名 MSI 使用者分別表示曾降低門檻測試關機，以及軟體層約 3 秒內動作、PSU 另有硬體門檻；這些是使用者測試／敘述，沒有可匯出的事件紀錄或獨立驗證。',
+        'url': 'https://www.reddit.com/r/Noctua/comments/1x5w0pt/update_on_my_build_im_adding_a_lil_gpusafety/'
+    },
+    {
+        'date': '2026-09-29', 'source': 'Reddit', 'keyword': 'TempGuard',
+        'keywords': ['TempGuard'], 'match': '標題＋內文＋留言',
+        'title': 'ASRock SL-1000P 搭配 L 型 TempGuard 線材的相容性疑問',
+        'summary': 'RTX 5080／Steel Legend SL-1000P 使用者因擔心原廠直式線材與機殼側板的淨空，考慮購買 ASRock CB-12V2X6L600W L 型線材；Amazon 頁面只列 Taichi／Phantom Gaming，但 ASRock 官網列出 Steel Legend，造成型號與相容性判讀困難。',
+        'comments': '留言一度對感測器小接頭的 pin 數與 SL-1000P 相容性給出互相矛盾的說法；後續有人提供官方線路圖、料號 90-UCX060-71XCAB，並提醒確認 L 型方向與 GPU 接頭方向。發文者尚未回報實際安裝或溫度保護測試，因此本串只能確認購買資訊不一致與方向／接線疑慮，不能確認實機安全效果。',
+        'url': 'https://www.reddit.com/r/ASRock/comments/1wst09n/looking_to_buy_the_lshaped_12vhpwr_cable_for_my/'
+    },
+    {
+        'date': '2026-09-24', 'source': 'Reddit', 'keyword': 'TempGuard',
+        'keywords': ['TempGuard'], 'match': '內文＋留言',
+        'title': 'PNY RTX 5090 搭配 ASRock PG-1600G 原生線材兩端熔損與保固爭議',
+        'summary': '發文者表示 PNY RTX 5090 搭配 ASRock PG-1600G ATX 3.1 電源供應器，使用電源隨附的原生 12V-2x6 線材，沒有轉接器或分接器；顯示卡使用原廠 VBIOS、未超頻且功耗上限低於預設。故障發生在閒置時，GPU 與 PSU 兩端都熔損，顯示卡不再被系統偵測。發文者明確表示不知道故障原因，沒有把責任歸給線材。',
+        'comments': 'PNY 當日以使用非 PNY 隨附線材為由拒絕保固，未收回硬體檢查；發文者表示公開保固條款與安裝指南沒有這項限制，der8auer 後續提出免費維修。留言雖討論 TempGuard，但主文沒有確認感測器小接頭是否接妥、功能是否啟用或是否曾觸發，所以本報告不把此案例寫成 TempGuard 已確認失效。',
+        'url': 'https://www.reddit.com/r/pcmasterrace/comments/1wp2zp9/pny_denied_my_rtx_5090_warranty_claim_in_writing/'
+    },
+    {
+        'date': '2026-09-23', 'source': 'Reddit', 'keyword': 'TempGuard',
+        'keywords': ['TempGuard', 'WireView'], 'match': '標題＋內文＋留言',
+        'title': 'ASRock SL-1200P 直式與 90 度線材的 NTC 感測器位置拆解',
+        'summary': '發文者拆開備用的 SL-1200P 直式 12V-2x6 線材，看到 NTC 感測器貼著 12V 端子、由金屬片固定並包覆在線材內。發文者自行把感測器向接頭方向移近約 0.8 吋，因而不能把改裝後位置當成原廠狀態或保護效果驗證。',
+        'comments': '後續更新顯示 ASRock 90 度線材的感測器位於成束 12V／接地線側邊，發文者拆開外殼後認為只接觸一條 12V 線；他擔心原廠約 105°C 門檻與單點接觸可能漏掉其他 pin 的熱點，但沒有實際過熱或關機測試。發文者仍肯定 SL-1200P 的整體價值，並表示自己另用 WireView Pro II 監看；另一名 SL-1000P 使用者則因 Lian Li A3 側板淨空考慮改用 L 型線材。',
+        'url': 'https://www.reddit.com/r/ASRock/comments/1wnjh6i/the_ntc_temperature_sensor_on_my_sl1200p_is_next/'
+    },
+    {
+        'date': '2026-02-22', 'source': 'ComputerBase Forum', 'keyword': 'TempGuard',
+        'keywords': ['TempGuard', 'WireView', 'Ampinel'], 'match': '標題＋內文＋留言',
+        'title': 'ASRock TC-1650T 熱敏感測器只在 GPU 端：使用者補裝 PSU 端感測器',
+        'summary': 'Taichi TC-1650T／RTX 4090 使用者指出，兩條原生 12V-2x6 線材的熱敏感測器都靠近 GPU 端，標示約 105°C 關機；他擔心 PSU 端接頭也可能局部過熱，因此詢問第二組感測輸入能否在未接第二條供電線時獨立工作。',
+        'comments': '其他留言者找不到 ASRock 對 PSU 端直接溫度感測的明確文件；有人引用拆解，表示 PSU 端 12V-2x6 接頭附近看不到直接感測器，但有過載與過流保護。發文者從備用線材拆出感測器，以 Kapton 膠帶固定在 PSU 端接頭，並用熱風槍確認該改裝會觸發關機；這只能證明他的改裝配置可觸發，不能代表原廠設計或安全建議。發文者認為 WireView／Ampinel 會增加兩個接頭；其他留言者則指出 WireView 的電流監控可在過熱前介入，Ampinel 的主動均流也是不同保護層。',
+        'url': 'https://www.computerbase.de/forum/threads/netzteil-mit-heissleiter-am-12v-2x6-stecker-fragen-zum-thermistor.2266294/'
+    },
+])
+
 # 本版指定日期界線；避免歷史基準資料在擴大搜尋時意外越界。
 rows = [
     row for row in rows
@@ -2736,6 +2827,12 @@ ISSUE_TAG_OVERRIDES = {canonical_url(url): tags for url, tags in [
     ('https://www.reddit.com/r/Corsair/comments/1x06ch2/do_i_need_to_replace_my_12vhpwr_cable_on_a_hx1200i/', ['風扇故障', '電流不平衡', '端子後縮／鬆動']),
     ('https://www.reddit.com/r/ThermalGrizzly/comments/1wziij9/gpu_v_psu_protection_properties/', ['電流不平衡', '端子未插妥']),
     ('https://tieba.baidu.com/p/11079102074', ['電流不平衡', '告警燈觸發', '保固／送修']),
+    ('https://www.reddit.com/r/pcmasterrace/comments/1wwrelq/melted_msi_suprim_rtx_5090_asrock_taichi_1300w/', ['接頭熔損案例', '保護功能失效', '冒煙／電弧', '保固／送修']),
+    ('https://www.reddit.com/r/Noctua/comments/1x5w0pt/update_on_my_build_im_adding_a_lil_gpusafety/', ['顯示器無待機關閉', '額外接頭疑慮']),
+    ('https://www.reddit.com/r/ASRock/comments/1wst09n/looking_to_buy_the_lshaped_12vhpwr_cable_for_my/', ['相容性疑問', '機殼淨空']),
+    ('https://www.reddit.com/r/pcmasterrace/comments/1wp2zp9/pny_denied_my_rtx_5090_warranty_claim_in_writing/', ['接頭熔損案例', '保護狀態未確認', '保固爭議']),
+    ('https://www.reddit.com/r/ASRock/comments/1wnjh6i/the_ntc_temperature_sensor_on_my_sl1200p_is_next/', ['感測位置疑慮', '使用者改裝']),
+    ('https://www.computerbase.de/forum/threads/netzteil-mit-heissleiter-am-12v-2x6-stecker-fragen-zum-thermistor.2266294/', ['監控範圍疑慮', '使用者改裝']),
     ('https://www.reddit.com/r/ThermalGrizzly/comments/1q2dbfa/wireview_extension_for_fe/', []),
 ]}
 
@@ -3127,6 +3224,49 @@ pm_weekly_updates = {
     },
 }
 
+# 2026-10-15 本次新增／補收的評價；前版卡片由 previous_report 讀回。
+pm_weekly_updates = {
+    'TempGuard': {
+        'pros': 'SL-1200P 直式線材拆解顯示，原廠 NTC 感測器貼著 12V 端子並包覆在線材內；但發文者之後自行把感測器移近約 0.8 吋，不能把改裝後位置當成原廠保護效果。ComputerBase 的 TC-1650T 使用者把備用感測器改裝到 PSU 端，並用熱風槍確認該配置會觸發關機；這只證明他的改裝可觸發。',
+        'cons': 'TC-1300T 使用者回報 GPU 接頭冒煙、產生電弧時兩次都未自動關機。另一件 PG-1600G 原生線材在 GPU／PSU 兩端熔損，但主文未確認 TempGuard 感測器小接頭是否接妥或功能是否啟用，不能列為已確認失效。SL-1200P 直式與 90 度線材的感測器位置不同，90 度線材拆解者認為只接觸一條 12V 線；TC-1650T 使用者則質疑原廠只監控 GPU 端。CB-12V2X6L600W 的零售頁、產品頁與感測器接頭資訊不一致，也造成相容性判讀困難。',
+        'actions': '應按每一條直式／90 度線材公開感測器位置、公差、觸發溫度與反應時間，並驗證單一 pin、GPU 端及 PSU 端局部熱點。電源供應器應保存觸發紀錄，並用雙端感測或逐 pin 電流監控補足單點溫度感測；配件頁需列出完整 PSU 型號、料號、感測器接頭 pin 數與 L 型方向。',
+        'sources': [
+            ('TC-1300T 未關機熔損個案', 'https://www.reddit.com/r/pcmasterrace/comments/1wwrelq/melted_msi_suprim_rtx_5090_asrock_taichi_1300w/'),
+            ('SL-1200P 感測器位置拆解', 'https://www.reddit.com/r/ASRock/comments/1wnjh6i/the_ntc_temperature_sensor_on_my_sl1200p_is_next/'),
+            ('PG-1600G 熔損與保固爭議', 'https://www.reddit.com/r/pcmasterrace/comments/1wp2zp9/pny_denied_my_rtx_5090_warranty_claim_in_writing/'),
+            ('SL-1000P L 型線材相容性', 'https://www.reddit.com/r/ASRock/comments/1wst09n/looking_to_buy_the_lshaped_12vhpwr_cable_for_my/'),
+            ('TC-1650T 雙端感測器改裝', 'https://www.computerbase.de/forum/threads/netzteil-mit-heissleiter-am-12v-2x6-stecker-fragen-zum-thermistor.2266294/'),
+        ],
+    },
+    'GPU Safeguard': {
+        'pros': 'TC-1300T 熔損個案的發文者改用 MSI Ai1300TS 後，回報接頭較緊、逐 pin 差值約 0.1～0.4A，並把不平衡警報設為超過 1.0A；目前沒有實際異常觸發。另一串有 Ai1300TS 使用者表示曾降低門檻測試並立即關機，另有留言者描述約 3 秒內的軟體動作與 PSU 硬體門檻；這些是使用者測試／敘述。',
+        'cons': '新討論中仍出現「只黑畫面、需人工關機」與「可直接關機」的互相矛盾理解，顯示軟體降載、作業系統關機與 PSU 硬體斷電的行為未被清楚區分。現有留言也沒有可匯出的原始事件紀錄或真實接觸不良事故下的觸發時間線。',
+        'actions': '介面與文件應分開列出警告、降功耗、作業系統關機及 PSU 斷電的條件與結果；事件紀錄應保存六路電流、差值、門檻、動作時間及重新開機後狀態，讓使用者能驗證軟體層與硬體層實際先後順序。',
+        'sources': [
+            ('TC-1300T 個案改用 Ai1300TS', 'https://www.reddit.com/r/pcmasterrace/comments/1wwrelq/melted_msi_suprim_rtx_5090_asrock_taichi_1300w/'),
+            ('WireView 與 MSI 整合式監控比較', 'https://www.reddit.com/r/Noctua/comments/1x5w0pt/update_on_my_build_im_adding_a_lil_gpusafety/'),
+        ],
+    },
+    'WireView': {
+        'pros': 'SL-1200P 拆解者表示自己仍以 WireView Pro II 作為主要監控並推薦該方案，但本串沒有告警或關機紀錄。Noctua Edition 買家重視逐 pin 可視性與 Thermal Grizzly 延長保障；這是選購理由，不是防止熔損的實測。ComputerBase 另有留言者認為電流監控可在過熱前介入。',
+        'cons': 'Noctua 討論與 ComputerBase 使用者都提出同一具體疑慮：外接轉接器會多出兩個接頭。另有使用約一週的 Noctua Edition 買家希望低負載或待機時能關閉 LCD。這些是使用者對接頭數量與日常使用的看法，不代表已發生熔損。',
+        'actions': '應在產品頁明列新增的兩個接頭、各接頭的量測／溫度監控範圍與保固邊界，並提供 LCD 低負載自動關閉、排程及亮度策略。也應公布外接接頭壽命、接觸電阻與長時間熱循環測試，回應使用者對額外接頭的疑慮。',
+        'sources': [
+            ('Noctua Edition 選購與使用討論', 'https://www.reddit.com/r/Noctua/comments/1x5w0pt/update_on_my_build_im_adding_a_lil_gpusafety/'),
+            ('SL-1200P 感測器位置拆解', 'https://www.reddit.com/r/ASRock/comments/1wnjh6i/the_ntc_temperature_sensor_on_my_sl1200p_is_next/'),
+            ('TC-1650T 雙端感測討論', 'https://www.computerbase.de/forum/threads/netzteil-mit-heissleiter-am-12v-2x6-stecker-fragen-zum-thermistor.2266294/'),
+        ],
+    },
+    'Ampinel': {
+        'pros': '',
+        'cons': 'ComputerBase 發文者把 Ampinel 與 WireView 一併視為會多出兩個接頭；另一名留言者則明確區分，Ampinel 是在過流保護前嘗試主動均流，和溫度關機不是同一層保護。本串沒有 Ampinel 實際安裝或觸發資料。',
+        'actions': '比較資料應把「額外接頭」「主動均流」「逐 pin 過流保護」與「溫度關機」分列，並公開接觸不良故障注入時，均流何時介入、何時停止以及後續是否告警／斷電。',
+        'sources': [
+            ('TC-1650T 雙端感測討論', 'https://www.computerbase.de/forum/threads/netzteil-mit-heissleiter-am-12v-2x6-stecker-fragen-zum-thermistor.2266294/'),
+        ],
+    },
+}
+
 def pm_points(value):
     points = [point.strip() for point in re.split(r'(?<=[。！？])\s*|；', value or '') if point.strip()]
     if not points:
@@ -3319,6 +3459,9 @@ version_history = [
     ('v1.2', V12_UPDATED_AT, '新增 Hardwareluxx、ComputerBase、PCGH Extreme 與 Overclockers UK 四個論壇來源。'),
 ]
 update_log = [
+    ('2026-10-15', 'Reddit：以產品名之外的完整 PSU／線材型號、配件料號、NTC／thermistor 與熔損情境詞補查，逐篇閱讀主文與可見留言；新增 10/15 WireView Pro II Noctua Edition 選購／使用討論，並補收先前漏掉的 SL-1200P 感測器拆解、PG-1600G 原生線材兩端熔損與保固爭議、SL-1000P 搭配 CB-12V2X6L600W 的相容性討論，以及 TC-1300T TempGuard 未關機熔損個案。跨版重貼排除。'),
+    ('2026-10-15', 'ComputerBase：加入 Heißleiter／Thermistor 等德文功能詞與完整型號補查，逐樓核讀 TC-1650T 討論；新增原廠只在 GPU 端配置線材感測器的疑慮、使用者自行把備用感測器改裝到 PSU 端並以熱風槍確認關機，以及對 WireView／Ampinel 額外兩個接頭的正反意見。大型 17 頁討論串只找到單一購買理由留言，因未完成整串逐頁核讀，不納入明細。'),
+    ('2026-10-15', 'TechPowerUp：完成 Chrome 驗證後，以 Newer than=2026-10-13 查找 WireView、TempGuard、Ai1300TS、ThermalProtect、Equalizer 與 12V-2x6。只找到 WireView 泛用推薦、RX 9070 XT 接頭討論及既有長串延伸留言，沒有足以新增為獨立產品實測的內容。Tom’s Hardware、Hardwareluxx、Overclockers UK、PCGH Extreme、Chiphell、NGA玩家社區與百度貼吧亦補查 10/13 後公開可讀結果，未找到可新增且已完整核讀的唯一討論。'),
     ('2026-10-13', 'Reddit：以產品全名、品牌型號與 12V-2x6 情境詞補查 2026-10-07 之後的貼文及留言，逐篇展開核讀 7 筆唯一討論；新增 WireView 量測裝置疑似故障、端子後縮／PSU 端未插妥、ROG Equalizer 換線後單機回報、Alpha TS13 溫度監控、GPU Tweak III 軟體依賴，以及 GPU Safeguard+ 選購理由。未把留言中未附原始證據的產品斷言寫成事實。'),
     ('2026-10-13', 'TechPowerUp：登入狀態正常，未出現驗證頁；用 Newer than=2026-10-07、依日期排序查核全部 12 個追蹤關鍵字及主要別名，逐頁閱讀相關樓層。新增 WireView 驗出熔損轉接線第六路 0A 的二手案例、舊線端子變色後換線並安裝 WireView 的前後觀察、ThermalProtect 在 4K DLSS 5 下約 5～10 分鐘反覆觸發，以及 Equalizer／Titanload 的使用者比較。'),
     ('2026-10-13', '百度貼吧：以均流線、強流線、逐 pin／單針電流與 16-pin 燒接口等在地用語補查，逐樓核讀顯卡吧「5090烤雞閃紅燈」及 10 月 8 日前可見留言，新增 ROG 均流線搭配 Thor 電源仍反覆告警、換過兩顆電源與多條線後根因未定的個案。Tom’s Hardware、ComputerBase、Hardwareluxx、Overclockers UK、PCGH Extreme、Chiphell、NGA玩家社區以 2026-10-07 之後日期與中德英在地用語補查；本輪未找到可新增且可完整核讀主文與留言的唯一討論。'),
@@ -3455,9 +3598,9 @@ section{{margin:20px 0;scroll-margin-top:16px}} h2{{font-size:17px;border-left:4
 <div class="note">本次問題標籤已逐筆讀取主文與可見留言後人工覆核；只有來源明確提到的問題才標示。驗證頁、空白頁或只有一般規格／風險討論者不把推測寫成故障；「—」表示本筆未讀到可確認的產品問題，不代表產品絕對沒有問題。</div><div class="tblbox"><table id="detailTable"><thead><tr><th>發文日期（新到舊）</th><th>來源</th><th>關鍵字</th><th>命中位置</th><th>標題</th><th>問題標籤</th><th>主文內容（發生什麼）</th><th>留言結論／使用者評價</th><th>連結</th></tr></thead><tbody>{detail}</tbody></table></div>
 <div class="load-more-row"><button type="button" id="loadMoreBtn" class="load-more-btn" hidden>顯示更多</button></div></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
-<section class="muted"><h2>六、搜尋來源狀態</h2><ul><li>Reddit：納入 {sum(r['source']=='Reddit' for r in rows)} 篇唯一討論串；最新可核對結果為 {latest_reddit_date}。本次以公開搜尋結果與可讀頁面補查 6 筆唯一討論及可見留言，涵蓋 WireView、GPU Safeguard、GPU Shield、Ampinel、ROG Equalizer、ThermalProtect；同一內容的跨版重貼排除。部分直接頁面仍受快取／擴充功能限制，因此沒有把搜尋不到解讀為沒有討論。</li><li>Tom's Hardware Forums：納入 {sum(r['source']=="Tom's Hardware Forums" for r in rows)} 筆；本次未找到可直接新增且已完整核讀的本週唯一討論。</li><li>TechPowerUp Forums：前次以「Newer than」= 2026-09-02、依日期排序完成 12 個關鍵字查核；本次在 Chrome 站內搜尋以 WireView、「Newer than」= 2026-09-23、依日期排序，逐頁閱讀 9/28 的 Thermal Grizzly／Noctua WireView Pro II 討論串及可見留言，新增 1 筆；官方發布資料與使用者留言分開記錄。</li><li>ComputerBase Forum：納入 {sum(r['source']=='ComputerBase Forum' for r in rows)} 筆；本次以站外索引與可讀結果查找 2026-09-23 以後內容，未找到可直接新增且已完整核讀的唯一討論。</li><li>Hardwareluxx Forum：納入 {sum(r['source']=='Hardwareluxx Forum' for r in rows)} 筆；本次逐頁核讀 2 筆新 WireView 討論——Noctua Edition 使用者測試與 Wired 版 splitter 接頭脫落／原廠換貨回覆，均已納入明細。</li><li>Overclockers UK Forums：納入 {sum(r['source']=='Overclockers UK Forums' for r in rows)} 筆；本次以站外索引與可讀結果查找 2026-09-23 以後內容，未找到可直接新增且已完整核讀的唯一討論。</li><li>PC Games Hardware Extreme：納入 {sum(r['source']=='PC Games Hardware Extreme' for r in rows)} 筆；本次重新查找 2026-09-23 以後內容，已收錄資料之外未找到可直接新增且已完整核讀的唯一討論。</li><li>NGA玩家社區：納入 {sum(r['source']=='NGA玩家社區' for r in rows)} 筆 2025-07-01 以後資料；本次使用已登入 Chrome 重新嘗試站內搜尋多組英文／中文關鍵字，但搜尋介面未穩定回傳可核讀結果，故沒有把空結果當成沒有討論。</li><li>Chiphell：納入 {sum(r['source']=='Chiphell' for r in rows)} 筆 2025-07-01 以後資料；本次直接檢查論壇首頁與新品區，逐頁核讀 9/28 的 WireView Pro II Noctua Edition 轉貼串及可見留言，新增 1 筆。</li><li>百度貼吧：納入 {sum(r['source'].startswith('百度貼吧') for r in rows)} 筆 2025-07-01 以後資料；本次已登入 Chrome 查找顯卡吧、電源吧與電腦吧，使用「燒接口／供電接口／12V-2x6／12VHPWR／WireView／Ampinel」等詞；顯卡吧有 9/24 與 9/23 結果，但可讀內容不足或屬一般 8-pin 問題，未納入本版 12V-2x6 明細。既有資料均保留英文產品名、中文變體與 12V-2x6 情境搜尋。</li></ul></section>
+<section class="muted"><h2>六、搜尋來源狀態</h2><ul><li>Reddit：納入 {sum(r['source']=='Reddit' for r in rows)} 篇唯一討論串；最新可核對結果為 {latest_reddit_date}。本次新增／補收 5 篇，分別由產品名、完整 PSU／線材型號、配件料號、NTC／thermistor 與熔損情境詞命中；主文與頁面可見留言均已核讀，跨版重貼排除。</li><li>Tom's Hardware Forums：納入 {sum(r['source']=="Tom's Hardware Forums" for r in rows)} 筆；補查 2026-10-13 後產品名與 12V-2x6 事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>TechPowerUp Forums：納入 {sum(r['source']=='TechPowerUp Forums' for r in rows)} 筆；完成 Chrome 驗證後，以「Newer than」= 2026-10-13 查找 WireView、TempGuard、Ai1300TS、ThermalProtect、Equalizer 與 12V-2x6。只見泛用推薦、RX 9070 XT 接頭討論及既有長串延伸留言，沒有足以新增為獨立產品實測的內容。</li><li>ComputerBase Forum：納入 {sum(r['source']=='ComputerBase Forum' for r in rows)} 筆；本次加入 Heißleiter／Thermistor 與完整型號補查，新增 TC-1650T 雙端感測疑慮及使用者改裝測試 1 筆。</li><li>Hardwareluxx Forum：納入 {sum(r['source']=='Hardwareluxx Forum' for r in rows)} 筆；補查 2026-10-13 後產品名、型號與 12V-2x6 事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>Overclockers UK Forums：納入 {sum(r['source']=='Overclockers UK Forums' for r in rows)} 筆；本次補查未找到可新增且已完整核讀的唯一討論。</li><li>PC Games Hardware Extreme：納入 {sum(r['source']=='PC Games Hardware Extreme' for r in rows)} 筆；本次補查未找到可新增且已完整核讀的唯一討論。</li><li>NGA玩家社區：納入 {sum(r['source']=='NGA玩家社區' for r in rows)} 筆 2025-07-01 以後資料；本次以英文產品名與中文在地用語補查公開結果，未把空白或不穩定搜尋結果當成沒有討論。</li><li>Chiphell：納入 {sum(r['source']=='Chiphell' for r in rows)} 筆 2025-07-01 以後資料；本次以產品名、均流線／強流線、溫控保護線與燒接頭等詞補查，未找到可新增且已完整核讀的唯一討論。</li><li>百度貼吧：納入 {sum(r['source'].startswith('百度貼吧') for r in rows)} 筆 2025-07-01 以後資料；本次以顯卡衛士、均流線、強流線、溫控保護線與 12V-2x6 等詞補查公開可讀結果，未找到可新增且已完整核讀的唯一討論。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
-<section class="muted"><h2>七、Reddit 精確度與廣度確認</h2><ul><li><b>範圍：</b>以 {period_start_label}～{period_end_label} 為日期界線，交叉查找產品全名、常見拼法、相關 PSU 型號、per-pin／telemetry／保護功能詞、12V-2x6／12VHPWR 風險語句，以及標題沒有產品名的主文與留言。</li><li><b>固定查詢線：</b>{escape('；'.join(reddit_required_query_lanes))}。每條查詢至少檢查到超出日期界線，不只讀畫面最前面的結果。</li><li><b>本次覆蓋稽核：</b>除既有 MSI MPG Ai1600TS 候選外，本次補查 6 筆 Reddit 唯一討論，逐篇閱讀主文與可見留言；納入 URL 已由產生器自動對帳，跨版重貼排除。</li><li><b>精確度：</b>每篇納入資料都必須在實際可見的標題、主文或留言出現目標產品，並人工排除 NVIDIA Shield、一般 GPU 散熱護罩、OptiGuard 殺蟲劑／電梯零件及其他用途 T-Guard。</li><li><b>廣度：</b>同一篇涉及多項產品時使用多關鍵字標記；點選任一相關產品都能找到該篇，不只歸到第一個產品。本次也從產品比較題、型號相容性題及 PSU 整合式監控討論補入標題未必包含完整產品名的內容。</li><li><b>限制：</b>Reddit 搜尋可能動態載入或省略部分內文與留言；本次部分直接頁面受快取／瀏覽器擴充功能限制，因此以公開搜尋結果與可讀頁面交叉核對，未把「沒有結果」解讀為「沒有討論」。</li></ul></section>
+<section class="muted"><h2>七、Reddit 精確度與廣度確認</h2><ul><li><b>範圍：</b>以 {period_start_label}～{period_end_label} 為日期界線，交叉查找產品全名、常見拼法、完整 PSU／線材型號、配件料號、per-pin／telemetry／NTC／thermistor／保護功能詞、12V-2x6／12VHPWR 事故語句，以及標題沒有產品名的主文與留言。</li><li><b>固定查詢線：</b>{escape('；'.join(reddit_required_query_lanes))}。每條查詢至少檢查到超出日期界線，不只讀畫面最前面的結果。</li><li><b>本次覆蓋稽核：</b>本次新增／補收 5 篇 Reddit 唯一討論，逐篇閱讀主文與頁面可見留言；納入 URL 由產生器自動對帳，跨版重貼排除。</li><li><b>漏網原因與修正：</b>漏掉的文章多半只寫 TC-1300T、PG-1600G、SL-1200P、SL-1000P 或 CB-12V2X6L600W，標題沒有 TempGuard。搜尋別名已加入完整型號、配件料號、NTC／thermistor、auto shutoff 與熔損情境詞。</li><li><b>精確度：</b>每篇納入資料都必須在實際可見的標題、主文或留言出現目標產品；TempGuard 是否接妥或啟用未獲確認的 PG-1600G 案例，明確標為「保護狀態未確認」，不推定保護失效。</li><li><b>限制：</b>Reddit 搜尋可能動態載入或省略部分回覆；留言摘要只代表本次實際可見內容，不把未載入內容或搜尋空白推論為沒有討論。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
 <section class="revision-history"><h2>版本紀錄（架構變動）</h2><div class="note" style="margin-top:0">只記錄新增論壇來源、新增／調整追蹤關鍵字、版型或篩選功能調整這類架構層級變動；逐次的查核與新增明細請見下方「內容更新紀錄」。</div><ul>{version_history_rows}</ul></section>
 <section class="revision-history"><h2>內容更新紀錄</h2><div class="note" style="margin-top:0">記錄每次查核實際跑了哪些來源／關鍵字、找到並新增了什麼；不對應版本號，同一版本號下可能有多筆更新紀錄。</div><ul>{update_log_rows}</ul></section>
