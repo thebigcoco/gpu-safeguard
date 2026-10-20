@@ -1284,9 +1284,9 @@ keyword_info = {
         'https://us.msi.com/blog/msi-gpu-safeguard-msi-afterburner-protect-your-gpu-by-reducing-power-during-abnormal-current'
     ),
     'GPU Shield': (
-        'Cooler Master 電源供應器的異常電流偵測功能；偵測到異常時以 LED 警示，部分官方頁面亦說明會即時調整輸出。',
-        'Cooler Master 官方頁面',
-        'https://www.coolermaster.com/en-au/products/mwe-gold-v4.html'
+        'Cooler Master 以同一名稱提供兩種形式：獨立 GPU Shield Adapter Cable 串接於 PSU 與 GPU 之間，逐 pin 偵測異常電流並以 LED／蜂鳴器警示，嚴重異常時主動降低系統功耗；MWE Gold V4 則把 GPU Shield 智慧電流管理整合於 PSU。',
+        'Cooler Master 官方產品頁',
+        'https://www.coolermaster.com/en-in/products/gpu-shield-adapter.html'
     ),
     'OptiGuard': (
         'Seasonic 的 12V-2x6 GPU 保護方案，監測各端子電流及接頭附近溫度，以進行警示與保護。',
@@ -1337,7 +1337,7 @@ keyword_info = {
 keyword_category = {
     'WireView': 'GPU 端串接式監控／保護轉接器',
     'GPU Safeguard': '整合於 PSU 的逐 pin 電流監控與主動保護',
-    'GPU Shield': '整合於 PSU 的異常電流偵測與輸出管理',
+    'GPU Shield': '獨立 Adapter 線材／PSU 整合式異常電流保護',
     'OptiGuard': '整合於 PSU 的電流／溫度監控與保護系統',
     'Ampinel': 'GPU 端串接式主動電壓降平衡／監控轉接器',
     'ROG Equalizer': '12V-2x6 被動式強化／busbar 線材',
@@ -1347,6 +1347,34 @@ keyword_category = {
     'TempGuard': 'PSU 專用溫度感測保護線材',
     'GPU Tweak III Auto-Shutdown': 'GPU Tweak III 軟體內選配的逐 pin 過流自動關機功能（僅此功能，非整套軟體）',
     'EZDIY-FAB Alpha TS13': 'GPU 端無軟體溫度／功耗顯示與警報轉接器',
+}
+product_form_factor = {
+    'WireView': 'Adapter',
+    'GPU Safeguard': 'PSU',
+    'GPU Shield': 'Adapter 線材／PSU 整合功能',
+    'OptiGuard': 'PSU',
+    'Ampinel': 'Adapter',
+    'ROG Equalizer': '線材',
+    'Titanload': '線材',
+    'T-Guard': 'PSU',
+    'ThermalProtect': '線材',
+    'TempGuard': '線材＋PSU',
+    'GPU Tweak III Auto-Shutdown': '軟體功能',
+    'EZDIY-FAB Alpha TS13': 'Adapter',
+}
+product_detection = {
+    'WireView': '電流＋溫度',
+    'GPU Safeguard': '電流',
+    'GPU Shield': '電流',
+    'OptiGuard': '電流＋溫度',
+    'Ampinel': '電流＋溫度',
+    'ROG Equalizer': '無（被動均流）',
+    'Titanload': '無（被動強化）',
+    'T-Guard': '溫度',
+    'ThermalProtect': '溫度',
+    'TempGuard': '溫度',
+    'GPU Tweak III Auto-Shutdown': '電流',
+    'EZDIY-FAB Alpha TS13': '溫度＋功耗（非逐 pin 電流）',
 }
 keyword_vendor = {
     'WireView': 'Thermal Grizzly',
@@ -1373,6 +1401,10 @@ product_display_names = {
         else f'{vendor} {k}'
     )
     for k, vendor in keyword_vendor.items()
+}
+keyword_display_names = {
+    k: ('GPU Safeguard+' if k == 'GPU Safeguard' else k)
+    for k in kw
 }
 rows.extend([
     {
@@ -2588,6 +2620,42 @@ for audit_item in [
 ]:
     reddit_discovery_audit.append(audit_item)
 
+# 2026-10-20：以 Chrome 重新查核 Reddit 貼文、內文與可見留言；
+# 其中 2026-10-13 的 WireView 討論為前次漏收，本次依 URL 基準標示 New!。
+for audit_item in [
+    (
+        'WireView／GPU Safeguard+',
+        'https://www.reddit.com/r/ThermalGrizzly/comments/1x4x9md/wireview_pro_ii_saved_my_5090_potentially_glad_i/',
+        '納入',
+        '已讀主文與 25 則可見留言；含可重現電流不平衡、PSU 端重插後暫時恢復，以及另一名使用者疑似誤報後改用 Ai1300TS',
+    ),
+    (
+        'WireView',
+        'https://www.reddit.com/r/ThermalGrizzly/comments/1x6gv1e/am_i_cooked/',
+        '納入',
+        '已讀主文與 21 則可見留言；pin 6 讀值歸零與警告在更換線材後消失，原作者確認問題已解決',
+    ),
+    (
+        'WireView／ThermalProtect',
+        'https://www.reddit.com/r/PcBuild/comments/1x8gwn7/more_than_2a_imbalance_on_rog_astral_5090/',
+        '納入',
+        '已讀主文與 21 則可見留言；包含舊線材電流不平衡、WireView 採購考量、ThermalProtect 單機回報與相容性限制',
+    ),
+    (
+        'ThermalProtect',
+        'https://www.reddit.com/r/Corsair/comments/1x9mq54/any_update_on_availability_of_the_type4type5/',
+        '納入',
+        '已讀主文與 3 則可見留言；Type 4／Type 5 版本延後到 10 月仍沒有官方供貨答覆',
+    ),
+    (
+        'WireView／ThermalProtect／Ampinel／GPU Safeguard+／ROG Equalizer',
+        'https://www.reddit.com/r/pcmasterrace/comments/1xa9ihs/how_to_avoid_5090_from_burning/',
+        '納入',
+        '已讀主文並展開 56 則可見留言；只採用實際持有、安裝或更換線材後的回報，推薦與推測分開處理',
+    ),
+]:
+    reddit_discovery_audit.append(audit_item)
+
 rows.extend([
     {
         'date': '2026-10-15', 'source': 'Reddit', 'keyword': 'WireView',
@@ -2628,6 +2696,66 @@ rows.extend([
         'summary': 'Taichi TC-1650T／RTX 4090 使用者指出，兩條原生 12V-2x6 線材的熱敏感測器都靠近 GPU 端，標示約 105°C 關機；他擔心 PSU 端接頭也可能局部過熱，因此詢問第二組感測輸入能否在未接第二條供電線時獨立工作。',
         'comments': '其他留言者找不到 ASRock 對 PSU 端直接溫度感測的明確文件；有人引用拆解，表示 PSU 端 12V-2x6 接頭附近看不到直接感測器，但有過載與過流保護。發文者從備用線材拆出感測器，以 Kapton 膠帶固定在 PSU 端接頭，並用熱風槍確認該改裝會觸發關機；這只能證明他的改裝配置可觸發，不能代表原廠設計或安全建議。發文者認為 WireView／Ampinel 會增加兩個接頭；其他留言者則指出 WireView 的電流監控可在過熱前介入，Ampinel 的主動均流也是不同保護層。',
         'url': 'https://www.computerbase.de/forum/threads/netzteil-mit-heissleiter-am-12v-2x6-stecker-fragen-zum-thermistor.2266294/'
+    },
+])
+
+rows.extend([
+    {
+        'date': '2026-10-19', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView', 'ThermalProtect', 'Ampinel', 'GPU Safeguard', 'ROG Equalizer'],
+        'match': '內文＋留言',
+        'title': 'how to avoid 5090 from burning?',
+        'summary': 'RTX 5090 新買家詢問如何降低 12V-2x6 熔損風險，主文只提出 NZXT C1200 Gold ATX 3.1，沒有任何保護產品的實測。',
+        'comments': '一名 WireView Pro II 使用者表示裝置曾發現線材電流不平衡與升溫；換成 Corsair ThermalProtect 後，在約 600W 超頻負載下回報電流分布良好、至今未再出現不平衡警告。另一名使用者表示 Ampinel 已裝在 MSI Gaming Trio，但未提供讀值；回覆同時關切安裝淨空與日後拆卸。另有使用者列出 WireView Pro II＋ThermalProtect、ROG Equalizer＋ROG Thor 1200W 的實際配置，但沒有提供保護觸發或前後量測。GPU Safeguard+ 在本串只有推薦與功能認知，沒有實際觸發紀錄。',
+        'url': 'https://www.reddit.com/r/pcmasterrace/comments/1xa9ihs/how_to_avoid_5090_from_burning/'
+    },
+    {
+        'date': '2026-10-19', 'source': 'Reddit', 'keyword': 'ThermalProtect',
+        'keywords': ['ThermalProtect'], 'match': '標題＋內文＋留言',
+        'title': 'Any update on availability of the Type 4／Type 5 ThermalProtect 12V-2x6 cable?',
+        'summary': 'HX1000i 使用者表示先前討論預期 Type 4／Type 5 ThermalProtect 約 9 月供貨，但到 10 月仍未上市，因此詢問最新進度。',
+        'comments': '頁面只有自動回覆與一則指向 Facebook 貼文的留言，沒有 Corsair 官方答覆、確切上市日或可購買連結。因此本串只證明使用者仍在等待相容版本，不能推定延期原因。',
+        'url': 'https://www.reddit.com/r/Corsair/comments/1x9mq54/any_update_on_availability_of_the_type4type5/'
+    },
+    {
+        'date': '2026-10-17', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView', 'ThermalProtect'], 'match': '內文＋留言',
+        'title': 'More than 2A imbalance on ROG Astral 5090',
+        'summary': 'ROG Astral RTX 5090 使用者以 Corsair RM1200x 2023 與使用約 1.5 年、曾搭配 RTX 4090 的 2×8-pin 轉 12VHPWR 線材，在最高約 540W 時看到最高與最低 pin 差超過 2A；晃動接頭只讓讀值略變，pin 5 仍最低。發文者已購買新的 Corsair Type 5 線材，並考慮加裝 WireView Pro II，但尚未回報更換結果。',
+        'comments': '一名 HX1200i Shift／Astral 5090 使用者表示，從電源隨附線換成 ThermalProtect 後，逐 pin 差值明顯縮小，但未提供前後數字。發文者指出自己的 RM1200x 在 PSU 端為 Type 5 2×8-pin，不能使用需要原生 PSU 端 12V-2x6 的 ThermalProtect。其他留言提供重插與接頭受力經驗，但尚未確認本案根因。',
+        'url': 'https://www.reddit.com/r/PcBuild/comments/1x8gwn7/more_than_2a_imbalance_on_rog_astral_5090/'
+    },
+    {
+        'date': '2026-10-17', 'source': 'TechPowerUp Forums', 'keyword': 'WireView',
+        'keywords': ['WireView', 'ROG Equalizer', 'ThermalProtect'], 'match': '內文＋留言',
+        'title': 'WireView Pro II Wired 安裝後出現電壓降、線材升溫與電流不平衡',
+        'summary': 'RTX 5090 使用者安裝 WireView Pro II Wired 後，首次回報六路約 7.6～8.4A，但觀察到相較安裝前低於 100mV，電壓降一度增至約 300～400mV，線材也變得很暖；重新插拔後結果反而更差。後續測試曾看到約 170mV 電壓降、pin 6 溫度明顯較高，以及在約 215～350W 時出現不平衡警告。',
+        'comments': '發文者明確表示尚不能判定問題來自接入 WireView 的舊線材，或 WireView 內建線材；他已訂購原廠 ASUS 替換線、ROG Equalizer 與 Corsair ThermalProtect 做後續比對。其他留言建議檢查兩端端子與異物，並提醒電壓降可能發生在任一端。到本次查核的最後一則回覆仍未公布換線結果，因此不能把異常直接歸因於 WireView。',
+        'url': 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5809356'
+    },
+    {
+        'date': '2026-10-17', 'source': 'TechPowerUp Forums', 'keyword': 'Ampinel',
+        'keywords': ['Ampinel', 'WireView'], 'match': '內文',
+        'title': 'WireView Pro 與 Ampinel 在反覆插拔後的單一使用者異常經驗',
+        'summary': '一名使用者表示，原版 WireView Pro 在為測試／重新走線而插拔 2～3 次後，遊戲時最高溫由約 65°C 變成持續升到 80°C 以上。',
+        'comments': '同一使用者表示 Ampinel 的情況更嚴重：裝置曾觸發警報並關機；第一次安裝時 Aquasuite 顯示電流平衡，但下一次安裝時覺得 12VHPWR 接頭偏鬆。這是單一使用者經驗，沒有拆解、端子量測或原廠判定，不能確認是接頭磨耗、安裝差異或產品本體故障。',
+        'url': 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5809627'
+    },
+    {
+        'date': '2026-10-15', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '內文＋留言',
+        'title': 'Am I cooked',
+        'summary': '使用者剛安裝 WireView Pro II Wired 後看到 pin 6 為 0.0A；重插後待機讀值一度正常，但又降回 0.0A，啟動 Cyberpunk 隨即出現 pin 警告。使用者已連接電源按鈕 jumper，但 WireView 沒有自動關機，只能人工關機；接頭沒有焦味或可見燒痕。',
+        'comments': '原作者多次回覆確認，更換新的 12VHPWR 線材後警告與讀值異常消失，反覆重插舊線沒有改善，因此本案可標示為已解決，根因指向原線材而非顯示卡。另一名使用者則回報自己遇過相反案例：換線無效、換新 WireView Pro II 才改善；兩者顯示相同症狀可能來自不同位置。原作者認為 WireView 可能及時發現問題，但沒有自動關機仍是明確觀察。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1x6gv1e/am_i_cooked/'
+    },
+    {
+        'date': '2026-10-13', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView', 'GPU Safeguard'], 'match': '標題＋內文＋留言',
+        'title': 'WireView Pro II saved my 5090 potentially — glad I bought it',
+        'summary': '使用者在收到 WireView Pro II 約一週後，執行 RTX 5090 AI 滿載工作時被裝置關機；重新啟動並重跑相同負載後，再次看到電流不平衡。其線材在 PSU 端分成兩個 8-pin，改插不同插孔並重新插妥後暫時恢復，但發文者仍不確定根因。',
+        'comments': '另一名使用者安裝 WireView Pro II 後反覆遇到主機板 d6／GPU 未偵測，以及每次重插後不平衡 pin 在 1、3、5 間改變；拆下 WireView 後問題立即消失，因而退貨並改買 MSI MPG Ai1300TS。該使用者後續稱顯示卡無異常、認為此次是誤報，但也承認可能只是個別不良品。另有 Seasonic／RTX 5090 使用者回報自己的 WireView 各 pin 最大差約 0.4A，顯示正反經驗並存。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1x4x9md/wireview_pro_ii_saved_my_5090_potentially_glad_i/'
     },
 ])
 
@@ -2681,6 +2809,12 @@ if previous_report:
     previous_generated_match = re.search(r'產生時間：<b>([^<]+)</b>', previous_markup)
     if previous_generated_match:
         previous_generated_at_label = previous_generated_match.group(1)
+previous_report_date_label_match = re.search(r'\d{4}-\d{2}-\d{2}', previous_generated_at_label)
+previous_report_date_label = (
+    previous_report_date_label_match.group(0)
+    if previous_report_date_label_match
+    else previous_generated_at_label
+)
 previous_report_date_match = re.search(r'(\d{4}-\d{2}-\d{2})', previous_report_label)
 weekly_focus_start = previous_report_date_match.group(1) if previous_report_date_match else PERIOD_START.isoformat()
 weekly_focus_range = f'{weekly_focus_start}～{PERIOD_END.isoformat()}'
@@ -2705,6 +2839,13 @@ ISSUE_TAG_RULES = [
 # 本次逐筆讀取主文與可見留言後的人工覆核結果。
 # 已讀不到內容、只看到驗證頁或只有一般規格／風險討論者，刻意留空，避免把推測寫成產品問題。
 ISSUE_TAG_OVERRIDES = {canonical_url(url): tags for url, tags in [
+    ('https://www.reddit.com/r/pcmasterrace/comments/1xa9ihs/how_to_avoid_5090_from_burning/', ['電流不平衡']),
+    ('https://www.reddit.com/r/Corsair/comments/1x9mq54/any_update_on_availability_of_the_type4type5/', ['供貨／交期問題']),
+    ('https://www.reddit.com/r/PcBuild/comments/1x8gwn7/more_than_2a_imbalance_on_rog_astral_5090/', ['電流不平衡', '安裝／相容性問題']),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5809356', ['電流不平衡', '電壓降', '線材升溫', '原因未確認']),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5809627', ['接頭高溫', '警報／關機', '插拔後異常']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1x6gv1e/am_i_cooked/', ['電流不平衡', '自動關機未動作', '線材異常']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1x4x9md/wireview_pro_ii_saved_my_5090_potentially_glad_i/', ['電流不平衡', '顯示卡未偵測', '疑似誤報']),
     ('https://www.reddit.com/r/ThermalGrizzly/comments/1wsh3dj/going_from_regular_wv_pro_2_to_noctua_edition/', ['風扇可靠性疑慮']),
     ('https://www.techpowerup.com/forums/threads/thermal-grizzly-and-noctua-introduce-wireview-pro-ii-noctua-edition-gpu-monitoring-device.353137/', ['風扇噪音', '價格／溢價疑慮']),
     ('https://www.chiphell.com/thread-2905450-1-1.html', []),
@@ -2871,7 +3012,7 @@ new_rows = [row for row in rows if row['is_new']]
 counts = {k: sum(k in r['keywords'] for r in rows) for k in kw}
 forums = sorted({r['source'] for r in rows})
 months = sorted({r['date'][:7] for r in rows}, reverse=True)
-keyword_chips = ''.join(f'<button type="button" class="filter-chip" data-value="{escape(k, quote=True)}">{escape(k)}</button>' for k in kw)
+keyword_chips = ''.join(f'<button type="button" class="filter-chip" data-value="{escape(k, quote=True)}">{escape(keyword_display_names[k])}</button>' for k in kw)
 forum_chips = ''.join(f'<button type="button" class="filter-chip" data-value="{escape(s, quote=True)}">{escape(s)}</button>' for s in forums)
 month_chips = ''.join(f'<button type="button" class="filter-chip" data-value="{escape(m, quote=True)}">{escape(m)}</button>' for m in months)
 detail = ''.join(
@@ -2880,7 +3021,7 @@ detail = ''.join(
     '<td><a href="{url}" target="_blank" rel="noopener">開啟</a></td></tr>'.format(
         **{k: escape(str(v)) for k, v in r.items() if k != 'url'},
         keyword_attr=escape('|'.join(r['keywords']), quote=True),
-        keyword_labels=' '.join(f'<span class="badge">{escape(k)}</span>' for k in r['keywords']),
+        keyword_labels=' '.join(f'<span class="badge">{escape(keyword_display_names.get(k, k))}</span>' for k in r['keywords']),
         issue_labels=' '.join(f'<span class="issue-tag">{escape(tag)}</span>' for tag in r['issue_tags']) or '<span class="issue-none">—</span>',
         is_new_attr='1' if r['is_new'] else '0',
         new_badge='<span class="new-badge">New!</span> ' if r['is_new'] else '',
@@ -2892,7 +3033,7 @@ detail = ''.join(
 kw_rows = ''.join(
     '<tr><td><span class="badge">{keyword}</span></td><td>{vendor}</td><td>{category}</td><td>{function}</td><td>{aliases}</td><td class="num">{count}</td>'
     '<td><a href="{url}" target="_blank" rel="noopener">{source}</a></td></tr>'.format(
-        keyword=escape(k),
+        keyword=escape(keyword_display_names[k]),
         vendor=escape(keyword_vendor[k]),
         category=escape(keyword_category[k]),
         function=escape(keyword_info[k][0]),
@@ -3224,45 +3365,54 @@ pm_weekly_updates = {
     },
 }
 
-# 2026-10-15 本次新增／補收的評價；前版卡片由 previous_report 讀回。
+# 2026-10-20 本次新增／補收的評價；前版卡片由 previous_report 讀回。
 pm_weekly_updates = {
-    'TempGuard': {
-        'pros': 'SL-1200P 直式線材拆解顯示，原廠 NTC 感測器貼著 12V 端子並包覆在線材內；但發文者之後自行把感測器移近約 0.8 吋，不能把改裝後位置當成原廠保護效果。ComputerBase 的 TC-1650T 使用者把備用感測器改裝到 PSU 端，並用熱風槍確認該配置會觸發關機；這只證明他的改裝可觸發。',
-        'cons': 'TC-1300T 使用者回報 GPU 接頭冒煙、產生電弧時兩次都未自動關機。另一件 PG-1600G 原生線材在 GPU／PSU 兩端熔損，但主文未確認 TempGuard 感測器小接頭是否接妥或功能是否啟用，不能列為已確認失效。SL-1200P 直式與 90 度線材的感測器位置不同，90 度線材拆解者認為只接觸一條 12V 線；TC-1650T 使用者則質疑原廠只監控 GPU 端。CB-12V2X6L600W 的零售頁、產品頁與感測器接頭資訊不一致，也造成相容性判讀困難。',
-        'actions': '應按每一條直式／90 度線材公開感測器位置、公差、觸發溫度與反應時間，並驗證單一 pin、GPU 端及 PSU 端局部熱點。電源供應器應保存觸發紀錄，並用雙端感測或逐 pin 電流監控補足單點溫度感測；配件頁需列出完整 PSU 型號、料號、感測器接頭 pin 數與 L 型方向。',
-        'sources': [
-            ('TC-1300T 未關機熔損個案', 'https://www.reddit.com/r/pcmasterrace/comments/1wwrelq/melted_msi_suprim_rtx_5090_asrock_taichi_1300w/'),
-            ('SL-1200P 感測器位置拆解', 'https://www.reddit.com/r/ASRock/comments/1wnjh6i/the_ntc_temperature_sensor_on_my_sl1200p_is_next/'),
-            ('PG-1600G 熔損與保固爭議', 'https://www.reddit.com/r/pcmasterrace/comments/1wp2zp9/pny_denied_my_rtx_5090_warranty_claim_in_writing/'),
-            ('SL-1000P L 型線材相容性', 'https://www.reddit.com/r/ASRock/comments/1wst09n/looking_to_buy_the_lshaped_12vhpwr_cable_for_my/'),
-            ('TC-1650T 雙端感測器改裝', 'https://www.computerbase.de/forum/threads/netzteil-mit-heissleiter-am-12v-2x6-stecker-fragen-zum-thermistor.2266294/'),
-        ],
-    },
-    'GPU Safeguard': {
-        'pros': 'TC-1300T 熔損個案的發文者改用 MSI Ai1300TS 後，回報接頭較緊、逐 pin 差值約 0.1～0.4A，並把不平衡警報設為超過 1.0A；目前沒有實際異常觸發。另一串有 Ai1300TS 使用者表示曾降低門檻測試並立即關機，另有留言者描述約 3 秒內的軟體動作與 PSU 硬體門檻；這些是使用者測試／敘述。',
-        'cons': '新討論中仍出現「只黑畫面、需人工關機」與「可直接關機」的互相矛盾理解，顯示軟體降載、作業系統關機與 PSU 硬體斷電的行為未被清楚區分。現有留言也沒有可匯出的原始事件紀錄或真實接觸不良事故下的觸發時間線。',
-        'actions': '介面與文件應分開列出警告、降功耗、作業系統關機及 PSU 斷電的條件與結果；事件紀錄應保存六路電流、差值、門檻、動作時間及重新開機後狀態，讓使用者能驗證軟體層與硬體層實際先後順序。',
-        'sources': [
-            ('TC-1300T 個案改用 Ai1300TS', 'https://www.reddit.com/r/pcmasterrace/comments/1wwrelq/melted_msi_suprim_rtx_5090_asrock_taichi_1300w/'),
-            ('WireView 與 MSI 整合式監控比較', 'https://www.reddit.com/r/Noctua/comments/1x5w0pt/update_on_my_build_im_adding_a_lil_gpusafety/'),
-        ],
-    },
     'WireView': {
-        'pros': 'SL-1200P 拆解者表示自己仍以 WireView Pro II 作為主要監控並推薦該方案，但本串沒有告警或關機紀錄。Noctua Edition 買家重視逐 pin 可視性與 Thermal Grizzly 延長保障；這是選購理由，不是防止熔損的實測。ComputerBase 另有留言者認為電流監控可在過熱前介入。',
-        'cons': 'Noctua 討論與 ComputerBase 使用者都提出同一具體疑慮：外接轉接器會多出兩個接頭。另有使用約一週的 Noctua Edition 買家希望低負載或待機時能關閉 LCD。這些是使用者對接頭數量與日常使用的看法，不代表已發生熔損。',
-        'actions': '應在產品頁明列新增的兩個接頭、各接頭的量測／溫度監控範圍與保固邊界，並提供 LCD 低負載自動關閉、排程及亮度策略。也應公布外接接頭壽命、接觸電阻與長時間熱循環測試，回應使用者對額外接頭的疑慮。',
+        'pros': 'Reddit 有三件可追到處置結果的實際警示案例。10 月 15 日案例在 pin 6 讀值歸零、遊戲啟動即警告後，更換線材即恢復，原作者認為 WireView 及時找出線材異常。另一名使用者在 AI 滿載時兩度重現電流不平衡與關機，重插 PSU 端兩個 8-pin 後暫時恢復。10 月 19 日另有使用者表示 WireView 曾發現線材不平衡與升溫，換成 ThermalProtect 後沒有再警告。',
+        'cons': '10 月 15 日案例已接電源按鈕 jumper，但警告時沒有自動關機，需人工關機；更換線材雖解決讀值異常，未能解釋自動關機為何未動作。另一名使用者安裝後反覆遇到 d6／GPU 未偵測，且不平衡 pin 隨重插在 1、3、5 間變動，拆除 WireView 後立即恢復，因而退貨並判斷為疑似誤報。TechPowerUp 另有使用者在安裝 Wired 版後看到約 170～400mV 電壓降、線材升溫及不平衡警告，但尚未完成換線比對，不能判定是 WireView 或原線材。',
+        'actions': '應在裝置內加入六路加總、0A pin、電壓降與自動關機回路自檢，並保存警告、關機命令與實際斷電結果。介面應提示故障可能位於 PSU 端、GPU 端、原線材或 WireView 本體，提供依序換線／旁路比對流程；產品文件也需公布插拔次數與重插後應重新檢查的項目。',
         'sources': [
-            ('Noctua Edition 選購與使用討論', 'https://www.reddit.com/r/Noctua/comments/1x5w0pt/update_on_my_build_im_adding_a_lil_gpusafety/'),
-            ('SL-1200P 感測器位置拆解', 'https://www.reddit.com/r/ASRock/comments/1wnjh6i/the_ntc_temperature_sensor_on_my_sl1200p_is_next/'),
-            ('TC-1650T 雙端感測討論', 'https://www.computerbase.de/forum/threads/netzteil-mit-heissleiter-am-12v-2x6-stecker-fragen-zum-thermistor.2266294/'),
+            ('線材更換後警告消失', 'https://www.reddit.com/r/ThermalGrizzly/comments/1x6gv1e/am_i_cooked/'),
+            ('AI 滿載警示與疑似誤報回覆', 'https://www.reddit.com/r/ThermalGrizzly/comments/1x4x9md/wireview_pro_ii_saved_my_5090_potentially_glad_i/'),
+            ('Wired 版電壓降與升溫待確認', 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5809356'),
+            ('5090 防護討論中的換線結果', 'https://www.reddit.com/r/pcmasterrace/comments/1xa9ihs/how_to_avoid_5090_from_burning/'),
+        ],
+    },
+    'ThermalProtect': {
+        'pros': '一名 HX1200i Shift／Astral 5090 使用者表示，從電源隨附線換成 ThermalProtect 後逐 pin 差值明顯縮小，但未提供前後數字。另一名 Montech Century II 1200W 使用者表示，WireView 找到舊線不平衡後改用 ThermalProtect，在約 600W 超頻負載下回報電流分布良好、至今未再出現不平衡警告。兩者都是單機觀察。',
+        'cons': 'HX1000i 使用者表示 Type 4／Type 5 版本先前預期 9 月供貨，但 10 月仍找不到產品，討論中也沒有 Corsair 官方上市日。另有 RM1200x 2023 使用者指出，其 PSU 端為 Type 5 2×8-pin，不能使用目前需要原生 PSU 端 12V-2x6 的版本，顯示型號相容性與供貨範圍仍不清楚。',
+        'actions': '應公布 Type 4、Type 5 與原生 12V-2x6 各版本的上市時程及完整 PSU 型號表，並在產品頁直接說明 PSU 端接頭需求。對「差值縮小」主張，應提供同一系統換線前後的六路電流、負載與溫度資料，避免把單機心得誤解為線材主動均流。',
+        'sources': [
+            ('Type 4／Type 5 供貨詢問', 'https://www.reddit.com/r/Corsair/comments/1x9mq54/any_update_on_availability_of_the_type4type5/'),
+            ('Astral 不平衡與相容性限制', 'https://www.reddit.com/r/PcBuild/comments/1x8gwn7/more_than_2a_imbalance_on_rog_astral_5090/'),
+            ('5090 防護討論中的 600W 單機回報', 'https://www.reddit.com/r/pcmasterrace/comments/1xa9ihs/how_to_avoid_5090_from_burning/'),
         ],
     },
     'Ampinel': {
-        'pros': '',
-        'cons': 'ComputerBase 發文者把 Ampinel 與 WireView 一併視為會多出兩個接頭；另一名留言者則明確區分，Ampinel 是在過流保護前嘗試主動均流，和溫度關機不是同一層保護。本串沒有 Ampinel 實際安裝或觸發資料。',
-        'actions': '比較資料應把「額外接頭」「主動均流」「逐 pin 過流保護」與「溫度關機」分列，並公開接觸不良故障注入時，均流何時介入、何時停止以及後續是否告警／斷電。',
+        'pros': 'Reddit 一名使用者確認 Ampinel 已安裝於 MSI RTX 5090 Gaming Trio，證明至少有單一實裝案例；但他沒有提供逐 pin、溫度或均流前後數據。',
+        'cons': 'TechPowerUp 一名使用者表示，Ampinel 在重新安裝後覺得 12VHPWR 接頭偏鬆，之後觸發警報並關機；這是單一案例，沒有原廠判定或端子量測。Reddit 另有準買家依尺寸擔心 Gaming Trio 的淨空與日後拆卸，原使用者尚未回覆具體距離。',
+        'actions': '應按顯示卡型號提供實裝照片、背板／水冷頭淨空、拆卸空間與插拔後檢查指引；警報紀錄需能匯出安裝前後六路電流與接頭溫度，讓客服判斷是接頭貼合、安裝差異或裝置本體問題。',
         'sources': [
-            ('TC-1650T 雙端感測討論', 'https://www.computerbase.de/forum/threads/netzteil-mit-heissleiter-am-12v-2x6-stecker-fragen-zum-thermistor.2266294/'),
+            ('Ampinel 插拔後警報與關機', 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5809627'),
+            ('Gaming Trio 實裝與淨空疑問', 'https://www.reddit.com/r/pcmasterrace/comments/1xa9ihs/how_to_avoid_5090_from_burning/'),
+        ],
+    },
+    'GPU Safeguard': {
+        'pros': '一名因 WireView Pro II 疑似誤報而退貨的使用者，改買 MSI MPG Ai1300TS，理由是希望把逐 pin 監控與保護整合在 PSU；另一串也有人直接推薦 Ai1300TS／Ai1600TS。這些是明確的轉換與選購理由。',
+        'cons': '本次討論沒有 GPU Safeguard+ 真實接觸不良下的警告、降載或斷電紀錄；留言引用的三分鐘關機與 Afterburner 降載屬使用者功能描述，不能當成此次事故的實測結果。',
+        'actions': '應提供真實接觸不良或故障注入下的完整事件時間線，清楚區分聲音警告、Afterburner 降載、作業系統關機與 PSU 硬體斷電；並公布不執行 MSI 軟體時仍可獨立生效的保護範圍。',
+        'sources': [
+            ('WireView 疑似誤報後改用 Ai1300TS', 'https://www.reddit.com/r/ThermalGrizzly/comments/1x4x9md/wireview_pro_ii_saved_my_5090_potentially_glad_i/'),
+            ('5090 防護產品推薦討論', 'https://www.reddit.com/r/pcmasterrace/comments/1xa9ihs/how_to_avoid_5090_from_burning/'),
+        ],
+    },
+    'ROG Equalizer': {
+        'pros': 'Reddit 一名 ROG Thor 1200W 使用者表示已搭配 ROG Equalizer，另外購買的原因是可註冊 ASUS 產品且外觀較整潔；沒有提供逐 pin、溫度或保護觸發資料。',
+        'cons': 'TechPowerUp 異常案例的發文者已訂購 Equalizer 準備比較，但截至本次查核仍未公布結果；留言對 Equalizer 與 WireView 串接是否會影響讀值有疑慮，但沒有控制測試。因此本次只能確認採購與使用配置，不能判定改善或惡化。',
+        'actions': '應公布 Equalizer 單獨使用及與外接監控器串接時的逐 pin、電壓降與溫升對照，並列出建議與不建議的串接方式；相容表需包含接頭方向、機殼淨空與 ROG PSU 型號。',
+        'sources': [
+            ('Thor 1200W 實際配置', 'https://www.reddit.com/r/pcmasterrace/comments/1xa9ihs/how_to_avoid_5090_from_burning/'),
+            ('Equalizer 待換線比對案例', 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5809356'),
         ],
     },
 }
@@ -3331,10 +3481,10 @@ def previous_new_content(fragment):
         return ''
     return fragment.replace(
         '<b>本週更新</b>',
-        '<b>前版內容（報告時間：2026-09-23 11:05:44）</b>'
+        '<b>前版內容（報告日期：2026-09-23）</b>'
     ).replace(
         '本週依據（2026-09-17～2026-09-23）',
-        '前版依據（報告時間：2026-09-23 11:05:44）'
+        '前版依據（報告日期：2026-09-23）'
     )
 
 def extract_new_items(fragment):
@@ -3374,18 +3524,25 @@ def merged_new_content(old_fragment, current_fragment):
     current_items = extract_new_items(current_fragment)
     if not old_items and not current_items:
         return ''
-    items = []
-    items.extend(f'<li><b>前版內容：</b>{item}</li>' for item in old_items)
+    groups = []
+    if old_items:
+        groups.append(
+            '<div class="pm-history-group"><b>前版內容（報告日期：{0}）：</b>'
+            '<ul class="pm-list">{1}</ul></div>'.format(
+                escape(previous_report_date_label),
+                ''.join(f'<li>{item}</li>' for item in old_items)
+            )
+        )
     if current_items:
-        items.append(
-            '<li><b><span class="new-badge">New!</span>本次新增（{0}）：</b>'
-            '<ul class="pm-list">{1}</ul></li>'.format(
+        groups.append(
+            '<div class="pm-history-group"><b><span class="new-badge">New!</span>本次新增（{0}）：</b>'
+            '<ul class="pm-list">{1}</ul></div>'.format(
                 escape(weekly_focus_range),
                 ''.join(f'<li>{item}</li>' for item in current_items)
             )
         )
-    return '<div class="pm-new"><div class="pm-new-title"><b>前版內容與本次新增</b></div><ul class="pm-list">{}</ul></div>'.format(
-        ''.join(items)
+    return '<div class="pm-new"><div class="pm-new-title"><b>前版內容與本次新增</b></div>{}</div>'.format(
+        ''.join(groups)
     )
 
 def merged_new_sources(old_fragment, current_fragment):
@@ -3396,8 +3553,8 @@ def merged_new_sources(old_fragment, current_fragment):
     parts = []
     if old_links:
         parts.append(
-            '<span><b>前版依據（報告時間：{0}）：</b>{1}</span>'.format(
-                escape(previous_generated_at_label), '、'.join(old_links)
+            '<span><b>前版依據（報告日期：{0}）：</b>{1}</span>'.format(
+                escape(previous_report_date_label), '、'.join(old_links)
             )
         )
     if current_links:
@@ -3445,10 +3602,8 @@ generated_at_label = f"{GENERATED_AT.strftime('%Y-%m-%d %H:%M:%S')} Asia/Taipei"
 REPORT_VERSION = 'v1.6'
 V12_UPDATED_AT = '2026-08-19 14:45:56 Asia/Taipei'
 
-# 本版新增追蹤的關鍵字（結構性新增，不是「本週有新證據」）；用於在「一、本週焦點」與
-# 「二、產品功能重點」替該關鍵字加註 New!。只保留當前版本新增的項目，不隨版本累積——
-# 上一版新增的關鍵字（如 GPU Tweak III Auto-Shutdown）已經是 v1.5 的舊聞，這裡不再列入。
-new_keywords = {'EZDIY-FAB Alpha TS13'}
+# 只讓本次才新增的追蹤產品顯示 New!；目前沒有新產品。
+new_keywords = set()
 
 # 版本紀錄（架構變動：新增論壇／關鍵字／版型調整）與內容更新紀錄（每次查核跑了什麼、
 # 找到什麼）分成兩份清單呈現，避免版本號被日常內容更新灌水，也讓兩種資訊各自好找。
@@ -3459,6 +3614,9 @@ version_history = [
     ('v1.2', V12_UPDATED_AT, '新增 Hardwareluxx、ComputerBase、PCGH Extreme 與 Overclockers UK 四個論壇來源。'),
 ]
 update_log = [
+    ('2026-10-20', 'Reddit：以 Chrome 重新查核產品全名、完整型號、12V-2x6 事故詞及留言分頁，逐篇閱讀主文並展開可見回覆；新增／補收 5 篇唯一討論。重點包括 WireView 找出線材異常後換線解決、疑似誤報後改用 Ai1300TS、ROG Astral 超過 2A 不平衡、ThermalProtect Type 4／Type 5 供貨詢問，以及 5090 防護產品的實際使用回報。推薦、功能描述與實際觸發分開記錄。'),
+    ('2026-10-20', 'TechPowerUp：登入狀態正常，以 Newer than=2026-10-15、依日期排序查核全部 12 個追蹤關鍵字及 Ai1300TS／Equalizer 等別名；新增 WireView Pro II Wired 安裝後電壓降、線材升溫與電流不平衡的待確認案例，以及同串另一名使用者的 WireView／Ampinel 反覆插拔後異常經驗。換線結果尚未公布，不把原因歸給特定產品。'),
+    ('2026-10-20', 'Tom’s Hardware、ComputerBase、Hardwareluxx、Overclockers UK、PCGH Extreme、Chiphell、NGA玩家社區與百度貼吧：補查 2026-10-15 後產品名、完整型號及中德英在地用語的公開可讀結果；未找到可新增且已完整核讀主文與留言的唯一討論，搜尋空白不解讀為沒有討論。'),
     ('2026-10-15', 'Reddit：以產品名之外的完整 PSU／線材型號、配件料號、NTC／thermistor 與熔損情境詞補查，逐篇閱讀主文與可見留言；新增 10/15 WireView Pro II Noctua Edition 選購／使用討論，並補收先前漏掉的 SL-1200P 感測器拆解、PG-1600G 原生線材兩端熔損與保固爭議、SL-1000P 搭配 CB-12V2X6L600W 的相容性討論，以及 TC-1300T TempGuard 未關機熔損個案。跨版重貼排除。'),
     ('2026-10-15', 'ComputerBase：加入 Heißleiter／Thermistor 等德文功能詞與完整型號補查，逐樓核讀 TC-1650T 討論；新增原廠只在 GPU 端配置線材感測器的疑慮、使用者自行把備用感測器改裝到 PSU 端並以熱風槍確認關機，以及對 WireView／Ampinel 額外兩個接頭的正反意見。大型 17 頁討論串只找到單一購買理由留言，因未完成整串逐頁核讀，不納入明細。'),
     ('2026-10-15', 'TechPowerUp：完成 Chrome 驗證後，以 Newer than=2026-10-13 查找 WireView、TempGuard、Ai1300TS、ThermalProtect、Equalizer 與 12V-2x6。只找到 WireView 泛用推薦、RX 9070 XT 接頭討論及既有長串延伸留言，沒有足以新增為獨立產品實測的內容。Tom’s Hardware、Hardwareluxx、Overclockers UK、PCGH Extreme、Chiphell、NGA玩家社區與百度貼吧亦補查 10/13 後公開可讀結果，未找到可新增且已完整核讀的唯一討論。'),
@@ -3497,7 +3655,7 @@ if new_rows:
     new_keyword_counts = Counter(keyword for row in new_rows for keyword in row['keywords'])
     source_summary = '、'.join(f'{source} {count} 篇' for source, count in new_source_counts.items())
     keyword_summary = '、'.join(
-        f'{keyword} {count} 篇'
+        f'{keyword_display_names.get(keyword, keyword)} {count} 篇'
         for keyword, count in new_keyword_counts.most_common()
     )
     focus_items = ''.join(
@@ -3507,7 +3665,7 @@ if new_rows:
             date=escape(row['date']),
             source=escape(row['source']),
             keywords='、'.join(
-                escape(kwn) + (' <span class="new-badge">New!</span>' if kwn in new_keywords else '')
+                escape(keyword_display_names.get(kwn, kwn)) + (' <span class="new-badge">New!</span>' if kwn in new_keywords else '')
                 for kwn in row['keywords']
             ),
             title=escape(row['title']),
@@ -3534,11 +3692,14 @@ else:
 overview_cards = ''.join(
     '<article class="product-card"><div class="product-head"><div><span class="product-vendor">{vendor}</span>'
     '<h3>{keyword} {new_badge}</h3></div><span class="product-type">{category}</span></div>'
+    '<div class="product-meta"><span><b>型態</b>{form_factor}</span><span><b>偵測</b>{detection}</span></div>'
     '<p>{function}</p></article>'.format(
         vendor=escape(keyword_vendor[k]),
-        keyword=escape(k),
+        keyword=escape(keyword_display_names[k]),
         new_badge='<span class="new-badge">New!</span>' if k in new_keywords else '',
         category=escape(keyword_category[k]),
+        form_factor=escape(product_form_factor[k]),
+        detection=escape(product_detection[k]),
         function=escape(keyword_info[k][0]),
     ) for k in kw
 )
@@ -3557,8 +3718,9 @@ section{{margin:20px 0;scroll-margin-top:16px}} h2{{font-size:17px;border-left:4
 .focus-summary{{display:grid;grid-template-columns:160px minmax(230px,1fr) minmax(320px,2fr);gap:10px;margin-bottom:12px}} .focus-summary>div{{display:flex;flex-direction:column;gap:3px;background:linear-gradient(135deg,#eff6ff,#fff);border:1px solid #cfe0ff;border-radius:10px;padding:11px 14px}} .focus-summary span{{font-size:11.5px;color:var(--muted);font-weight:600}} .focus-summary b{{font-size:14px;color:#173b7a}} .focus-summary>div:first-child b{{font-size:22px;color:var(--accent)}}
 .focus-grid{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}} .focus-card{{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:14px;box-shadow:0 2px 8px rgba(35,52,78,.04)}} .focus-card h3{{font-size:15px;line-height:1.4;margin:8px 0 7px}} .focus-card p{{margin:0 0 10px;color:#303b4c}} .focus-meta{{display:flex;align-items:center;gap:6px;flex-wrap:wrap}} .focus-meta span{{font-size:11.5px;background:#eef1f6;color:#526075;border-radius:999px;padding:2px 7px}} .focus-meta .focus-keyword{{background:#e8f0fe;color:#1d4ed8}} .focus-comment{{border-left:3px solid #9ab8f5;background:#f7f9fd;border-radius:0 7px 7px 0;padding:8px 10px;color:#58657a;font-size:12.5px}} .focus-comment b{{display:block;color:#30486f;font-size:11.5px;margin-bottom:2px}} .focus-more{{grid-column:1/-1;text-align:center;background:#fff7ed;border:1px dashed #fdba74;border-radius:9px;padding:9px;color:#9a4b08}} .focus-empty{{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:15px}} .focus-empty b{{color:var(--accent)}} .focus-empty span{{color:var(--muted)}}
 .product-grid{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}} .product-card{{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:13px 15px}} .product-card:hover{{border-color:#b8caf0;box-shadow:0 3px 10px rgba(35,52,78,.05)}} .product-head{{display:flex;gap:12px;justify-content:space-between;align-items:flex-start;margin-bottom:7px}} .product-head h3{{font-size:15.5px;line-height:1.25;margin:2px 0 0;color:#183f83}} .product-vendor{{display:block;color:var(--muted);font-size:11.5px;font-weight:600}} .product-type{{max-width:48%;background:#f0f4fa;color:#4c5e78;border-radius:7px;padding:4px 7px;font-size:11px;line-height:1.35;text-align:right}} .product-card p{{margin:0;color:#374151;line-height:1.6}}
+.product-meta{{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 9px}} .product-meta span{{display:inline-flex;gap:5px;align-items:center;border:1px solid #d8e1ee;border-radius:999px;background:#f8fafc;color:#334155;padding:3px 8px;font-size:11.5px}} .product-meta b{{color:#1d4ed8;font-size:10.5px}}
 .evidence{{display:inline-block;color:#7c2d12;background:#ffedd5;border-radius:6px;padding:3px 8px;font-size:11.5px;white-space:nowrap}} .pm-priorities{{display:grid;grid-template-columns:repeat(3,minmax(230px,1fr));gap:10px;margin:10px 0 14px}} .pm-card{{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:11px 13px}} .pm-card b{{display:block;margin-bottom:4px;color:#1d4ed8}}
-.pm-products{{display:grid;gap:14px}} .pm-product{{background:var(--card);border:1px solid #d9e0ea;border-radius:12px;overflow:hidden;box-shadow:0 3px 12px rgba(35,52,78,.05)}} .pm-product-head{{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 16px;background:linear-gradient(135deg,#f5f8ff,#fff);border-bottom:1px solid var(--line)}} .pm-product-head h3{{display:flex;align-items:center;gap:8px;margin:2px 0 0;font-size:17px;color:#173b7a}} .pm-kicker{{font-size:10.5px;font-weight:700;letter-spacing:.08em;color:var(--muted)}} .pm-aspects{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}} .pm-aspect{{margin:0;padding:14px 16px;border-right:1px solid var(--line)}} .pm-aspect:last-child{{border-right:0}} .pm-aspect h4{{margin:0 0 9px;padding:0 0 7px;border-bottom:2px solid;font-size:13px}} .pm-positive h4{{color:#166534;border-color:#86c99a}} .pm-negative h4{{color:#991b1b;border-color:#efaaaa}} .pm-action h4{{color:#1d4ed8;border-color:#9ab8f5}} .pm-list{{margin:0;padding-left:18px;color:#374151}} .pm-list li{{margin:0 0 7px;padding-left:2px;line-height:1.62}} .pm-list li:last-child{{margin-bottom:0}} .pm-list li::marker{{color:#8090a8}} .pm-empty{{margin:0;color:var(--muted);font-style:italic}} .pm-new{{margin-top:11px;padding:10px 11px;background:#fff8ed;border:1px solid #fed7aa;border-radius:8px}} .pm-new-title{{display:flex;align-items:center;gap:6px;margin-bottom:7px;color:#9a4b08;font-size:12px}} .pm-new .pm-list{{color:#533b26}} .pm-new-source{{margin-top:7px;font-size:12px;line-height:1.7}} .pm-new-source>.new-badge{{margin-right:5px}} .pm-new-source>b{{color:#9a4b08}} .pm-evidence{{display:flex;align-items:flex-start;gap:12px;padding:10px 16px;background:#fafbfc;border-top:1px solid var(--line);font-size:12px}} .pm-evidence>a{{font-weight:600;white-space:nowrap}} .pm-evidence .pm-new-source{{margin:0;padding-left:12px;border-left:1px solid var(--line)}}
+.pm-products{{display:grid;gap:14px}} .pm-product{{background:var(--card);border:1px solid #d9e0ea;border-radius:12px;overflow:hidden;box-shadow:0 3px 12px rgba(35,52,78,.05)}} .pm-product-head{{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 16px;background:linear-gradient(135deg,#f5f8ff,#fff);border-bottom:1px solid var(--line)}} .pm-product-head h3{{display:flex;align-items:center;gap:8px;margin:2px 0 0;font-size:17px;color:#173b7a}} .pm-kicker{{font-size:10.5px;font-weight:700;letter-spacing:.08em;color:var(--muted)}} .pm-aspects{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}} .pm-aspect{{margin:0;padding:14px 16px;border-right:1px solid var(--line)}} .pm-aspect:last-child{{border-right:0}} .pm-aspect h4{{margin:0 0 9px;padding:0 0 7px;border-bottom:2px solid;font-size:13px}} .pm-positive h4{{color:#166534;border-color:#86c99a}} .pm-negative h4{{color:#991b1b;border-color:#efaaaa}} .pm-action h4{{color:#1d4ed8;border-color:#9ab8f5}} .pm-list{{margin:0;padding-left:18px;color:#374151}} .pm-list li{{margin:0 0 7px;padding-left:2px;line-height:1.62}} .pm-list li:last-child{{margin-bottom:0}} .pm-list li::marker{{color:#8090a8}} .pm-empty{{margin:0;color:var(--muted);font-style:italic}} .pm-new{{margin-top:11px;padding:10px 11px;background:#fff8ed;border:1px solid #fed7aa;border-radius:8px}} .pm-new-title{{display:flex;align-items:center;gap:6px;margin-bottom:7px;color:#9a4b08;font-size:12px}} .pm-new .pm-list{{color:#533b26}} .pm-history-group{{margin-top:9px}} .pm-history-group>b{{display:block;margin-bottom:5px;color:#7c4a18}} .pm-history-group .new-badge{{margin-right:5px}} .pm-new-source{{margin-top:7px;font-size:12px;line-height:1.7}} .pm-new-source>.new-badge{{margin-right:5px}} .pm-new-source>b{{color:#9a4b08}} .pm-evidence{{display:flex;align-items:flex-start;gap:12px;padding:10px 16px;background:#fafbfc;border-top:1px solid var(--line);font-size:12px}} .pm-evidence>a{{font-weight:600;white-space:nowrap}} .pm-evidence .pm-new-source{{margin:0;padding-left:12px;border-left:1px solid var(--line)}}
 .new-badge{{display:inline-block;padding:2px 7px;border-radius:999px;background:#dc2626;color:#fff;font-size:11px;font-weight:700;vertical-align:1px}} .revision-history{{margin-top:26px;padding:13px 16px;background:var(--card);border:1px solid var(--line);border-radius:10px}} .revision-history h2{{margin:0 0 8px;font-size:15px}} .revision-history ul{{margin:0;padding-left:20px}} .revision-history b{{color:#1d4ed8}}
 .filters{{display:grid;gap:10px;margin:0 0 12px;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:10px}} .filter-group{{display:grid;grid-template-columns:62px 1fr;gap:10px;align-items:start}} .filter-label{{padding-top:6px;font-size:12px;color:var(--muted);font-weight:600}} .chips{{display:flex;flex-wrap:wrap;gap:7px}} .filter-chip{{border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);padding:5px 11px;font:inherit;font-size:12.5px;cursor:pointer}} .filter-chip:hover{{border-color:#93b4f4;background:#f5f8ff}} .filter-chip.active{{border-color:var(--accent);background:var(--accent);color:#fff}} .new-filter{{color:#b91c1c;border-color:#fecaca;font-weight:700}} .new-filter.active{{border-color:#b91c1c;background:#dc2626;color:#fff}} .result-count{{color:var(--muted);font-size:12.5px;text-align:right}} tr[hidden]{{display:none}}
 .load-more-row{{display:flex;justify-content:center;padding:14px 0}} .load-more-btn{{border:1px solid var(--accent);border-radius:999px;background:#fff;color:var(--accent);padding:8px 22px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}} .load-more-btn:hover{{background:var(--accent);color:#fff}} .load-more-btn[hidden]{{display:none}}
@@ -3598,9 +3760,9 @@ section{{margin:20px 0;scroll-margin-top:16px}} h2{{font-size:17px;border-left:4
 <div class="note">本次問題標籤已逐筆讀取主文與可見留言後人工覆核；只有來源明確提到的問題才標示。驗證頁、空白頁或只有一般規格／風險討論者不把推測寫成故障；「—」表示本筆未讀到可確認的產品問題，不代表產品絕對沒有問題。</div><div class="tblbox"><table id="detailTable"><thead><tr><th>發文日期（新到舊）</th><th>來源</th><th>關鍵字</th><th>命中位置</th><th>標題</th><th>問題標籤</th><th>主文內容（發生什麼）</th><th>留言結論／使用者評價</th><th>連結</th></tr></thead><tbody>{detail}</tbody></table></div>
 <div class="load-more-row"><button type="button" id="loadMoreBtn" class="load-more-btn" hidden>顯示更多</button></div></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
-<section class="muted"><h2>六、搜尋來源狀態</h2><ul><li>Reddit：納入 {sum(r['source']=='Reddit' for r in rows)} 篇唯一討論串；最新可核對結果為 {latest_reddit_date}。本次新增／補收 5 篇，分別由產品名、完整 PSU／線材型號、配件料號、NTC／thermistor 與熔損情境詞命中；主文與頁面可見留言均已核讀，跨版重貼排除。</li><li>Tom's Hardware Forums：納入 {sum(r['source']=="Tom's Hardware Forums" for r in rows)} 筆；補查 2026-10-13 後產品名與 12V-2x6 事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>TechPowerUp Forums：納入 {sum(r['source']=='TechPowerUp Forums' for r in rows)} 筆；完成 Chrome 驗證後，以「Newer than」= 2026-10-13 查找 WireView、TempGuard、Ai1300TS、ThermalProtect、Equalizer 與 12V-2x6。只見泛用推薦、RX 9070 XT 接頭討論及既有長串延伸留言，沒有足以新增為獨立產品實測的內容。</li><li>ComputerBase Forum：納入 {sum(r['source']=='ComputerBase Forum' for r in rows)} 筆；本次加入 Heißleiter／Thermistor 與完整型號補查，新增 TC-1650T 雙端感測疑慮及使用者改裝測試 1 筆。</li><li>Hardwareluxx Forum：納入 {sum(r['source']=='Hardwareluxx Forum' for r in rows)} 筆；補查 2026-10-13 後產品名、型號與 12V-2x6 事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>Overclockers UK Forums：納入 {sum(r['source']=='Overclockers UK Forums' for r in rows)} 筆；本次補查未找到可新增且已完整核讀的唯一討論。</li><li>PC Games Hardware Extreme：納入 {sum(r['source']=='PC Games Hardware Extreme' for r in rows)} 筆；本次補查未找到可新增且已完整核讀的唯一討論。</li><li>NGA玩家社區：納入 {sum(r['source']=='NGA玩家社區' for r in rows)} 筆 2025-07-01 以後資料；本次以英文產品名與中文在地用語補查公開結果，未把空白或不穩定搜尋結果當成沒有討論。</li><li>Chiphell：納入 {sum(r['source']=='Chiphell' for r in rows)} 筆 2025-07-01 以後資料；本次以產品名、均流線／強流線、溫控保護線與燒接頭等詞補查，未找到可新增且已完整核讀的唯一討論。</li><li>百度貼吧：納入 {sum(r['source'].startswith('百度貼吧') for r in rows)} 筆 2025-07-01 以後資料；本次以顯卡衛士、均流線、強流線、溫控保護線與 12V-2x6 等詞補查公開可讀結果，未找到可新增且已完整核讀的唯一討論。</li></ul></section>
+<section class="muted"><h2>六、搜尋來源狀態</h2><ul><li>Reddit：納入 {sum(r['source']=='Reddit' for r in rows)} 篇唯一討論串；最新可核對結果為 {latest_reddit_date}。本次透過 Chrome 重新查核標題、主文與留言，新增／補收 5 篇；包含 1 篇 2026-10-13 前次漏收文章，仍依 URL 基準標示 New!。逐篇展開可見留言，跨版重貼排除。</li><li>Tom's Hardware Forums：納入 {sum(r['source']=="Tom's Hardware Forums" for r in rows)} 筆；補查 2026-10-15 後產品名、型號與 12V-2x6 事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>TechPowerUp Forums：納入 {sum(r['source']=='TechPowerUp Forums' for r in rows)} 筆；Chrome 登入狀態正常，以「Newer than」= 2026-10-15、依日期排序查核全部追蹤關鍵字及主要別名，新增 2 筆可用樓層。兩筆皆明確保留單一使用者與原因尚未確認的限制。</li><li>ComputerBase Forum：納入 {sum(r['source']=='ComputerBase Forum' for r in rows)} 筆；補查 2026-10-15 後產品名、完整型號與 Heißleiter／Thermistor 等德文功能詞，未找到可新增且已完整核讀的唯一討論。</li><li>Hardwareluxx Forum：納入 {sum(r['source']=='Hardwareluxx Forum' for r in rows)} 筆；補查 2026-10-15 後產品名、型號與 12V-2x6 事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>Overclockers UK Forums：納入 {sum(r['source']=='Overclockers UK Forums' for r in rows)} 筆；本次補查未找到可新增且已完整核讀的唯一討論。</li><li>PC Games Hardware Extreme：納入 {sum(r['source']=='PC Games Hardware Extreme' for r in rows)} 筆；本次補查未找到可新增且已完整核讀的唯一討論。</li><li>NGA玩家社區：納入 {sum(r['source']=='NGA玩家社區' for r in rows)} 筆 2025-07-01 以後資料；本次以英文產品名與中文在地用語補查公開結果，未把空白或不穩定搜尋結果當成沒有討論。</li><li>Chiphell：納入 {sum(r['source']=='Chiphell' for r in rows)} 筆 2025-07-01 以後資料；本次以產品名、均流線／強流線、溫控保護線與燒接頭等詞補查，未找到可新增且已完整核讀的唯一討論。</li><li>百度貼吧：納入 {sum(r['source'].startswith('百度貼吧') for r in rows)} 筆 2025-07-01 以後資料；本次以顯卡衛士、均流線、強流線、溫控保護線與 12V-2x6 等詞補查公開可讀結果，未找到可新增且已完整核讀的唯一討論。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
-<section class="muted"><h2>七、Reddit 精確度與廣度確認</h2><ul><li><b>範圍：</b>以 {period_start_label}～{period_end_label} 為日期界線，交叉查找產品全名、常見拼法、完整 PSU／線材型號、配件料號、per-pin／telemetry／NTC／thermistor／保護功能詞、12V-2x6／12VHPWR 事故語句，以及標題沒有產品名的主文與留言。</li><li><b>固定查詢線：</b>{escape('；'.join(reddit_required_query_lanes))}。每條查詢至少檢查到超出日期界線，不只讀畫面最前面的結果。</li><li><b>本次覆蓋稽核：</b>本次新增／補收 5 篇 Reddit 唯一討論，逐篇閱讀主文與頁面可見留言；納入 URL 由產生器自動對帳，跨版重貼排除。</li><li><b>漏網原因與修正：</b>漏掉的文章多半只寫 TC-1300T、PG-1600G、SL-1200P、SL-1000P 或 CB-12V2X6L600W，標題沒有 TempGuard。搜尋別名已加入完整型號、配件料號、NTC／thermistor、auto shutoff 與熔損情境詞。</li><li><b>精確度：</b>每篇納入資料都必須在實際可見的標題、主文或留言出現目標產品；TempGuard 是否接妥或啟用未獲確認的 PG-1600G 案例，明確標為「保護狀態未確認」，不推定保護失效。</li><li><b>限制：</b>Reddit 搜尋可能動態載入或省略部分回覆；留言摘要只代表本次實際可見內容，不把未載入內容或搜尋空白推論為沒有討論。</li></ul></section>
+<section class="muted"><h2>七、Reddit 精確度與廣度確認</h2><ul><li><b>範圍：</b>以 {period_start_label}～{period_end_label} 為日期界線，交叉查找產品全名、常見拼法、完整 PSU／線材型號、配件料號、per-pin／telemetry／NTC／thermistor／保護功能詞、12V-2x6／12VHPWR 事故語句，以及標題沒有產品名的主文與留言。</li><li><b>固定查詢線：</b>{escape('；'.join(reddit_required_query_lanes))}。本次同時讀取貼文與 Comments 分頁；站內搜尋對新留言仍可能延遲收錄，因此再以完整型號與事故詞補查。</li><li><b>本次覆蓋稽核：</b>新增／補收 5 篇 Reddit 唯一討論，逐篇閱讀主文並展開可見留言；其中「Am I cooked」讀到 21 則、「WireView Pro II saved my 5090 potentially」讀到 25 則、「More than 2A imbalance」讀到 21 則、「how to avoid 5090 from burning?」展開後讀到 56 則。納入 URL 由產生器自動對帳。</li><li><b>漏網原因與修正：</b>前次漏收的 10 月 13 日文章雖有 WireView 標題，但未出現在當輪可用搜尋結果；本次用 Chrome 站內搜尋、完整 URL 候選與留言命中交叉補回。之後不能把單一路徑搜尋空白當成沒有資料。</li><li><b>精確度：</b>實際持有／安裝、購買考量、功能描述與推測分開記錄；問題解除只在原作者明確回覆「更換線材後解決」時標示。TechPowerUp 與 Reddit 尚未完成換線比對的案例，均保留「原因未確認」。</li><li><b>限制：</b>Reddit 搜尋可能延遲索引、動態載入或省略部分回覆；留言摘要只代表本次實際可見內容，不把未載入內容或搜尋空白推論為沒有討論。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
 <section class="revision-history"><h2>版本紀錄（架構變動）</h2><div class="note" style="margin-top:0">只記錄新增論壇來源、新增／調整追蹤關鍵字、版型或篩選功能調整這類架構層級變動；逐次的查核與新增明細請見下方「內容更新紀錄」。</div><ul>{version_history_rows}</ul></section>
 <section class="revision-history"><h2>內容更新紀錄</h2><div class="note" style="margin-top:0">記錄每次查核實際跑了哪些來源／關鍵字、找到並新增了什麼；不對應版本號，同一版本號下可能有多筆更新紀錄。</div><ul>{update_log_rows}</ul></section>
