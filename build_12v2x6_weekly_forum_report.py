@@ -1271,7 +1271,7 @@ rows.extend([
     },
 ])
 
-kw = ['WireView', 'GPU Safeguard', 'GPU Shield', 'OptiGuard', 'Ampinel', 'ROG Equalizer', 'GPU Tweak III Auto-Shutdown', 'Titanload', 'T-Guard', 'ThermalProtect', 'TempGuard', 'EZDIY-FAB Alpha TS13', 'VGA 12+4PIN OCP Dongle']
+kw = ['WireView', 'GPU Safeguard', 'GPU Shield', 'OptiGuard', 'Ampinel', 'ROG Equalizer', 'GPU Tweak III Auto-Shutdown', 'Titanload', 'T-Guard', 'ThermalProtect', 'PinProtect／PinProtect+', 'TempGuard', 'EZDIY-FAB Alpha TS13', 'VGA 12+4PIN OCP Dongle']
 keyword_info = {
     'WireView': (
         '逐針腳量測 12V-2x6 的電流，並監控電壓、溫度與功率；用於提早發現負載不均、接觸異常與過熱風險。',
@@ -1318,6 +1318,11 @@ keyword_info = {
         'CORSAIR 官方技術說明',
         'https://www.corsair.com/us/en/explorer/diy-builder/power-supply-units/corsair-thermalprotect-technical-overview/'
     ),
+    'PinProtect／PinProtect+': (
+        '兩者皆整合於 CORSAIR 電源供應器，以逐 pin OCP 即時監控 12V-2x6 六路 +12V 電流，不偵測溫度。PinProtect 固定常駐，異常持續預設 30 秒後使 GPU 停止取電，畫面變黑且 PSU 風扇全速；PinProtect+ 另以 iCUE 顯示六路電流、警示與事件記錄，並可調整門檻及 10～180 秒延遲或停用。官方文章發布時，PinProtect 僅見於第二代 RM1200e，PinProtect+ 僅見於 HX1000i SHIFT CRYSTAL。',
+        'CORSAIR 官方技術說明',
+        'https://www.corsair.com/us/en/explorer/diy-builder/power-supply-units/what-is-pinprotect/'
+    ),
     'TempGuard': (
         '以 GPU 端接頭內的 NTC 感測器監測溫度，並把訊號送回電源供應器執行安全保護。',
         'ASRock 官方產品頁',
@@ -1349,6 +1354,7 @@ keyword_category = {
     'Titanload': '12V-2x6 高載流被動式強化線材',
     'T-Guard': '整合於 PSU 的接頭溫度監控／保護',
     'ThermalProtect': '內建被動溫度開關的 12V-2x6 線材',
+    'PinProtect／PinProtect+': '整合於 PSU 的逐 pin 過流監控與主動保護',
     'TempGuard': 'PSU 專用溫度感測保護線材',
     'GPU Tweak III Auto-Shutdown': 'GPU Tweak III 軟體內選配的逐 pin 過流自動關機功能（僅此功能，非整套軟體）',
     'EZDIY-FAB Alpha TS13': 'GPU 端無軟體溫度／功耗顯示與警報轉接器',
@@ -1364,6 +1370,7 @@ product_form_factor = {
     'Titanload': '線材',
     'T-Guard': 'PSU',
     'ThermalProtect': '線材',
+    'PinProtect／PinProtect+': 'PSU',
     'TempGuard': '線材＋PSU',
     'GPU Tweak III Auto-Shutdown': '軟體功能',
     'EZDIY-FAB Alpha TS13': 'Adapter',
@@ -1379,6 +1386,7 @@ product_detection = {
     'Titanload': '無（被動強化）',
     'T-Guard': '溫度',
     'ThermalProtect': '溫度',
+    'PinProtect／PinProtect+': '電流',
     'TempGuard': '溫度',
     'GPU Tweak III Auto-Shutdown': '電流',
     'EZDIY-FAB Alpha TS13': '溫度＋功耗（非逐 pin 電流）',
@@ -1394,6 +1402,7 @@ keyword_vendor = {
     'Titanload': 'Segotep／鑫谷',
     'T-Guard': 'GIGABYTE',
     'ThermalProtect': 'CORSAIR',
+    'PinProtect／PinProtect+': 'CORSAIR',
     'TempGuard': 'ASRock',
     'GPU Tweak III Auto-Shutdown': 'ASUS',
     'EZDIY-FAB Alpha TS13': 'EZDIY-FAB',
@@ -1584,6 +1593,44 @@ rows.extend([
     },
 ])
 
+# CORSAIR PinProtect／PinProtect+ 專項補查：官方功能另列於關鍵字說明；以下明細只整理
+# 已完整讀取主文與可見留言的論壇內容，沒有把產品發布宣稱當成擁有者實測。
+rows.extend([
+    {
+        'date': '2026-10-25', 'source': 'Reddit', 'keyword': 'PinProtect／PinProtect+',
+        'keywords': ['PinProtect／PinProtect+'], 'match': '標題＋內文＋留言',
+        'title': 'New RMe PSU with 12V-2x6 per-pin overcurrent protection?',
+        'summary': '買家因第二代 RM1200e 的 PinProtect 逐 pin OCP 下單白色版，但 Amazon／Newegg 仍同時列出 2023、2025 等同名 RM1200e，產品頁也未必標示 PinProtect，造成新舊代辨識困難；CORSAIR 官網當時顯示延至 11 月出貨。',
+        'comments': '發文者下單時看到 204.99 美元，數小時後頁面變成 279.99 美元，並質疑價格變動。CORSAIR 人員 -jonnyGURU- 說明第二代 PinProtect 版料號為 CP-9020316-XX（黑）與 CP-9020317-XX（白），舊代沒有 PinProtect；留言確認發文者買到正確料號，也認為通路的年份命名增加混淆。本串沒有實際保護觸發或長期使用資料。',
+        'url': 'https://www.reddit.com/r/Corsair/comments/1xdndw4/new_rme_psu_with_12v2x6_perpin_overcurrent/'
+    },
+    {
+        'date': '2026-10-21', 'source': 'TechPowerUp Forums', 'keyword': 'PinProtect／PinProtect+',
+        'keywords': ['PinProtect／PinProtect+'], 'match': '標題＋內文＋留言',
+        'title': 'Corsair Launches RM1200e Power Supply with Built-in PinProtect GPU OCP',
+        'summary': '主文介紹第二代 RM1200e 的 PinProtect：PSU 端即時監控六路 +12V 電流，若單路電流長時間超過預設門檻便降低 GPU 線材供電並使顯示卡關閉；另附雙色接頭、黑白兩色與 10 年保固。這是產品發布資訊，不是論壇獨立測試。',
+        'comments': '留言者認為逐 pin OCP 比只監控線材溫度更完整，但也希望能同時監控 GPU 端；多則留言批評消費者必須為接頭設計風險額外更換電源，並擔心未搭載保護的 PSU 日後更容易被歸責為使用者問題或產生保固爭議。沒有 RM1200e 擁有者回報實際觸發。',
+        'url': 'https://www.techpowerup.com/forums/threads/corsair-launches-rm1200e-power-supply-with-built-in-pinprotect-gpu-ocp.353971/'
+    },
+    {
+        'date': '2026-10-19', 'source': 'Reddit', 'keyword': 'PinProtect／PinProtect+',
+        'keywords': ['PinProtect／PinProtect+', 'WireView', 'GPU Safeguard', 'GPU Shield', 'Ampinel'],
+        'match': '標題＋內文＋留言',
+        'title': 'What’s the latest on 12V GPU connectors?',
+        'summary': '發文者詢問 12V GPU 接頭是否仍會熔損，以及是否已有萬無一失的解法；主文沒有自己的故障案例。',
+        'comments': '一名留言者認為高功耗 GPU 應優先選擇內建逐 pin 電流監控的 MSI GPU Safeguard+ 或 CORSAIR PinProtect+，理由是 WireView／Ampinel 類外接監控器會增加兩個 12V-2x6 接頭；其他留言則推薦 WireView、GPU Shield、原生 ATX 3.1 線材或避免高功耗型號。這些是選購意見，沒有 PinProtect／PinProtect+ 實際觸發，也沒有形成一致結論。',
+        'url': 'https://www.reddit.com/r/buildapc/comments/1x9km8a/whats_the_latest_on_12v_gpu_connectors/'
+    },
+    {
+        'date': '2026-06-02', 'source': 'ComputerBase Forum', 'keyword': 'PinProtect／PinProtect+',
+        'keywords': ['PinProtect／PinProtect+', 'ThermalProtect'], 'match': '標題＋內文＋留言',
+        'title': 'Corsair AXi、HXi、RMe 的 12V-2x6 保護討論',
+        'summary': '主文介紹 CORSAIR 在 PSU 內導入 PinProtect／PinProtect+ 逐 pin 過流保護，以及 ThermalProtect 溫度保護線材；論壇共兩頁、32 則留言已讀。',
+        'comments': '有留言肯定 iCUE 可讀取資料，但更多人批評以 PSU 保護彌補接頭根本問題；技術討論指出 PSU 端逐線電流可作為接觸異常訊號，卻不能直接量到 GPU 接頭局部熱點。另有留言擔心保護切斷會造成遊戲中斷或未儲存資料遺失，希望在斷電前先警示，並質疑旗艦 AX 型號為何沒有 PinProtect+。本串沒有擁有者觸發案例。',
+        'url': 'https://www.computerbase.de/forum/threads/corsair-axi-hxi-und-rme-netzteile-schuetzen-12v-2x6-anschluss.2272561/'
+    },
+])
+
 keyword_search_aliases = {
     'WireView': 'WireView、Wire View、WireView Pro／Pro II、WireView II、暴力熊、顯卡功耗監測器、GPU 電源監視器、逐 pin／單 pin 電流監控',
     'GPU Safeguard': 'GPU Safeguard／Safeguard+、微星顯卡保護、逐 pin 電流監測、過流警報／強制斷電、MPG Ai1600TS／Ai1300TS、MEG Ai1600T／Ai1300P／Ai1000P、per-pin current、PSU telemetry、Prometheus／Grafana',
@@ -1594,6 +1641,7 @@ keyword_search_aliases = {
     'Titanload': 'Titanload、Segotep Titanload、鑫谷強流線、14A 強流線、TITANLOAD 強流線',
     'T-Guard': 'T-Guard、GIGABYTE T-Guard、技嘉主動熱監控、12V-2x6 熱敏保護',
     'ThermalProtect': 'ThermalProtect、Thermal Protect、CORSAIR ThermalProtect、海盜船溫控保護線、OTP 高溫保護線、防燒線',
+    'PinProtect／PinProtect+': 'PinProtect、PinProtect+、Pin Protect、CORSAIR PinProtect、per-pin OCP、逐 pin／單 pin 過流保護、海盜船逐針腳電流監控、RM1200e Gen 2、CP-9020316／CP-9020317、HX1000i SHIFT CRYSTAL',
     'TempGuard': 'TempGuard、ASRock TempGuard；Taichi TC-1650T／TC-1300T／TC-3000P；Phantom Gaming PG-1600G／PG-1300G／PG-1000G／PG-850G／PG-750G／PG-1000PSF／PG-850PSF；Steel Legend SL-1200P／SL-1000P／SL-850P；CB-12V2X6L600W／90-UCX060-71XCAB；NTC sensor／temperature sensor／thermistor／Heißleiter、auto shutoff／cable over-temperature protection、華擎溫度保護線、熱敏保護線、高溫斷電；另以 ASRock＋完整 PSU／線材型號＋12V-2x6＋melted／smoking／arcing 交叉查找未寫產品名的事故文',
     'GPU Tweak III Auto-Shutdown': 'GPU Tweak III auto-shutdown、GPU Tweak III shutdown、Power Detector+ auto-shutdown、Power Detector+ shutdown、ROG Astral／ROG Matrix per-pin shutdown、12.5A 過流保護；注意：純粹的 GPU Tweak III 超頻／風扇／RGB 相關討論不算命中，須同時提到過流關機／Power Detector+ 才納入',
     'EZDIY-FAB Alpha TS13': 'EZDIY-FAB Alpha TS13、EZDIY-FAB 12V-2x6 adapter、Alpha TS13、EZDIY 溫度顯示轉接器',
@@ -1626,6 +1674,8 @@ reddit_discovery_audit = [
     ('WireView', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wrt3eg/is_there_a_way_to_replace_the_fan/', '納入', '風扇磨擦聲、客服更換與拆解教學'),
     ('WireView', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wrwyo9/which_version_to_get/', '納入', '垂直安裝時的版本與機殼路徑相容性'),
     ('OptiGuard', 'https://www.reddit.com/r/nvidia/comments/1wp9dx4/rtx_5090_12v2x6_connector_reaches_917c_with_dlss/', '納入', '91.7°C 接頭事件中的個人推薦，無 OptiGuard 實測'),
+    ('PinProtect', 'https://www.reddit.com/r/Corsair/comments/1xdndw4/new_rme_psu_with_12v2x6_perpin_overcurrent/', '納入', '第二代 RM1200e 料號、價格與供貨辨識；完整可見留言已讀'),
+    ('PinProtect+／GPU Safeguard+／WireView／GPU Shield／Ampinel', 'https://www.reddit.com/r/buildapc/comments/1x9km8a/whats_the_latest_on_12v_gpu_connectors/', '納入', '整合式 PSU 與外接監控器的接頭數量及選購比較；完整可見留言已讀'),
 ]
 pm_info = {
     'WireView': (
@@ -1874,13 +1924,25 @@ pm_info.update({
     ),
 })
 
+pm_info['PinProtect／PinProtect+'] = (
+    '使用者重視把逐 pin 電流監控與保護整合在 PSU 內，不必加裝外接轉接器；PinProtect 固定常駐，PinProtect+ 另有 iCUE 六路即時讀值、通知、事件記錄與可調門檻／延遲。',
+    '目前沒有讀到擁有者實際觸發或長期使用資料。論壇具體疑慮包括第二代 RM1200e 與舊代同名、料號／供貨／價格難辨識，警示 LED 在封閉機殼內不易看見，自動切斷可能造成工作中斷，以及 PSU 端電流監控不能直接量到 GPU 接頭局部溫度。',
+    'P0：清楚標示支援型號、世代與料號，並公布逐 pin 門檻、量測精度、反應時間及故障注入測試。P1：在切斷前提供明確蜂鳴警示、可匯出事件記錄與安全上限內的處置時間設定。P1：說明 iCUE 未執行時的硬體獨立保護、溫度監控邊界及保固流程。',
+    '中：官方機制清楚，已讀多個論壇完整討論；尚無擁有者觸發或長期驗證',
+    'https://www.reddit.com/r/Corsair/comments/1xdndw4/new_rme_psu_with_12v2x6_perpin_overcurrent/'
+)
+
 multi_keyword_map = {
     'https://bbs.nga.cn/read.php?tid=47361387':
         ['GPU Shield', 'GPU Safeguard'],
     'https://bbs.nga.cn/read.php?tid=47343776':
         ['GPU Shield', 'GPU Safeguard', 'ROG Equalizer'],
     'https://www.reddit.com/r/LinusTechTips/comments/1vqt4vi/regarding_melting_12vhpwr_power_cables_for_nvidia/':
-        ['ROG Equalizer', 'WireView', 'Ampinel', 'GPU Safeguard', 'ThermalProtect'],
+        ['ROG Equalizer', 'WireView', 'Ampinel', 'GPU Safeguard', 'ThermalProtect', 'PinProtect／PinProtect+'],
+    'https://www.hardwareluxx.de/community/threads/thermalprotect-pinprotect-und-pinprotect-corsair-zeigt-schutzl%C3%B6sungen-f%C3%BCr-12v-2x6-problematik.1379683/':
+        ['ThermalProtect', 'PinProtect／PinProtect+'],
+    'https://www.chiphell.com/thread-2849232-1-1.html':
+        ['ThermalProtect', 'PinProtect／PinProtect+'],
     'https://www.reddit.com/r/watercooling/comments/1vo2wsd/is_this_something_ideal_to_look_on_brand_new/':
         ['Ampinel', 'WireView', 'ThermalProtect'],
     'https://www.chiphell.com/thread-2862733-1-1.html':
@@ -2405,7 +2467,7 @@ rows.extend([
 # 使用經驗或產品比較的留言。其他論壇以相同日期範圍與在地用語補查，未找到可新增、
 # 且能完整讀取主文與留言的唯一討論。
 reddit_discovery_audit.extend([
-    ('WireView／GPU Safeguard+／Ampinel／ROG Equalizer', 'https://www.reddit.com/r/buildapc/comments/1ww7rp7/just_bought_a_5090_how_do_i_prevent_the_melting/', '納入', '5090 FE 使用者比較外接逐 pin 監控與整合式 PSU；完整可見留言已讀'),
+    ('WireView／GPU Safeguard+／PinProtect+／Ampinel／ROG Equalizer', 'https://www.reddit.com/r/buildapc/comments/1ww7rp7/just_bought_a_5090_how_do_i_prevent_the_melting/', '納入', '5090 FE 使用者比較外接逐 pin 監控與整合式 PSU；完整可見留言已讀'),
     ('WireView／ROG Equalizer', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wt3sdk/wireview_pro_2_makes_me_crazy/', '納入', '反覆不平衡告警、自動關機及與 GPU Tweak 3 讀值差異'),
     ('WireView', 'https://www.reddit.com/r/pcmasterrace/comments/1wvgc0k/the_latest_cutscene_in_the_12v2x6_connector/', '納入', '針對換線能否根治 12V-2x6 熔損的討論'),
     ('WireView', 'https://www.reddit.com/r/ThermalGrizzly/comments/1wu2xtp/wireview_pro_2_compatibility/', '納入', 'Gainward RTX 5080 Phoenix V2 相容性及原廠回覆'),
@@ -2413,7 +2475,7 @@ reddit_discovery_audit.extend([
 rows.extend([
     {
         'date': '2026-10-03', 'source': 'Reddit', 'keyword': 'WireView',
-        'keywords': ['WireView', 'GPU Safeguard', 'Ampinel', 'ROG Equalizer'],
+        'keywords': ['WireView', 'GPU Safeguard', 'PinProtect／PinProtect+', 'Ampinel', 'ROG Equalizer'],
         'match': '標題＋內文＋留言',
         'title': 'Just bought a 5090. How do I prevent the melting cable?',
         'summary': 'RTX 5090 FE 使用者採用 1250W Gold、ATX 3.1 電源與原生 12VHPWR 線，未使用第三方轉接器；因擔心接頭熔損而詢問預防方式。主文本身沒有回報已發生故障。',
@@ -3108,6 +3170,11 @@ ISSUE_TAG_OVERRIDES = {canonical_url(url): tags for url, tags in [
     ('https://www.reddit.com/r/ThermalGrizzly/comments/1xbfso0/wireview_pro_2_wired_uk_stock/', ['供貨／交期問題']),
     ('https://www.reddit.com/r/ThermalGrizzly/comments/1x84ka0/my_wireview_pro_ii_saved_me/', ['電流不平衡', '線材異常', '更換線材後恢復']),
     ('https://www.reddit.com/r/ThermalGrizzly/comments/1x40l9j/graphics_driver_crashes_with_wireview/', ['黑畫面／風扇全速', '裝置故障', '更換裝置後恢復']),
+    ('https://www.reddit.com/r/Corsair/comments/1xdndw4/new_rme_psu_with_12v2x6_perpin_overcurrent/', ['型號辨識困難', '價格變動疑慮', '供貨／交期問題', '實測不足']),
+    ('https://www.techpowerup.com/forums/threads/corsair-launches-rm1200e-power-supply-with-built-in-pinprotect-gpu-ocp.353971/', ['成本／責任疑慮', '保固／責任疑慮', '實測不足']),
+    ('https://www.reddit.com/r/buildapc/comments/1x9km8a/whats_the_latest_on_12v_gpu_connectors/', ['接頭熔損風險討論', '實測不足']),
+    ('https://www.computerbase.de/forum/threads/corsair-axi-hxi-und-rme-netzteile-schuetzen-12v-2x6-anschluss.2272561/', ['自動關機／資料損失疑慮', '監控範圍疑慮', '實測不足']),
+    ('https://www.hardwareluxx.de/community/threads/thermalprotect-pinprotect-und-pinprotect-corsair-zeigt-schutzl%C3%B6sungen-f%C3%BCr-12v-2x6-problematik.1379683/', ['警示辨識疑慮', '自動關機疑慮', '實測不足']),
 ]}
 
 def detect_issue_tags(row):
@@ -3546,6 +3613,18 @@ pm_weekly_updates = {
             ('Super Flower OCP Dongle Reddit 討論', 'https://www.reddit.com/r/pcmasterrace/comments/1xdg04i/superflower_to_introduce_12v2x6_overcurrent/'),
         ],
     },
+    'PinProtect／PinProtect+': {
+        'pros': '本次新發表的第二代 RM1200e 讓買家直接因 PinProtect 逐 pin OCP 下單；其他 Reddit 留言者也把 PSU 內建監控視為高功耗 GPU 的較完整方案，具體理由是不用像 WireView／Ampinel 類外接裝置再增加兩個 12V-2x6 接頭。ComputerBase 亦有留言肯定 PinProtect+ 可透過 iCUE 讀取六路電流。這些是購買理由與功能評價，不是保護觸發實測。',
+        'cons': 'Reddit 買家無法只靠 RM1200e 名稱分辨 2023、2025 舊代與第二代 PinProtect 版，且遇到官網價格由 204.99 美元變為 279.99 美元、延至 11 月出貨；CORSAIR 人員需以 CP-9020316／CP-9020317 料號協助辨識。TechPowerUp、ComputerBase 與 Hardwareluxx 留言另擔心為接頭問題額外付費、PSU 端監控看不到 GPU 接頭局部溫度、紅色 LED 在封閉機殼內不易看見，以及切斷 GPU 可能造成遊戲中斷或未儲存資料遺失。目前沒有擁有者觸發、熔毀或長期使用資料。',
+        'actions': 'P0：在產品名稱、包裝與通路頁統一標示 PinProtect 世代、CP 料號與支援功能，並避免同名舊代混售。P1：公開逐 pin 門檻、量測精度、反應時間、異常恢復邏輯及接觸不良故障注入測試；清楚說明它只偵測電流、不直接量測接頭溫度。P1：在 GPU 切斷前加入可辨識的蜂鳴警示與可匯出事件記錄，並說明 iCUE 未執行時的硬體保護、保固與資料保存行為。',
+        'sources': [
+            ('RM1200e 第二代料號、價格與供貨討論', 'https://www.reddit.com/r/Corsair/comments/1xdndw4/new_rme_psu_with_12v2x6_perpin_overcurrent/'),
+            ('RM1200e PinProtect TechPowerUp 完整討論', 'https://www.techpowerup.com/forums/threads/corsair-launches-rm1200e-power-supply-with-built-in-pinprotect-gpu-ocp.353971/'),
+            ('ComputerBase 兩頁完整討論', 'https://www.computerbase.de/forum/threads/corsair-axi-hxi-und-rme-netzteile-schuetzen-12v-2x6-anschluss.2272561/'),
+            ('Hardwareluxx 警示方式討論', 'https://www.hardwareluxx.de/community/threads/thermalprotect-pinprotect-und-pinprotect-corsair-zeigt-schutzl%C3%B6sungen-f%C3%BCr-12v-2x6-problematik.1379683/'),
+            ('內建 PSU 與外接監控器比較', 'https://www.reddit.com/r/buildapc/comments/1x9km8a/whats_the_latest_on_12v_gpu_connectors/'),
+        ],
+    },
 }
 
 def pm_points(value):
@@ -3734,7 +3813,7 @@ REPORT_VERSION = 'v1.6'
 V12_UPDATED_AT = '2026-08-19 14:45:56 Asia/Taipei'
 
 # 只讓本次才新增的追蹤產品顯示 New!；版本號依使用者要求暫不變更。
-new_keywords = {'VGA 12+4PIN OCP Dongle'}
+new_keywords = {'VGA 12+4PIN OCP Dongle', 'PinProtect／PinProtect+'}
 
 # 版本紀錄（架構變動：新增論壇／關鍵字／版型調整）與內容更新紀錄（每次查核跑了什麼、
 # 找到什麼）分成兩份清單呈現，避免版本號被日常內容更新灌水，也讓兩種資訊各自好找。
@@ -3745,9 +3824,11 @@ version_history = [
     ('v1.2', V12_UPDATED_AT, '新增 Hardwareluxx、ComputerBase、PCGH Extreme 與 Overclockers UK 四個論壇來源。'),
 ]
 update_log = [
+    ('2026-10-27', '新增 CORSAIR PinProtect／PinProtect+ 為第 14 個追蹤產品；依官方資料確認兩者皆整合於 PSU、只偵測六路 +12V 電流，不直接量測溫度。PinProtect 固定常駐且預設異常持續 30 秒後使 GPU 停止取電；PinProtect+ 另有 iCUE 即時讀值、通知、記錄與可調門檻／10～180 秒延遲。版本依使用者規則維持 v1.6，待確認後再進版。'),
+    ('2026-10-27', 'PinProtect 專項搜尋：逐篇核讀 Reddit 第二代 RM1200e 料號／價格／供貨討論、TechPowerUp RM1200e PinProtect 發表串與 8 則回覆、ComputerBase 兩頁 32 則留言、Hardwareluxx 完整討論，以及既有 Reddit／Chiphell 比較串。新增 4 篇唯一明細並重分類 4 篇既有明細；沒有擁有者實際觸發、燒毀或熔毀案例。'),
     ('2026-10-27', '新增 Super Flower（振華）VGA 12+4PIN 過電流保護轉接線／OCP Dongle 為第 13 個追蹤產品；依官方頁確認它是 Adapter 線材、只偵測六路 +12V 電流，不宣稱溫度監控。逐篇核讀 TechPowerUp 25 則貼文／留言及 Reddit 討論，整理門檻、180 秒等待、黑畫面辨識、額外兩個接頭、相容性、供貨與保固疑慮；官方未公開黑畫面保護電路，不寫成已確認切斷 GPU 電源。'),
     ('2026-10-27', 'Reddit：以產品全名、品牌／型號、逐 pin 電流、黑畫面、熔毀與供貨等情境詞補查並逐篇核讀，新增／補收 10 篇唯一討論。WireView 包含兩件裝置更換或換線後可追到結果的案例，以及 Noctua Edition 疑似故障、凍結重啟、持續不平衡、取樣設定與 Wired 版交期；新資料沒有確認的燒毀或熔毀案例。'),
-    ('2026-10-27', 'TechPowerUp：登入狀態正常，完成自動驗證後，以 2026-10-20 之後日期查核全部追蹤產品及主要別名；新增振華 OCP Dongle 完整討論。Tom’s Hardware、ComputerBase、Hardwareluxx、Overclockers UK、PCGH Extreme、Chiphell、NGA玩家社區與百度貼吧亦補查英文、德文與中國在地用語；未找到可新增且已完整核讀主文與留言的唯一產品討論，搜尋空白不解讀為沒有討論。'),
+    ('2026-10-27', 'TechPowerUp：登入狀態正常，完成自動驗證後，以 2026-10-20 之後日期查核既有追蹤產品及主要別名；新增振華 OCP Dongle 完整討論。PinProtect 專項再以產品名、RM1200e／HX1000i SHIFT CRYSTAL、per-pin OCP 與在地用語回溯搜尋 2025-07-01 之後資料，找到 Reddit、TechPowerUp、ComputerBase、Hardwareluxx 與 Chiphell 可用內容；Tom’s Hardware、Overclockers UK、PCGH Extreme、NGA玩家社區與百度貼吧未找到可新增且已完整核讀的唯一討論，搜尋空白不解讀為沒有討論。'),
     ('2026-10-20', 'Reddit：以 Chrome 重新查核產品全名、完整型號、12V-2x6 事故詞及留言分頁，逐篇閱讀主文並展開可見回覆；新增／補收 5 篇唯一討論。重點包括 WireView 找出線材異常後換線解決、疑似誤報後改用 Ai1300TS、ROG Astral 超過 2A 不平衡、ThermalProtect Type 4／Type 5 供貨詢問，以及 5090 防護產品的實際使用回報。推薦、功能描述與實際觸發分開記錄。'),
     ('2026-10-20', 'TechPowerUp：登入狀態正常，以 Newer than=2026-10-15、依日期排序查核全部 12 個追蹤關鍵字及 Ai1300TS／Equalizer 等別名；新增 WireView Pro II Wired 安裝後電壓降、線材升溫與電流不平衡的待確認案例，以及同串另一名使用者的 WireView／Ampinel 反覆插拔後異常經驗。換線結果尚未公布，不把原因歸給特定產品。'),
     ('2026-10-20', 'Tom’s Hardware、ComputerBase、Hardwareluxx、Overclockers UK、PCGH Extreme、Chiphell、NGA玩家社區與百度貼吧：補查 2026-10-15 後產品名、完整型號及中德英在地用語的公開可讀結果；未找到可新增且已完整核讀主文與留言的唯一討論，搜尋空白不解讀為沒有討論。'),
@@ -3894,9 +3975,9 @@ section{{margin:20px 0;scroll-margin-top:16px}} h2{{font-size:17px;border-left:4
 <div class="note">本次問題標籤已逐筆讀取主文與可見留言後人工覆核；只有來源明確提到的問題才標示。驗證頁、空白頁或只有一般規格／風險討論者不把推測寫成故障；「—」表示本筆未讀到可確認的產品問題，不代表產品絕對沒有問題。</div><div class="tblbox"><table id="detailTable"><thead><tr><th>發文日期（新到舊）</th><th>來源</th><th>關鍵字</th><th>命中位置</th><th>標題</th><th>問題標籤</th><th>主文內容（發生什麼）</th><th>留言結論／使用者評價</th><th>連結</th></tr></thead><tbody>{detail}</tbody></table></div>
 <div class="load-more-row"><button type="button" id="loadMoreBtn" class="load-more-btn" hidden>顯示更多</button></div></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
-<section class="muted"><h2>六、搜尋來源狀態</h2><ul><li>Reddit：納入 {sum(r['source']=='Reddit' for r in rows)} 篇唯一討論串；最新可核對結果為 {latest_reddit_date}。本次透過 Chrome 重新查核標題、主文與留言，新增／補收 5 篇；包含 1 篇 2026-10-13 前次漏收文章，仍依 URL 基準標示 New!。逐篇展開可見留言，跨版重貼排除。</li><li>Tom's Hardware Forums：納入 {sum(r['source']=="Tom's Hardware Forums" for r in rows)} 筆；補查 2026-10-15 後產品名、型號與 12V-2x6 事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>TechPowerUp Forums：納入 {sum(r['source']=='TechPowerUp Forums' for r in rows)} 筆；Chrome 登入狀態正常，以「Newer than」= 2026-10-15、依日期排序查核全部追蹤關鍵字及主要別名，新增 2 筆可用樓層。兩筆皆明確保留單一使用者與原因尚未確認的限制。</li><li>ComputerBase Forum：納入 {sum(r['source']=='ComputerBase Forum' for r in rows)} 筆；補查 2026-10-15 後產品名、完整型號與 Heißleiter／Thermistor 等德文功能詞，未找到可新增且已完整核讀的唯一討論。</li><li>Hardwareluxx Forum：納入 {sum(r['source']=='Hardwareluxx Forum' for r in rows)} 筆；補查 2026-10-15 後產品名、型號與 12V-2x6 事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>Overclockers UK Forums：納入 {sum(r['source']=='Overclockers UK Forums' for r in rows)} 筆；本次補查未找到可新增且已完整核讀的唯一討論。</li><li>PC Games Hardware Extreme：納入 {sum(r['source']=='PC Games Hardware Extreme' for r in rows)} 筆；本次補查未找到可新增且已完整核讀的唯一討論。</li><li>NGA玩家社區：納入 {sum(r['source']=='NGA玩家社區' for r in rows)} 筆 2025-07-01 以後資料；本次以英文產品名與中文在地用語補查公開結果，未把空白或不穩定搜尋結果當成沒有討論。</li><li>Chiphell：納入 {sum(r['source']=='Chiphell' for r in rows)} 筆 2025-07-01 以後資料；本次以產品名、均流線／強流線、溫控保護線與燒接頭等詞補查，未找到可新增且已完整核讀的唯一討論。</li><li>百度貼吧：納入 {sum(r['source'].startswith('百度貼吧') for r in rows)} 筆 2025-07-01 以後資料；本次以顯卡衛士、均流線、強流線、溫控保護線與 12V-2x6 等詞補查公開可讀結果，未找到可新增且已完整核讀的唯一討論。</li></ul></section>
+<section class="muted"><h2>六、搜尋來源狀態</h2><ul><li>Reddit：納入 {sum(r['source']=='Reddit' for r in rows)} 篇唯一討論串；最新可核對結果為 {latest_reddit_date}。本日合併更新相較 2026-10-20 基準新增／補收 12 篇；PinProtect 專項增加第二代 RM1200e 與整合式 PSU 比較 2 篇，並把 2 篇既有比較串重分類到 PinProtect／PinProtect+。逐篇展開可見留言，跨版重貼排除。</li><li>Tom's Hardware Forums：納入 {sum(r['source']=="Tom's Hardware Forums" for r in rows)} 筆；補查 PinProtect、RM1200e、HX1000i SHIFT CRYSTAL 與 12V-2x6 事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>TechPowerUp Forums：納入 {sum(r['source']=='TechPowerUp Forums' for r in rows)} 筆；Chrome 登入狀態正常，除振華 OCP Dongle 外，新增完整核讀的 RM1200e PinProtect 發表串與 8 則回覆；Computex 串的 5 則回覆皆在討論機殼，未誤列為 PinProtect 使用評價。</li><li>ComputerBase Forum：納入 {sum(r['source']=='ComputerBase Forum' for r in rows)} 筆；PinProtect 專項補收 2026-06-02 的兩頁、32 則留言完整討論，產品功能、技術觀點與使用者疑慮分開記錄。</li><li>Hardwareluxx Forum：納入 {sum(r['source']=='Hardwareluxx Forum' for r in rows)} 筆；重新完整核讀並重分類既有 2026-06-05 PinProtect／PinProtect+ 討論，沒有擁有者觸發案例。</li><li>Overclockers UK Forums：納入 {sum(r['source']=='Overclockers UK Forums' for r in rows)} 筆；PinProtect 專項補查未找到可新增且已完整核讀的唯一討論。</li><li>PC Games Hardware Extreme：納入 {sum(r['source']=='PC Games Hardware Extreme' for r in rows)} 筆；PinProtect 專項補查未找到可新增且已完整核讀的唯一討論。</li><li>NGA玩家社區：納入 {sum(r['source']=='NGA玩家社區' for r in rows)} 筆 2025-07-01 以後資料；以 PinProtect、RM1200e、海盜船逐針腳／單 pin 過流保護等詞補查，未把空白或不穩定搜尋結果當成沒有討論。</li><li>Chiphell：納入 {sum(r['source']=='Chiphell' for r in rows)} 筆 2025-07-01 以後資料；重新核讀並重分類既有 2026-07-20 海盜船保護方案討論，沒有擁有者觸發案例。</li><li>百度貼吧：納入 {sum(r['source'].startswith('百度貼吧') for r in rows)} 筆 2025-07-01 以後資料；以 PinProtect、RM1200e、海盜船逐針腳／單 pin 過流保護等詞補查公開可讀結果，未找到可新增且已完整核讀的唯一討論。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
-<section class="muted"><h2>七、Reddit 精確度與廣度確認</h2><ul><li><b>範圍：</b>以 {period_start_label}～{period_end_label} 為日期界線，交叉查找產品全名、常見拼法、完整 PSU／線材型號、配件料號、per-pin／telemetry／NTC／thermistor／保護功能詞、12V-2x6／12VHPWR 事故語句，以及標題沒有產品名的主文與留言。</li><li><b>固定查詢線：</b>{escape('；'.join(reddit_required_query_lanes))}。本次同時讀取貼文與 Comments 分頁；站內搜尋對新留言仍可能延遲收錄，因此再以完整型號與事故詞補查。</li><li><b>本次覆蓋稽核：</b>新增／補收 5 篇 Reddit 唯一討論，逐篇閱讀主文並展開可見留言；其中「Am I cooked」讀到 21 則、「WireView Pro II saved my 5090 potentially」讀到 25 則、「More than 2A imbalance」讀到 21 則、「how to avoid 5090 from burning?」展開後讀到 56 則。納入 URL 由產生器自動對帳。</li><li><b>漏網原因與修正：</b>前次漏收的 10 月 13 日文章雖有 WireView 標題，但未出現在當輪可用搜尋結果；本次用 Chrome 站內搜尋、完整 URL 候選與留言命中交叉補回。之後不能把單一路徑搜尋空白當成沒有資料。</li><li><b>精確度：</b>實際持有／安裝、購買考量、功能描述與推測分開記錄；問題解除只在原作者明確回覆「更換線材後解決」時標示。TechPowerUp 與 Reddit 尚未完成換線比對的案例，均保留「原因未確認」。</li><li><b>限制：</b>Reddit 搜尋可能延遲索引、動態載入或省略部分回覆；留言摘要只代表本次實際可見內容，不把未載入內容或搜尋空白推論為沒有討論。</li></ul></section>
+<section class="muted"><h2>七、Reddit 精確度與廣度確認</h2><ul><li><b>範圍：</b>以 {period_start_label}～{period_end_label} 為日期界線，交叉查找產品全名、常見拼法、完整 PSU／線材型號、配件料號、per-pin／telemetry／NTC／thermistor／保護功能詞、12V-2x6／12VHPWR 事故語句，以及標題沒有產品名的主文與留言。</li><li><b>固定查詢線：</b>{escape('；'.join(reddit_required_query_lanes))}。PinProtect 另加入 RM1200e Gen 2、CP-9020316／CP-9020317、HX1000i SHIFT CRYSTAL、per-pin OCP 與海盜船逐針腳／單 pin 過流保護。本次同時讀取貼文與 Comments 分頁。</li><li><b>本次覆蓋稽核：</b>本日合併更新相較 2026-10-20 基準新增／補收 12 篇 Reddit 唯一討論；PinProtect 專項新增 2 篇唯一明細並重分類 2 篇既有比較串。納入 URL 由產生器自動對帳，主文與可見留言分開摘要。</li><li><b>漏網原因與修正：</b>只搜尋 PinProtect 會漏掉標題只寫 RM1200e 或泛稱 12V GPU 接頭、但內文／留言才出現功能名稱的文章；因此固定加入完整 PSU 型號、料號、per-pin OCP 與 Comments 分頁交叉查找。</li><li><b>精確度：</b>實際持有／安裝、購買考量、官方功能、留言觀點與推測分開記錄；本次沒有 PinProtect／PinProtect+ 擁有者觸發、燒毀或熔毀案例，不能把推薦或發布資訊寫成保護效果已驗證。</li><li><b>限制：</b>Reddit 搜尋可能延遲索引、動態載入或省略部分回覆；留言摘要只代表本次實際可見內容，不把未載入內容或搜尋空白推論為沒有討論。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
 <section class="revision-history"><h2>版本紀錄（架構變動）</h2><div class="note" style="margin-top:0">只記錄新增論壇來源、新增／調整追蹤關鍵字、版型或篩選功能調整這類架構層級變動；逐次的查核與新增明細請見下方「內容更新紀錄」。</div><ul>{version_history_rows}</ul></section>
 <section class="revision-history"><h2>內容更新紀錄</h2><div class="note" style="margin-top:0">記錄每次查核實際跑了哪些來源／關鍵字、找到並新增了什麼；不對應版本號，同一版本號下可能有多筆更新紀錄。</div><ul>{update_log_rows}</ul></section>
