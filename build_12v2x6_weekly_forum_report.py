@@ -1271,7 +1271,7 @@ rows.extend([
     },
 ])
 
-kw = ['WireView', 'GPU Safeguard', 'GPU Shield', 'OptiGuard', 'Ampinel', 'ROG Equalizer', 'GPU Tweak III Auto-Shutdown', 'Titanload', 'T-Guard', 'ThermalProtect', 'TempGuard', 'EZDIY-FAB Alpha TS13']
+kw = ['WireView', 'GPU Safeguard', 'GPU Shield', 'OptiGuard', 'Ampinel', 'ROG Equalizer', 'GPU Tweak III Auto-Shutdown', 'Titanload', 'T-Guard', 'ThermalProtect', 'TempGuard', 'EZDIY-FAB Alpha TS13', 'VGA 12+4PIN OCP Dongle']
 keyword_info = {
     'WireView': (
         '逐針腳量測 12V-2x6 的電流，並監控電壓、溫度與功率；用於提早發現負載不均、接觸異常與過熱風險。',
@@ -1333,6 +1333,11 @@ keyword_info = {
         'EZDIY-FAB 官方商品頁',
         'https://ezdiy-fab.com/collections/12v-2x6-adapter'
     ),
+    'VGA 12+4PIN OCP Dongle': (
+        '串接於電源線與顯示卡之間，逐路監控六條 +12V 電流。低於 9.5A 顯示正常 ARGB；9.5～12A 或任兩路差值超過 6A 且持續 10 秒時，以橘燈與短音警示；單路超過 12A 且持續 10 秒時，以紅燈與連續警報提示，180 秒後再倒數 15 秒觸發顯示卡黑畫面保護。官方未說明黑畫面保護的電路實作，也未宣稱監測溫度。',
+        'Super Flower（振華）官方產品頁',
+        'https://www.super-flower.com.tw/tw/products-detail/OCPD_M/'
+    ),
 }
 keyword_category = {
     'WireView': 'GPU 端串接式監控／保護轉接器',
@@ -1347,6 +1352,7 @@ keyword_category = {
     'TempGuard': 'PSU 專用溫度感測保護線材',
     'GPU Tweak III Auto-Shutdown': 'GPU Tweak III 軟體內選配的逐 pin 過流自動關機功能（僅此功能，非整套軟體）',
     'EZDIY-FAB Alpha TS13': 'GPU 端無軟體溫度／功耗顯示與警報轉接器',
+    'VGA 12+4PIN OCP Dongle': 'GPU 端串接式逐線電流監控／警示轉接線',
 }
 product_form_factor = {
     'WireView': 'Adapter',
@@ -1361,6 +1367,7 @@ product_form_factor = {
     'TempGuard': '線材＋PSU',
     'GPU Tweak III Auto-Shutdown': '軟體功能',
     'EZDIY-FAB Alpha TS13': 'Adapter',
+    'VGA 12+4PIN OCP Dongle': 'Adapter 線材',
 }
 product_detection = {
     'WireView': '電流＋溫度',
@@ -1375,6 +1382,7 @@ product_detection = {
     'TempGuard': '溫度',
     'GPU Tweak III Auto-Shutdown': '電流',
     'EZDIY-FAB Alpha TS13': '溫度＋功耗（非逐 pin 電流）',
+    'VGA 12+4PIN OCP Dongle': '電流',
 }
 keyword_vendor = {
     'WireView': 'Thermal Grizzly',
@@ -1389,6 +1397,7 @@ keyword_vendor = {
     'TempGuard': 'ASRock',
     'GPU Tweak III Auto-Shutdown': 'ASUS',
     'EZDIY-FAB Alpha TS13': 'EZDIY-FAB',
+    'VGA 12+4PIN OCP Dongle': 'Super Flower（振華）',
 }
 # 產品功能／關鍵字功能表／使用者評價三個區塊改依品牌字母排序（不分大小寫）呈現；
 # 這連帶決定第五節篩選晶片的關鍵字順序，讓全報告排序邏輯一致。
@@ -1588,6 +1597,7 @@ keyword_search_aliases = {
     'TempGuard': 'TempGuard、ASRock TempGuard；Taichi TC-1650T／TC-1300T／TC-3000P；Phantom Gaming PG-1600G／PG-1300G／PG-1000G／PG-850G／PG-750G／PG-1000PSF／PG-850PSF；Steel Legend SL-1200P／SL-1000P／SL-850P；CB-12V2X6L600W／90-UCX060-71XCAB；NTC sensor／temperature sensor／thermistor／Heißleiter、auto shutoff／cable over-temperature protection、華擎溫度保護線、熱敏保護線、高溫斷電；另以 ASRock＋完整 PSU／線材型號＋12V-2x6＋melted／smoking／arcing 交叉查找未寫產品名的事故文',
     'GPU Tweak III Auto-Shutdown': 'GPU Tweak III auto-shutdown、GPU Tweak III shutdown、Power Detector+ auto-shutdown、Power Detector+ shutdown、ROG Astral／ROG Matrix per-pin shutdown、12.5A 過流保護；注意：純粹的 GPU Tweak III 超頻／風扇／RGB 相關討論不算命中，須同時提到過流關機／Power Detector+ 才納入',
     'EZDIY-FAB Alpha TS13': 'EZDIY-FAB Alpha TS13、EZDIY-FAB 12V-2x6 adapter、Alpha TS13、EZDIY 溫度顯示轉接器',
+    'VGA 12+4PIN OCP Dongle': 'VGA 12+4PIN 過電流保護轉接線、VGA 12+4PIN OCP Dongle、Super Flower OCP Dongle、振華 OCP 轉接線、振華顯卡過流保護轉接線',
 }
 reddit_required_query_lanes = (
     '產品全名與別名（Relevance＋New）',
@@ -1775,6 +1785,13 @@ pm_info['EZDIY-FAB Alpha TS13'] = (
     'P1：公開量測方法與校正依據，說明功耗與溫度讀值的誤差範圍。P1：考慮加入逐 pin（而非僅整體）電流顯示，或至少說明為何選擇單點溫度感測而非逐 pin。P2：累積更多獨立使用者的長期使用與觸發案例，目前僅有 1 篇官方評測、尚無社群長期回報。',
     '剛列入追蹤：僅 1 篇 TechPowerUp 官方評測與討論串，尚無使用者長期回報',
     'https://www.techpowerup.com/review/ezdiy-fab-alpha-ts13/'
+)
+pm_info['VGA 12+4PIN OCP Dongle'] = (
+    '官方規格提供六路 +12V 電流監控、兩級 ARGB／蜂鳴器警示，以及單路超過 12A 持續 10 秒後的黑畫面保護流程；定價 1,190 元，低於多數帶螢幕的逐 pin 監控器。Reddit 留言者認為它可作為多張高功耗顯示卡的較低成本保護選項。',
+    '本期沒有獨立故障注入或長期使用測試。TechPowerUp 留言集中質疑超過 12A 後仍等待 180 秒才進入 15 秒倒數、黑畫面不易與驅動程式當機區分、轉接線增加兩個接頭，以及首波僅隨 Leadex VIII 電源組合販售。模組化電源線腳位不共通，Reddit 也出現相容性資訊互相矛盾的情況。',
+    'P0：說明黑畫面保護的實際電路動作、是否會中止 GPU 取電，以及裝置自身失效時的安全行為。P0：縮短或允許設定高電流等待時間，但保留不可超過的安全上限。P1：加入非揮發事件記錄，並公布相容 PSU／線材、獨立販售、保固與顯示卡損害處理條件。P1：以高阻抗接點、單路過流與電流失衡做可重現測試，並評估加入接頭溫度感測。',
+    '低至中：官方機制已確認；有兩串完整功能與疑慮討論，但尚無擁有者觸發或長期測試',
+    'https://www.super-flower.com.tw/tw/products-detail/OCPD_M/'
 )
 
 # Refresh product-level evidence and priorities with the newly read owner posts.
@@ -2759,6 +2776,111 @@ rows.extend([
     },
 ])
 
+# 2026-10-27 更新：逐篇核讀 Reddit 與 TechPowerUp 主文及可見留言後新增／補收。
+rows.extend([
+    {
+        'date': '2026-10-26', 'source': 'Reddit', 'keyword': 'GPU Safeguard',
+        'keywords': ['GPU Safeguard', 'WireView', 'ThermalProtect', 'GPU Shield'], 'match': '標題＋內文＋留言',
+        'title': 'MSI Safeguard PSU, WireView 2 or Thermal Protect cable?',
+        'summary': 'RTX 5090 使用者比較三種方案：價格約 15 英鎊的 ThermalProtect、約 100～150 英鎊的 WireView Pro II，以及約 340 英鎊的 MSI Ai1300TS。主要考量是既有 be quiet! PSU／線材保固、玻璃側板只剩約 3～5 mm 淨空、90 度線材需求，以及第三方線材能否搭配 Safeguard+。',
+        'comments': '留言者把 WireView 的相容性、MSI 內建逐 pin 監控可減少外接裝置，以及約 50 美元的 GPU Shield 列為不同取向；其中「任何線材都可搭配 Safeguard+」與保固範圍都只是留言說法，沒有官方文件或實際異常觸發測試。',
+        'url': 'https://www.reddit.com/r/buildapc/comments/1xfz1mc/msi_safeguard_psu_wireview_2_or_thermal_protect/'
+    },
+    {
+        'date': '2026-10-26', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '標題＋內文＋留言',
+        'title': 'Is a WireView Pro II Wired Noctua Edition in the works?',
+        'summary': 'Founders Edition 顯示卡使用者詢問 WireView Pro II Wired Noctua Edition 的上市時程，希望以直通線形式避開顯示卡端安裝空間限制。',
+        'comments': 'Thermal Grizzly 代表回覆原型仍在驗證，量產預估約需 6～7 週；本串沒有產品測試、故障或保護觸發資料。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1xfxf7h/is_a_wireview_pro_ii_wired_noctua_edition_in_the/'
+    },
+    {
+        'date': '2026-10-25', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '標題＋內文＋留言',
+        'title': 'WireView Pro II Noctua potential failure',
+        'summary': '使用者表示 Noctua Edition 使用約兩週後，在遊戲中出現黑畫面、顯示卡風扇全速及 WireView 顯示 0W；重新開機後仍無畫面，換回已使用約一年的一般版 WireView 即恢復。發文者明確表示接頭與針腳沒有可見熔毀。',
+        'comments': '10 月 26 日更新指出 Thermal Grizzly 客服判斷裝置可能故障並寄出替換品。原廠代表表示黑畫面／0W 也可能來自 sense pin 接觸，建議重新插妥並聯絡客服；另一名留言者回報 Noctua 版到貨即因 sense pin 問題無法使用，同樣正在換貨。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1xffrjt/wireview_pro_ii_noctua_potential_failure/'
+    },
+    {
+        'date': '2026-10-24', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '標題＋內文＋留言',
+        'title': 'First time using WireView Pro II and current imbalance persists',
+        'summary': 'Gigabyte AORUS RTX 5090 使用者首次安裝 WireView Pro II 後看到電流不平衡；更換新的電源線並多次重新插拔後仍持續出現。',
+        'comments': '可見留言主要建議重新插妥 PSU、WireView 與 GPU 三端；有人分享自己重插後恢復的經驗，但發文者尚未回報解決結果，因此不能把原因判定為線材、接頭或 WireView 本體。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1xe5e28/first_time_using_wireview_pro_2_and_from_that_i/'
+    },
+    {
+        'date': '2026-10-23', 'source': 'Reddit', 'keyword': 'VGA 12+4PIN OCP Dongle',
+        'keywords': ['VGA 12+4PIN OCP Dongle', 'GPU Shield', 'WireView'], 'match': '標題＋內文＋留言',
+        'title': 'Super Flower to introduce 12V-2x6 overcurrent protection dongle',
+        'summary': '主文介紹振華轉接線會監控六路 +12V，任一路 9.5～12A 或任兩路差值超過 6A 且持續 10 秒時警示；單路超過 12A 時進入更高級警報。主文沒有產品實測。',
+        'comments': '留言者關心可搭配哪些 PSU／線材；有人誤以為所有 12VHPWR 線材都可通用，隨即有留言提醒模組化 PSU 腳位不同，必須查核相容性。現有 GPU Shield 使用者與多顯示卡實驗室使用者歡迎較低價選項，但沒有實際觸發或長期使用資料。',
+        'url': 'https://www.reddit.com/r/pcmasterrace/comments/1xdg04i/superflower_to_introduce_12v2x6_overcurrent/'
+    },
+    {
+        'date': '2026-10-22', 'source': 'TechPowerUp Forums', 'keyword': 'VGA 12+4PIN OCP Dongle',
+        'keywords': ['VGA 12+4PIN OCP Dongle', 'GPU Shield', 'ROG Equalizer'], 'match': '標題＋內文＋留言（25 則）',
+        'title': "Super Flower's 12V-2x6 OCP Dongle Watches Every Pin, Blacks Out Your Screen on Overcurrent",
+        'summary': '主文整理振華逐路電流監控、1,190 元定價、兩級警示與黑畫面保護，並指出首波僅隨 Leadex VIII 電源組合販售；官方尚未說明黑畫面保護的電路實作，也沒有獨立觸發測試。',
+        'comments': '多名留言者認為單路超過 12A 後仍等待 180 秒才進入 15 秒倒數過久，且黑畫面容易與驅動程式當機混淆；另有使用者擔心轉接線增加兩個接頭。討論也分成「監控應整合於 PSU」與「逐 pin 量測在 GPU 端串接才較直接」兩派，並提出溫度探頭、事件記錄、保固及獨立販售資訊不足等需求。',
+        'url': 'https://www.techpowerup.com/forums/threads/super-flowers-12v-2x6-ocp-dongle-watches-every-pin-blacks-out-your-screen-on-overcurrent.353998/'
+    },
+    {
+        'date': '2026-10-22', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '標題＋內文＋留言',
+        'title': 'PC randomly freezing and restarting after installing WireView',
+        'summary': '使用者表示安裝 WireView Pro II 後，電腦會隨機凍結約 10～15 秒再重新啟動；Windows 與 WireView 記錄沒有錯誤，讀值看似正常，且事件曾發生在顯示卡功耗低於 100W 時。',
+        'comments': '留言推測可能是未完全插妥或 sense pin 接觸問題，建議重插與檢查接點；發文者尚未回報旁路 WireView 或換貨後的結果，根因未確認。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1xcarxf/pc_randomly_freezing_and_restarting_after/'
+    },
+    {
+        'date': '2026-10-21', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '標題＋內文＋留言',
+        'title': 'WireView Pro 2 wire current fluctuates like crazy',
+        'summary': 'RTX 5090 使用者在 FurMark 約 600W 時看到單路最高約 9.5A且相對穩定，但遊戲約 500W 時讀值在約 3～12A 間快速變動並觸發警示；發文者把更新／平均間隔設為 50ms。',
+        'comments': '留言指出過短取樣間隔會顯示瞬間尖峰，建議改回較長平均值；另一名使用者表示預設 22ms 時六路加總不合理，改為 700ms 後改善。現有內容支持設定影響顯示與警示，但不能證明硬體電流本身異常。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1xbu34y/wireview_pro_2_wire_current_fluctuates_like_crazy/'
+    },
+    {
+        'date': '2026-10-21', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '標題＋內文＋留言',
+        'title': 'WireView Pro 2 Wired UK stock',
+        'summary': '英國使用者表示 WireView Pro II Wired 已連續 2～3 週難以購買，零售商 Scan 的預估到貨日持續延後，因此考慮一般版加延長線。',
+        'comments': 'Thermal Grizzly 代表回覆較大批次即將完成，合作通路約一週後、官方商店隨後補貨；本串沒有故障或保護觸發資料。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1xbfso0/wireview_pro_2_wired_uk_stock/'
+    },
+    {
+        'date': '2026-10-17', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '標題＋內文＋留言',
+        'title': 'My WireView Pro II saved me',
+        'summary': 'ROG Astral RTX 5090 LC OC 使用者搭配 MODDIY 2×8-pin 轉 12V-2x6 線材，遊戲約三小時後收到 WireView 警報，並看到 pin 6 電流偏低。改回 NVIDIA 原生 4×8-pin 轉接線後，各路電流恢復接近。',
+        'comments': '可見留言建議停用原 MODDIY 線材並檢查接頭。發文者認為原線材可能受損，但沒有拆解或量測；文中沒有可見燒痕或熔毀，因此只能確認警報與換線後讀值恢復。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1x84ka0/my_wireview_pro_ii_saved_me/'
+    },
+    {
+        'date': '2026-10-12', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '標題＋內文＋留言',
+        'title': 'Graphics driver crashes with WireView',
+        'summary': 'AORUS RTX 5090 搭配 WireView Pro II Noctua Edition 後，遊戲約 10～20 分鐘會黑畫面且顯示卡風扇全速；反覆重插、檢查正常讀值與更新韌體都未改善，拆除 WireView 後系統穩定。',
+        'comments': 'Thermal Grizzly 寄出替換品後，發文者測試未再當機，因而判定原裝置故障。留言另有相似症狀經重新插妥 PSU 線材後改善的個案，顯示同類症狀仍須逐一比對。本案沒有回報燒痕或熔毀。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1x40l9j/graphics_driver_crashes_with_wireview/'
+    },
+])
+
+reddit_discovery_audit.extend([
+    ('本週防護方案比較', 'https://www.reddit.com/r/buildapc/comments/1xfz1mc/msi_safeguard_psu_wireview_2_or_thermal_protect/', '納入', '四種方案的價格、空間、相容性與外接接頭取捨'),
+    ('WireView Wired Noctua', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xfxf7h/is_a_wireview_pro_ii_wired_noctua_edition_in_the/', '納入', '原廠代表提供原型驗證與量產時程'),
+    ('WireView Noctua', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xffrjt/wireview_pro_ii_noctua_potential_failure/', '納入', '黑畫面／0W、換回舊裝置恢復與客服換貨'),
+    ('WireView 不平衡', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xe5e28/first_time_using_wireview_pro_2_and_from_that_i/', '納入', '換線與重插後仍不平衡，原因未確認'),
+    ('振華 OCP Dongle', 'https://www.reddit.com/r/pcmasterrace/comments/1xdg04i/superflower_to_introduce_12v2x6_overcurrent/', '納入', '逐路監控、相容性與價格定位留言'),
+    ('WireView 凍結重啟', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xcarxf/pc_randomly_freezing_and_restarting_after/', '納入', '安裝後凍結重啟，原因未確認'),
+    ('WireView 取樣設定', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xbu34y/wireview_pro_2_wire_current_fluctuates_like_crazy/', '納入', '短取樣造成波動與警示疑慮'),
+    ('WireView 英國供貨', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xbfso0/wireview_pro_2_wired_uk_stock/', '納入', '缺貨與原廠補貨時程'),
+    ('WireView 線材異常', 'https://www.reddit.com/r/ThermalGrizzly/comments/1x84ka0/my_wireview_pro_ii_saved_me/', '納入', '警報後換線恢復，未見熔毀'),
+    ('WireView 裝置故障', 'https://www.reddit.com/r/ThermalGrizzly/comments/1x40l9j/graphics_driver_crashes_with_wireview/', '納入', '替換裝置後黑畫面／風扇全速未再發生'),
+])
+
 # 本版指定日期界線；避免歷史基準資料在擴大搜尋時意外越界。
 rows = [
     row for row in rows
@@ -2975,6 +3097,17 @@ ISSUE_TAG_OVERRIDES = {canonical_url(url): tags for url, tags in [
     ('https://www.reddit.com/r/ASRock/comments/1wnjh6i/the_ntc_temperature_sensor_on_my_sl1200p_is_next/', ['感測位置疑慮', '使用者改裝']),
     ('https://www.computerbase.de/forum/threads/netzteil-mit-heissleiter-am-12v-2x6-stecker-fragen-zum-thermistor.2266294/', ['監控範圍疑慮', '使用者改裝']),
     ('https://www.reddit.com/r/ThermalGrizzly/comments/1q2dbfa/wireview_extension_for_fe/', []),
+    ('https://www.reddit.com/r/buildapc/comments/1xfz1mc/msi_safeguard_psu_wireview_2_or_thermal_protect/', ['價格／溢價疑慮', '安裝／相容性問題', '額外接點／故障風險']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1xfxf7h/is_a_wireview_pro_ii_wired_noctua_edition_in_the/', ['供貨／交期問題']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1xffrjt/wireview_pro_ii_noctua_potential_failure/', ['黑畫面／0W', '風扇全速', '疑似裝置故障', '換貨處理中']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1xe5e28/first_time_using_wireview_pro_2_and_from_that_i/', ['電流不平衡', '原因未確認']),
+    ('https://www.reddit.com/r/pcmasterrace/comments/1xdg04i/superflower_to_introduce_12v2x6_overcurrent/', ['相容性疑問', '額外接點／故障風險', '實測不足']),
+    ('https://www.techpowerup.com/forums/threads/super-flowers-12v-2x6-ocp-dongle-watches-every-pin-blacks-out-your-screen-on-overcurrent.353998/', ['警報延遲疑慮', '黑畫面辨識疑慮', '額外接點／故障風險', '供貨／保固資訊不足']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1xcarxf/pc_randomly_freezing_and_restarting_after/', ['凍結／重新啟動', '安裝／接觸疑慮', '原因未確認']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1xbu34y/wireview_pro_2_wire_current_fluctuates_like_crazy/', ['告警／量測異常', '取樣／平均設定']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1xbfso0/wireview_pro_2_wired_uk_stock/', ['供貨／交期問題']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1x84ka0/my_wireview_pro_ii_saved_me/', ['電流不平衡', '線材異常', '更換線材後恢復']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1x40l9j/graphics_driver_crashes_with_wireview/', ['黑畫面／風扇全速', '裝置故障', '更換裝置後恢復']),
 ]}
 
 def detect_issue_tags(row):
@@ -3365,54 +3498,52 @@ pm_weekly_updates = {
     },
 }
 
-# 2026-10-20 本次新增／補收的評價；前版卡片由 previous_report 讀回。
+# 2026-10-27 本次新增／補收的評價；前版卡片由 previous_report 讀回。
 pm_weekly_updates = {
     'WireView': {
-        'pros': 'Reddit 有三件可追到處置結果的實際警示案例。10 月 15 日案例在 pin 6 讀值歸零、遊戲啟動即警告後，更換線材即恢復，原作者認為 WireView 及時找出線材異常。另一名使用者在 AI 滿載時兩度重現電流不平衡與關機，重插 PSU 端兩個 8-pin 後暫時恢復。10 月 19 日另有使用者表示 WireView 曾發現線材不平衡與升溫，換成 ThermalProtect 後沒有再警告。',
-        'cons': '10 月 15 日案例已接電源按鈕 jumper，但警告時沒有自動關機，需人工關機；更換線材雖解決讀值異常，未能解釋自動關機為何未動作。另一名使用者安裝後反覆遇到 d6／GPU 未偵測，且不平衡 pin 隨重插在 1、3、5 間變動，拆除 WireView 後立即恢復，因而退貨並判斷為疑似誤報。TechPowerUp 另有使用者在安裝 Wired 版後看到約 170～400mV 電壓降、線材升溫及不平衡警告，但尚未完成換線比對，不能判定是 WireView 或原線材。',
-        'actions': '應在裝置內加入六路加總、0A pin、電壓降與自動關機回路自檢，並保存警告、關機命令與實際斷電結果。介面應提示故障可能位於 PSU 端、GPU 端、原線材或 WireView 本體，提供依序換線／旁路比對流程；產品文件也需公布插拔次數與重插後應重新檢查的項目。',
+        'pros': '補收兩件有處置結果的案例。10 月 17 日案例在 pin 6 電流偏低並警報後，改回 NVIDIA 原生轉接線即恢復正常；10 月 12 日黑畫面／風扇全速案例更換 WireView 本體後未再發生，可確認原裝置故障。兩案都沒有回報可見熔毀。',
+        'cons': '10 月 25 日 Noctua Edition 使用約兩週後發生黑畫面、風扇全速與 0W，換回舊 WireView 即恢復，客服判斷可能故障並換貨；另有一顆到貨即有 sense pin 問題。其他新串還包括安裝後隨機凍結／重啟、換線與反覆重插仍不平衡，以及 50ms 短取樣造成 3～12A 快速波動與警示。這些案例未出現熔毀，但顯示裝置故障、接觸與取樣設定可能產生相似症狀。',
+        'actions': 'P0：針對黑畫面、0W、風扇全速與 sense pin 接觸加入開機自檢，並在顯示器與事件記錄區分「裝置故障」「接觸異常」「真實過流」。P1：出廠增加 sense pin、熱循環與負載測試，公開批次／RMA 處理資訊。P1：為更新／平均間隔提供安全預設與說明，避免把瞬間尖峰當成持續性異常；診斷流程應要求依序旁路裝置、換線與重插三端。',
         'sources': [
-            ('線材更換後警告消失', 'https://www.reddit.com/r/ThermalGrizzly/comments/1x6gv1e/am_i_cooked/'),
-            ('AI 滿載警示與疑似誤報回覆', 'https://www.reddit.com/r/ThermalGrizzly/comments/1x4x9md/wireview_pro_ii_saved_my_5090_potentially_glad_i/'),
-            ('Wired 版電壓降與升溫待確認', 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5809356'),
-            ('5090 防護討論中的換線結果', 'https://www.reddit.com/r/pcmasterrace/comments/1xa9ihs/how_to_avoid_5090_from_burning/'),
-        ],
-    },
-    'ThermalProtect': {
-        'pros': '一名 HX1200i Shift／Astral 5090 使用者表示，從電源隨附線換成 ThermalProtect 後逐 pin 差值明顯縮小，但未提供前後數字。另一名 Montech Century II 1200W 使用者表示，WireView 找到舊線不平衡後改用 ThermalProtect，在約 600W 超頻負載下回報電流分布良好、至今未再出現不平衡警告。兩者都是單機觀察。',
-        'cons': 'HX1000i 使用者表示 Type 4／Type 5 版本先前預期 9 月供貨，但 10 月仍找不到產品，討論中也沒有 Corsair 官方上市日。另有 RM1200x 2023 使用者指出，其 PSU 端為 Type 5 2×8-pin，不能使用目前需要原生 PSU 端 12V-2x6 的版本，顯示型號相容性與供貨範圍仍不清楚。',
-        'actions': '應公布 Type 4、Type 5 與原生 12V-2x6 各版本的上市時程及完整 PSU 型號表，並在產品頁直接說明 PSU 端接頭需求。對「差值縮小」主張，應提供同一系統換線前後的六路電流、負載與溫度資料，避免把單機心得誤解為線材主動均流。',
-        'sources': [
-            ('Type 4／Type 5 供貨詢問', 'https://www.reddit.com/r/Corsair/comments/1x9mq54/any_update_on_availability_of_the_type4type5/'),
-            ('Astral 不平衡與相容性限制', 'https://www.reddit.com/r/PcBuild/comments/1x8gwn7/more_than_2a_imbalance_on_rog_astral_5090/'),
-            ('5090 防護討論中的 600W 單機回報', 'https://www.reddit.com/r/pcmasterrace/comments/1xa9ihs/how_to_avoid_5090_from_burning/'),
-        ],
-    },
-    'Ampinel': {
-        'pros': 'Reddit 一名使用者確認 Ampinel 已安裝於 MSI RTX 5090 Gaming Trio，證明至少有單一實裝案例；但他沒有提供逐 pin、溫度或均流前後數據。',
-        'cons': 'TechPowerUp 一名使用者表示，Ampinel 在重新安裝後覺得 12VHPWR 接頭偏鬆，之後觸發警報並關機；這是單一案例，沒有原廠判定或端子量測。Reddit 另有準買家依尺寸擔心 Gaming Trio 的淨空與日後拆卸，原使用者尚未回覆具體距離。',
-        'actions': '應按顯示卡型號提供實裝照片、背板／水冷頭淨空、拆卸空間與插拔後檢查指引；警報紀錄需能匯出安裝前後六路電流與接頭溫度，讓客服判斷是接頭貼合、安裝差異或裝置本體問題。',
-        'sources': [
-            ('Ampinel 插拔後警報與關機', 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5809627'),
-            ('Gaming Trio 實裝與淨空疑問', 'https://www.reddit.com/r/pcmasterrace/comments/1xa9ihs/how_to_avoid_5090_from_burning/'),
+            ('換線後電流恢復', 'https://www.reddit.com/r/ThermalGrizzly/comments/1x84ka0/my_wireview_pro_ii_saved_me/'),
+            ('替換 WireView 後黑畫面消失', 'https://www.reddit.com/r/ThermalGrizzly/comments/1x40l9j/graphics_driver_crashes_with_wireview/'),
+            ('Noctua Edition 疑似故障與換貨', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xffrjt/wireview_pro_ii_noctua_potential_failure/'),
+            ('安裝後凍結與重啟', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xcarxf/pc_randomly_freezing_and_restarting_after/'),
+            ('取樣／平均設定影響讀值', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xbu34y/wireview_pro_2_wire_current_fluctuates_like_crazy/'),
         ],
     },
     'GPU Safeguard': {
-        'pros': '一名因 WireView Pro II 疑似誤報而退貨的使用者，改買 MSI MPG Ai1300TS，理由是希望把逐 pin 監控與保護整合在 PSU；另一串也有人直接推薦 Ai1300TS／Ai1600TS。這些是明確的轉換與選購理由。',
-        'cons': '本次討論沒有 GPU Safeguard+ 真實接觸不良下的警告、降載或斷電紀錄；留言引用的三分鐘關機與 Afterburner 降載屬使用者功能描述，不能當成此次事故的實測結果。',
-        'actions': '應提供真實接觸不良或故障注入下的完整事件時間線，清楚區分聲音警告、Afterburner 降載、作業系統關機與 PSU 硬體斷電；並公布不執行 MSI 軟體時仍可獨立生效的保護範圍。',
+        'pros': 'RTX 5090 使用者在新一輪選購比較中重視把逐 pin 監控與保護整合於 PSU，理由是少用一個外接轉接器；這是明確購買考量，不是保護觸發實測。',
+        'cons': '約 340 英鎊價格明顯高於外接方案；使用者也找不到原生 90 度線材，並不確定第三方線材是否影響 Safeguard+ 功能或保固。留言雖稱任何線材都能使用，但沒有官方相容性文件支持。',
+        'actions': 'P1：提供原生 90 度線材及完整的官方線材／保固相容表，明確區分監控功能可用、建議搭配與保固承認三種狀態。P2：把逐 pin 監控下放到較低瓦數／價格產品，並提供真實接觸不良下的警示、降載與硬體保護時間線。',
         'sources': [
-            ('WireView 疑似誤報後改用 Ai1300TS', 'https://www.reddit.com/r/ThermalGrizzly/comments/1x4x9md/wireview_pro_ii_saved_my_5090_potentially_glad_i/'),
-            ('5090 防護產品推薦討論', 'https://www.reddit.com/r/pcmasterrace/comments/1xa9ihs/how_to_avoid_5090_from_burning/'),
+            ('Safeguard、WireView 與 ThermalProtect 選購比較', 'https://www.reddit.com/r/buildapc/comments/1xfz1mc/msi_safeguard_psu_wireview_2_or_thermal_protect/'),
         ],
     },
-    'ROG Equalizer': {
-        'pros': 'Reddit 一名 ROG Thor 1200W 使用者表示已搭配 ROG Equalizer，另外購買的原因是可註冊 ASUS 產品且外觀較整潔；沒有提供逐 pin、溫度或保護觸發資料。',
-        'cons': 'TechPowerUp 異常案例的發文者已訂購 Equalizer 準備比較，但截至本次查核仍未公布結果；留言對 Equalizer 與 WireView 串接是否會影響讀值有疑慮，但沒有控制測試。因此本次只能確認採購與使用配置，不能判定改善或惡化。',
-        'actions': '應公布 Equalizer 單獨使用及與外接監控器串接時的逐 pin、電壓降與溫升對照，並列出建議與不建議的串接方式；相容表需包含接頭方向、機殼淨空與 ROG PSU 型號。',
+    'ThermalProtect': {
+        'pros': '同一選購比較把 ThermalProtect 的約 15 英鎊低價視為最大優點，適合只需要接頭過熱保護、且電源端具原生 12V-2x6 的使用者；本串沒有實際觸發紀錄。',
+        'cons': '發文者擔心搭配 be quiet! PSU 是否影響保固，也因沒有 90 度版本而難以在側板淨空有限的機殼使用。留言未能提供可核對的跨品牌保固答案。',
+        'actions': 'P1：公布跨品牌 PSU 使用條件、保固邊界與完整接頭需求，並推出 90 度／低高度版本。產品頁應把溫度保護與逐 pin 電流監控的差異放在同一張比較表，避免低價被誤解為功能完全相同。',
         'sources': [
-            ('Thor 1200W 實際配置', 'https://www.reddit.com/r/pcmasterrace/comments/1xa9ihs/how_to_avoid_5090_from_burning/'),
-            ('Equalizer 待換線比對案例', 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5809356'),
+            ('Safeguard、WireView 與 ThermalProtect 選購比較', 'https://www.reddit.com/r/buildapc/comments/1xfz1mc/msi_safeguard_psu_wireview_2_or_thermal_protect/'),
+        ],
+    },
+    'GPU Shield': {
+        'pros': '新選購串中，有留言者把約 50 美元的 GPU Shield 列為比 WireView 便宜的第四種方案；振華討論串也有現有 GPU Shield 使用者歡迎更多同類選擇。這只反映價格定位與產品認知。',
+        'cons': '本次沒有 GPU Shield 的實際告警、降功率或長期使用資料；留言所稱的功能也沒有在該串中驗證。',
+        'actions': 'P1：用可公開重現的逐 pin 異常測試呈現警告、降功率與處置結果，並把價格、線材長度、額外接頭及保固與其他外接方案並列。',
+        'sources': [
+            ('四種防護方案選購比較', 'https://www.reddit.com/r/buildapc/comments/1xfz1mc/msi_safeguard_psu_wireview_2_or_thermal_protect/'),
+            ('振華 OCP Dongle 討論中的 GPU Shield 使用者', 'https://www.reddit.com/r/pcmasterrace/comments/1xdg04i/superflower_to_introduce_12v2x6_overcurrent/'),
+        ],
+    },
+    'VGA 12+4PIN OCP Dongle': {
+        'pros': '官方已明列六路 +12V 電流門檻、路間差值警示、ARGB／蜂鳴器與黑畫面保護流程；1,190 元價格低於多數帶螢幕逐 pin 監控器。Reddit 的多顯示卡實驗室使用者認為較低成本有吸引力，現有 GPU Shield 使用者也歡迎多一種選擇。',
+        'cons': 'TechPowerUp 留言集中質疑單路超過 12A 後仍等待 180 秒才進入 15 秒倒數、黑畫面容易與驅動程式當機混淆，以及轉接線會增加兩個接頭。首波僅與 Leadex VIII 電源組合販售，獨立販售、相容線材及保固資訊不足；目前也沒有擁有者的實際觸發或長期資料。',
+        'actions': 'P0：公開黑畫面保護如何介入、是否中止 GPU 取電、裝置失效時的安全行為，並縮短或允許設定高電流等待時間。P1：加入非揮發事件記錄與明確故障代碼，公布相容 PSU／線材、獨立販售與保固條件。P1：以單路高阻抗、過流、路間失衡及接頭局部加熱做第三方重複測試，並評估增加溫度感測。',
+        'sources': [
+            ('Super Flower OCP Dongle TechPowerUp 完整討論', 'https://www.techpowerup.com/forums/threads/super-flowers-12v-2x6-ocp-dongle-watches-every-pin-blacks-out-your-screen-on-overcurrent.353998/'),
+            ('Super Flower OCP Dongle Reddit 討論', 'https://www.reddit.com/r/pcmasterrace/comments/1xdg04i/superflower_to_introduce_12v2x6_overcurrent/'),
         ],
     },
 }
@@ -3602,8 +3733,8 @@ generated_at_label = f"{GENERATED_AT.strftime('%Y-%m-%d %H:%M:%S')} Asia/Taipei"
 REPORT_VERSION = 'v1.6'
 V12_UPDATED_AT = '2026-08-19 14:45:56 Asia/Taipei'
 
-# 只讓本次才新增的追蹤產品顯示 New!；目前沒有新產品。
-new_keywords = set()
+# 只讓本次才新增的追蹤產品顯示 New!；版本號依使用者要求暫不變更。
+new_keywords = {'VGA 12+4PIN OCP Dongle'}
 
 # 版本紀錄（架構變動：新增論壇／關鍵字／版型調整）與內容更新紀錄（每次查核跑了什麼、
 # 找到什麼）分成兩份清單呈現，避免版本號被日常內容更新灌水，也讓兩種資訊各自好找。
@@ -3614,6 +3745,9 @@ version_history = [
     ('v1.2', V12_UPDATED_AT, '新增 Hardwareluxx、ComputerBase、PCGH Extreme 與 Overclockers UK 四個論壇來源。'),
 ]
 update_log = [
+    ('2026-10-27', '新增 Super Flower（振華）VGA 12+4PIN 過電流保護轉接線／OCP Dongle 為第 13 個追蹤產品；依官方頁確認它是 Adapter 線材、只偵測六路 +12V 電流，不宣稱溫度監控。逐篇核讀 TechPowerUp 25 則貼文／留言及 Reddit 討論，整理門檻、180 秒等待、黑畫面辨識、額外兩個接頭、相容性、供貨與保固疑慮；官方未公開黑畫面保護電路，不寫成已確認切斷 GPU 電源。'),
+    ('2026-10-27', 'Reddit：以產品全名、品牌／型號、逐 pin 電流、黑畫面、熔毀與供貨等情境詞補查並逐篇核讀，新增／補收 10 篇唯一討論。WireView 包含兩件裝置更換或換線後可追到結果的案例，以及 Noctua Edition 疑似故障、凍結重啟、持續不平衡、取樣設定與 Wired 版交期；新資料沒有確認的燒毀或熔毀案例。'),
+    ('2026-10-27', 'TechPowerUp：登入狀態正常，完成自動驗證後，以 2026-10-20 之後日期查核全部追蹤產品及主要別名；新增振華 OCP Dongle 完整討論。Tom’s Hardware、ComputerBase、Hardwareluxx、Overclockers UK、PCGH Extreme、Chiphell、NGA玩家社區與百度貼吧亦補查英文、德文與中國在地用語；未找到可新增且已完整核讀主文與留言的唯一產品討論，搜尋空白不解讀為沒有討論。'),
     ('2026-10-20', 'Reddit：以 Chrome 重新查核產品全名、完整型號、12V-2x6 事故詞及留言分頁，逐篇閱讀主文並展開可見回覆；新增／補收 5 篇唯一討論。重點包括 WireView 找出線材異常後換線解決、疑似誤報後改用 Ai1300TS、ROG Astral 超過 2A 不平衡、ThermalProtect Type 4／Type 5 供貨詢問，以及 5090 防護產品的實際使用回報。推薦、功能描述與實際觸發分開記錄。'),
     ('2026-10-20', 'TechPowerUp：登入狀態正常，以 Newer than=2026-10-15、依日期排序查核全部 12 個追蹤關鍵字及 Ai1300TS／Equalizer 等別名；新增 WireView Pro II Wired 安裝後電壓降、線材升溫與電流不平衡的待確認案例，以及同串另一名使用者的 WireView／Ampinel 反覆插拔後異常經驗。換線結果尚未公布，不把原因歸給特定產品。'),
     ('2026-10-20', 'Tom’s Hardware、ComputerBase、Hardwareluxx、Overclockers UK、PCGH Extreme、Chiphell、NGA玩家社區與百度貼吧：補查 2026-10-15 後產品名、完整型號及中德英在地用語的公開可讀結果；未找到可新增且已完整核讀主文與留言的唯一討論，搜尋空白不解讀為沒有討論。'),
