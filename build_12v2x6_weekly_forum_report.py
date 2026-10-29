@@ -1283,9 +1283,9 @@ keyword_info = {
         'https://www.thermal-grizzly.com/media/63/f8/a8/1773401971/TG_Datasheet_WV-P-2-W_EN_TGU20260313.pdf?ts=1773404845'
     ),
     'GPU Safeguard': (
-        'MSI 電源供應器以智慧 IC 監控各針腳電流，偵測過載或不平衡並發出警示；Safeguard+ 可連動 MSI Afterburner 降低 GPU 功率。',
+        'MSI 將兩級功能合併追蹤：MAG A1000PLS／A1200PLS 搭載 GPU Safeguard，以逐 pin 電流偵測異常，觸發後蜂鳴警示 180 秒，再使顯示卡停止輸出畫面；MPG Ai1300TS／Ai1600TS 搭載 GPU Safeguard+，另提供即時逐 pin 監控、MSI Center／Afterburner 整合及自動降低 GPU 功率。',
         'MSI 官方說明',
-        'https://us.msi.com/blog/msi-gpu-safeguard-msi-afterburner-protect-your-gpu-by-reducing-power-during-abnormal-current'
+        'https://www.msi.com/blog/what-is-msi-gpu-safeguard'
     ),
     'GPU Shield': (
         'Cooler Master 以同一名稱提供兩種形式：獨立 GPU Shield Adapter Cable 串接於 PSU 與 GPU 之間，逐 pin 偵測異常電流並以 LED／蜂鳴器警示，嚴重異常時主動降低系統功耗；MWE Gold V4 則把 GPU Shield 智慧電流管理整合於 PSU。',
@@ -1426,7 +1426,7 @@ keyword_vendor = {
 kw = sorted(kw, key=lambda k: keyword_vendor[k].lower())
 product_display_names = {
     k: (
-        'MSI GPU Safeguard+' if k == 'GPU Safeguard'
+        'MSI GPU Safeguard／GPU Safeguard+' if k == 'GPU Safeguard'
         else 'ASUS ROG Equalizer' if k == 'ROG Equalizer'
         else 'XPG XTREME Power Guard' if k == 'XTREME Power Guard'
         else k if k == 'EZDIY-FAB Alpha TS13'
@@ -1435,7 +1435,7 @@ product_display_names = {
     for k, vendor in keyword_vendor.items()
 }
 keyword_display_names = {
-    k: ('GPU Safeguard+' if k == 'GPU Safeguard' else k)
+    k: ('GPU Safeguard／GPU Safeguard+' if k == 'GPU Safeguard' else k)
     for k in kw
 }
 rows.extend([
@@ -1647,7 +1647,7 @@ rows.extend([
 
 keyword_search_aliases = {
     'WireView': 'WireView、Wire View、WireView Pro／Pro II、WireView II、暴力熊、顯卡功耗監測器、GPU 電源監視器、逐 pin／單 pin 電流監控',
-    'GPU Safeguard': 'GPU Safeguard／Safeguard+／SaveGuard+（常見誤拼）、微星顯卡保護、逐 pin 電流監測、過流警報／強制斷電、MPG Ai1600TS／Ai1300TS、MEG Ai1600T／Ai1300P／Ai1000P、MSI 5090 RMA、pin 0A／broken pin／current imbalance、per-pin current、PSU telemetry、Prometheus／Grafana',
+    'GPU Safeguard': 'GPU Safeguard／Safeguard+／SaveGuard+（常見誤拼）、微星顯卡保護、逐 pin 電流監測、過流警報／強制斷電、MAG A1000PLS／A1200PLS、MPG Ai1600TS／Ai1300TS、MEG Ai1600T／Ai1300P／Ai1000P、MSI 5090 RMA、pin 0A／broken pin／current imbalance、per-pin current、PSU telemetry、Prometheus／Grafana、PSU beeping／alarm、stress test、swapped／new cable、saved my GPU',
     'GPU Shield': 'GPU Shield、GPU Shield Adapter、MWE Gold V4、酷冷顯卡衛士／顯卡保護連接器、防熔斷保護、獨立 GPU Shield 連接器',
     'OptiGuard': 'OptiGuard、海韻顯卡保護、逐針電流／溫度監控、PRIME ENTERPRISE TX／PX',
     'Ampinel': 'Ampinel、智慧型 12V-2x6 轉接器、主動均流、負載均衡轉接器',
@@ -1668,7 +1668,9 @@ reddit_required_query_lanes = (
     '廠牌＋保護功能描述（per-pin／temperature sensor／auto shutoff）',
     '12V-2x6／12VHPWR＋事故詞（melted／burnt／smoking／arcing）',
     '高風險詞（5090／RMA／0A／broken pin／current imbalance）',
-    'r/MSI_Gaming／r/ThermalGrizzly／r/pcmasterrace／r/buildapc／r/ASUSROG／r/nvidia 依時間檢視最新貼文',
+    '裝機規格＋完整 PSU 型號＋告警／換線詞（beeping／alarm／stress test／swapped cable／saved）',
+    'r/MSI_Gaming／r/ThermalGrizzly／r/pcmasterrace／r/buildapc／r/ASUSROG／r/nvidia／r/lianli／r/PcBuild／r/watercooling 依時間檢視最新貼文',
+    '裝機展示／機殼改裝文的內文末段與規格表抽查',
     'Comments 分頁',
 )
 reddit_discovery_audit = [
@@ -1703,10 +1705,10 @@ pm_info = {
         'https://www.reddit.com/r/ThermalGrizzly/comments/1v0uzle/wire_view_2_software_causes_huge_performance/'
     ),
     'GPU Safeguard': (
-        '使用者重視 per-pin 電流監控、可設定門檻及自動降載；有留言描述約 3 秒內載入 Afterburner profile，將每 pin 電流由 9A 以上降到約 4–6A。',
-        '價格與供貨是主要阻力；另有 Windows／MSI Center、USB 安全、量測精度、效率與故障後需重新開機才能讀記錄的疑慮。使用者仍認為它是在替接頭根因善後。',
-        '保留硬體獨立保護並提供跨平台設定；公開預設門檻、精度及反應時間；加入斷電後可讀的非揮發記錄，並下放到約 1000W／250 美元級距。',
-        '多則設定與購買評價；自動降載為使用者敘述',
+        'GPU Safeguard 與 GPU Safeguard+ 都以 PSU 端逐 pin 電流偵測為核心；MAG A1200PLS 已有實際壓力測試告警、促使換線並恢復正常的正面保護案例，Plus 版另有可設定門檻、即時讀值及自動降載。',
+        '兩級功能名稱相近但能力不同；基礎版缺少軟體讀值，Plus 版則有 Windows／MSI Center、USB 安全、量測精度與故障後記錄可讀性的疑慮。價格、供貨及「替接頭根因善後」也是共同批評。',
+        '官方應以同一張表清楚比較 MAG GPU Safeguard 與 MPG GPU Safeguard+ 的監控、警示、延遲、降載、黑畫面與事件記錄；兩級功能都應公開門檻、精度及反應時間。',
+        '兩級功能合併呈現，但案例會明確標示型號與版本',
         'https://www.techpowerup.com/forums/threads/msi-mpg-ai1600ts.346215/'
     ),
     'GPU Shield': (
@@ -3021,6 +3023,14 @@ rows.extend([
         'comments': 'Reddit 留言有人因此偏好 WireView、PSU 內建監控／緊急關機或振華 OCP Dongle。發文者認為影片未充分討論線材較高載流能力是否仍有價值，並表示若使用高載流線材也會搭配逐 pin 監控；其他留言質疑強化線材若接頭仍以單 pin 約 9A 設計，是否只是把風險移到別處。這些是技術觀點，沒有 Equalizer 擁有者在本串提供故障、熔損或前後量測。',
         'url': 'https://www.reddit.com/r/pcmasterrace/comments/1xhif02/buildzoid_do_not_buy_the_asus_rog_equalizer_cable/'
     },
+    {
+        'date': '2026-10-19', 'source': 'Reddit', 'keyword': 'GPU Safeguard',
+        'keywords': ['GPU Safeguard'], 'match': '內文末段＋留言',
+        'title': 'Facelift for my O11 mini — 裝機展示文中的 GPU Safeguard 告警',
+        'summary': 'O11 Mini 改裝展示文的規格列出 RTX 5090 AORUS 與 MSI MAG A1200PLS；發文者在主文最後補充，購買 GPU Safeguard 是為了因應 12V-2x6 接頭風險。壓力測試約一分鐘後，電源供應器持續蜂鳴；他依警示更換線材後，系統後續運作順暢。這證明 GPU Safeguard 的異常偵測與蜂鳴警示在實際系統中發揮保護作用，屬正面案例。本文使用的是 MAG A1200PLS 的 GPU Safeguard，不是 TS 系列的 GPU Safeguard+。',
+        'comments': '被問到線材時，發文者表示使用 90° CORSAIR 12V-2x6 線材；觸發警報的舊線先前也用於 RTX 5080，且因經常調整裝機，他推測可能已超過建議的 30 次插拔。可確認的結果是「壓力測試時發出警告、使用者因此換線、換線後恢復正常」，足以支持告警功能具實際保護價值；但貼文沒有逐 pin 讀值、線材檢驗或熔損前後證據，因此不能確認超過 30 次插拔是根因，也不能宣稱已證明自動黑畫面保護或確實避免了一次熔毀。',
+        'url': 'https://www.reddit.com/r/lianli/comments/1x9wvo0/facelift_for_my_o11_mini/'
+    },
 ])
 
 reddit_discovery_audit.extend([
@@ -3040,6 +3050,7 @@ reddit_discovery_audit.extend([
     ('Safeguard+ 5090 RMA', 'https://www.reddit.com/r/MSI_Gaming/comments/1xf9nyt/second_msi_5090_rma_seemed_fine_until_i_picked_up/', '納入', '0A 與約 5 秒後不平衡警報，拆查確認 sense pin 斷裂'),
     ('MSI 5090 燒損', 'https://www.reddit.com/r/MSI_Gaming/comments/1xec771/burned_5090_will_they_rma/', '納入', '隨卡轉接線與顯示卡接頭燒損，RMA 進行中'),
     ('ROG Equalizer 媒體評論', 'https://www.reddit.com/r/pcmasterrace/comments/1xhif02/buildzoid_do_not_buy_the_asus_rog_equalizer_cable/', '納入', '連結影片說明與作者置頂留言指出 busbar 會削弱 Astral／WireView／PSU 逐 pin 監控，Reddit 留言討論替代方案與高載流價值'),
+    ('GPU Safeguard 裝機展示文', 'https://www.reddit.com/r/lianli/comments/1x9wvo0/facelift_for_my_o11_mini/', '納入', '標題無產品名；MAG A1200PLS 實際告警促使使用者換線，換線後恢復正常，列為 GPU Safeguard 正面保護案例；30 次插拔僅為發文者推測'),
 ])
 
 # 本版指定日期界線；避免歷史基準資料在擴大搜尋時意外越界。
@@ -3122,6 +3133,7 @@ ISSUE_TAG_RULES = [
 # 本次逐筆讀取主文與可見留言後的人工覆核結果。
 # 已讀不到內容、只看到驗證頁或只有一般規格／風險討論者，刻意留空，避免把推測寫成產品問題。
 ISSUE_TAG_OVERRIDES = {canonical_url(url): tags for url, tags in [
+    ('https://www.reddit.com/r/lianli/comments/1x9wvo0/facelift_for_my_o11_mini/', ['GPU Safeguard 實際保護案例', '線材異常告警', '已換線解決', '反覆插拔疑慮']),
     ('https://www.reddit.com/r/pcmasterrace/comments/1xhif02/buildzoid_do_not_buy_the_asus_rog_equalizer_cable/', ['逐 pin 監控受影響', '設計／產品定位疑慮']),
     ('https://www.reddit.com/r/MSI_Gaming/comments/1xec771/burned_5090_will_they_rma/', ['🔥 接頭燒損／熔毀', '隨卡轉接線問題', 'RMA／保固疑慮']),
     ('https://www.reddit.com/r/MSI_Gaming/comments/1xf9nyt/second_msi_5090_rma_seemed_fine_until_i_picked_up/', ['GPU 接頭／sense pin 斷裂', '逐 pin 電流異常', 'RMA／品管問題', '潛在熔損風險']),
@@ -3686,11 +3698,12 @@ pm_weekly_updates = {
         ],
     },
     'GPU Safeguard': {
-        'pros': '第二次 RMA 換回的 RTX 5090 初看正常，但 Ai1300TS 顯示 pin 2 為 0A，實際負載約 5 秒後 Safeguard+ 發出電流不平衡警報；換線與更換 PSU 插孔都無效，最後拆查確認顯示卡接頭一支 sense pin 物理斷裂。本案可確認它在尚未出現可見熔損前揭露 GPU 端物理缺陷。',
-        'cons': '發文者表示警報前畫面一度顯示「normal」，留言因此質疑狀態切換與門檻；貼文沒有官方門檻或完整事件紀錄可解釋。顯示卡已進入第三次 RMA、累計約九週無卡可用，反映監控發現問題後仍缺少快速的跨產品診斷與售後流程。',
-        'actions': 'P0：事件記錄應保存警報前後每路電流、狀態切換理由、門檻與時間，不能只留下「normal」畫面。P1：對 0A／單 pin 異常提供依序換線、換插孔、檢查 GPU 接頭與停止使用的流程，並產生可直接交給 RMA 的證據包。',
+        'pros': 'GPU Safeguard+：第二次 RMA 換回的 RTX 5090 初看正常，但 Ai1300TS 顯示 pin 2 為 0A，實際負載約 5 秒後發出電流不平衡警報；換線與更換 PSU 插孔都無效，最後拆查確認顯示卡接頭一支 sense pin 物理斷裂。GPU Safeguard：另一名 MAG A1200PLS 使用者在壓力測試約一分鐘後聽到持續蜂鳴，依警示換新線材後恢復正常；這是基礎版實際偵測異常、促使處置並排除問題的正面保護案例。兩案都支持逐 pin 監控／警示具實際保護價值，但功能層級與可讀資料不同。',
+        'cons': 'Ai1300TS 案例在警報前一度顯示「normal」，貼文沒有官方門檻或完整事件紀錄可解釋；顯示卡已進入第三次 RMA。A1200PLS 案例沒有逐 pin 讀值、警報類型、線材檢驗或長期追蹤；發文者只推測舊的 90° CORSAIR 線材可能因反覆調整而超過建議的 30 次插拔，不能據此確認根因。',
+        'actions': 'P0：兩級功能都應保存警報前後每路電流、警報類型、門檻與時間；基礎版至少應以可辨識的蜂鳴／燈號區分過流、電流不平衡與風扇異常。P1：對 0A／單 pin 異常提供依序換線、換插孔、檢查 GPU 接頭與停止使用的流程，並產生可直接交給 RMA 的證據包；官方頁應明確比較 MAG GPU Safeguard 與 MPG GPU Safeguard+ 的差異。',
         'sources': [
             ('Safeguard+ 找出 RTX 5090 sense pin 斷裂', 'https://www.reddit.com/r/MSI_Gaming/comments/1xf9nyt/second_msi_5090_rma_seemed_fine_until_i_picked_up/'),
+            ('MAG A1200PLS GPU Safeguard 告警後換線', 'https://www.reddit.com/r/lianli/comments/1x9wvo0/facelift_for_my_o11_mini/'),
         ],
     },
     'ThermalProtect': {
@@ -3897,6 +3910,8 @@ version_history = [
     ('v1.2', V12_UPDATED_AT, '新增 Hardwareluxx、ComputerBase、PCGH Extreme 與 Overclockers UK 四個論壇來源。'),
 ]
 update_log = [
+    ('2026-10-29', '評價修正：MAG A1200PLS 案例明確列為 GPU Safeguard 正面保護案例。壓力測試約一分鐘後實際發出持續蜂鳴，使用者依警示換線，之後恢復正常，足以證明異常偵測與警告在該系統具實際保護價值；未延伸宣稱已證明自動黑畫面保護、避免熔毀或確認 30 次插拔為根因。'),
+    ('2026-10-29', 'Reddit 漏收修正：補收 r/lianli 的 O11 Mini 裝機展示文。標題沒有產品名，GPU Safeguard 僅出現在主文末段，留言才補充 MAG A1200PLS、90° CORSAIR 線材、壓力測試蜂鳴與換線後暫時恢復；30 次插拔只列為發文者推測。搜尋新增 A1000PLS／A1200PLS 型號、beeping／alarm／stress test／swapped cable 等情境詞，並納入裝機展示／機殼改裝文的規格表與內文末段抽查。產品區塊合併命名為「MSI GPU Safeguard／GPU Safeguard+」，但明確區分 MAG 基礎版與 MPG TS Plus 版；版本維持 v1.6。'),
     ('2026-10-29', '「四、使用者評價與改善方向」改為「累積摘要＋本次新增」：保留 A 版優點、缺點、改善方向三欄，將歷次證據整併為精簡結論，不再逐週重複堆疊前版 New!；完整個案、數值與來源仍保留於第五節搜尋結果明細。版本依既定規則維持 v1.6，待使用者確認後再進版。'),
     ('2026-10-29', '第二次漏收修正：補收 r/pcmasterrace 的 Buildzoid／ROG Equalizer 媒體評論串，讀取 Reddit 主文與可見留言、YouTube 影片頁 TL;DW／作者置頂留言；影片無可用逐字稿，因此未把頁面未顯示的論證細節寫入摘要。漏收原因是前次依時間檢視只固定掃 r/MSI_Gaming 與 r/ThermalGrizzly，未涵蓋 r/pcmasterrace，且 relevance 索引未即時帶出。固定時間序清單已擴大到 r/pcmasterrace、r/buildapc、r/ASUSROG、r/nvidia，並新增 Buildzoid／AHOC、NVIDIA Octopus 與 per-pin monitoring nerfed／disabled 等媒體評論詞。'),
     ('2026-10-29', 'Reddit：補收 6 篇逐篇核讀的唯一討論。Safeguard+ 實際在約 5 秒負載後對 pin 2＝0A 發出不平衡警報，換線與 PSU 插孔無效，最後確認 RTX 5090 接頭 sense pin 物理斷裂；另收錄一件隨卡轉接線與 RTX 5090 接頭燒損的 RMA 案例，已以「🔥 接頭燒損／熔毀」特別標示。WireView 新資料包括 4A／10 秒自動關機觸發、過流／不平衡換線後解決，以及自動關機接線無法使用且測試不足；ROG Equalizer 媒體評論與使用者觀點另行標示，不寫成擁有者實測。'),
@@ -4053,9 +4068,9 @@ section{{margin:20px 0;scroll-margin-top:16px}} h2{{font-size:17px;border-left:4
 <div class="note">本次問題標籤已逐筆讀取主文與可見留言後人工覆核；只有來源明確提到的問題才標示。驗證頁、空白頁或只有一般規格／風險討論者不把推測寫成故障；「—」表示本筆未讀到可確認的產品問題，不代表產品絕對沒有問題。</div><div class="tblbox"><table id="detailTable"><thead><tr><th>發文日期（新到舊）</th><th>來源</th><th>關鍵字</th><th>命中位置</th><th>標題</th><th>問題標籤</th><th>主文內容（發生什麼）</th><th>留言結論／使用者評價</th><th>連結</th></tr></thead><tbody>{detail}</tbody></table></div>
 <div class="load-more-row"><button type="button" id="loadMoreBtn" class="load-more-btn" hidden>顯示更多</button></div></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
-<section class="muted"><h2>六、搜尋來源狀態</h2><ul><li>Reddit：納入 {sum(r['source']=='Reddit' for r in rows)} 篇唯一討論串；最新可核對結果為 {latest_reddit_date}。相較 2026-10-27 基準新增／補收 {sum(r['source']=='Reddit' and r['is_new'] for r in rows)} 篇，逐篇讀取主文與本次可見留言；其中一件 RTX 5090 接頭燒損以火焰標籤特別標示，跨版重貼排除。</li><li>Tom's Hardware Forums：納入 {sum(r['source']=="Tom's Hardware Forums" for r in rows)} 筆；補查 2026-10-26 後產品名、完整型號與 12V-2x6 事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>TechPowerUp Forums：納入 {sum(r['source']=='TechPowerUp Forums' for r in rows)} 筆；登入 Chrome 可正常搜尋，新增 XPG CORE REACTOR III／XTREME Power Guard 零回覆發表串，以及 WireView／ThermalProtect 後續量測；官方功能與使用者留言分開記錄。</li><li>ComputerBase Forum：納入 {sum(r['source']=='ComputerBase Forum' for r in rows)} 筆；補查 2026-10-26 後產品與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>Hardwareluxx Forum：納入 {sum(r['source']=='Hardwareluxx Forum' for r in rows)} 筆；補查 2026-10-26 後產品與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>Overclockers UK Forums：納入 {sum(r['source']=='Overclockers UK Forums' for r in rows)} 筆；補查 2026-10-26 後產品與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>PC Games Hardware Extreme：納入 {sum(r['source']=='PC Games Hardware Extreme' for r in rows)} 筆；補查 2026-10-26 後產品與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>NGA玩家社區：納入 {sum(r['source']=='NGA玩家社區' for r in rows)} 筆 2025-07-01 以後資料；補查產品名、在地稱呼與 12V-2x6 燒損詞，未把空白或不穩定搜尋結果當成沒有討論。</li><li>Chiphell：納入 {sum(r['source']=='Chiphell' for r in rows)} 筆 2025-07-01 以後資料；補查 2026-10-26 後產品名、在地稱呼與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>百度貼吧：納入 {sum(r['source'].startswith('百度貼吧') for r in rows)} 筆 2025-07-01 以後資料；補查產品名、在地稱呼與 12V-2x6 燒損詞，未找到可新增且已完整核讀的唯一討論。</li></ul></section>
+<section class="muted"><h2>六、搜尋來源狀態</h2><ul><li>Reddit：納入 {sum(r['source']=='Reddit' for r in rows)} 篇唯一討論串；最新可核對結果為 {latest_reddit_date}。相較前版新增／補收 {sum(r['source']=='Reddit' and r['is_new'] for r in rows)} 篇，逐篇讀取主文與本次可見留言；本次補收一篇標題無產品名、僅在內文末段與留言出現 MAG A1200PLS GPU Safeguard 告警的裝機展示文。既有接頭燒損仍以火焰標籤特別標示，跨版重貼排除。</li><li>Tom's Hardware Forums：納入 {sum(r['source']=="Tom's Hardware Forums" for r in rows)} 筆；補查 2026-10-26 後產品名、完整型號與 12V-2x6 事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>TechPowerUp Forums：納入 {sum(r['source']=='TechPowerUp Forums' for r in rows)} 筆；登入 Chrome 可正常搜尋，新增 XPG CORE REACTOR III／XTREME Power Guard 零回覆發表串，以及 WireView／ThermalProtect 後續量測；官方功能與使用者留言分開記錄。</li><li>ComputerBase Forum：納入 {sum(r['source']=='ComputerBase Forum' for r in rows)} 筆；補查 2026-10-26 後產品與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>Hardwareluxx Forum：納入 {sum(r['source']=='Hardwareluxx Forum' for r in rows)} 筆；補查 2026-10-26 後產品與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>Overclockers UK Forums：納入 {sum(r['source']=='Overclockers UK Forums' for r in rows)} 筆；補查 2026-10-26 後產品與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>PC Games Hardware Extreme：納入 {sum(r['source']=='PC Games Hardware Extreme' for r in rows)} 筆；補查 2026-10-26 後產品與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>NGA玩家社區：納入 {sum(r['source']=='NGA玩家社區' for r in rows)} 筆 2025-07-01 以後資料；補查產品名、在地稱呼與 12V-2x6 燒損詞，未把空白或不穩定搜尋結果當成沒有討論。</li><li>Chiphell：納入 {sum(r['source']=='Chiphell' for r in rows)} 筆 2025-07-01 以後資料；補查 2026-10-26 後產品名、在地稱呼與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>百度貼吧：納入 {sum(r['source'].startswith('百度貼吧') for r in rows)} 筆 2025-07-01 以後資料；補查產品名、在地稱呼與 12V-2x6 燒損詞，未找到可新增且已完整核讀的唯一討論。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
-<section class="muted"><h2>七、Reddit 精確度與廣度確認</h2><ul><li><b>範圍：</b>以 {period_start_label}～{period_end_label} 為日期界線，交叉查找產品全名、常見拼法、完整 PSU／線材型號、配件料號、per-pin／telemetry／NTC／thermistor／保護功能詞、12V-2x6／12VHPWR 事故語句，以及標題沒有產品名的主文與留言。</li><li><b>固定查詢線：</b>{escape('；'.join(reddit_required_query_lanes))}。Safeguard+ 另加入 SaveGuard+ 常見誤拼、Ai1300TS／Ai1600TS、MSI 5090 RMA、pin 0A／broken pin／current imbalance；ROG Equalizer 另加入 Buildzoid／AHOC、NVIDIA Octopus 與 per-pin monitoring nerfed／disabled。本次同時讀取貼文與 Comments 分頁。</li><li><b>本次覆蓋稽核：</b>相較 2026-10-27 基準新增／補收 {sum(r['source']=='Reddit' and r['is_new'] for r in rows)} 篇 Reddit 唯一討論；納入 URL 由產生器自動對帳，主文、連結媒體頁可見說明與留言分開摘要。</li><li><b>漏網原因與修正：</b>Safeguard+ 與 ROG Equalizer 指定貼文都在本版產生前發布，但前次時間序掃描只固定涵蓋 r/MSI_Gaming／r/ThermalGrizzly；Reddit relevance 索引未穩定帶出 r/pcmasterrace 新串。現已加入 r/pcmasterrace、r/buildapc、r/ASUSROG、r/nvidia 最新貼文及媒體評論詞；這能降低同類漏收，但仍受 Reddit 索引延遲限制。</li><li><b>精確度：</b>實際持有／安裝、購買考量、官方功能、媒體評論、留言觀點與推測分開記錄。本次 Equalizer 串沒有擁有者故障／熔損實測；只把影片頁 TL;DW、作者置頂補充與 Reddit 可見留言寫入，不把缺少逐字稿的影片內容自行補齊。</li><li><b>限制：</b>Reddit 搜尋可能延遲索引、動態載入或省略部分回覆；留言摘要只代表本次實際可見內容，不把未載入內容或搜尋空白推論為沒有討論。</li></ul></section>
+<section class="muted"><h2>七、Reddit 精確度與廣度確認</h2><ul><li><b>範圍：</b>以 {period_start_label}～{period_end_label} 為日期界線，交叉查找產品全名、常見拼法、完整 PSU／線材型號、配件料號、per-pin／telemetry／NTC／thermistor／保護功能詞、12V-2x6／12VHPWR 事故語句，以及標題沒有產品名的主文與留言。</li><li><b>固定查詢線：</b>{escape('；'.join(reddit_required_query_lanes))}。GPU Safeguard 另加入 MAG A1000PLS／A1200PLS、beeping／alarm／stress test／swapped cable；GPU Safeguard+ 另加入 SaveGuard+ 常見誤拼、Ai1300TS／Ai1600TS、MSI 5090 RMA、pin 0A／broken pin／current imbalance；ROG Equalizer 另加入 Buildzoid／AHOC、NVIDIA Octopus 與 per-pin monitoring nerfed／disabled。本次同時讀取貼文與 Comments 分頁。</li><li><b>本次覆蓋稽核：</b>相較前版新增／補收 {sum(r['source']=='Reddit' and r['is_new'] for r in rows)} 篇 Reddit 唯一討論；納入 URL 由產生器自動對帳，主文、連結媒體頁可見說明與留言分開摘要。</li><li><b>漏網原因與修正：</b>本次漏收文標題只談 O11 Mini 改裝，GPU Safeguard 位於主文最後的附註，A1200PLS 型號則藏在規格表；產品名標題搜尋與既有子版時間序掃描都不易命中。現已加入 MAG 完整型號、蜂鳴／警報／壓力測試／換線情境詞，擴充 r/lianli、r/PcBuild、r/watercooling 等裝機社群，並抽查裝機展示／機殼改裝文的規格表與內文末段。這能降低同類漏收，但仍受 Reddit 索引延遲與留言載入限制。</li><li><b>精確度：</b>實際持有／安裝、購買考量、官方功能、媒體評論、留言觀點與推測分開記錄。MAG A1200PLS 案例確認壓力測試時實際發出警告、使用者因此換線且換線後恢復正常，列為 GPU Safeguard 正面保護案例；「可能超過 30 次插拔」仍是發文者推測，不寫成根因，也不延伸成已證明避免熔毀。GPU Safeguard 與 GPU Safeguard+ 合併在同一產品區塊，但明確標示適用型號與功能層級。</li><li><b>限制：</b>Reddit 搜尋可能延遲索引、動態載入或省略部分回覆；留言摘要只代表本次實際可見內容，不把未載入內容或搜尋空白推論為沒有討論。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
 <section class="revision-history"><h2>版本紀錄（架構變動）</h2><div class="note" style="margin-top:0">只記錄新增論壇來源、新增／調整追蹤關鍵字、版型或篩選功能調整這類架構層級變動；逐次的查核與新增明細請見下方「內容更新紀錄」。</div><ul>{version_history_rows}</ul></section>
 <section class="revision-history"><h2>內容更新紀錄</h2><div class="note" style="margin-top:0">記錄每次查核實際跑了哪些來源／關鍵字、找到並新增了什麼；不對應版本號，同一版本號下可能有多筆更新紀錄。</div><ul>{update_log_rows}</ul></section>
