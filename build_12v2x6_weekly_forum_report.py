@@ -1,5 +1,6 @@
 import calendar
 import re
+import shutil
 from collections import Counter
 from datetime import date, datetime
 from html import escape
@@ -10,6 +11,9 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 BASE_DIR = Path(__file__).resolve().parent
 REPORT_DIR = BASE_DIR / 'reports'
 REPORT_DIR.mkdir(exist_ok=True)
+LOGO_PATH = BASE_DIR / 'thebigcoco-coconut-logo.png'
+if LOGO_PATH.exists():
+    shutil.copy2(LOGO_PATH, REPORT_DIR / LOGO_PATH.name)
 GENERATED_AT = datetime.now().astimezone()
 REPORT_DATE = GENERATED_AT.date()
 OUTPUT_STAMP = GENERATED_AT.strftime('%Y-%m-%d_%H%M%S')
@@ -1271,7 +1275,7 @@ rows.extend([
     },
 ])
 
-kw = ['WireView', 'GPU Safeguard', 'GPU Shield', 'OptiGuard', 'Ampinel', 'ROG Equalizer', 'GPU Tweak III Auto-Shutdown', 'Titanload', 'T-Guard', 'ThermalProtect', 'PinProtect／PinProtect+', 'TempGuard', 'EZDIY-FAB Alpha TS13', 'VGA 12+4PIN OCP Dongle']
+kw = ['WireView', 'GPU Safeguard', 'GPU Shield', 'OptiGuard', 'Ampinel', 'ROG Equalizer', 'GPU Tweak III Auto-Shutdown', 'Titanload', 'T-Guard', 'ThermalProtect', 'PinProtect／PinProtect+', 'TempGuard', 'EZDIY-FAB Alpha TS13', 'VGA 12+4PIN OCP Dongle', 'XTREME Power Guard']
 keyword_info = {
     'WireView': (
         '逐針腳量測 12V-2x6 的電流，並監控電壓、溫度與功率；用於提早發現負載不均、接觸異常與過熱風險。',
@@ -1343,6 +1347,11 @@ keyword_info = {
         'Super Flower（振華）官方產品頁',
         'https://www.super-flower.com.tw/tw/products-detail/OCPD_M/'
     ),
+    'XTREME Power Guard': (
+        'XPG CORE REACTOR III Gold 電源供應器持續監控 12V-2x6 電流；偵測到電流不平衡時以橘色 LED 警示，過電流時以紅色 LED 警示並可自動切斷 12V-2x6 輸出。首波提供 750W、850W、1000W。官方尚未公開逐 pin 架構、門檻、量測誤差與反應時間。',
+        'XPG 官方產品頁',
+        'https://www.xpg.com/en/xpg/pc-components-core-reactor-iii'
+    ),
 }
 keyword_category = {
     'WireView': 'GPU 端串接式監控／保護轉接器',
@@ -1359,6 +1368,7 @@ keyword_category = {
     'GPU Tweak III Auto-Shutdown': 'GPU Tweak III 軟體內選配的逐 pin 過流自動關機功能（僅此功能，非整套軟體）',
     'EZDIY-FAB Alpha TS13': 'GPU 端無軟體溫度／功耗顯示與警報轉接器',
     'VGA 12+4PIN OCP Dongle': 'GPU 端串接式逐線電流監控／警示轉接線',
+    'XTREME Power Guard': '整合於 PSU 的 12V-2x6 電流監控、警示與主動斷電保護',
 }
 product_form_factor = {
     'WireView': 'Adapter',
@@ -1375,6 +1385,7 @@ product_form_factor = {
     'GPU Tweak III Auto-Shutdown': '軟體功能',
     'EZDIY-FAB Alpha TS13': 'Adapter',
     'VGA 12+4PIN OCP Dongle': 'Adapter 線材',
+    'XTREME Power Guard': 'PSU',
 }
 product_detection = {
     'WireView': '電流＋溫度',
@@ -1391,6 +1402,7 @@ product_detection = {
     'GPU Tweak III Auto-Shutdown': '電流',
     'EZDIY-FAB Alpha TS13': '溫度＋功耗（非逐 pin 電流）',
     'VGA 12+4PIN OCP Dongle': '電流',
+    'XTREME Power Guard': '電流',
 }
 keyword_vendor = {
     'WireView': 'Thermal Grizzly',
@@ -1407,6 +1419,7 @@ keyword_vendor = {
     'GPU Tweak III Auto-Shutdown': 'ASUS',
     'EZDIY-FAB Alpha TS13': 'EZDIY-FAB',
     'VGA 12+4PIN OCP Dongle': 'Super Flower（振華）',
+    'XTREME Power Guard': 'XPG／ADATA',
 }
 # 產品功能／關鍵字功能表／使用者評價三個區塊改依品牌字母排序（不分大小寫）呈現；
 # 這連帶決定第五節篩選晶片的關鍵字順序，讓全報告排序邏輯一致。
@@ -1415,6 +1428,7 @@ product_display_names = {
     k: (
         'MSI GPU Safeguard+' if k == 'GPU Safeguard'
         else 'ASUS ROG Equalizer' if k == 'ROG Equalizer'
+        else 'XPG XTREME Power Guard' if k == 'XTREME Power Guard'
         else k if k == 'EZDIY-FAB Alpha TS13'
         else f'{vendor} {k}'
     )
@@ -1633,11 +1647,11 @@ rows.extend([
 
 keyword_search_aliases = {
     'WireView': 'WireView、Wire View、WireView Pro／Pro II、WireView II、暴力熊、顯卡功耗監測器、GPU 電源監視器、逐 pin／單 pin 電流監控',
-    'GPU Safeguard': 'GPU Safeguard／Safeguard+、微星顯卡保護、逐 pin 電流監測、過流警報／強制斷電、MPG Ai1600TS／Ai1300TS、MEG Ai1600T／Ai1300P／Ai1000P、per-pin current、PSU telemetry、Prometheus／Grafana',
+    'GPU Safeguard': 'GPU Safeguard／Safeguard+／SaveGuard+（常見誤拼）、微星顯卡保護、逐 pin 電流監測、過流警報／強制斷電、MPG Ai1600TS／Ai1300TS、MEG Ai1600T／Ai1300P／Ai1000P、MSI 5090 RMA、pin 0A／broken pin／current imbalance、per-pin current、PSU telemetry、Prometheus／Grafana',
     'GPU Shield': 'GPU Shield、GPU Shield Adapter、MWE Gold V4、酷冷顯卡衛士／顯卡保護連接器、防熔斷保護、獨立 GPU Shield 連接器',
     'OptiGuard': 'OptiGuard、海韻顯卡保護、逐針電流／溫度監控、PRIME ENTERPRISE TX／PX',
     'Ampinel': 'Ampinel、智慧型 12V-2x6 轉接器、主動均流、負載均衡轉接器',
-    'ROG Equalizer': 'ROG Equalizer、ASUS Equalizer、均流線、強流線、ROG EQ 顯卡模組線、物理均流環',
+    'ROG Equalizer': 'ROG Equalizer、ASUS Equalizer、均流線、強流線、ROG EQ 顯卡模組線、物理均流環、Buildzoid／Actually Hardcore Overclocking／AHOC、NVIDIA Octopus adapter、per-pin monitoring nerfed／disabled',
     'Titanload': 'Titanload、Segotep Titanload、鑫谷強流線、14A 強流線、TITANLOAD 強流線',
     'T-Guard': 'T-Guard、GIGABYTE T-Guard、技嘉主動熱監控、12V-2x6 熱敏保護',
     'ThermalProtect': 'ThermalProtect、Thermal Protect、CORSAIR ThermalProtect、海盜船溫控保護線、OTP 高溫保護線、防燒線',
@@ -1646,12 +1660,15 @@ keyword_search_aliases = {
     'GPU Tweak III Auto-Shutdown': 'GPU Tweak III auto-shutdown、GPU Tweak III shutdown、Power Detector+ auto-shutdown、Power Detector+ shutdown、ROG Astral／ROG Matrix per-pin shutdown、12.5A 過流保護；注意：純粹的 GPU Tweak III 超頻／風扇／RGB 相關討論不算命中，須同時提到過流關機／Power Detector+ 才納入',
     'EZDIY-FAB Alpha TS13': 'EZDIY-FAB Alpha TS13、EZDIY-FAB 12V-2x6 adapter、Alpha TS13、EZDIY 溫度顯示轉接器',
     'VGA 12+4PIN OCP Dongle': 'VGA 12+4PIN 過電流保護轉接線、VGA 12+4PIN OCP Dongle、Super Flower OCP Dongle、振華 OCP 轉接線、振華顯卡過流保護轉接線',
+    'XTREME Power Guard': 'XTREME Power Guard、Xtreme Power Guard、XPG CORE REACTOR III／CORE REACTOR III Gold、XPG 12V-2x6 current monitoring',
 }
 reddit_required_query_lanes = (
     '產品全名與別名（Relevance＋New）',
     '廠牌＋完整 PSU／線材型號（Relevance＋New）',
     '廠牌＋保護功能描述（per-pin／temperature sensor／auto shutoff）',
     '12V-2x6／12VHPWR＋事故詞（melted／burnt／smoking／arcing）',
+    '高風險詞（5090／RMA／0A／broken pin／current imbalance）',
+    'r/MSI_Gaming／r/ThermalGrizzly／r/pcmasterrace／r/buildapc／r/ASUSROG／r/nvidia 依時間檢視最新貼文',
     'Comments 分頁',
 )
 reddit_discovery_audit = [
@@ -1930,6 +1947,14 @@ pm_info['PinProtect／PinProtect+'] = (
     'P0：清楚標示支援型號、世代與料號，並公布逐 pin 門檻、量測精度、反應時間及故障注入測試。P1：在切斷前提供明確蜂鳴警示、可匯出事件記錄與安全上限內的處置時間設定。P1：說明 iCUE 未執行時的硬體獨立保護、溫度監控邊界及保固流程。',
     '中：官方機制清楚，已讀多個論壇完整討論；尚無擁有者觸發或長期驗證',
     'https://www.reddit.com/r/Corsair/comments/1xdndw4/new_rme_psu_with_12v2x6_perpin_overcurrent/'
+)
+
+pm_info['XTREME Power Guard'] = (
+    'CORE REACTOR III 把 12V-2x6 電流監控、橘／紅 LED 警示與過電流主動斷電整合在 PSU；750W、850W、1000W 都列為首波型號。',
+    '目前只有產品發布資料與零回覆的論壇發表串，沒有擁有者安裝、告警、斷電或長期使用結果；官方也尚未公布逐 pin 架構、門檻、精度、延遲及異常恢復方式。',
+    'P0：公布電流感測位置、逐 pin／總路監控架構、門檻、精度、反應時間與失效安全模式。P1：提供接觸不良、單路高阻抗及過流的可重現測試與事件記錄，並說明橘／紅燈後的檢查及恢復流程。',
+    '低：功能來自 XPG 發布資料；論壇串無留言，尚無使用者驗證',
+    'https://www.techpowerup.com/forums/threads/xpg-launches-third-generation-core-reactor-iii-gold-fully-modular-power-supply.354183/'
 )
 
 multi_keyword_map = {
@@ -2930,6 +2955,74 @@ rows.extend([
     },
 ])
 
+# 2026-10-29 增量：以下均已讀取主文與本次頁面可見留言；發布文無留言者明確標示。
+rows.extend([
+    {
+        'date': '2026-10-28', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '標題＋內文＋留言',
+        'title': "How's it looking?",
+        'summary': '新組裝系統從第一天即安裝 WireView；發文者表示螢幕曾顯示約 580W，但因主機板電源按鈕轉接線無法運作，尚未啟用自動關機。主文只詢問畫面讀值是否正常，沒有附可核對的逐 pin 負載測試。',
+        'comments': '留言要求在實際負載下再提供讀值；發文者沒有補上六路電流或完成自動關機測試。因此只能確認接線／相容性問題與約 580W 的顯示值，不能判定供電是否平衡。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1xgx333/hows_it_looking/'
+    },
+    {
+        'date': '2026-10-28', 'source': 'TechPowerUp Forums', 'keyword': 'XTREME Power Guard',
+        'keywords': ['XTREME Power Guard'], 'match': '標題＋內文',
+        'title': 'XPG Launches Third-Generation CORE REACTOR III Gold Fully Modular Power Supply',
+        'summary': '發表文介紹首款正式上市、搭載 XTREME Power Guard 的 XPG CORE REACTOR III Gold。官方宣稱 24 小時監控 12V-2x6 電流；不平衡時橘燈警示，過電流時紅燈警示並可自動切斷 12V-2x6 輸出。首波有 750W、850W、1000W。',
+        'comments': '本串回覆數為 0，沒有擁有者實測；文中也未公布逐 pin 架構、門檻、量測誤差、反應時間或異常恢復方式，因此只能列為產品功能發布。',
+        'url': 'https://www.techpowerup.com/forums/threads/xpg-launches-third-generation-core-reactor-iii-gold-fully-modular-power-supply.354183/'
+    },
+    {
+        'date': '2026-10-27', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '標題＋內文＋留言',
+        'title': 'Wire over-current and current imbalance on first boot',
+        'summary': '使用者首次開機即收到 WireView 線材過流與電流不平衡警示；重新插接沒有改善。',
+        'comments': '發文者後續確認更換線材後問題解決。其他留言包含 PSU 端 pin 位移及「WireView 本身可能造成差異」的個人經驗，但沒有同條件量測可證明；本案可確認的是原發文者換線後警示消失。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1xgdm8z/what_do_i_do_wire_overcurrent_and_current/'
+    },
+    {
+        'date': '2026-10-27', 'source': 'TechPowerUp Forums', 'keyword': 'WireView',
+        'keywords': ['WireView', 'ThermalProtect', 'ROG Equalizer'], 'match': '指定樓層＋後續留言',
+        'title': 'Close call... 5090 Burnt Cable — 更換 ThermalProtect 後的 WireView 量測',
+        'summary': '使用者把供應 WireView 的舊線改成 CORSAIR ThermalProtect，於《巫師 3》約 575W 負載 15 分鐘後表示六路平均／最大值較接近，電壓降約 200mV，較先前線材改善；但兩個外側 pin 仍較高且熱像較熱。因同時換線，不能把改善歸因於 ThermalProtect 的溫度保護功能。',
+        'comments': '拆線時發現部分端子在外殼中後縮，推回後仍未改善、讀值可能更差；使用者已聯絡 Thermal Grizzly 換貨，根因尚未確認。後續留言另討論 WireView 價格、ThermalProtect 的量測準確度與 ROG Equalizer 可能影響逐 pin 監控；這些屬留言觀點，沒有新的同條件實測。',
+        'url': 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5814689'
+    },
+    {
+        'date': '2026-10-26', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '標題＋內文＋留言',
+        'title': 'WireView Pro II with MSI RTX 5080 Gaming Trio',
+        'summary': '使用者在 MSI RTX 5080 Gaming Trio 與 Lian Li 217 INF 機殼中安裝 WireView Pro II，側板淨空約 2～2.5cm；他肯定做工與逐 pin 即時反應。',
+        'comments': '發文者把單路門檻暫時降到 4A，實測任一路持續超過 4A 約 10 秒後電腦成功關機，確認該台系統的硬體自動關機接線可用。留言主要討論 PSU 方向與理線，沒有故障或長期資料。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1xfo7jk/wireview_pro_2_msi_5080_gaming_trio_lian_li_217/'
+    },
+    {
+        'date': '2026-10-25', 'source': 'Reddit', 'keyword': 'GPU Safeguard',
+        'keywords': ['GPU Safeguard'], 'match': '標題＋內文＋留言',
+        'title': 'Second MSI 5090 RMA seemed fine until Safeguard+ detected a dead pin',
+        'summary': '第二次 RMA 換回的 RTX 5090 初看正常；使用者另購 MSI MPG Ai1300TS 後，軟體顯示 pin 2 為 0A，實際負載約 5 秒後 Safeguard+ 發出電流不平衡警報。更換線材及 PSU 插孔皆未改善，拆線時發現顯示卡接頭的一支 sense pin 已物理斷裂，與每次插入時接座略微抬起的現象一致。',
+        'comments': '發文者表示警報前畫面一度顯示「normal」，並已送第三次 RMA，累計約九週無卡可用；他認為若沒有 Safeguard+，可能會誤以為顯示卡與插接正常。留言對「normal」狀態與門檻提出疑問，但沒有官方門檻證據；本案可確認的是 0A、約 5 秒後不平衡警報及斷裂的 sense pin，尚未發生可見熔損。',
+        'url': 'https://www.reddit.com/r/MSI_Gaming/comments/1xf9nyt/second_msi_5090_rma_seemed_fine_until_i_picked_up/'
+    },
+    {
+        'date': '2026-10-24', 'source': 'Reddit', 'keyword': 'GPU Safeguard',
+        'keywords': ['GPU Safeguard', 'WireView', 'ROG Equalizer'], 'match': '內文＋留言',
+        'title': 'Burned RTX 5090 — will MSI accept the RMA?',
+        'summary': 'MSI RTX 5090 使用者在執行本機影片生成模型時，隨卡附的多 8-pin 轉 12V-2x6 轉接線與顯示卡接頭燒損；系統使用 CORSAIR HX1500i，沒有逐 pin 監控。使用者已於 10 月 26 日寄回 RMA，當時仍等待結果。',
+        'comments': '留言者爭論隨卡轉接線責任、保固與修復方式，並建議 MSI Ai1300TS、WireView Pro II 或 ROG Equalizer；這些是事後建議，不是事故前的保護實測。一名其他使用者稱相似事故一週內換得新卡；另一名修復後使用者表示兩條 MSI 轉接線仍出現 7.6A／9.6A 差異，改用 be quiet! 原生線後改善，但這是不同個案。',
+        'url': 'https://www.reddit.com/r/MSI_Gaming/comments/1xec771/burned_5090_will_they_rma/'
+    },
+    {
+        'date': '2026-10-28', 'source': 'Reddit', 'keyword': 'ROG Equalizer',
+        'keywords': ['ROG Equalizer', 'WireView', 'GPU Safeguard'], 'match': '標題＋主文＋連結影片說明／置頂留言＋Reddit 留言',
+        'title': 'Buildzoid - DO NOT BUY THE ASUS ROG EQUALIZER CABLE RANT',
+        'summary': '主文分享 Actually Hardcore Overclocking／Buildzoid 的評論影片，並引用作者補充：Equalizer 也會削弱 ASUS Astral 的逐 pin 監控。YouTube 影片頁的 TL;DW 說明稱，Equalizer 在電氣連接上與 NVIDIA 多 8-pin 轉接器相同，且會部分削弱 WireView Pro II 與具逐 pin 監控 PSU 的監控功能；作者置頂留言再次補充 Astral 內建監控也受影響。本次影片沒有可用逐字稿，因此不把影片頁未顯示的論證細節寫入摘要。',
+        'comments': 'Reddit 留言有人因此偏好 WireView、PSU 內建監控／緊急關機或振華 OCP Dongle。發文者認為影片未充分討論線材較高載流能力是否仍有價值，並表示若使用高載流線材也會搭配逐 pin 監控；其他留言質疑強化線材若接頭仍以單 pin 約 9A 設計，是否只是把風險移到別處。這些是技術觀點，沒有 Equalizer 擁有者在本串提供故障、熔損或前後量測。',
+        'url': 'https://www.reddit.com/r/pcmasterrace/comments/1xhif02/buildzoid_do_not_buy_the_asus_rog_equalizer_cable/'
+    },
+])
+
 reddit_discovery_audit.extend([
     ('本週防護方案比較', 'https://www.reddit.com/r/buildapc/comments/1xfz1mc/msi_safeguard_psu_wireview_2_or_thermal_protect/', '納入', '四種方案的價格、空間、相容性與外接接頭取捨'),
     ('WireView Wired Noctua', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xfxf7h/is_a_wireview_pro_ii_wired_noctua_edition_in_the/', '納入', '原廠代表提供原型驗證與量產時程'),
@@ -2941,6 +3034,12 @@ reddit_discovery_audit.extend([
     ('WireView 英國供貨', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xbfso0/wireview_pro_2_wired_uk_stock/', '納入', '缺貨與原廠補貨時程'),
     ('WireView 線材異常', 'https://www.reddit.com/r/ThermalGrizzly/comments/1x84ka0/my_wireview_pro_ii_saved_me/', '納入', '警報後換線恢復，未見熔毀'),
     ('WireView 裝置故障', 'https://www.reddit.com/r/ThermalGrizzly/comments/1x40l9j/graphics_driver_crashes_with_wireview/', '納入', '替換裝置後黑畫面／風扇全速未再發生'),
+    ('WireView 自動關機接線', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xgx333/hows_it_looking/', '納入', '自動關機接線無法使用且尚缺負載逐 pin 資料'),
+    ('WireView 換線解決', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xgdm8z/what_do_i_do_wire_overcurrent_and_current/', '納入', '首次開機過流／不平衡，換線後解決'),
+    ('WireView 關機觸發測試', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xfo7jk/wireview_pro_2_msi_5080_gaming_trio_lian_li_217/', '納入', '降低單路門檻後完成 10 秒自動關機測試'),
+    ('Safeguard+ 5090 RMA', 'https://www.reddit.com/r/MSI_Gaming/comments/1xf9nyt/second_msi_5090_rma_seemed_fine_until_i_picked_up/', '納入', '0A 與約 5 秒後不平衡警報，拆查確認 sense pin 斷裂'),
+    ('MSI 5090 燒損', 'https://www.reddit.com/r/MSI_Gaming/comments/1xec771/burned_5090_will_they_rma/', '納入', '隨卡轉接線與顯示卡接頭燒損，RMA 進行中'),
+    ('ROG Equalizer 媒體評論', 'https://www.reddit.com/r/pcmasterrace/comments/1xhif02/buildzoid_do_not_buy_the_asus_rog_equalizer_cable/', '納入', '連結影片說明與作者置頂留言指出 busbar 會削弱 Astral／WireView／PSU 逐 pin 監控，Reddit 留言討論替代方案與高載流價值'),
 ])
 
 # 本版指定日期界線；避免歷史基準資料在擴大搜尋時意外越界。
@@ -3023,6 +3122,14 @@ ISSUE_TAG_RULES = [
 # 本次逐筆讀取主文與可見留言後的人工覆核結果。
 # 已讀不到內容、只看到驗證頁或只有一般規格／風險討論者，刻意留空，避免把推測寫成產品問題。
 ISSUE_TAG_OVERRIDES = {canonical_url(url): tags for url, tags in [
+    ('https://www.reddit.com/r/pcmasterrace/comments/1xhif02/buildzoid_do_not_buy_the_asus_rog_equalizer_cable/', ['逐 pin 監控受影響', '設計／產品定位疑慮']),
+    ('https://www.reddit.com/r/MSI_Gaming/comments/1xec771/burned_5090_will_they_rma/', ['🔥 接頭燒損／熔毀', '隨卡轉接線問題', 'RMA／保固疑慮']),
+    ('https://www.reddit.com/r/MSI_Gaming/comments/1xf9nyt/second_msi_5090_rma_seemed_fine_until_i_picked_up/', ['GPU 接頭／sense pin 斷裂', '逐 pin 電流異常', 'RMA／品管問題', '潛在熔損風險']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1xgdm8z/what_do_i_do_wire_overcurrent_and_current/', ['逐 pin 電流不平衡', '過流警示', '線材異常', '已換線解決']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1xgx333/hows_it_looking/', ['自動關機接線／相容性問題', '實測資料不足']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1xfo7jk/wireview_pro_2_msi_5080_gaming_trio_lian_li_217/', []),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5814689', ['接頭鬆動／端子後縮', '逐 pin 電流／溫度差異', '電壓降疑慮', '原因未確認']),
+    ('https://www.techpowerup.com/forums/threads/xpg-launches-third-generation-core-reactor-iii-gold-fully-modular-power-supply.354183/', []),
     ('https://www.reddit.com/r/pcmasterrace/comments/1xa9ihs/how_to_avoid_5090_from_burning/', ['電流不平衡']),
     ('https://www.reddit.com/r/Corsair/comments/1x9mq54/any_update_on_availability_of_the_type4type5/', ['供貨／交期問題']),
     ('https://www.reddit.com/r/PcBuild/comments/1x8gwn7/more_than_2a_imbalance_on_rog_astral_5090/', ['電流不平衡', '安裝／相容性問題']),
@@ -3565,64 +3672,42 @@ pm_weekly_updates = {
     },
 }
 
-# 2026-10-27 本次新增／補收的評價；前版卡片由 previous_report 讀回。
+# 2026-10-29 本次新增／補收的評價；前版卡片由 previous_report 讀回。
 pm_weekly_updates = {
     'WireView': {
-        'pros': '補收兩件有處置結果的案例。10 月 17 日案例在 pin 6 電流偏低並警報後，改回 NVIDIA 原生轉接線即恢復正常；10 月 12 日黑畫面／風扇全速案例更換 WireView 本體後未再發生，可確認原裝置故障。兩案都沒有回報可見熔毀。',
-        'cons': '10 月 25 日 Noctua Edition 使用約兩週後發生黑畫面、風扇全速與 0W，換回舊 WireView 即恢復，客服判斷可能故障並換貨；另有一顆到貨即有 sense pin 問題。其他新串還包括安裝後隨機凍結／重啟、換線與反覆重插仍不平衡，以及 50ms 短取樣造成 3～12A 快速波動與警示。這些案例未出現熔毀，但顯示裝置故障、接觸與取樣設定可能產生相似症狀。',
-        'actions': 'P0：針對黑畫面、0W、風扇全速與 sense pin 接觸加入開機自檢，並在顯示器與事件記錄區分「裝置故障」「接觸異常」「真實過流」。P1：出廠增加 sense pin、熱循環與負載測試，公開批次／RMA 處理資訊。P1：為更新／平均間隔提供安全預設與說明，避免把瞬間尖峰當成持續性異常；診斷流程應要求依序旁路裝置、換線與重插三端。',
+        'pros': '一名 RTX 5080 使用者把單路門檻暫時降到 4A，實測任一路持續超過 4A 約 10 秒後電腦成功關機，確認該台系統的硬體自動關機接線可用。另一起首次開機即出現過流／不平衡警示的案例，在重新插接無效後改換線材，發文者確認問題消失。',
+        'cons': '另一名新使用者的主機板電源按鈕轉接線無法運作，因此尚未啟用自動關機，也沒有提供負載下六路讀值。TechPowerUp 延續案例在換用 ThermalProtect 線材後分流改善，但仍有兩個外側 pin 較高、端子後縮與接頭晃動；推回端子未改善，已聯絡原廠換貨，根因未確認。',
+        'actions': 'P0：自動關機接線應提供主機板相容表、開機自檢與可重現測試程序。P1：把「換線後恢復」「端子後縮」「轉接器鬆動」分成不同故障碼並保存觸發前後逐 pin 記錄；加強端子保持力與 GPU 端固定機構。',
         'sources': [
-            ('換線後電流恢復', 'https://www.reddit.com/r/ThermalGrizzly/comments/1x84ka0/my_wireview_pro_ii_saved_me/'),
-            ('替換 WireView 後黑畫面消失', 'https://www.reddit.com/r/ThermalGrizzly/comments/1x40l9j/graphics_driver_crashes_with_wireview/'),
-            ('Noctua Edition 疑似故障與換貨', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xffrjt/wireview_pro_ii_noctua_potential_failure/'),
-            ('安裝後凍結與重啟', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xcarxf/pc_randomly_freezing_and_restarting_after/'),
-            ('取樣／平均設定影響讀值', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xbu34y/wireview_pro_2_wire_current_fluctuates_like_crazy/'),
+            ('4A／10 秒自動關機觸發測試', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xfo7jk/wireview_pro_2_msi_5080_gaming_trio_lian_li_217/'),
+            ('過流／不平衡換線後解決', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xgdm8z/what_do_i_do_wire_overcurrent_and_current/'),
+            ('自動關機接線無法使用', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xgx333/hows_it_looking/'),
+            ('端子後縮與換線後量測', 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5814689'),
         ],
     },
     'GPU Safeguard': {
-        'pros': 'RTX 5090 使用者在新一輪選購比較中重視把逐 pin 監控與保護整合於 PSU，理由是少用一個外接轉接器；這是明確購買考量，不是保護觸發實測。',
-        'cons': '約 340 英鎊價格明顯高於外接方案；使用者也找不到原生 90 度線材，並不確定第三方線材是否影響 Safeguard+ 功能或保固。留言雖稱任何線材都能使用，但沒有官方相容性文件支持。',
-        'actions': 'P1：提供原生 90 度線材及完整的官方線材／保固相容表，明確區分監控功能可用、建議搭配與保固承認三種狀態。P2：把逐 pin 監控下放到較低瓦數／價格產品，並提供真實接觸不良下的警示、降載與硬體保護時間線。',
+        'pros': '第二次 RMA 換回的 RTX 5090 初看正常，但 Ai1300TS 顯示 pin 2 為 0A，實際負載約 5 秒後 Safeguard+ 發出電流不平衡警報；換線與更換 PSU 插孔都無效，最後拆查確認顯示卡接頭一支 sense pin 物理斷裂。本案可確認它在尚未出現可見熔損前揭露 GPU 端物理缺陷。',
+        'cons': '發文者表示警報前畫面一度顯示「normal」，留言因此質疑狀態切換與門檻；貼文沒有官方門檻或完整事件紀錄可解釋。顯示卡已進入第三次 RMA、累計約九週無卡可用，反映監控發現問題後仍缺少快速的跨產品診斷與售後流程。',
+        'actions': 'P0：事件記錄應保存警報前後每路電流、狀態切換理由、門檻與時間，不能只留下「normal」畫面。P1：對 0A／單 pin 異常提供依序換線、換插孔、檢查 GPU 接頭與停止使用的流程，並產生可直接交給 RMA 的證據包。',
         'sources': [
-            ('Safeguard、WireView 與 ThermalProtect 選購比較', 'https://www.reddit.com/r/buildapc/comments/1xfz1mc/msi_safeguard_psu_wireview_2_or_thermal_protect/'),
+            ('Safeguard+ 找出 RTX 5090 sense pin 斷裂', 'https://www.reddit.com/r/MSI_Gaming/comments/1xf9nyt/second_msi_5090_rma_seemed_fine_until_i_picked_up/'),
         ],
     },
     'ThermalProtect': {
-        'pros': '同一選購比較把 ThermalProtect 的約 15 英鎊低價視為最大優點，適合只需要接頭過熱保護、且電源端具原生 12V-2x6 的使用者；本串沒有實際觸發紀錄。',
-        'cons': '發文者擔心搭配 be quiet! PSU 是否影響保固，也因沒有 90 度版本而難以在側板淨空有限的機殼使用。留言未能提供可核對的跨品牌保固答案。',
-        'actions': 'P1：公布跨品牌 PSU 使用條件、保固邊界與完整接頭需求，並推出 90 度／低高度版本。產品頁應把溫度保護與逐 pin 電流監控的差異放在同一張比較表，避免低價被誤解為功能完全相同。',
+        'pros': 'TechPowerUp 使用者把供應 WireView 的舊線改成 ThermalProtect 後，在約 575W 負載下六路平均／最大值較接近、電壓降也比舊線改善。因同時更換整條線，這只能證明新線材組合的量測較好，不能證明 ThermalProtect 的溫度斷電功能造成改善。',
+        'cons': '兩個外側 pin 仍較高且熱像較熱，並出現部分端子在外殼中後縮；目前沒有溫度保護觸發或同條件舊線／新線對照，根因未確認。',
+        'actions': 'P1：增加端子保持力與出廠插拔檢查；公開同負載下逐 pin、電壓降與 GPU 端溫度的前後對照，並把一般換線效果與溫度保護觸發效果分開呈現。',
         'sources': [
-            ('Safeguard、WireView 與 ThermalProtect 選購比較', 'https://www.reddit.com/r/buildapc/comments/1xfz1mc/msi_safeguard_psu_wireview_2_or_thermal_protect/'),
+            ('換用 ThermalProtect 後的 WireView 量測', 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5814689'),
         ],
     },
-    'GPU Shield': {
-        'pros': '新選購串中，有留言者把約 50 美元的 GPU Shield 列為比 WireView 便宜的第四種方案；振華討論串也有現有 GPU Shield 使用者歡迎更多同類選擇。這只反映價格定位與產品認知。',
-        'cons': '本次沒有 GPU Shield 的實際告警、降功率或長期使用資料；留言所稱的功能也沒有在該串中驗證。',
-        'actions': 'P1：用可公開重現的逐 pin 異常測試呈現警告、降功率與處置結果，並把價格、線材長度、額外接頭及保固與其他外接方案並列。',
+    'ROG Equalizer': {
+        'pros': '',
+        'cons': 'TechPowerUp 留言者認為 GPU 端 busbar 會讓 WireView 類裝置難以判讀原始逐 pin 差異。Buildzoid／Actually Hardcore Overclocking 影片頁的 TL;DW 進一步稱 Equalizer 的電氣連接與 NVIDIA 多 8-pin 轉接器相同，且會部分削弱 WireView Pro II、具逐 pin 監控 PSU 與 ASUS Astral 內建監控；Reddit 留言因此偏好外接或 PSU 內建監控。這些是媒體技術評論與使用者觀點，本串沒有 Equalizer 擁有者的故障、熔損或前後量測。',
+        'actions': 'P1：明確公布 busbar 連接拓樸，以及搭配 Astral、WireView 與 PSU 逐 pin 監控時，各量測點實際能看見或被合併的範圍。P1：把高載流端子效益與 busbar 效果分開測試，提供 bridge 前後的故障注入、原始逐 pin 數據及相同負載對照，避免平均後讀值被誤認為原始接頭分流。',
         'sources': [
-            ('四種防護方案選購比較', 'https://www.reddit.com/r/buildapc/comments/1xfz1mc/msi_safeguard_psu_wireview_2_or_thermal_protect/'),
-            ('振華 OCP Dongle 討論中的 GPU Shield 使用者', 'https://www.reddit.com/r/pcmasterrace/comments/1xdg04i/superflower_to_introduce_12v2x6_overcurrent/'),
-        ],
-    },
-    'VGA 12+4PIN OCP Dongle': {
-        'pros': '官方已明列六路 +12V 電流門檻、路間差值警示、ARGB／蜂鳴器與黑畫面保護流程；1,190 元價格低於多數帶螢幕逐 pin 監控器。Reddit 的多顯示卡實驗室使用者認為較低成本有吸引力，現有 GPU Shield 使用者也歡迎多一種選擇。',
-        'cons': 'TechPowerUp 留言集中質疑單路超過 12A 後仍等待 180 秒才進入 15 秒倒數、黑畫面容易與驅動程式當機混淆，以及轉接線會增加兩個接頭。首波僅與 Leadex VIII 電源組合販售，獨立販售、相容線材及保固資訊不足；目前也沒有擁有者的實際觸發或長期資料。',
-        'actions': 'P0：公開黑畫面保護如何介入、是否中止 GPU 取電、裝置失效時的安全行為，並縮短或允許設定高電流等待時間。P1：加入非揮發事件記錄與明確故障代碼，公布相容 PSU／線材、獨立販售與保固條件。P1：以單路高阻抗、過流、路間失衡及接頭局部加熱做第三方重複測試，並評估增加溫度感測。',
-        'sources': [
-            ('Super Flower OCP Dongle TechPowerUp 完整討論', 'https://www.techpowerup.com/forums/threads/super-flowers-12v-2x6-ocp-dongle-watches-every-pin-blacks-out-your-screen-on-overcurrent.353998/'),
-            ('Super Flower OCP Dongle Reddit 討論', 'https://www.reddit.com/r/pcmasterrace/comments/1xdg04i/superflower_to_introduce_12v2x6_overcurrent/'),
-        ],
-    },
-    'PinProtect／PinProtect+': {
-        'pros': '本次新發表的第二代 RM1200e 讓買家直接因 PinProtect 逐 pin OCP 下單；其他 Reddit 留言者也把 PSU 內建監控視為高功耗 GPU 的較完整方案，具體理由是不用像 WireView／Ampinel 類外接裝置再增加兩個 12V-2x6 接頭。ComputerBase 亦有留言肯定 PinProtect+ 可透過 iCUE 讀取六路電流。這些是購買理由與功能評價，不是保護觸發實測。',
-        'cons': 'Reddit 買家無法只靠 RM1200e 名稱分辨 2023、2025 舊代與第二代 PinProtect 版，且遇到官網價格由 204.99 美元變為 279.99 美元、延至 11 月出貨；CORSAIR 人員需以 CP-9020316／CP-9020317 料號協助辨識。TechPowerUp、ComputerBase 與 Hardwareluxx 留言另擔心為接頭問題額外付費、PSU 端監控看不到 GPU 接頭局部溫度、紅色 LED 在封閉機殼內不易看見，以及切斷 GPU 可能造成遊戲中斷或未儲存資料遺失。目前沒有擁有者觸發、熔毀或長期使用資料。',
-        'actions': 'P0：在產品名稱、包裝與通路頁統一標示 PinProtect 世代、CP 料號與支援功能，並避免同名舊代混售。P1：公開逐 pin 門檻、量測精度、反應時間、異常恢復邏輯及接觸不良故障注入測試；清楚說明它只偵測電流、不直接量測接頭溫度。P1：在 GPU 切斷前加入可辨識的蜂鳴警示與可匯出事件記錄，並說明 iCUE 未執行時的硬體保護、保固與資料保存行為。',
-        'sources': [
-            ('RM1200e 第二代料號、價格與供貨討論', 'https://www.reddit.com/r/Corsair/comments/1xdndw4/new_rme_psu_with_12v2x6_perpin_overcurrent/'),
-            ('RM1200e PinProtect TechPowerUp 完整討論', 'https://www.techpowerup.com/forums/threads/corsair-launches-rm1200e-power-supply-with-built-in-pinprotect-gpu-ocp.353971/'),
-            ('ComputerBase 兩頁完整討論', 'https://www.computerbase.de/forum/threads/corsair-axi-hxi-und-rme-netzteile-schuetzen-12v-2x6-anschluss.2272561/'),
-            ('Hardwareluxx 警示方式討論', 'https://www.hardwareluxx.de/community/threads/thermalprotect-pinprotect-und-pinprotect-corsair-zeigt-schutzl%C3%B6sungen-f%C3%BCr-12v-2x6-problematik.1379683/'),
-            ('內建 PSU 與外接監控器比較', 'https://www.reddit.com/r/buildapc/comments/1x9km8a/whats_the_latest_on_12v_gpu_connectors/'),
+            ('Equalizer 與逐 pin 監控邊界留言', 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5815128'),
+            ('Buildzoid 評論影片、作者補充與 Reddit 討論', 'https://www.reddit.com/r/pcmasterrace/comments/1xhif02/buildzoid_do_not_buy_the_asus_rog_equalizer_cable/'),
         ],
     },
 }
@@ -3778,10 +3863,10 @@ def merged_new_sources(old_fragment, current_fragment):
 pm_cards = ''.join(
     '<article class="pm-product"><div class="pm-product-head"><div><span class="pm-kicker">產品評價</span><h3>{keyword} {row_new}</h3></div>'
     '<span class="evidence">{strength}</span></div><div class="pm-aspects">'
-    '<section class="pm-aspect pm-positive"><h4>優點／使用價值</h4>{pros}{merged_pros}</section>'
-    '<section class="pm-aspect pm-negative"><h4>缺點／使用疑慮</h4>{cons}{merged_cons}</section>'
-    '<section class="pm-aspect pm-action"><h4>改善方向</h4>{actions}{merged_actions}</section></div>'
-    '<footer class="pm-evidence"><a href="{url}" target="_blank" rel="noopener">查看既有依據</a>{merged_sources}</footer></article>'.format(
+    '<section class="pm-aspect pm-positive"><h4>優點／使用價值</h4><div class="pm-summary-label">累積摘要</div>{pros}{current_pros}</section>'
+    '<section class="pm-aspect pm-negative"><h4>缺點／使用疑慮</h4><div class="pm-summary-label">累積摘要</div>{cons}{current_cons}</section>'
+    '<section class="pm-aspect pm-action"><h4>改善方向</h4><div class="pm-summary-label">累積摘要</div>{actions}{current_actions}</section></div>'
+    '<footer class="pm-evidence"><a href="{url}" target="_blank" rel="noopener">查看摘要依據</a>{current_sources}</footer></article>'.format(
         keyword=escape(product_display_names[k]),
         row_new='<span class="new-badge">New!</span>' if k in pm_weekly_updates else '',
         pros=pm_points(pm_info[k][0]),
@@ -3789,22 +3874,10 @@ pm_cards = ''.join(
         actions=pm_points(pm_info[k][2]),
         strength=escape(pm_info[k][3]),
         url=escape(pm_info[k][4], quote=True),
-        merged_pros=merged_new_content(
-            previous_evaluation_parts.get(product_display_names[k], {}).get('pros', ''),
-            pm_delta(pm_weekly_updates.get(k, {}).get('pros', ''))
-        ),
-        merged_cons=merged_new_content(
-            previous_evaluation_parts.get(product_display_names[k], {}).get('cons', ''),
-            pm_delta(pm_weekly_updates.get(k, {}).get('cons', ''))
-        ),
-        merged_actions=merged_new_content(
-            previous_evaluation_parts.get(product_display_names[k], {}).get('actions', ''),
-            pm_delta(pm_weekly_updates.get(k, {}).get('actions', ''))
-        ),
-        merged_sources=merged_new_sources(
-            previous_evaluation_parts.get(product_display_names[k], {}).get('sources', ''),
-            pm_weekly_sources(pm_weekly_updates.get(k, {}).get('sources', []))
-        ),
+        current_pros=pm_delta(pm_weekly_updates.get(k, {}).get('pros', '')),
+        current_cons=pm_delta(pm_weekly_updates.get(k, {}).get('cons', '')),
+        current_actions=pm_delta(pm_weekly_updates.get(k, {}).get('actions', '')),
+        current_sources=pm_weekly_sources(pm_weekly_updates.get(k, {}).get('sources', [])),
     ) for k in kw
 )
 
@@ -3813,7 +3886,7 @@ REPORT_VERSION = 'v1.6'
 V12_UPDATED_AT = '2026-08-19 14:45:56 Asia/Taipei'
 
 # 只讓本次才新增的追蹤產品顯示 New!；版本號依使用者要求暫不變更。
-new_keywords = {'VGA 12+4PIN OCP Dongle', 'PinProtect／PinProtect+'}
+new_keywords = {'XTREME Power Guard'}
 
 # 版本紀錄（架構變動：新增論壇／關鍵字／版型調整）與內容更新紀錄（每次查核跑了什麼、
 # 找到什麼）分成兩份清單呈現，避免版本號被日常內容更新灌水，也讓兩種資訊各自好找。
@@ -3824,6 +3897,11 @@ version_history = [
     ('v1.2', V12_UPDATED_AT, '新增 Hardwareluxx、ComputerBase、PCGH Extreme 與 Overclockers UK 四個論壇來源。'),
 ]
 update_log = [
+    ('2026-10-29', '「四、使用者評價與改善方向」改為「累積摘要＋本次新增」：保留 A 版優點、缺點、改善方向三欄，將歷次證據整併為精簡結論，不再逐週重複堆疊前版 New!；完整個案、數值與來源仍保留於第五節搜尋結果明細。版本依既定規則維持 v1.6，待使用者確認後再進版。'),
+    ('2026-10-29', '第二次漏收修正：補收 r/pcmasterrace 的 Buildzoid／ROG Equalizer 媒體評論串，讀取 Reddit 主文與可見留言、YouTube 影片頁 TL;DW／作者置頂留言；影片無可用逐字稿，因此未把頁面未顯示的論證細節寫入摘要。漏收原因是前次依時間檢視只固定掃 r/MSI_Gaming 與 r/ThermalGrizzly，未涵蓋 r/pcmasterrace，且 relevance 索引未即時帶出。固定時間序清單已擴大到 r/pcmasterrace、r/buildapc、r/ASUSROG、r/nvidia，並新增 Buildzoid／AHOC、NVIDIA Octopus 與 per-pin monitoring nerfed／disabled 等媒體評論詞。'),
+    ('2026-10-29', 'Reddit：補收 6 篇逐篇核讀的唯一討論。Safeguard+ 實際在約 5 秒負載後對 pin 2＝0A 發出不平衡警報，換線與 PSU 插孔無效，最後確認 RTX 5090 接頭 sense pin 物理斷裂；另收錄一件隨卡轉接線與 RTX 5090 接頭燒損的 RMA 案例，已以「🔥 接頭燒損／熔毀」特別標示。WireView 新資料包括 4A／10 秒自動關機觸發、過流／不平衡換線後解決，以及自動關機接線無法使用且測試不足；ROG Equalizer 媒體評論與使用者觀點另行標示，不寫成擁有者實測。'),
+    ('2026-10-29', '漏收修正：前版雖列 Safeguard+ 別名，但實際流程沒有強制檢視 r/MSI_Gaming 最新貼文及 5090／RMA／0A／broken pin 等事故詞，Reddit relevance 排序未穩定帶出指定貼文。現已把兩個子版的依時間檢視、高風險詞與指定 URL 納入固定搜尋／產生器對帳，並加入 SaveGuard+ 常見誤拼、完整 Ai1300TS／Ai1600TS 型號與 current imbalance 情境。'),
+    ('2026-10-29', 'TechPowerUp：以登入 Chrome 核讀 10 月 26 日後的 12V-2x6／WireView／Safeguard 結果，新增 XPG CORE REACTOR III Gold／XTREME Power Guard 發表串（0 回覆，僅列官方功能）及 WireView 搭配 ThermalProtect 的後續量測。Tom’s Hardware、ComputerBase、Hardwareluxx、Overclockers UK、PCGH Extreme、Chiphell、NGA玩家社區與百度貼吧以同日期界線及產品／事故詞補查公開可讀結果，本輪未找到可新增且已完整核讀的唯一討論；搜尋空白不解讀為沒有討論。'),
     ('2026-10-27', '新增 CORSAIR PinProtect／PinProtect+ 為第 14 個追蹤產品；依官方資料確認兩者皆整合於 PSU、只偵測六路 +12V 電流，不直接量測溫度。PinProtect 固定常駐且預設異常持續 30 秒後使 GPU 停止取電；PinProtect+ 另有 iCUE 即時讀值、通知、記錄與可調門檻／10～180 秒延遲。版本依使用者規則維持 v1.6，待確認後再進版。'),
     ('2026-10-27', 'PinProtect 專項搜尋：逐篇核讀 Reddit 第二代 RM1200e 料號／價格／供貨討論、TechPowerUp RM1200e PinProtect 發表串與 8 則回覆、ComputerBase 兩頁 32 則留言、Hardwareluxx 完整討論，以及既有 Reddit／Chiphell 比較串。新增 4 篇唯一明細並重分類 4 篇既有明細；沒有擁有者實際觸發、燒毀或熔毀案例。'),
     ('2026-10-27', '新增 Super Flower（振華）VGA 12+4PIN 過電流保護轉接線／OCP Dongle 為第 13 個追蹤產品；依官方頁確認它是 Adapter 線材、只偵測六路 +12V 電流，不宣稱溫度監控。逐篇核讀 TechPowerUp 25 則貼文／留言及 Reddit 討論，整理門檻、180 秒等待、黑畫面辨識、額外兩個接頭、相容性、供貨與保固疑慮；官方未公開黑畫面保護電路，不寫成已確認切斷 GPU 電源。'),
@@ -3935,7 +4013,7 @@ section{{margin:20px 0;scroll-margin-top:16px}} h2{{font-size:17px;border-left:4
 .product-grid{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}} .product-card{{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:13px 15px}} .product-card:hover{{border-color:#b8caf0;box-shadow:0 3px 10px rgba(35,52,78,.05)}} .product-head{{display:flex;gap:12px;justify-content:space-between;align-items:flex-start;margin-bottom:7px}} .product-head h3{{font-size:15.5px;line-height:1.25;margin:2px 0 0;color:#183f83}} .product-vendor{{display:block;color:var(--muted);font-size:11.5px;font-weight:600}} .product-type{{max-width:48%;background:#f0f4fa;color:#4c5e78;border-radius:7px;padding:4px 7px;font-size:11px;line-height:1.35;text-align:right}} .product-card p{{margin:0;color:#374151;line-height:1.6}}
 .product-meta{{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 9px}} .product-meta span{{display:inline-flex;gap:5px;align-items:center;border:1px solid #d8e1ee;border-radius:999px;background:#f8fafc;color:#334155;padding:3px 8px;font-size:11.5px}} .product-meta b{{color:#1d4ed8;font-size:10.5px}}
 .evidence{{display:inline-block;color:#7c2d12;background:#ffedd5;border-radius:6px;padding:3px 8px;font-size:11.5px;white-space:nowrap}} .pm-priorities{{display:grid;grid-template-columns:repeat(3,minmax(230px,1fr));gap:10px;margin:10px 0 14px}} .pm-card{{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:11px 13px}} .pm-card b{{display:block;margin-bottom:4px;color:#1d4ed8}}
-.pm-products{{display:grid;gap:14px}} .pm-product{{background:var(--card);border:1px solid #d9e0ea;border-radius:12px;overflow:hidden;box-shadow:0 3px 12px rgba(35,52,78,.05)}} .pm-product-head{{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 16px;background:linear-gradient(135deg,#f5f8ff,#fff);border-bottom:1px solid var(--line)}} .pm-product-head h3{{display:flex;align-items:center;gap:8px;margin:2px 0 0;font-size:17px;color:#173b7a}} .pm-kicker{{font-size:10.5px;font-weight:700;letter-spacing:.08em;color:var(--muted)}} .pm-aspects{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}} .pm-aspect{{margin:0;padding:14px 16px;border-right:1px solid var(--line)}} .pm-aspect:last-child{{border-right:0}} .pm-aspect h4{{margin:0 0 9px;padding:0 0 7px;border-bottom:2px solid;font-size:13px}} .pm-positive h4{{color:#166534;border-color:#86c99a}} .pm-negative h4{{color:#991b1b;border-color:#efaaaa}} .pm-action h4{{color:#1d4ed8;border-color:#9ab8f5}} .pm-list{{margin:0;padding-left:18px;color:#374151}} .pm-list li{{margin:0 0 7px;padding-left:2px;line-height:1.62}} .pm-list li:last-child{{margin-bottom:0}} .pm-list li::marker{{color:#8090a8}} .pm-empty{{margin:0;color:var(--muted);font-style:italic}} .pm-new{{margin-top:11px;padding:10px 11px;background:#fff8ed;border:1px solid #fed7aa;border-radius:8px}} .pm-new-title{{display:flex;align-items:center;gap:6px;margin-bottom:7px;color:#9a4b08;font-size:12px}} .pm-new .pm-list{{color:#533b26}} .pm-history-group{{margin-top:9px}} .pm-history-group>b{{display:block;margin-bottom:5px;color:#7c4a18}} .pm-history-group .new-badge{{margin-right:5px}} .pm-new-source{{margin-top:7px;font-size:12px;line-height:1.7}} .pm-new-source>.new-badge{{margin-right:5px}} .pm-new-source>b{{color:#9a4b08}} .pm-evidence{{display:flex;align-items:flex-start;gap:12px;padding:10px 16px;background:#fafbfc;border-top:1px solid var(--line);font-size:12px}} .pm-evidence>a{{font-weight:600;white-space:nowrap}} .pm-evidence .pm-new-source{{margin:0;padding-left:12px;border-left:1px solid var(--line)}}
+.pm-products{{display:grid;gap:14px}} .pm-product{{background:var(--card);border:1px solid #d9e0ea;border-radius:12px;overflow:hidden;box-shadow:0 3px 12px rgba(35,52,78,.05)}} .pm-product-head{{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 16px;background:linear-gradient(135deg,#f5f8ff,#fff);border-bottom:1px solid var(--line)}} .pm-product-head h3{{display:flex;align-items:center;gap:8px;margin:2px 0 0;font-size:17px;color:#173b7a}} .pm-kicker{{font-size:10.5px;font-weight:700;letter-spacing:.08em;color:var(--muted)}} .pm-aspects{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}} .pm-aspect{{margin:0;padding:14px 16px;border-right:1px solid var(--line)}} .pm-aspect:last-child{{border-right:0}} .pm-aspect h4{{margin:0 0 9px;padding:0 0 7px;border-bottom:2px solid;font-size:13px}} .pm-summary-label{{margin:0 0 7px;font-size:10.5px;font-weight:700;letter-spacing:.04em;color:var(--muted)}} .pm-positive h4{{color:#166534;border-color:#86c99a}} .pm-negative h4{{color:#991b1b;border-color:#efaaaa}} .pm-action h4{{color:#1d4ed8;border-color:#9ab8f5}} .pm-list{{margin:0;padding-left:18px;color:#374151}} .pm-list li{{margin:0 0 7px;padding-left:2px;line-height:1.62}} .pm-list li:last-child{{margin-bottom:0}} .pm-list li::marker{{color:#8090a8}} .pm-empty{{margin:0;color:var(--muted);font-style:italic}} .pm-new{{margin-top:11px;padding:10px 11px;background:#fff8ed;border:1px solid #fed7aa;border-radius:8px}} .pm-new-title{{display:flex;align-items:center;gap:6px;margin-bottom:7px;color:#9a4b08;font-size:12px}} .pm-new .pm-list{{color:#533b26}} .pm-history-group{{margin-top:9px}} .pm-history-group>b{{display:block;margin-bottom:5px;color:#7c4a18}} .pm-history-group .new-badge{{margin-right:5px}} .pm-new-source{{margin-top:7px;font-size:12px;line-height:1.7}} .pm-new-source>.new-badge{{margin-right:5px}} .pm-new-source>b{{color:#9a4b08}} .pm-evidence{{display:flex;align-items:flex-start;gap:12px;padding:10px 16px;background:#fafbfc;border-top:1px solid var(--line);font-size:12px}} .pm-evidence>a{{font-weight:600;white-space:nowrap}} .pm-evidence .pm-new-source{{margin:0;padding-left:12px;border-left:1px solid var(--line)}}
 .new-badge{{display:inline-block;padding:2px 7px;border-radius:999px;background:#dc2626;color:#fff;font-size:11px;font-weight:700;vertical-align:1px}} .revision-history{{margin-top:26px;padding:13px 16px;background:var(--card);border:1px solid var(--line);border-radius:10px}} .revision-history h2{{margin:0 0 8px;font-size:15px}} .revision-history ul{{margin:0;padding-left:20px}} .revision-history b{{color:#1d4ed8}}
 .filters{{display:grid;gap:10px;margin:0 0 12px;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:10px}} .filter-group{{display:grid;grid-template-columns:62px 1fr;gap:10px;align-items:start}} .filter-label{{padding-top:6px;font-size:12px;color:var(--muted);font-weight:600}} .chips{{display:flex;flex-wrap:wrap;gap:7px}} .filter-chip{{border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);padding:5px 11px;font:inherit;font-size:12.5px;cursor:pointer}} .filter-chip:hover{{border-color:#93b4f4;background:#f5f8ff}} .filter-chip.active{{border-color:var(--accent);background:var(--accent);color:#fff}} .new-filter{{color:#b91c1c;border-color:#fecaca;font-weight:700}} .new-filter.active{{border-color:#b91c1c;background:#dc2626;color:#fff}} .result-count{{color:var(--muted);font-size:12.5px;text-align:right}} tr[hidden]{{display:none}}
 .load-more-row{{display:flex;justify-content:center;padding:14px 0}} .load-more-btn{{border:1px solid var(--accent);border-radius:999px;background:#fff;color:var(--accent);padding:8px 22px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}} .load-more-btn:hover{{background:var(--accent);color:#fff}} .load-more-btn[hidden]{{display:none}}
@@ -3951,7 +4029,7 @@ section{{margin:20px 0;scroll-margin-top:16px}} h2{{font-size:17px;border-left:4
 <section><h2>三、關鍵字功能與有效結果數</h2><div class="tblbox"><table><thead><tr><th>關鍵字</th><th>廠商</th><th>產品類別</th><th>功能說明</th><th>搜尋別名／型號</th><th>有效明細數</th><th>資料來源</th></tr></thead><tbody>{kw_rows}</tbody></table></div></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
 <section id="reviews"><h2>四、使用者評價與改善方向</h2>
-<div class="note"><b>判讀規則：</b>「優點／缺點」只整理實際讀到的使用者經驗與看法；產品發布文字不當成使用者評價。「改善方向」是由已讀痛點轉換成的產品需求，不代表留言者原句。單一個案、跨論壇重複轉貼與未驗證圖片不推論為普遍結果；留言者對故障原因的推測不寫成事實；正反經驗並列；沒有使用者實測的產品明確標示證據不足。表格內的 <span class="new-badge">New!</span> 代表該句依本版新增貼文／留言補入，並於證據欄列出本週來源；沒有新證據的產品不新增評價。<br><b>優先等級：</b>P0＝最高優先，涉及安全、硬體損壞或核心保護失效；P1＝重要，影響可靠性、驗證能力或安裝使用體驗；P2＝一般，影響價格合理性、相容性或使用便利性，可排入後續改善。</div>
+<div class="note"><b>判讀規則：</b>「優點／缺點」只整理實際讀到的使用者經驗與看法；產品發布文字不當成使用者評價。「改善方向」是由已讀痛點轉換成的產品需求，不代表留言者原句。單一個案、跨論壇重複轉貼與未驗證圖片不推論為普遍結果；留言者對故障原因的推測不寫成事實；正反經驗並列；沒有使用者實測的產品明確標示證據不足。「累積摘要」將歷次證據整併為精簡結論，不逐週重複列出前版 New!；本版新增證據另以 <span class="new-badge">New!</span>「本次新增」標示。完整個案、數值與來源保留於第五節搜尋結果明細。<br><b>優先等級：</b>P0＝最高優先，涉及安全、硬體損壞或核心保護失效；P1＝重要，影響可靠性、驗證能力或安裝使用體驗；P2＝一般，影響價格合理性、相容性或使用便利性，可排入後續改善。</div>
 <div class="pm-priorities">
   <div class="pm-card"><b>P0｜保護後的自動處置</b>使用者不只需要警告，也希望能在異常時降功率或關機；應明確定義門檻、反應時間與失效安全模式。</div>
   <div class="pm-card"><b>P0｜接頭本身的可靠性</b>額外轉接點、重量、插拔循環與 PSU／GPU 兩端失效，都是重複出現的疑慮。</div>
@@ -3975,9 +4053,9 @@ section{{margin:20px 0;scroll-margin-top:16px}} h2{{font-size:17px;border-left:4
 <div class="note">本次問題標籤已逐筆讀取主文與可見留言後人工覆核；只有來源明確提到的問題才標示。驗證頁、空白頁或只有一般規格／風險討論者不把推測寫成故障；「—」表示本筆未讀到可確認的產品問題，不代表產品絕對沒有問題。</div><div class="tblbox"><table id="detailTable"><thead><tr><th>發文日期（新到舊）</th><th>來源</th><th>關鍵字</th><th>命中位置</th><th>標題</th><th>問題標籤</th><th>主文內容（發生什麼）</th><th>留言結論／使用者評價</th><th>連結</th></tr></thead><tbody>{detail}</tbody></table></div>
 <div class="load-more-row"><button type="button" id="loadMoreBtn" class="load-more-btn" hidden>顯示更多</button></div></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
-<section class="muted"><h2>六、搜尋來源狀態</h2><ul><li>Reddit：納入 {sum(r['source']=='Reddit' for r in rows)} 篇唯一討論串；最新可核對結果為 {latest_reddit_date}。本日合併更新相較 2026-10-20 基準新增／補收 12 篇；PinProtect 專項增加第二代 RM1200e 與整合式 PSU 比較 2 篇，並把 2 篇既有比較串重分類到 PinProtect／PinProtect+。逐篇展開可見留言，跨版重貼排除。</li><li>Tom's Hardware Forums：納入 {sum(r['source']=="Tom's Hardware Forums" for r in rows)} 筆；補查 PinProtect、RM1200e、HX1000i SHIFT CRYSTAL 與 12V-2x6 事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>TechPowerUp Forums：納入 {sum(r['source']=='TechPowerUp Forums' for r in rows)} 筆；Chrome 登入狀態正常，除振華 OCP Dongle 外，新增完整核讀的 RM1200e PinProtect 發表串與 8 則回覆；Computex 串的 5 則回覆皆在討論機殼，未誤列為 PinProtect 使用評價。</li><li>ComputerBase Forum：納入 {sum(r['source']=='ComputerBase Forum' for r in rows)} 筆；PinProtect 專項補收 2026-06-02 的兩頁、32 則留言完整討論，產品功能、技術觀點與使用者疑慮分開記錄。</li><li>Hardwareluxx Forum：納入 {sum(r['source']=='Hardwareluxx Forum' for r in rows)} 筆；重新完整核讀並重分類既有 2026-06-05 PinProtect／PinProtect+ 討論，沒有擁有者觸發案例。</li><li>Overclockers UK Forums：納入 {sum(r['source']=='Overclockers UK Forums' for r in rows)} 筆；PinProtect 專項補查未找到可新增且已完整核讀的唯一討論。</li><li>PC Games Hardware Extreme：納入 {sum(r['source']=='PC Games Hardware Extreme' for r in rows)} 筆；PinProtect 專項補查未找到可新增且已完整核讀的唯一討論。</li><li>NGA玩家社區：納入 {sum(r['source']=='NGA玩家社區' for r in rows)} 筆 2025-07-01 以後資料；以 PinProtect、RM1200e、海盜船逐針腳／單 pin 過流保護等詞補查，未把空白或不穩定搜尋結果當成沒有討論。</li><li>Chiphell：納入 {sum(r['source']=='Chiphell' for r in rows)} 筆 2025-07-01 以後資料；重新核讀並重分類既有 2026-07-20 海盜船保護方案討論，沒有擁有者觸發案例。</li><li>百度貼吧：納入 {sum(r['source'].startswith('百度貼吧') for r in rows)} 筆 2025-07-01 以後資料；以 PinProtect、RM1200e、海盜船逐針腳／單 pin 過流保護等詞補查公開可讀結果，未找到可新增且已完整核讀的唯一討論。</li></ul></section>
+<section class="muted"><h2>六、搜尋來源狀態</h2><ul><li>Reddit：納入 {sum(r['source']=='Reddit' for r in rows)} 篇唯一討論串；最新可核對結果為 {latest_reddit_date}。相較 2026-10-27 基準新增／補收 {sum(r['source']=='Reddit' and r['is_new'] for r in rows)} 篇，逐篇讀取主文與本次可見留言；其中一件 RTX 5090 接頭燒損以火焰標籤特別標示，跨版重貼排除。</li><li>Tom's Hardware Forums：納入 {sum(r['source']=="Tom's Hardware Forums" for r in rows)} 筆；補查 2026-10-26 後產品名、完整型號與 12V-2x6 事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>TechPowerUp Forums：納入 {sum(r['source']=='TechPowerUp Forums' for r in rows)} 筆；登入 Chrome 可正常搜尋，新增 XPG CORE REACTOR III／XTREME Power Guard 零回覆發表串，以及 WireView／ThermalProtect 後續量測；官方功能與使用者留言分開記錄。</li><li>ComputerBase Forum：納入 {sum(r['source']=='ComputerBase Forum' for r in rows)} 筆；補查 2026-10-26 後產品與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>Hardwareluxx Forum：納入 {sum(r['source']=='Hardwareluxx Forum' for r in rows)} 筆；補查 2026-10-26 後產品與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>Overclockers UK Forums：納入 {sum(r['source']=='Overclockers UK Forums' for r in rows)} 筆；補查 2026-10-26 後產品與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>PC Games Hardware Extreme：納入 {sum(r['source']=='PC Games Hardware Extreme' for r in rows)} 筆；補查 2026-10-26 後產品與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>NGA玩家社區：納入 {sum(r['source']=='NGA玩家社區' for r in rows)} 筆 2025-07-01 以後資料；補查產品名、在地稱呼與 12V-2x6 燒損詞，未把空白或不穩定搜尋結果當成沒有討論。</li><li>Chiphell：納入 {sum(r['source']=='Chiphell' for r in rows)} 筆 2025-07-01 以後資料；補查 2026-10-26 後產品名、在地稱呼與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>百度貼吧：納入 {sum(r['source'].startswith('百度貼吧') for r in rows)} 筆 2025-07-01 以後資料；補查產品名、在地稱呼與 12V-2x6 燒損詞，未找到可新增且已完整核讀的唯一討論。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
-<section class="muted"><h2>七、Reddit 精確度與廣度確認</h2><ul><li><b>範圍：</b>以 {period_start_label}～{period_end_label} 為日期界線，交叉查找產品全名、常見拼法、完整 PSU／線材型號、配件料號、per-pin／telemetry／NTC／thermistor／保護功能詞、12V-2x6／12VHPWR 事故語句，以及標題沒有產品名的主文與留言。</li><li><b>固定查詢線：</b>{escape('；'.join(reddit_required_query_lanes))}。PinProtect 另加入 RM1200e Gen 2、CP-9020316／CP-9020317、HX1000i SHIFT CRYSTAL、per-pin OCP 與海盜船逐針腳／單 pin 過流保護。本次同時讀取貼文與 Comments 分頁。</li><li><b>本次覆蓋稽核：</b>本日合併更新相較 2026-10-20 基準新增／補收 12 篇 Reddit 唯一討論；PinProtect 專項新增 2 篇唯一明細並重分類 2 篇既有比較串。納入 URL 由產生器自動對帳，主文與可見留言分開摘要。</li><li><b>漏網原因與修正：</b>只搜尋 PinProtect 會漏掉標題只寫 RM1200e 或泛稱 12V GPU 接頭、但內文／留言才出現功能名稱的文章；因此固定加入完整 PSU 型號、料號、per-pin OCP 與 Comments 分頁交叉查找。</li><li><b>精確度：</b>實際持有／安裝、購買考量、官方功能、留言觀點與推測分開記錄；本次沒有 PinProtect／PinProtect+ 擁有者觸發、燒毀或熔毀案例，不能把推薦或發布資訊寫成保護效果已驗證。</li><li><b>限制：</b>Reddit 搜尋可能延遲索引、動態載入或省略部分回覆；留言摘要只代表本次實際可見內容，不把未載入內容或搜尋空白推論為沒有討論。</li></ul></section>
+<section class="muted"><h2>七、Reddit 精確度與廣度確認</h2><ul><li><b>範圍：</b>以 {period_start_label}～{period_end_label} 為日期界線，交叉查找產品全名、常見拼法、完整 PSU／線材型號、配件料號、per-pin／telemetry／NTC／thermistor／保護功能詞、12V-2x6／12VHPWR 事故語句，以及標題沒有產品名的主文與留言。</li><li><b>固定查詢線：</b>{escape('；'.join(reddit_required_query_lanes))}。Safeguard+ 另加入 SaveGuard+ 常見誤拼、Ai1300TS／Ai1600TS、MSI 5090 RMA、pin 0A／broken pin／current imbalance；ROG Equalizer 另加入 Buildzoid／AHOC、NVIDIA Octopus 與 per-pin monitoring nerfed／disabled。本次同時讀取貼文與 Comments 分頁。</li><li><b>本次覆蓋稽核：</b>相較 2026-10-27 基準新增／補收 {sum(r['source']=='Reddit' and r['is_new'] for r in rows)} 篇 Reddit 唯一討論；納入 URL 由產生器自動對帳，主文、連結媒體頁可見說明與留言分開摘要。</li><li><b>漏網原因與修正：</b>Safeguard+ 與 ROG Equalizer 指定貼文都在本版產生前發布，但前次時間序掃描只固定涵蓋 r/MSI_Gaming／r/ThermalGrizzly；Reddit relevance 索引未穩定帶出 r/pcmasterrace 新串。現已加入 r/pcmasterrace、r/buildapc、r/ASUSROG、r/nvidia 最新貼文及媒體評論詞；這能降低同類漏收，但仍受 Reddit 索引延遲限制。</li><li><b>精確度：</b>實際持有／安裝、購買考量、官方功能、媒體評論、留言觀點與推測分開記錄。本次 Equalizer 串沒有擁有者故障／熔損實測；只把影片頁 TL;DW、作者置頂補充與 Reddit 可見留言寫入，不把缺少逐字稿的影片內容自行補齊。</li><li><b>限制：</b>Reddit 搜尋可能延遲索引、動態載入或省略部分回覆；留言摘要只代表本次實際可見內容，不把未載入內容或搜尋空白推論為沒有討論。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
 <section class="revision-history"><h2>版本紀錄（架構變動）</h2><div class="note" style="margin-top:0">只記錄新增論壇來源、新增／調整追蹤關鍵字、版型或篩選功能調整這類架構層級變動；逐次的查核與新增明細請見下方「內容更新紀錄」。</div><ul>{version_history_rows}</ul></section>
 <section class="revision-history"><h2>內容更新紀錄</h2><div class="note" style="margin-top:0">記錄每次查核實際跑了哪些來源／關鍵字、找到並新增了什麼；不對應版本號，同一版本號下可能有多筆更新紀錄。</div><ul>{update_log_rows}</ul></section>
