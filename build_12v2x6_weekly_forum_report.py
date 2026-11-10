@@ -3033,6 +3033,132 @@ rows.extend([
     },
 ])
 
+# 2026-11-10 增量：Reddit 均已展開本次可見的「其他／更多回覆」並檢查原發文者後續；
+# ComputerBase 已逐頁核讀完整 16 頁留言；其他論壇均已讀取主文與頁面可見回覆。
+rows.extend([
+    {
+        'date': '2026-11-10', 'source': 'Reddit', 'keyword': 'ThermalProtect',
+        'keywords': ['ThermalProtect', 'PinProtect／PinProtect+'], 'match': '內文＋完整留言樹',
+        'title': 'CORSAIR HX1200i 是否能搭配 ThermalProtect／PinProtect',
+        'summary': 'HX1200i 使用者詢問是否能加裝 ThermalProtect。留言確認該 PSU 沒有 PSU 端原生 12V-2x6 插座，因此現行 ThermalProtect 線材不能直接連接；討論改指向具原生插座與 PinProtect 的 RM1200e。',
+        'comments': '原發文者表示 CORSAIR 網站同類型電源供應器頁面很多，卻沒有 ThermalProtect／PinProtect 篩選，難以判斷型號。他在展開回覆後貼出原廠說明，確認 ThermalProtect 與 PinProtect 可同時使用並決定購買；這只證明相容性資訊與購買決定，沒有實際觸發或雙重保護測試。',
+        'url': 'https://www.reddit.com/r/buildapc/comments/1xry4bi/corsair_hx1200i_compatible_with_thermalprotect/'
+    },
+    {
+        'date': '2026-11-09', 'source': 'ComputerBase Forum', 'keyword': 'WireView',
+        'keywords': ['WireView', 'Ampinel', 'PinProtect／PinProtect+'], 'match': '原文＋16 頁留言',
+        'title': 'RTX 5090 單路逐步失效，WireView Pro II 及早發出不平衡與過流警報',
+        'summary': 'ComputerBase 編輯的私人 RTX 5090 搭配 CORSAIR HXi 1200W 原廠線材；WireView Pro II 長期監控數月後，pin 3 先由約 7A 降到 4A、之後曾降到 0A，重插只能暫時恢復。再次遊戲負載時 pin 3 僅約 2A，其餘線路逼近或超過 10A，裝置發出蜂鳴過流警報；使用者立即關閉遊戲，未見接頭熔毀，並購買新線材等待後續驗證。',
+        'comments': '已逐頁核讀 16 頁、307 則留言。原發文者確認顯示卡 Power Limit 100%（575W）且有降壓，認為 WireView 讓他在硬體損壞前看見異常，但也承認若換線後仍重現，WireView 本身仍是待確認因素。其他留言提供正反案例：有人在不到 300W 時由 WireView 警報找到可修正問題；也有人質疑額外接頭、約 100 歐元價格、安裝淨空與保固。此案目前屬「及早警示、根因未定」，不能寫成已證明線材或 WireView 故障。',
+        'url': 'https://www.computerbase.de/forum/threads/kommentar-jetzt-hat-auch-mich-der-12v-2x6-stromstecker-erwischt.2281624/'
+    },
+    {
+        'date': '2026-11-09', 'source': 'ComputerBase Forum', 'keyword': 'Ampinel',
+        'keywords': ['Ampinel'], 'match': '指定留言＋後續回覆',
+        'title': '兩台系統的 Ampinel 舊版接頭使用數月後鬆動，換新版接頭後恢復穩定',
+        'summary': '留言者表示兩台 RTX 5090 系統的 Ampinel 都先穩定數月，之後陸續出現警報；重插只能暫時恢復，換線與換 PSU 也沒有改善。使用者判斷舊裝置在顯示卡端過鬆，Aqua Computer 兩次均先行換貨。',
+        'comments': '留言者比較後指出，新品的接點由銀色改為鍍金、在外殼內的位置較淺且插接更緊；更換後兩台系統滿載差值分別維持約 0.5A 與 0.5～0.7A。這是同一使用者的兩台系統前後經驗，可確認換貨後暫時穩定，但沒有原廠公開改版說明或長期統計。',
+        'url': 'https://www.computerbase.de/forum/threads/kommentar-jetzt-hat-auch-mich-der-12v-2x6-stromstecker-erwischt.2281624/page-9#post-31868314'
+    },
+    {
+        'date': '2026-11-09', 'source': 'ComputerBase Forum', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '指定留言＋回覆',
+        'title': '第一代 WireView 與 RTX 5090 接頭熔融黏死，Thermal Grizzly 提供維修與升級品',
+        'summary': '留言者表示 RTX 5090 一受負載就當機，曾把接頭拉開後短暫恢復約三天；第二次只能用力拆下，確認第一代 WireView 與顯示卡電源接頭因熔融而黏死。使用者承認沒有聽到先前警示聲。',
+        'comments': 'Thermal Grizzly 雖未對第一代 WireView 提供同等接頭保固，仍以專案方式拆解水冷頭、替換顯示卡接座、耗材並測試顯示卡，約一週寄回，另附 WireView Pro II。此案同時呈現「警示未被聽見」的限制與原廠售後正面經驗；不能據此推論 Pro II 有相同的接頭熔融問題。',
+        'url': 'https://www.computerbase.de/forum/threads/kommentar-jetzt-hat-auch-mich-der-12v-2x6-stromstecker-erwischt.2281624/page-10#post-31868403'
+    },
+    {
+        'date': '2026-11-09', 'source': 'PC Games Hardware Extreme', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '內文＋全部可見留言',
+        'title': '雙 RTX Pro 6000 的兩條 12V-2x6 線材外皮碎裂',
+        'summary': '討論串轉述一台雙 RTX Pro 6000 Blackwell 工作站的兩條 12V-2x6 線材外皮皆碎裂，即使顯示卡採較低 Power Limit；頁面沒有提供保護產品的實測資料。',
+        'comments': '13 則可見留言已讀。一名留言者建議安裝 WireView 監控逐路電流、在異常電壓時關機或發出警示，但沒有自己的 WireView 觸發資料；其他留言對環境熱、灰塵、線材材質與案例代表性看法分歧，均無檢測結果。因此此列只作為保護需求與「線材外皮劣化」問題訊號，不把碎裂歸因於 WireView。',
+        'url': 'https://extreme.pcgameshardware.de/threads/zwei-rtx-pro-6000-kabelummantelung-zerbroeselt-an-gpu-und-netzteil.679436/'
+    },
+    {
+        'date': '2026-11-09', 'source': 'Chiphell', 'keyword': 'GPU Safeguard',
+        'keywords': ['GPU Safeguard', 'Titanload'], 'match': '內文＋全部 29 則回覆',
+        'title': '雙 12V-2x6 的 1300W 電源選購：Ai1300TS、MEGA Ti 與強流線方案',
+        'summary': '雙卡使用者把 MSI MPG Ai1300TS 與 FSP MEGA Ti 1350W 列為候選；討論中有人建議昆侖 KE1300P 搭配兩條同品牌強流線，另一名 Ai1600TS 買家明確表示購買主因是 RTX 5090 燒接頭焦慮。',
+        'comments': '原發文者最後選擇較低溢價的 Delta SGM1300W，並計畫第二張卡使用三條獨立 8-pin 轉接；因此本串沒有 Ai1300TS／Ai1600TS 或強流線的保護觸發與逐 pin 資料。另有使用者詢問 MSI 代工與價格，但沒有提出可核對的產品故障。',
+        'url': 'https://www.chiphell.com/thread-2916527-1-1.html'
+    },
+    {
+        'date': '2026-11-08', 'source': 'Reddit', 'keyword': 'GPU Safeguard',
+        'keywords': ['GPU Safeguard'], 'match': '內文＋完整留言樹',
+        'title': 'MSI Afterburner 的 GPU Safeguard+ 六路電流差外掛',
+        'summary': 'Ai1600TS 使用者製作 Afterburner DLL，直接讀取既有 MSI PSU.dll 資料，計算六路 12V-2x6 電流的即時、平均與最大差值，不增加第二套輪詢程式。發文者在約 575W 下回報平均差值約 0.300A，超過 1A 的情況少見且約一秒。',
+        'comments': '已展開所有可見回覆。RTX 4090 使用者回報平均 0.152A、最大 0.422A；有人要求不重啟 Afterburner 即可重設平均／最大值，作者發布 v1.0.4 後，提問者明確回覆可正常運作。雙 12V-2x6 Lightning Z 尚未驗證；另有兩名使用者回報零售通路寄到已拆封或無法開機的 Ai1300TS／Ai1600TS，換購新品後恢復，這屬通路／開箱品質問題，不能推論保護設計失效。',
+        'url': 'https://www.reddit.com/r/MSI_Gaming/comments/1xqa5m4/built_an_msi_afterburner_plugin_to_monitor_12v2x6/'
+    },
+    {
+        'date': '2026-11-08', 'source': 'TechPowerUp Forums', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '指定樓層＋前後留言',
+        'title': 'WireView Pro II 接頭鬆動／負載電壓下降的客服後續仍未解決',
+        'summary': '先前回報 WireView Pro II 接頭偏鬆、負載下 GPU 端電壓由 12.1V 降到 11.7V 的使用者，在 11 月 8 日補上可見晃動的影片，並表示若原廠仍判定正常，將再升級處理。',
+        'comments': '前一輪客服轉述與 11 月 3 日量測都已讀；本次新回覆只證明使用者仍認為接頭過鬆並持續交涉，沒有原廠檢測報告、換貨結果或熔毀。另一則新回覆僅提到 Seasonic Prime TX Noctua Edition，與 WireView 問題無新證據。',
+        'url': 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5820847'
+    },
+    {
+        'date': '2026-11-07', 'source': 'Reddit', 'keyword': 'ThermalProtect',
+        'keywords': ['ThermalProtect', 'GPU Safeguard', 'WireView'], 'match': '內文＋完整留言樹',
+        'title': 'ThermalProtect 與 Ai1600TS 原生線材的逐 pin 電流分配比較',
+        'summary': '同一張顯示卡以約 575W FurMark 各跑 12～14 分鐘，使用者回報 MSI Ai1600TS 原生 Safeguard+ 線材平均差值 0.272A、CORSAIR ThermalProtect 0.321A，相差 0.049A；兩者最大差值皆為 0.625A。兩次測試使用 PSU 不同的 12V-2x6 插座，作者明確表示差異可能在誤差範圍。',
+        'comments': '原發文者三天後回報 ThermalProtect 仍維持平均分配。其他擁有者表示 ThermalProtect 經 WireView Pro II 監看也很平均；另一套 Lian Li 1200W＋WireView Pro II 系統在遊戲中通常 41～42°C、最高 45°C，Hogwarts Legacy DLSS 5 約 50°C。具體缺點是靠近接頭前約 30mm 較硬，需要預留彎折空間；以上均為個別系統資料。',
+        'url': 'https://www.reddit.com/r/Corsair/comments/1xpsggv/corsair_thermalprotect_12v2x6_cable_has_excellent/'
+    },
+    {
+        'date': '2026-11-06', 'source': 'Reddit', 'keyword': 'Ampinel',
+        'keywords': ['Ampinel'], 'match': '內文＋完整留言樹',
+        'title': 'Ampinel telemetry 支援進入 linux-next',
+        'summary': '貼文指出 Linux 驅動更新已在 linux-next 加入 Aqua Computer Ampinel 唯讀 telemetry，可讀總功率、總電流、輸入電壓、熱點溫度與六路電流。',
+        'comments': '留言只有玩笑，沒有 Ampinel 擁有者在 Linux 上實測；貼文也明確說尚未進入 mainline、沒有合併日期。因此只能列為軟體生態進展，不能寫成目前所有 Linux 發行版已原生支援。',
+        'url': 'https://www.reddit.com/r/linux_gaming/comments/1xp6bj8/ampinel_telemetry_support_coming_to_the_linux/'
+    },
+    {
+        'date': '2026-11-05', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView', 'GPU Safeguard', 'ThermalProtect'], 'match': '內文＋完整留言樹',
+        'title': '12V-2x6 熔毀預防 PSA 中的 WireView／PSU 監控實例',
+        'summary': '主文整理一般性預防做法，並把 450W 以上顯示卡搭配 WireView 或逐 pin 監控 PSU 視為值得考慮；這是作者建議，不是新的熔毀實驗。',
+        'comments': 'Ai1600TS 使用者回報約 575W FurMark 14 分鐘時平均差值低於 0.3A、最大 0.625A，並自訂 9A 單路、1A 差值與 2 秒延遲；超限時由 Afterburner 套用從 600W 降到 200W 的自訂設定，這是使用者配置，不是 PSU 預設斷電證據。留言也提到 WireView 增加接頭、產熱與約 3～4cm 彎折空間；未附來源的故障率估計與品牌指控未納入結論。',
+        'url': 'https://www.reddit.com/r/pcmasterrace/comments/1xo8pep/psa_spotting_and_preventing_melted_12vhpwr_12v2x6/'
+    },
+    {
+        'date': '2026-11-05', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '內文＋完整留言樹',
+        'title': '2×8-pin 轉 12V-2x6 線材是否仍適合加裝 WireView',
+        'summary': '使用者因第三條 PSU 線損壞，暫時以一條獨立 8-pin 加一條尾端分接線供應顯示卡，並詢問接上原廠 2×8-pin 轉 12V-2x6 轉接線後是否仍適合加裝 WireView。',
+        'comments': '可見留言均已刪除，沒有留下可核對答案，也沒有負載、逐 pin 或溫度資料。此列只保留未解的相容性／接線疑問，不提供安全建議。',
+        'url': 'https://www.reddit.com/r/pcmasterrace/comments/1xogg2s/wireview_and_the_8pin_to_12v_adapter_question/'
+    },
+    {
+        'date': '2026-11-04', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView', 'Ampinel'], 'match': '內文＋完整留言樹',
+        'title': 'WireView Pro II 安裝展示中的風扇方向與 Ampinel 溫度回報',
+        'summary': '主文是 WireView Pro II 安裝完成展示，發文者表示裝置風扇可協助內部散熱；沒有逐 pin 或告警資料。',
+        'comments': '一名 Ampinel 擁有者回報 600W FurMark 下裝置峰值 54°C，屬單一系統；其他留言爭論 WireView 風扇方向是否受到顯示卡排風影響，以及 Astral 已有逐 pin 監控時是否值得增加外接接頭。這些是安裝經驗與架構觀點，沒有故障或保護觸發。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1xnbxlq/got_the_wireview_pro_2_to_fit_like_a_glove/'
+    },
+    {
+        'date': '2026-11-04', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '內文＋完整留言樹',
+        'title': 'WireView Pro II 距離玻璃僅 1～2mm：淨空、風扇異音與機械壓力',
+        'summary': 'NZXT H9 Flow／MSI RTX 5090 使用者安裝 WireView Pro II 後，裝置距玻璃只剩約 1～2mm；加上兩個 2mm 緩衝物後玻璃外凸並對裝置與顯示卡施力，最後認為換機殼較合適。',
+        'comments': '另一名使用者約 3mm 淨空，表示風扇在高溫時約 50% 仍可運作但不理想；另有人因原廠風扇出現明顯異音而停用，改裝兩顆 Noctua 40mm 風扇。留言也建議改用 Wired 版置於顯示卡上方，原發文者才發現直插版與 Wired 版差異。沒有原廠溫度測試或保固結論。',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1xmy5xg/how_close_is_too_close_wireview_pro_ii/'
+    },
+    {
+        'date': '2026-11-03', 'source': 'Reddit', 'keyword': 'WireView',
+        'keywords': ['WireView'], 'match': '內文＋完整留言樹',
+        'title': '整合式前面板接頭搭配 WireView Pro II 的自動關機測試成功',
+        'summary': 'Lian Li B4 使用者擔心整合式前面板接頭無法接上 WireView Pro II 的電源開關關機線；確認接頭只有電源按鈕與 LED 後，把電源按鈕線接入 WireView 路徑。',
+        'comments': '原發文者把溫度門檻調低進行實測，明確回報蜂鳴器響起且電腦成功關機，證明該台系統的自動關機接線可用。留言提醒其他機殼可能需要正確的兩針轉接／pin 對應；另有擁有者表示 WireView 軟體偶爾凍結，因此偏好不依賴軟體的硬體接線。',
+        'resolution_evidence_url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1xms0y0/wireview_pro_2_with_unified_front_panel_connector/',
+        'url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1xms0y0/wireview_pro_2_with_unified_front_panel_connector/'
+    },
+])
+
 # 2026-11-03 增量：以下均已讀取主文／指定樓層與本次頁面可見留言；
 # 搜尋結果頁只有摘要、無法展開全文者不納入。
 rows.extend([
@@ -3126,6 +3252,15 @@ reddit_discovery_audit.extend([
     ('WireView Pro II 疑似量測異常', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xlngrf/update_wireview_pro_ii_and_the_asus_tuf_gaming/', '納入', '兩顆 PSU、四條線材仍重現，改用 Ai1300TS 未見相同不平衡；未送驗'),
     ('5090 防護選購與留言熔毀案例', 'https://www.reddit.com/r/buildapc/comments/1xlzlh2/wireview_pro_2_worth_it_for_a_5090_not_overclocked/', '納入', '留言者明確回報前一張 5090 接頭熔毀並獲 NVIDIA 換卡，但根因資料不足'),
     ('Astral／TempGuard／WireView 選購比較', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xkkh9q/5090_astral_wvp2_worth_it/', '納入', '硬體關機、接頭保固與內建監控取捨；沒有觸發測試'),
+    ('ThermalProtect／PinProtect 相容性', 'https://www.reddit.com/r/buildapc/comments/1xry4bi/corsair_hx1200i_compatible_with_thermalprotect/', '納入', 'HX1200i 不具原生插座；原發文者找到兩種保護可併用的原廠說明'),
+    ('Safeguard+ Afterburner 外掛', 'https://www.reddit.com/r/MSI_Gaming/comments/1xqa5m4/built_an_msi_afterburner_plugin_to_monitor_12v2x6/', '納入', '六路差值統計、v1.0.4 重設功能修正與雙接頭待驗證'),
+    ('ThermalProtect 電流分配', 'https://www.reddit.com/r/Corsair/comments/1xpsggv/corsair_thermalprotect_12v2x6_cable_has_excellent/', '納入', '與 Ai1600TS 同系統比較及三天後續'),
+    ('Ampinel Linux telemetry', 'https://www.reddit.com/r/linux_gaming/comments/1xp6bj8/ampinel_telemetry_support_coming_to_the_linux/', '納入', 'linux-next 支援，尚未進入 mainline'),
+    ('12V-2x6 預防 PSA', 'https://www.reddit.com/r/pcmasterrace/comments/1xo8pep/psa_spotting_and_preventing_melted_12vhpwr_12v2x6/', '納入', 'WireView／逐 pin PSU 建議與 Ai1600TS 自訂降載設定'),
+    ('WireView 8-pin 轉接疑問', 'https://www.reddit.com/r/pcmasterrace/comments/1xogg2s/wireview_and_the_8pin_to_12v_adapter_question/', '納入', '留言已刪除，保留未解接線疑問'),
+    ('WireView 安裝展示', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xnbxlq/got_the_wireview_pro_2_to_fit_like_a_glove/', '納入', '風扇方向與 Ampinel 600W 單機溫度回報'),
+    ('WireView 機殼淨空', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xmy5xg/how_close_is_too_close_wireview_pro_ii/', '納入', '玻璃頂住、風扇異音、Wired 版選擇與機械壓力'),
+    ('WireView 整合式前面板接頭', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xms0y0/wireview_pro_2_with_unified_front_panel_connector/', '納入', '降低門檻後蜂鳴與自動關機實測成功'),
 ])
 
 # Reddit 動態頁面會把後續回覆折疊在「其他 N 則回覆」後方。這份稽核表把
@@ -3172,6 +3307,52 @@ comment_review_audit = {
         'scope': '既有主文與可見留言摘要；本次深層回覆複查時 Reddit 拒絕載入頁面',
         'op_followup_checked': False,
         'resolution': '未確認',
+    },
+    canonical_url('https://www.reddit.com/r/buildapc/comments/1xry4bi/corsair_hx1200i_compatible_with_thermalprotect/'): {
+        'status': '完整', 'complete': True, 'reviewed_at': '2026-11-10',
+        'scope': '主文、全部可見留言及展開回覆',
+        'op_followup_checked': True, 'resolution': '不適用',
+    },
+    canonical_url('https://www.reddit.com/r/MSI_Gaming/comments/1xqa5m4/built_an_msi_afterburner_plugin_to_monitor_12v2x6/'): {
+        'status': '完整', 'complete': True, 'reviewed_at': '2026-11-10',
+        'scope': '主文、全部可見留言及所有「其他回覆」專屬分支',
+        'op_followup_checked': True, 'resolution': '不適用',
+    },
+    canonical_url('https://www.reddit.com/r/Corsair/comments/1xpsggv/corsair_thermalprotect_12v2x6_cable_has_excellent/'): {
+        'status': '完整', 'complete': True, 'reviewed_at': '2026-11-10',
+        'scope': '主文、全部可見留言及原發文者三天後回覆',
+        'op_followup_checked': True, 'resolution': '不適用',
+    },
+    canonical_url('https://www.reddit.com/r/linux_gaming/comments/1xp6bj8/ampinel_telemetry_support_coming_to_the_linux/'): {
+        'status': '完整', 'complete': True, 'reviewed_at': '2026-11-10',
+        'scope': '主文與全部可見留言',
+        'op_followup_checked': True, 'resolution': '不適用',
+    },
+    canonical_url('https://www.reddit.com/r/pcmasterrace/comments/1xo8pep/psa_spotting_and_preventing_melted_12vhpwr_12v2x6/'): {
+        'status': '完整', 'complete': True, 'reviewed_at': '2026-11-10',
+        'scope': '主文、全部可見留言及原發文者回覆',
+        'op_followup_checked': True, 'resolution': '不適用',
+    },
+    canonical_url('https://www.reddit.com/r/pcmasterrace/comments/1xogg2s/wireview_and_the_8pin_to_12v_adapter_question/'): {
+        'status': '完整', 'complete': True, 'reviewed_at': '2026-11-10',
+        'scope': '主文與全部可見留言；留言內容均已刪除',
+        'op_followup_checked': True, 'resolution': '未確認',
+    },
+    canonical_url('https://www.reddit.com/r/ThermalGrizzly/comments/1xnbxlq/got_the_wireview_pro_2_to_fit_like_a_glove/'): {
+        'status': '完整', 'complete': True, 'reviewed_at': '2026-11-10',
+        'scope': '主文、全部可見留言及展開回覆',
+        'op_followup_checked': True, 'resolution': '不適用',
+    },
+    canonical_url('https://www.reddit.com/r/ThermalGrizzly/comments/1xmy5xg/how_close_is_too_close_wireview_pro_ii/'): {
+        'status': '完整', 'complete': True, 'reviewed_at': '2026-11-10',
+        'scope': '主文、全部可見留言及所有「其他回覆」分支',
+        'op_followup_checked': True, 'resolution': '未確認',
+    },
+    canonical_url('https://www.reddit.com/r/ThermalGrizzly/comments/1xms0y0/wireview_pro_2_with_unified_front_panel_connector/'): {
+        'status': '完整', 'complete': True, 'reviewed_at': '2026-11-10',
+        'scope': '主文、全部可見留言及原發文者測試更新',
+        'op_followup_checked': True, 'resolution': '已解決',
+        'evidence_url': 'https://www.reddit.com/r/ThermalGrizzly/comments/1xms0y0/wireview_pro_2_with_unified_front_panel_connector/',
     },
 }
 
@@ -3427,6 +3608,21 @@ ISSUE_TAG_OVERRIDES = {canonical_url(url): tags for url, tags in [
     ('https://www.reddit.com/r/buildapc/comments/1x9km8a/whats_the_latest_on_12v_gpu_connectors/', ['接頭熔損風險討論', '實測不足']),
     ('https://www.computerbase.de/forum/threads/corsair-axi-hxi-und-rme-netzteile-schuetzen-12v-2x6-anschluss.2272561/', ['自動關機／資料損失疑慮', '監控範圍疑慮', '實測不足']),
     ('https://www.hardwareluxx.de/community/threads/thermalprotect-pinprotect-und-pinprotect-corsair-zeigt-schutzl%C3%B6sungen-f%C3%BCr-12v-2x6-problematik.1379683/', ['警示辨識疑慮', '自動關機疑慮', '實測不足']),
+    ('https://www.reddit.com/r/buildapc/comments/1xry4bi/corsair_hx1200i_compatible_with_thermalprotect/', ['相容性疑問', '產品篩選困難', '實測不足']),
+    ('https://www.computerbase.de/forum/threads/kommentar-jetzt-hat-auch-mich-der-12v-2x6-stromstecker-erwischt.2281624/', ['電流不平衡', '單路 0A', '過流警報', '原因未確認']),
+    ('https://www.computerbase.de/forum/threads/kommentar-jetzt-hat-auch-mich-der-12v-2x6-stromstecker-erwischt.2281624/page-9#post-31868314', ['接頭鬆動', '告警／量測異常', '換貨後恢復']),
+    ('https://www.computerbase.de/forum/threads/kommentar-jetzt-hat-auch-mich-der-12v-2x6-stromstecker-erwischt.2281624/page-10#post-31868403', ['🔥 接頭熔損／熔毀', '警示未被聽見', '售後處理']),
+    ('https://extreme.pcgameshardware.de/threads/zwei-rtx-pro-6000-kabelummantelung-zerbroeselt-an-gpu-und-netzteil.679436/', ['線材外皮劣化', '原因未確認']),
+    ('https://www.chiphell.com/thread-2916527-1-1.html', ['價格／溢價疑慮', '實測不足']),
+    ('https://www.reddit.com/r/MSI_Gaming/comments/1xqa5m4/built_an_msi_afterburner_plugin_to_monitor_12v2x6/', ['雙接頭支援未驗證', '通路／開箱品質']),
+    ('https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5820847', ['接頭鬆動', '電壓下降', '客服處理中']),
+    ('https://www.reddit.com/r/Corsair/comments/1xpsggv/corsair_thermalprotect_12v2x6_cable_has_excellent/', ['線材僵硬／彎折空間']),
+    ('https://www.reddit.com/r/linux_gaming/comments/1xp6bj8/ampinel_telemetry_support_coming_to_the_linux/', ['主線核心尚未支援']),
+    ('https://www.reddit.com/r/pcmasterrace/comments/1xo8pep/psa_spotting_and_preventing_melted_12vhpwr_12v2x6/', ['額外接頭疑慮', '機殼淨空']),
+    ('https://www.reddit.com/r/pcmasterrace/comments/1xogg2s/wireview_and_the_8pin_to_12v_adapter_question/', ['接線／相容性疑問', '無可用回答']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1xnbxlq/got_the_wireview_pro_2_to_fit_like_a_glove/', []),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1xmy5xg/how_close_is_too_close_wireview_pro_ii/', ['機殼淨空', '風扇異音', '機械壓力']),
+    ('https://www.reddit.com/r/ThermalGrizzly/comments/1xms0y0/wireview_pro_2_with_unified_front_panel_connector/', ['前面板接頭相容性（已解決）']),
 ]}
 
 def detect_issue_tags(row):
@@ -3853,59 +4049,53 @@ pm_weekly_updates = {
     },
 }
 
-# 2026-11-03 本次新增／補收的評價；前版卡片由 previous_report 讀回。
+# 2026-11-10 本次新增／補收的評價；前版卡片由 previous_report 讀回。
 pm_weekly_updates = {
     'WireView': {
-        'pros': '選購討論中，部分使用者重視 WireView Pro II 不依賴作業系統的硬體關機、逐 pin 可視化與接頭保固；一名 Astral 擁有者表示安裝後逐 pin 分配稍有改善。另一名留言者表示裝置讓他發現 PSU 端不平衡並重新調整接頭。這些是個人使用感受，沒有同條件對照可證明普遍效果。',
-        'cons': '一名 TUF RTX 5090 使用者以兩顆 PSU、四條線材與多次重插仍看到 WireView Pro II 不平衡，但 Ai1300TS 未看到相同問題，因而停用該裝置；同串另一名 TUF 使用者表示原有 WireView 正常、Wired 版本卻造成明顯不平衡，換回後恢復並獲退款。另有使用者回報小風扇異音及疑似錯誤警報，或裝置受輕微震動鬆動後引發顯示卡當機／電流不平衡。TechPowerUp 使用者則回報接頭偏鬆、WireView 顯示 12.0V 而 GPU 端負載降到 11.7V。上述案例皆缺少原廠檢測，不能合併推論為單一根因。',
-        'actions': 'P0：加入開機自檢與跨量測點比對，若轉接器輸入／GPU 端電壓差、六路加總或裝置姿態改變後的讀值異常，應提示停止使用並保存原始紀錄。P1：公布接頭保持力、允許電壓降、小風扇壽命及換貨門檻；客服回覆需附診斷結果，並區分「電流不平衡」「錯誤讀值」「接頭鬆動／電壓降」與「裝置散熱」四類問題。',
+        'pros': 'ComputerBase 的第一手案例中，WireView Pro II 先看到 pin 3 由約 7A 降至 4A、之後曾為 0A；再次負載時 pin 3 僅約 2A、其餘線路逼近或超過 10A，蜂鳴過流警報讓使用者立即停止遊戲，接頭尚未熔毀。另一名 Reddit 使用者把溫度門檻調低後，確認整合式前面板接頭仍可讓 WireView 蜂鳴並完成硬體關機。這兩件案例分別支持「及早警示」與「自動關機接線可用」，但前者根因仍待換線驗證。',
+        'cons': 'ComputerBase 另一名使用者回報第一代 WireView 與 RTX 5090 電源接頭因熔融而黏死，且他沒有聽到先前警示聲；原廠後續以專案方式完成維修與升級。Reddit 另有直插版距玻璃僅 1～2mm、加墊後玻璃外凸並對顯示卡施力，以及風扇明顯異音改裝 40mm 風扇的個案。TechPowerUp 的接頭鬆動／GPU 端負載降到 11.7V 案例至 11 月 8 日仍在與客服交涉，尚無檢測或換貨結論。',
+        'actions': 'P0：除蜂鳴外，對單路 0A、持續過流或使用者未回應警示的情境，應提供可設定的硬體關機與完整事件記錄。P1：公布接頭保持力、允許電壓降、風扇異音／堵轉判定及換貨門檻；相容表加入機殼側板距離、進風需求、直插／Wired 版選擇與整合式前面板接頭轉接方式。',
         'sources': [
-            ('TUF RTX 5090 的疑似裝置／量測異常', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xlngrf/update_wireview_pro_ii_and_the_asus_tuf_gaming/'),
-            ('接頭鬆動與 300mV 電壓差後續', 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5818162'),
-            ('Astral 的選購與使用評價', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xkkh9q/5090_astral_wvp2_worth_it/'),
+            ('ComputerBase 單路失效與過流警報', 'https://www.computerbase.de/forum/threads/kommentar-jetzt-hat-auch-mich-der-12v-2x6-stromstecker-erwischt.2281624/'),
+            ('整合式前面板接頭自動關機測試', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xms0y0/wireview_pro_2_with_unified_front_panel_connector/'),
+            ('第一代 WireView 接頭熔融黏死與售後處理', 'https://www.computerbase.de/forum/threads/kommentar-jetzt-hat-auch-mich-der-12v-2x6-stromstecker-erwischt.2281624/page-10#post-31868403'),
+            ('機殼淨空與風扇異音', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xmy5xg/how_close_is_too_close_wireview_pro_ii/'),
+            ('接頭鬆動客服後續', 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5820847'),
         ],
     },
     'GPU Safeguard': {
-        'pros': 'Ai1600TS 的 Safeguard+ 在 Ampinel 主動平衡後量到約 1.062～1.118A 差距並依 1.0A 設定觸發警報，成為外接裝置之外的第二個監控層；Ai1300TS 也被另一名使用者拿來交叉比對 WireView 的異常讀值。這支持 PSU 端監控具獨立比較價值，但不等同已證明任一裝置故障。',
-        'cons': '一名 Ai1300TS 使用者遇到 MSI Center 各路固定顯示最大值、連未使用插孔也相同且沒有即時變化；WireView 讀值正常，HWiNFO 仍可看到 PSU 活動。原發文者移除並重新安裝 MSI Center 後確認恢復；另一名擁有者的重新啟動恢復則是不同案例。這顯示軟體安裝或通訊狀態可能讓監控介面失去可信讀值，但本串沒有證明 PSU 韌體保護同時失效。',
-        'actions': 'P0：PSU 韌體保護應與 MSI Center／HWiNFO 顯示狀態分離，通訊異常時仍獨立保護並明確標示「資料無效」。P1：加入 MSI Center 安裝完整性檢查與一鍵修復，並提供 USB header、HWiNFO 衝突、Afterburner 版本及軟體重裝的診斷流程；讓使用者匯出通訊狀態、六路原始值及警報紀錄。',
+        'pros': 'Ai1600TS 使用者完成 Afterburner 外掛，可直接利用既有 MSI PSU.dll 計算六路電流差；約 575W 下平均差值約 0.300A，另一名 RTX 4090 使用者回報平均 0.152A、最大 0.422A。使用者要求免重啟重設統計後，作者發布 v1.0.4，提問者明確回覆修正有效。這顯示 Safeguard+ telemetry 可被擴充為持續監控工具。',
+        'cons': '外掛尚未驗證雙 12V-2x6 的 Lightning Z。留言另有兩名買家收到已拆封、缺線或無法開機的 Ai1300TS／Ai1600TS，換購新品後恢復；這是通路／開箱品質訊號，不是 Safeguard+ 核心保護失效。Chiphell 也有買家因 5090 燒接頭焦慮購買 Ai1600TS，但沒有觸發資料，不能當成功案例。',
+        'actions': 'P1：提供正式、版本化的 telemetry API／SDK 與雙接頭範例，納入平均／最大差值重設、事件匯出及 Linux 支援，避免社群工具依賴未公開介面。P2：強化通路新品封條、配件清單與到貨自檢，將開箱缺件／無法開機與保護功能問題分開處理。',
         'sources': [
-            ('Ampinel 啟用平衡後觸發 Safeguard+ 警報', 'https://www.reddit.com/r/watercooling/comments/1xj25gi/aquacomuter_ampinel_rev5_terrible_balancing/'),
-            ('Ai1300TS 即時讀值異常', 'https://www.reddit.com/r/MSI_Gaming/comments/1xl63iu/ai1300ts_not_registering_anything_live_need_to/'),
+            ('Afterburner 六路電流差外掛', 'https://www.reddit.com/r/MSI_Gaming/comments/1xqa5m4/built_an_msi_afterburner_plugin_to_monitor_12v2x6/'),
+            ('Chiphell 雙卡電源選購', 'https://www.chiphell.com/thread-2916527-1-1.html'),
         ],
     },
     'Ampinel': {
-        'pros': 'Aqua Computer 代表說明主動調節的毫秒級更新與軟體平滑會造成瞬時波動；發文者後續把平衡設為 100% 時，平均差距約 0.350～0.450A，較初始警報情境縮小。',
-        'cons': '同一使用者最初在約 600W 下啟用平衡後，Safeguard+ 看到約 1.062～1.118A 差距並觸發警報，Ampinel 圖表仍偶爾出現約 1.5～3A 尖峰。TechPowerUp 另一名使用者表示自己的 Ampinel 重插後仍會晃動、12V 降到約 11.6～11.7V，最後退款；沒有原廠檢測結果。',
-        'actions': 'P0：介面需同時呈現原始值、平滑值、取樣率與可接受的瞬時波動範圍，避免使用者無法判斷警報是調節動作或異常。P1：公布與具逐 pin 監控 PSU、ROG Equalizer 串接時的相容性，以及接頭保持力、電壓降與換貨門檻。',
+        'pros': 'ComputerBase 同一使用者的兩台 RTX 5090 系統，舊 Ampinel 使用數月後陸續鬆動／告警；Aqua Computer 兩次先行換貨，新品接點由銀色改為鍍金、位置較淺且插接更緊，換後滿載差值分別約 0.5A 與 0.5～0.7A。另有 Linux 驅動進入 linux-next，可讀總功率、總電流、輸入電壓、熱點溫度與六路電流。',
+        'cons': '兩台舊裝置都曾在重插後短暫恢復、數日後再發，換線與換 PSU 無效；目前只有單一使用者前後經驗，沒有原廠公開硬體改版說明。Linux 支援尚未進入 mainline，也沒有實際發行版測試或時程。',
+        'actions': 'P0：公開接頭硬體修訂、序號／版本辨識與舊版換修條件，並量化插拔循環後的保持力與接觸電阻。P1：公布 Linux mainline 送審與發行版支援狀態，文件清楚區分核心唯讀 telemetry、Aquasuite 功能與主動均流控制。',
         'sources': [
-            ('Rev.5 平衡波動與 Safeguard+ 警報', 'https://www.reddit.com/r/watercooling/comments/1xj25gi/aquacomuter_ampinel_rev5_terrible_balancing/'),
-            ('重插後晃動與低電壓讀值', 'https://www.techpowerup.com/forums/threads/close-call-5090-burnt-cable.334508/post-5818162'),
+            ('Ampinel 舊版鬆動與兩次換貨', 'https://www.computerbase.de/forum/threads/kommentar-jetzt-hat-auch-mich-der-12v-2x6-stromstecker-erwischt.2281624/page-9#post-31868314'),
+            ('linux-next telemetry 支援', 'https://www.reddit.com/r/linux_gaming/comments/1xp6bj8/ampinel_telemetry_support_coming_to_the_linux/'),
         ],
     },
     'ThermalProtect': {
-        'pros': 'Hardwareluxx 留言者把 ThermalProtect 推薦給 Gigabyte AORUS Elite P1000W 使用者，理由是曾見其他 PSU 品牌搭配且原廠稱可通用；這只支持市場對跨品牌使用的認知，沒有該留言者的觸發或長期測試。',
-        'cons': '討論仍需要靠使用者自行確認線長、顏色與 PSU 相容性，且沒有 pinout 文件或實機保護觸發；因此不能只依「通用」說法判定所有模組化 PSU 都可直接使用。',
-        'actions': 'P0：提供可查詢的 PSU 型號／pinout 相容表與錯接防呆，明確區分 PSU 端通用規格與實際驗證型號。P1：補充跨品牌長期使用、溫度觸發、誤報及觸發後檢查資料。',
+        'pros': '同一張顯示卡約 575W FurMark 各跑 12～14 分鐘，使用者回報 Ai1600TS 原生線平均差值 0.272A、ThermalProtect 0.321A，兩者最大皆 0.625A；作者明確表示 0.049A 差異可能在誤差範圍，三天後仍回報平均分配。其他單機經驗包括遊戲約 41～45°C、Hogwarts Legacy DLSS 5 約 50°C。',
+        'cons': '線材靠接頭前約 30mm 偏硬，需要預留彎折空間。HX1200i 因缺少 PSU 端原生 12V-2x6 插座而不能直接使用；原發文者也抱怨 CORSAIR 網站缺少 ThermalProtect／PinProtect 型號篩選，必須自行找原廠說明才確認兩種保護可併用。',
+        'actions': 'P1：相容性頁應以 PSU 型號、PSU 端插座、Type 4／5、線長與最小直線／彎折空間篩選；同頁列出可否與 PinProtect 併用。後續實測應固定同一 PSU 插座與條件，並提供長期溫度、逐路電流與觸發紀錄。',
         'sources': [
-            ('Hardwareluxx 跨品牌相容性討論', 'https://www.hardwareluxx.de/community/threads/schwarzes-12vhpwr-kabel-f%C3%BCr-gigabyte-aorus-elite-p1000w-netzteil-woher.1382353/'),
-        ],
-    },
-    'ROG Equalizer': {
-        'pros': '',
-        'cons': 'Aqua Computer 代表提醒 Ampinel 再串接 ROG Equalizer 可能因 bridge 與各接觸電阻差異增加主動調節波動。Hardwareluxx 留言者另稱 PSU 端逐線監控只能看到 bridge 之前的線路。兩者都是技術說法，本週沒有 Equalizer 擁有者提供同條件量測。',
-        'actions': 'P1：公布 bridge 前後各量測點可見範圍，並提供 Equalizer 搭配 Ampinel、WireView、Astral 與 PSU 逐 pin 監控時的相容性矩陣及故障注入結果。',
-        'sources': [
-            ('Ampinel 代表對串接 Equalizer 的說明', 'https://www.reddit.com/r/watercooling/comments/1xj25gi/aquacomuter_ampinel_rev5_terrible_balancing/'),
-            ('Hardwareluxx 監控邊界留言', 'https://www.hardwareluxx.de/community/threads/schwarzes-12vhpwr-kabel-f%C3%BCr-gigabyte-aorus-elite-p1000w-netzteil-woher.1382353/'),
+            ('ThermalProtect 與 Ai1600TS 電流分配比較', 'https://www.reddit.com/r/Corsair/comments/1xpsggv/corsair_thermalprotect_12v2x6_cable_has_excellent/'),
+            ('HX1200i 相容性與雙保護資訊', 'https://www.reddit.com/r/buildapc/comments/1xry4bi/corsair_hx1200i_compatible_with_thermalprotect/'),
         ],
     },
     'PinProtect／PinProtect+': {
-        'pros': 'Astral 防護選購討論中，一名使用者因 RM1200e 內建 PinProtect 且價格低於 MSI 方案而購買；另一串也把 PSU 內建保護視為可減少外接裝置與額外接頭的選項。',
-        'cons': '本週仍沒有 PinProtect／PinProtect+ 擁有者回報實際告警、切斷或事件紀錄；購買理由不能當成保護效果驗證。',
-        'actions': 'P1：持續補充實際觸發案例、可匯出事件資料與支援型號；選購頁應清楚比較固定 PinProtect 與可讀取資料的 PinProtect+，並說明沒有 GPU 端溫度感測的邊界。',
+        'pros': 'HX1200i 使用者找到 CORSAIR 原廠說明，確認在支援型號上 PinProtect 與 ThermalProtect 可同時使用，並據此決定購買。這是相容性資訊，不是實際告警／切斷驗證。',
+        'cons': '使用者無法從 CORSAIR 網站快速判斷 HX1200i 沒有原生 12V-2x6 插座、也難以找出同時支援兩種保護的型號；本週仍沒有 PinProtect 擁有者提供實際觸發資料。',
+        'actions': 'P1：建立可依既有 PSU 型號反查升級路徑的產品篩選器，清楚標出原生插座、PinProtect／PinProtect+、ThermalProtect 與兩者併用狀態；另提供實際觸發、事件記錄與恢復流程。',
         'sources': [
-            ('RM1200e PinProtect 選購理由', 'https://www.reddit.com/r/ThermalGrizzly/comments/1xkkh9q/5090_astral_wvp2_worth_it/'),
+            ('HX1200i 相容性與雙保護資訊', 'https://www.reddit.com/r/buildapc/comments/1xry4bi/corsair_hx1200i_compatible_with_thermalprotect/'),
         ],
     },
 }
@@ -4095,6 +4285,9 @@ version_history = [
     ('v1.2', V12_UPDATED_AT, '新增 Hardwareluxx、ComputerBase、PCGH Extreme 與 Overclockers UK 四個論壇來源。'),
 ]
 update_log = [
+    ('2026-11-10', 'Reddit：以 12V-2x6、完整產品／PSU／顯示卡型號及相容性、警報、過流、熔毀情境詞交叉搜尋，逐篇讀取主文並展開本次可見的所有「其他／更多回覆」。新增 9 篇唯一討論：ThermalProtect 與 Ai1600TS 的同系統逐路比較、HX1200i／PinProtect 相容性、Safeguard+ Afterburner 外掛、Ampinel linux-next telemetry、WireView 的前面板硬體關機、機殼淨空／風扇異音、安裝展示、8-pin 轉接疑問及跨產品 PSA；9／9 均完成留言樹與原發文者後續檢查。'),
+    ('2026-11-10', 'ComputerBase：逐頁核讀 11 月 9 日新串共 16 頁、307 則留言及完整原文。新增 WireView Pro II 在單路由約 7A 降至 0A、其餘線路逼近／超過 10A 時發出蜂鳴的第一手案例；另收錄第一代 WireView 與 RTX 5090 電源接頭熔融黏死後的原廠專案維修，以及兩台 Ampinel 舊版接頭鬆動、換新版後恢復穩定的前後經驗。熔損已用火焰標籤特別標示。'),
+    ('2026-11-10', 'TechPowerUp：登入 Chrome 查找 2026-11-03 後 12V-2x6、WireView、ThermalProtect、Ampinel、Safeguard 與 PinProtect；新增 WireView Pro II 接頭鬆動／電壓下降案至 11 月 8 日仍未解決的後續。PCGH Extreme：新增雙 RTX Pro 6000 線材外皮碎裂討論，WireView 只出現在建議留言，不寫成保護實測。Chiphell：逐樓核讀 1300W 雙卡電源選購的 29 則回覆，只有選購理由、沒有觸發資料。Tom’s Hardware、Hardwareluxx、Overclockers UK、NGA玩家社區與百度貼吧亦以相同日期界線、產品名、在地用語及事故詞補查；沒有找到可新增且已完整核讀的唯一產品討論，搜尋空白不解讀為沒有討論。'),
     ('2026-11-03', 'Reddit：以產品全名、完整 PSU／顯示卡型號、逐 pin／電壓降／警報及熔毀情境詞補查 2026-10-29 之後資料，逐篇核讀 5 篇唯一討論及本次可見留言。新增 Ampinel Rev.5 啟用平衡後觸發 Safeguard+ 警報、Ai1300TS 即時讀值異常、WireView Pro II 疑似量測異常、Astral／TempGuard／WireView 選購比較，以及留言者明確回報前一張 RTX 5090 接頭熔毀並獲換卡的案例；熔毀已用火焰標籤特別標示，根因資料不足則不推測。'),
     ('2026-11-03', 'TechPowerUp：登入 Chrome 搜尋 2026-10-29 之後的 12V-2x6 與全部追蹤產品，驗證頁自動通過；新增 WireView Pro II 接頭偏鬆與約 300mV 電壓差後續，以及 AORUS Master RTX 5080 相容性詢問。Hardwareluxx：新增 ThermalProtect 跨品牌推薦與 ROG Equalizer bridge 監控邊界討論。Tom’s Hardware、ComputerBase、Overclockers UK、PCGH Extreme、Chiphell、NGA玩家社區與百度貼吧以相同日期界線、產品名及事故詞補查，未找到可新增且已完整核讀的唯一討論；搜尋空白不解讀為沒有討論。'),
     ('2026-11-03', 'Reddit 搜尋修正：單查產品標題會漏掉產品只出現在主文或留言的討論。本次改以 GPU Safeguard、Ai1300TS／Ai1600TS、RTX 5090／Astral／TUF、imbalance／vdroop／alarm／melted 等模型與事故詞交叉搜尋，再進入主文與留言核對；公開 JSON 仍回傳 403，因此以 Chrome 可見頁面為準，未載入回覆不作推論。'),
@@ -4168,10 +4361,10 @@ if new_rows:
             summary=escape(row['summary']),
             comments=escape(row['comments']),
         )
-        for row in new_rows[:6]
+        for row in new_rows[:8]
     )
-    if len(new_rows) > 6:
-        focus_items += f'<div class="focus-more">其餘 {len(new_rows) - 6} 篇新增內容請見下方標示 <span class="new-badge">New!</span> 的明細。</div>'
+    if len(new_rows) > 8:
+        focus_items += f'<div class="focus-more">其餘 {len(new_rows) - 8} 篇新增內容請見下方標示 <span class="new-badge">New!</span> 的明細。</div>'
     weekly_focus = (
         '<div class="focus-summary">'
         f'<div><span>本版新增（前版比對）</span><b>{len(new_rows)} 篇</b></div>'
@@ -4256,9 +4449,9 @@ section{{margin:20px 0;scroll-margin-top:16px}} h2{{font-size:17px;border-left:4
 <div class="note">本次問題標籤已逐筆讀取主文與可見留言後人工覆核；只有來源明確提到的問題才標示。Reddit 另區分「完整留言樹」與「待補讀深層回覆」：只有逐層開啟所有可見「其他／更多回覆」且檢查原發文者後續，才標示完整。驗證頁、空白頁或只有一般規格／風險討論者不把推測寫成故障；「—」表示本筆未讀到可確認的產品問題，不代表產品絕對沒有問題。</div><div class="tblbox"><table id="detailTable"><thead><tr><th>發文日期（新到舊）</th><th>來源</th><th>關鍵字</th><th>命中位置</th><th>標題</th><th>問題標籤</th><th>留言核讀</th><th>主文內容（發生什麼）</th><th>留言結論／使用者評價</th><th>連結</th></tr></thead><tbody>{detail}</tbody></table></div>
 <div class="load-more-row"><button type="button" id="loadMoreBtn" class="load-more-btn" hidden>顯示更多</button></div></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
-<section class="muted"><h2>六、搜尋來源狀態</h2><ul><li>Reddit：納入 {sum(r['source']=='Reddit' for r in rows)} 篇唯一討論串；最新可核對結果為 {latest_reddit_date}。相較前版新增／補收 {sum(r['source']=='Reddit' and r['is_new'] for r in rows)} 篇，逐篇讀取主文與本次可見留言；新增 Ampinel／Safeguard+ 警報、Ai1300TS 讀值異常、WireView 疑似量測異常、選購比較及一則留言者回報的 RTX 5090 熔毀。熔毀以火焰標籤特別標示，根因不足者不作推論，跨版重貼排除。</li><li>Tom's Hardware Forums：納入 {sum(r['source']=="Tom's Hardware Forums" for r in rows)} 筆；補查 2026-10-29 後產品名、完整型號與 12V-2x6 事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>TechPowerUp Forums：納入 {sum(r['source']=='TechPowerUp Forums' for r in rows)} 筆；登入 Chrome 搜尋正常，驗證頁自動通過；新增 WireView Pro II 接頭偏鬆／電壓差後續及 AORUS Master RTX 5080 相容性詢問，使用者量測、客服轉述與可確認事實分開記錄。</li><li>ComputerBase Forum：納入 {sum(r['source']=='ComputerBase Forum' for r in rows)} 筆；補查 2026-10-29 後產品與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>Hardwareluxx Forum：納入 {sum(r['source']=='Hardwareluxx Forum' for r in rows)} 筆；新增 ThermalProtect 跨品牌推薦與 ROG Equalizer bridge 監控邊界討論，兩者均標示為論壇使用者說法，沒有寫成官方相容性結論。</li><li>Overclockers UK Forums：納入 {sum(r['source']=='Overclockers UK Forums' for r in rows)} 筆；補查 2026-10-29 後產品與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>PC Games Hardware Extreme：納入 {sum(r['source']=='PC Games Hardware Extreme' for r in rows)} 筆；補查 2026-10-29 後產品與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>NGA玩家社區：納入 {sum(r['source']=='NGA玩家社區' for r in rows)} 筆 2025-07-01 以後資料；補查產品名、在地稱呼與 12V-2x6 燒損詞，搜尋介面／站外索引不穩定，未把空白結果當成沒有討論。</li><li>Chiphell：納入 {sum(r['source']=='Chiphell' for r in rows)} 筆 2025-07-01 以後資料；補查 2026-10-29 後產品名、在地稱呼與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>百度貼吧：納入 {sum(r['source'].startswith('百度貼吧') for r in rows)} 筆 2025-07-01 以後資料；補查產品名、在地稱呼與 12V-2x6 燒損詞，站外索引與動態頁面可見度有限，未把搜尋空白推論為沒有討論。</li></ul></section>
+<section class="muted"><h2>六、搜尋來源狀態</h2><ul><li>Reddit：納入 {sum(r['source']=='Reddit' for r in rows)} 篇唯一討論串；最新可核對結果為 {latest_reddit_date}。相較前版新增／補收 {sum(r['source']=='Reddit' and r['is_new'] for r in rows)} 篇，9／9 篇均已展開所有本次可見回覆並檢查原發文者後續；內容涵蓋 ThermalProtect 與 MSI 原生線材電流比較、Safeguard+ Afterburner 外掛、ThermalProtect／PinProtect 相容性、WireView 安裝空間與關機接線，以及 Ampinel Linux 遙測支援。量測條件、使用者設定及未驗證說法分開記錄。</li><li>Tom's Hardware Forums：納入 {sum(r['source']=="Tom's Hardware Forums" for r in rows)} 筆；補查 2026-11-03 後產品名、完整型號與 12V-2x6 事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>TechPowerUp Forums：納入 {sum(r['source']=='TechPowerUp Forums' for r in rows)} 筆；登入 Chrome 搜尋正常；新增同一名使用者對 WireView Pro II 接頭偏鬆的 2026-11-08 後續，他提供影片並準備再次聯絡客服，尚未解決，未把偏鬆直接寫成產品故障或熔損。</li><li>ComputerBase Forum：納入 {sum(r['source']=='ComputerBase Forum' for r in rows)} 筆；完整核讀 2026-11-09 討論串 16 頁、307 則留言，新增 WireView Pro II 偵測單路掉至 0A／過電流警報、Ampinel 接頭偏鬆且兩度換貨，以及第一代 WireView 與 RTX 5090 電源接頭熔融黏死後由 Thermal Grizzly 維修的使用者案例。</li><li>Hardwareluxx Forum：納入 {sum(r['source']=='Hardwareluxx Forum' for r in rows)} 筆；補查 2026-11-03 後產品名、型號與事故詞，既有 ThermalProtect 討論最後更新仍早於本期，未找到可新增且已完整核讀的唯一討論。</li><li>Overclockers UK Forums：納入 {sum(r['source']=='Overclockers UK Forums' for r in rows)} 筆；補查 2026-11-03 後產品與事故詞，未找到可新增且已完整核讀的唯一討論。</li><li>PC Games Hardware Extreme：納入 {sum(r['source']=='PC Games Hardware Extreme' for r in rows)} 筆；新增雙 RTX PRO 6000 電源線外皮碎裂討論，已讀取 13 則可見留言；WireView 僅是留言者建議，沒有實際使用或觸發結果，因此不列為 WireView 故障。</li><li>NGA玩家社區：納入 {sum(r['source']=='NGA玩家社區' for r in rows)} 筆 2025-07-01 以後資料；補查產品名、在地稱呼與 12V-2x6 燒損詞，只找到一般彎折空間討論，未命中追蹤產品而排除；搜尋介面／站外索引仍有限，不把空白結果當成沒有討論。</li><li>Chiphell：納入 {sum(r['source']=='Chiphell' for r in rows)} 筆 2025-07-01 以後資料；新增雙顯示卡電源選購串並讀取 29 則回覆，包含 MSI Ai1600TS、崑崙強流線與替代供電方案的購買考量，但沒有保護觸發或逐 pin 量測。</li><li>百度貼吧：納入 {sum(r['source'].startswith('百度貼吧') for r in rows)} 筆 2025-07-01 以後資料；補查產品名、在地稱呼與 12V-2x6 燒損詞，未找到可新增且已完整核讀的唯一討論；站外索引與動態頁面可見度有限，未把搜尋空白推論為沒有討論。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
-<section class="muted"><h2>七、Reddit 精確度與廣度確認</h2><ul><li><b>範圍：</b>以 {period_start_label}～{period_end_label} 為日期界線，交叉查找產品全名、常見拼法、完整 PSU／顯示卡／線材型號、配件料號、per-pin／telemetry／NTC／thermistor／保護功能詞、12V-2x6／12VHPWR 事故語句，以及標題沒有產品名的主文與留言。</li><li><b>固定查詢線：</b>{escape('；'.join(reddit_required_query_lanes))}。另加入 Ai1300TS／Ai1600TS、RTX 5090 Astral／TUF、imbalance／vdroop／alarm／melted／saved my GPU 等模型與事故詞；本次同時讀取貼文與頁面可見留言。</li><li><b>本次覆蓋稽核：</b>相較前版新增／補收 {sum(r['source']=='Reddit' and r['is_new'] for r in rows)} 篇 Reddit 唯一討論；納入 URL 由產生器自動對帳，主文、產品實測、官方代表回覆、一般留言與推測分開摘要。</li><li><b>漏網原因與修正：</b>Reddit 的產品名搜尋不一定會帶出只在主文或留言出現產品的貼文，單一 OR 查詢也會混入大量無關結果。本次分別以產品、完整型號、顯示卡型號與事故詞交叉搜尋，再進入頁面逐篇核對；例如以 GPU Safeguard／Ai1300TS／Ai1600TS 查詢，帶出同時談到 WireView 與 Ampinel 的比較及警報案例。</li><li><b>精確度：</b>新資料中，Ampinel 的平均差距、偶發尖峰與 Safeguard+ 警報分開呈現；WireView 疑似量測異常及電壓下降都保留「使用者判斷、未送驗」；RTX 5090 熔毀只記錄留言者明確回報與 NVIDIA 換卡，不補寫缺少的型號、線材或根因。</li><li><b>限制：</b>Reddit 公開 JSON 本次回傳 403，因此以 Chrome 可見頁面為準；搜尋仍可能延遲索引、動態載入或省略部分回覆。留言摘要只代表本次實際可見內容，不把未載入內容或搜尋空白推論為沒有討論。</li></ul></section>
+<section class="muted"><h2>七、Reddit 精確度與廣度確認</h2><ul><li><b>範圍：</b>以 {period_start_label}～{period_end_label} 為日期界線，交叉查找產品全名、常見拼法、完整 PSU／顯示卡／線材型號、配件料號、per-pin／telemetry／NTC／thermistor／保護功能詞、12V-2x6／12VHPWR 事故語句，以及標題沒有產品名的主文與留言。</li><li><b>固定查詢線：</b>{escape('；'.join(reddit_required_query_lanes))}。另加入 Ai1300TS／Ai1600TS、RTX 5090 Astral／TUF、imbalance／vdroop／alarm／melted／saved my GPU 等模型與事故詞；本次同時讀取貼文與完整可見留言樹。</li><li><b>本次覆蓋稽核：</b>相較前版新增／補收 {sum(r['source']=='Reddit' and r['is_new'] for r in rows)} 篇 Reddit 唯一討論；9／9 篇均已展開可見「更多回覆」、檢查原發文者後續，並由產生器對帳納入 URL 與留言核讀紀錄。主文、原發文者後續、產品實測、一般留言與推測分開摘要。</li><li><b>降低漏網：</b>產品名稱搜尋之外，另以型號、功能與事故詞搜尋，並檢查標題沒有產品名的貼文。例如 HX1200i／RM1200e 帶出 ThermalProtect 與 PinProtect 相容性問題；front-panel connector 帶出 WireView 關機接線；Afterburner plugin／PSU.dll 帶出 Safeguard+ 逐 pin 監控外掛。</li><li><b>精確度：</b>ThermalProtect 與 MSI 原生線材的差距只依原發文者同條件測試呈現，並保留其「可能在誤差範圍」說明；Safeguard+ 外掛的警報門檻屬使用者自行設定；WireView 關機案例有原發文者實測，因此標示已解決。開箱缺線、到貨故障、機構空間及產品核心保護效果分開分類。</li><li><b>限制：</b>Reddit 公開 JSON 回傳 403，因此以登入 Chrome 可見頁面為準；搜尋仍可能延遲索引或省略未載入內容。留言摘要只代表本次實際展開並讀取的內容，不把搜尋空白推論為沒有討論。</li></ul></section>
 <div class="tabs"><a class="tab" href="#weekly-focus">本週焦點</a><a class="tab" href="#overview">重點觀察</a><a class="tab" href="#details">搜尋結果明細</a></div>
 <section class="revision-history"><h2>版本紀錄（架構變動）</h2><div class="note" style="margin-top:0">只記錄新增論壇來源、新增／調整追蹤關鍵字、版型或篩選功能調整這類架構層級變動；逐次的查核與新增明細請見下方「內容更新紀錄」。</div><ul>{version_history_rows}</ul></section>
 <section class="revision-history"><h2>內容更新紀錄</h2><div class="note" style="margin-top:0">記錄每次查核實際跑了哪些來源／關鍵字、找到並新增了什麼；不對應版本號，同一版本號下可能有多筆更新紀錄。</div><ul>{update_log_rows}</ul></section>
